@@ -6374,13 +6374,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@oxc-project/types@npm:^0.112.0":
-  version: 0.112.0
-  resolution: "@oxc-project/types@npm:0.112.0"
-  checksum: 10/59549821692604d6715791bb28f06c973e9664fc3a08b0b992b3079058f66c5b9b5ce8c63fd0056ff4da2c6943eaf71ff071c9bad1cb4ee2346d388014c7ec9e
-  languageName: node
-  linkType: hard
-
 "@paralleldrive/cuid2@npm:^2.2.2":
   version: 2.2.2
   resolution: "@paralleldrive/cuid2@npm:2.2.2"
@@ -9957,7 +9950,6 @@ __metadata:
     "@opentelemetry/api": "npm:^1.9.1"
     "@opentelemetry/exporter-trace-otlp-grpc": "npm:^0.217.0"
     "@opentelemetry/sdk-node": "npm:^0.217.0"
-    "@oxc-project/types": "npm:^0.112.0"
     "@parse/node-apn": "npm:^8.1.0"
     "@playwright/test": "npm:^1.52.0"
     "@react-aria/toolbar": "npm:^3.0.0-nightly.5042"
