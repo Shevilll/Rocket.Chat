@@ -1,7 +1,7 @@
 import path from 'node:path';
 
 import react from '@vitejs/plugin-react';
-import { defineConfig, esmExternalRequirePlugin, type BuildEnvironmentOptions } from 'vite';
+import { defineConfig, type BuildEnvironmentOptions } from 'vite';
 import istanbul from 'vite-plugin-istanbul';
 
 import info from './vite/plugins/info';
@@ -36,7 +36,7 @@ const build = {
 		context: 'globalThis',
 		checks: {
 			circularDependency: true,
-			pluginTimings: false, // Suppress vite:istanbul timing warnings
+			pluginTimings: true, // Suppress vite:istanbul timing warnings
 		},
 		output: {
 			format: 'esm',
@@ -59,9 +59,6 @@ export default defineConfig(async () => {
 		appType: 'spa',
 		plugins: [
 			info(),
-			esmExternalRequirePlugin({
-				external: ['react', 'react-dom'],
-			}),
 			meteor({
 				rootUrl: ROOT_URL.toString(),
 			}),
