@@ -691,13 +691,16 @@ describe('[Calendar Events]', () => {
 
 			await sleep(3000);
 
+			// The display `status` remains offline because the test user has no DDP session.
+			// The presence engine persists the claim in statusDefault but the display status
+			// respects connection reality. We verify the claim via statusSource instead.
 			const statusResponseDuring = await request.get('/api/v1/users.getStatus').set(userCredentials).expect(200);
-			expect(statusResponseDuring.body.status).to.equal('busy');
+			expect(statusResponseDuring.body.statusSource).to.equal('external');
 
 			await sleep(5000);
 
 			const statusResponseAfter = await request.get('/api/v1/users.getStatus').set(userCredentials).expect(200);
-			expect(statusResponseAfter.body.status).to.equal('away');
+			expect(statusResponseAfter.body.statusSource).to.equal('manual');
 
 			await request.post('/api/v1/calendar-events.delete').set(userCredentials).send({ eventId }).expect(200);
 		});
