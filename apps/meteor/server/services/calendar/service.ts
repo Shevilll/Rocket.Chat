@@ -5,7 +5,7 @@ import { UserStatus } from '@rocket.chat/core-typings';
 import { cronJobs } from '@rocket.chat/cron';
 import { Logger } from '@rocket.chat/logger';
 import type { InsertionModel } from '@rocket.chat/model-typings';
-import { CalendarEvent } from '@rocket.chat/models';
+import { CalendarEvent, Users } from '@rocket.chat/models';
 import type { UpdateResult, DeleteResult } from 'mongodb';
 
 import { cancelUpcomingStatusChanges } from './statusEvents/cancelUpcomingStatusChanges';
@@ -13,6 +13,7 @@ import { removeCronJobs } from './statusEvents/removeCronJobs';
 import { getShiftedTime } from './utils/getShiftedTime';
 import { settings } from '../../../app/settings/server';
 import { getUserPreference } from '../../../app/utils/server/lib/getUserPreference';
+import { i18n } from '../../lib/i18n';
 
 const logger = new Logger('Calendar');
 
@@ -260,9 +261,12 @@ export class CalendarService extends ServiceClassInternal implements ICalendarSe
 			return;
 		}
 
+		const user = await Users.findOneById<Pick<IUser, '_id' | 'language'>>(event.uid, { projection: { language: 1 } });
+		const lng = user?.language || settings.get<string>('Language') || 'en';
+
 		await Presence.setActiveState(event.uid, {
 			statusDefault: UserStatus.BUSY,
-			statusText: event.subject,
+			statusText: i18n.t('Presence_status_in_a_meeting', { lng }),
 			statusSource: 'external',
 			statusExpiresAt: event.endTime,
 		});
