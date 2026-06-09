@@ -504,8 +504,6 @@ export class VideoConfService extends ServiceClassInternal implements IVideoConf
 		}
 
 		await VideoConferenceModel.setDataById(call._id, { endedAt: new Date(), status: VideoConferenceStatus.ENDED });
-		await this.runVideoConferenceChangedEvent(call._id);
-		this.notifyVideoConfUpdate(call.rid, call._id);
 
 		await Promise.all(
 			call.users.map((user) =>
@@ -514,6 +512,9 @@ export class VideoConfService extends ServiceClassInternal implements IVideoConf
 				),
 			),
 		);
+
+		await this.runVideoConferenceChangedEvent(call._id);
+		this.notifyVideoConfUpdate(call.rid, call._id);
 
 		if (call.type === 'direct') {
 			return this.endDirectCall(call);
