@@ -151,11 +151,15 @@ export class CalendarService extends ServiceClassInternal implements ICalendarSe
 		if (event) {
 			await removeCronJobs(eventId, event.uid);
 
-			// If the event is currently in progress, clear presence immediately
-			// otherwise the user stays "Busy" until the engine's expiration cron runs
+			// Clear presence for an in-progress event, unless another overlapping
+			// busy event is still keeping the user marked as busy.
 			const now = new Date();
 			if (event.busy !== false && event.startTime <= now && (!event.endTime || event.endTime > now)) {
-				await Presence.endActiveState(event.uid);
+				const otherActiveBusyEvent = await CalendarEvent.findOverlappingEvents(eventId, event.uid, now, now).next();
+
+				if (!otherActiveBusyEvent) {
+					await Presence.endActiveState(event.uid);
+				}
 			}
 		}
 

@@ -24,6 +24,7 @@ const CalendarEventMock = {
 	findEventsToScheduleNow: sinon.stub(),
 	findNextFutureEvent: sinon.stub(),
 	findInProgressEvents: sinon.stub(),
+	findOverlappingEvents: sinon.stub(),
 };
 
 const statusEventManagerMock = {
@@ -106,6 +107,9 @@ describe('CalendarService', () => {
 			findNextFutureEvent: sinon.stub().resolves(null),
 			findInProgressEvents: sinon.stub().returns({
 				toArray: sinon.stub().resolves([]),
+			}),
+			findOverlappingEvents: sinon.stub().returns({
+				next: sinon.stub().resolves(null),
 			}),
 		};
 
