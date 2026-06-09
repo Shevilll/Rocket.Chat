@@ -62,17 +62,16 @@ export const InternalUserWithRemoteStatus: StoryFn<typeof PeerInfo> = () => {
 };
 
 export const ExternalUser: StoryFn<typeof PeerInfo> = () => {
-	return <PeerInfo external number='1234567890' />;
+	return <PeerInfo number='1234567890' />;
 };
 
 export const ExternalUserWithDisplayName: StoryFn<typeof PeerInfo> = () => {
-	return <PeerInfo external number='1234567890' displayName='Jane Doe' />;
+	return <PeerInfo number='1234567890' displayName='Jane Doe' />;
 };
 
 export const ExternalUserWithDisplayNameAndAvatar: StoryFn<typeof PeerInfo> = () => {
 	return (
 		<PeerInfo
-			external
 			number='1234567890'
 			displayName='Jane Doe'
 			avatarUrl='data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC
