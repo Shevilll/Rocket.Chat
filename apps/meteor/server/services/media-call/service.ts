@@ -372,12 +372,16 @@ export class MediaCallService extends ServiceClassInternal implements IMediaCall
 	private async setPresenceForUsers(uids: IUser['_id'][]): Promise<void> {
 		await Promise.all(
 			uids.map(async (uid) => {
-				const user = await Users.findOneById(uid, { projection: { language: 1 } });
-				return Presence.setActiveState(uid, {
-					statusDefault: UserStatus.BUSY,
-					statusText: i18n.t('Presence_status_on_a_call', { lng: this.getLanguageForUser(user?.language) }),
-					statusSource: 'internal',
-				}).catch((err) => logger.error({ msg: 'Failed to set presence for user on call', uid, err }));
+				try {
+					const user = await Users.findOneById(uid, { projection: { language: 1 } });
+					await Presence.setActiveState(uid, {
+						statusDefault: UserStatus.BUSY,
+						statusText: i18n.t('Presence_status_on_a_call', { lng: this.getLanguageForUser(user?.language) }),
+						statusSource: 'internal',
+					});
+				} catch (err) {
+					logger.error({ msg: 'Failed to set presence for user on call', uid, err });
+				}
 			}),
 		);
 	}
