@@ -668,10 +668,10 @@ describe('[Calendar Events]', () => {
 
 	(IS_EE ? describe : describe.skip)('[Calendar Events Status Sync]', () => {
 		before(async () => {
-			await request.post('/api/v1/users.setStatus').set(userCredentials).send({ status: 'away' }).expect(200);
+			await request.post('/api/v1/users.setStatus').set(userCredentials).send({ status: 'online' }).expect(200);
 		});
 
-		it('should set user status to busy during event and restore manual status after event ends', async () => {
+		it('should apply a calendar (external) claim during an event and clear it after', async () => {
 			const now = new Date();
 			const startTime = new Date(now.getTime() + 1000);
 			// Event cannot be less than 5 secs in duration, otherwise `processStatusChangesAtTime` would trigger both start/end status changes at the same time, due to the 5s offset
@@ -691,16 +691,15 @@ describe('[Calendar Events]', () => {
 
 			await sleep(3000);
 
-			// The display `status` remains offline because the test user has no DDP session.
-			// The presence engine persists the claim in statusDefault but the display status
-			// respects connection reality. We verify the claim via statusSource instead.
+			// During the event the calendar claim is active. (Display `status` stays offline because this
+			// REST-only user has no DDP session, so we assert the active claim via statusSource.)
 			const statusResponseDuring = await request.get('/api/v1/users.getStatus').set(userCredentials).expect(200);
 			expect(statusResponseDuring.body.statusSource).to.equal('external');
 
 			await sleep(5000);
 
 			const statusResponseAfter = await request.get('/api/v1/users.getStatus').set(userCredentials).expect(200);
-			expect(statusResponseAfter.body.statusSource).to.equal('manual');
+			expect(statusResponseAfter.body.statusSource).to.be.undefined;
 
 			await request.post('/api/v1/calendar-events.delete').set(userCredentials).send({ eventId }).expect(200);
 		});

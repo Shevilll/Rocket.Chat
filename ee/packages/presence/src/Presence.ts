@@ -344,6 +344,7 @@ export class Presence extends ServiceClass implements IPresence {
 				IUser,
 				| '_id'
 				| 'username'
+				| 'type'
 				| 'roles'
 				| 'status'
 				| 'statusDefault'
@@ -356,6 +357,7 @@ export class Presence extends ServiceClass implements IPresence {
 		>(uid, {
 			projection: {
 				username: 1,
+				type: 1,
 				roles: 1,
 				status: 1,
 				statusDefault: 1,

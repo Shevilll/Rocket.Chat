@@ -5,13 +5,15 @@ import { processPresence } from './presenceEngine';
 
 const ONE_HOUR = 3600_000;
 
-type PresenceUser = Pick<IUser, 'statusDefault' | 'statusSource' | 'statusText' | 'statusExpiresAt' | 'previousState'>;
+type PresenceUser = Pick<IUser, 'type' | 'roles' | 'statusDefault' | 'statusSource' | 'statusText' | 'statusExpiresAt' | 'previousState'>;
 
 const user = (data: Partial<PresenceUser> = {}): PresenceUser => ({
 	statusDefault: UserStatus.ONLINE,
 	statusText: '',
 	...data,
 });
+
+const bot = (data: Partial<PresenceUser> = {}): PresenceUser => user({ type: 'bot', ...data });
 
 const session = (status: UserStatus = UserStatus.ONLINE): IUserSessionConnection => ({
 	id: 'random',
@@ -61,6 +63,40 @@ describe('processPresence', () => {
 		});
 	});
 
+	describe('auto-away over an existing claim (claimless recompute)', () => {
+		test('a manual online claim still goes AWAY on idle, without touching the claim or statusText', () => {
+			const result = processPresence(user({ statusSource: 'manual', statusDefault: UserStatus.ONLINE, statusText: 'Working' }), [
+				session(UserStatus.AWAY),
+			]);
+
+			expect(result.values).toMatchObject({ status: UserStatus.AWAY, statusConnection: UserStatus.AWAY });
+			expect(result.values).not.toHaveProperty('statusText');
+			expect(result.values).not.toHaveProperty('statusSource');
+			expect(result.values).not.toHaveProperty('statusDefault');
+			expect(result.clear).toBeUndefined();
+		});
+
+		test('a manual busy claim stays BUSY on idle (auto-away suppressed), claim preserved', () => {
+			const result = processPresence(user({ statusSource: 'manual', statusDefault: UserStatus.BUSY, statusText: 'Focusing' }), [
+				session(UserStatus.AWAY),
+			]);
+
+			expect(result.values).toMatchObject({ status: UserStatus.BUSY, statusConnection: UserStatus.AWAY });
+			expect(result.values).not.toHaveProperty('statusText');
+			expect(result.values).not.toHaveProperty('statusSource');
+			expect(result.clear).toBeUndefined();
+		});
+
+		test('when the user becomes active again the manual online claim resolves back to ONLINE', () => {
+			const result = processPresence(user({ statusSource: 'manual', statusDefault: UserStatus.ONLINE, statusText: 'Working' }), [
+				session(UserStatus.ONLINE),
+			]);
+
+			expect(result.values).toMatchObject({ status: UserStatus.ONLINE, statusConnection: UserStatus.ONLINE });
+			expect(result.values).not.toHaveProperty('statusText');
+		});
+	});
+
 	describe('setActive', () => {
 		test('should apply manual claim when user is online', () => {
 			const result = processPresence(user(), [session()], {
@@ -103,7 +139,7 @@ describe('processPresence', () => {
 			expect(result.values.previousState).toBeUndefined();
 		});
 
-		test('should overwrite when same priority claim arrives', () => {
+		test('should display the new claim and save the displaced one as previousState on same priority', () => {
 			const result = processPresence(
 				user({ statusSource: 'internal', statusDefault: UserStatus.BUSY, statusText: 'On a call' }),
 				[session()],
@@ -111,6 +147,7 @@ describe('processPresence', () => {
 			);
 			expect(result.values.statusText).toBe('In a meeting');
 			expect(result.values.statusSource).toBe('internal');
+			expect(result.values.previousState).toMatchObject({ statusSource: 'internal', statusText: 'On a call' });
 		});
 
 		test('should queue lower priority claim as previousState', () => {
@@ -328,6 +365,46 @@ describe('processPresence', () => {
 				type: 'setActive',
 				newState: { statusDefault: UserStatus.BUSY, statusSource: 'manual' },
 			});
+			expect(result.values.status).toBe(UserStatus.OFFLINE);
+		});
+	});
+
+	describe('no connection - humans (connection-bound)', () => {
+		test('clearActive: explicit "set online" is honored (stays online)', () => {
+			const result = processPresence(user({ statusSource: 'manual', statusDefault: UserStatus.BUSY }), [], { type: 'clearActive' });
+			expect(result.values.status).toBe(UserStatus.ONLINE);
+		});
+
+		test('setActive: busy claim is persisted but display is OFFLINE', () => {
+			const result = processPresence(user(), [], {
+				type: 'setActive',
+				newState: { statusDefault: UserStatus.BUSY, statusSource: 'manual', statusText: 'Focus' },
+			});
+			expect(result.values.status).toBe(UserStatus.OFFLINE);
+			expect(result.values.statusDefault).toBe(UserStatus.BUSY); // claim persisted for reconnect
+		});
+
+		test('endActive: ending a claim reverts to connection reality (OFFLINE), not statusDefault', () => {
+			const result = processPresence(user({ statusSource: 'manual', statusDefault: UserStatus.BUSY }), [], { type: 'endActive' });
+			expect(result.values.status).toBe(UserStatus.OFFLINE);
+		});
+	});
+
+	describe('no connection - service users (bots/apps) hold their declared status', () => {
+		test.each([
+			['type "bot"', bot(), UserStatus.BUSY, 'manual' as const],
+			['type "app"', user({ type: 'app' }), UserStatus.AWAY, 'external' as const],
+			['role "bot" (type "user")', user({ type: 'user', roles: ['bot'] }), UserStatus.BUSY, 'manual' as const],
+		])('setActive: a service user (%s) displays its declared status, not OFFLINE', (_label, serviceUser, statusDefault, statusSource) => {
+			const result = processPresence(serviceUser, [], {
+				type: 'setActive',
+				newState: { statusDefault, statusSource },
+			});
+			expect(result.values.status).toBe(statusDefault);
+		});
+
+		test('endActive: a bot whose claim is released reverts to OFFLINE (re-assert to restore)', () => {
+			const result = processPresence(bot({ statusSource: 'manual', statusDefault: UserStatus.BUSY }), [], { type: 'endActive' });
 			expect(result.values.status).toBe(UserStatus.OFFLINE);
 		});
 	});

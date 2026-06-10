@@ -54,6 +54,17 @@ function computeStatus(statusConnection: UserStatus, statusDefault: UserStatus):
 	return statusDefault;
 }
 
+function disconnectedStatus(claimType: ClaimUpdate['type'], isServiceUser: boolean, statusDefault: UserStatus): UserStatus {
+	switch (claimType) {
+		case 'clearActive':
+			return statusDefault;
+		case 'setActive':
+			return isServiceUser ? statusDefault : UserStatus.OFFLINE;
+		case 'endActive':
+			return UserStatus.OFFLINE;
+	}
+}
+
 /**
  * Resolves a claim update against the user's current state using the priority system.
  * Returns the DB fields to set/unset, or null if the claim is rejected.
@@ -99,8 +110,10 @@ function resolveIntent(
 	// displaced claim and clears any queued one, so it never gets auto-reverted.
 	const isManual = newState.statusSource === 'manual';
 
-	// higher priority -> apply new; stash displaced claim unless the new claim is manual
-	if (newPriority < currentPriority) {
+	// higher or equal priority -> apply new; stash displaced claim unless the new claim is manual.
+	// Equal priority (e.g. two 'internal' sources: a voice call + a video conference) stashes the
+	// displaced claim too, so ending the newer event restores the still-active earlier one (UC-20).
+	if (newPriority <= currentPriority) {
 		const previousState =
 			!isManual && user.statusSource
 				? {
@@ -115,22 +128,9 @@ function resolveIntent(
 			set: {
 				statusDefault: newState.statusDefault,
 				statusSource: newState.statusSource,
-				...(newState.statusText != null && { statusText: newState.statusText }),
+				...(newState.statusText !== undefined && { statusText: newState.statusText }),
 				...(newState.statusExpiresAt && { statusExpiresAt: newState.statusExpiresAt }),
 				...(previousState && { previousState }),
-			},
-			unset: fieldsToUnset(newState, isManual ? ['previousState'] : []),
-		};
-	}
-
-	// same priority -> overwrite; manual also drops any queued previous
-	if (newPriority === currentPriority) {
-		return {
-			set: {
-				statusDefault: newState.statusDefault,
-				statusSource: newState.statusSource,
-				...(newState.statusText != null && { statusText: newState.statusText }),
-				...(newState.statusExpiresAt && { statusExpiresAt: newState.statusExpiresAt }),
 			},
 			unset: fieldsToUnset(newState, isManual ? ['previousState'] : []),
 		};
@@ -164,7 +164,7 @@ function resolveIntent(
  * Returns the DB fields to $set and optionally $unset.
  */
 export function processPresence(
-	user: Pick<IUser, 'statusDefault' | 'statusSource' | 'statusText' | 'statusExpiresAt' | 'previousState'>,
+	user: Pick<IUser, 'type' | 'roles' | 'statusDefault' | 'statusSource' | 'statusText' | 'statusExpiresAt' | 'previousState'>,
 	sessions: IUserSessionConnection[],
 	claimUpdate?: ClaimUpdate,
 ): { values: Record<string, unknown>; clear?: string[] } {
@@ -187,11 +187,11 @@ export function processPresence(
 	const statusDefault = set.statusDefault ?? user.statusDefault ?? UserStatus.ONLINE;
 	const clear = unset.length ? unset : undefined;
 
-	// setActive with no DDP sessions: user is disconnected but holding a claim — persist
-	// it for reconnect but display OFFLINE. Other types (clearActive/endActive) use
-	// statusDefault so REST-only callers and bots can appear online.
+	// No live connection, so the displayed status comes from the claim instead of the connection.
+	// The helper applies the rule (humans fall back to offline; bots/apps can still show a status).
 	if (!sessions.length) {
-		const status = claimUpdate.type === 'setActive' ? UserStatus.OFFLINE : statusDefault;
+		const isServiceUser = user.type === 'bot' || user.type === 'app' || (user.roles?.includes('bot') ?? false);
+		const status = disconnectedStatus(claimUpdate.type, isServiceUser, statusDefault);
 		return { values: { ...set, status, statusConnection: UserStatus.OFFLINE }, clear };
 	}
 
