@@ -7,7 +7,6 @@ import {
 	FieldRow,
 	FieldError,
 	FieldHint,
-	TextInput,
 	InputBox,
 	Select,
 	Margins,
@@ -27,6 +26,7 @@ import type { ReactElement, ChangeEvent, ComponentProps } from 'react';
 import { useId, useMemo } from 'react';
 import { Controller, useForm, useWatch } from 'react-hook-form';
 
+import EmojiTextInput from '../../../components/EmojiTextInput';
 import UserStatusMenu from '../../../components/UserStatusMenu';
 import { USER_STATUS_TEXT_MAX_LENGTH } from '../../../lib/constants';
 import { STATUS_DURATION_OPTIONS } from '../../../lib/statusDurations';
@@ -139,7 +139,7 @@ const EditStatusModal = ({ onClose }: EditStatusModalProps): ReactElement => {
 									},
 								}}
 								render={({ field }) => (
-									<TextInput
+									<EmojiTextInput
 										{...field}
 										id={`${modalId}-status-message`}
 										aria-label={t('Status')}
