@@ -1,12 +1,13 @@
 import { Box, Option, OptionSkeleton, Tile } from '@rocket.chat/fuselage';
 import { useContentBoxSize } from '@rocket.chat/fuselage-hooks';
-import { CustomScrollbars } from '@rocket.chat/ui-client';
 import type { UseQueryResult } from '@tanstack/react-query';
 import type { ReactElement } from 'react';
 import { useEffect, memo, useMemo, useRef, useId } from 'react';
 import { useTranslation } from 'react-i18next';
 
-export type ComposerBoxPopupProps<
+import { CustomScrollbars } from '../CustomScrollbars';
+
+export type AutocompletePopupProps<
 	T extends {
 		_id: string;
 		sort?: number;
@@ -20,7 +21,7 @@ export type ComposerBoxPopupProps<
 	renderItem?: ({ item }: { item: T }) => ReactElement;
 };
 
-function ComposerBoxPopup<
+function AutocompletePopup<
 	T extends {
 		_id: string;
 		sort?: number;
@@ -32,11 +33,11 @@ function ComposerBoxPopup<
 	focused,
 	select,
 	renderItem = ({ item }: { item: T }) => <>{JSON.stringify(item)}</>,
-}: ComposerBoxPopupProps<T>): ReactElement | null {
+}: AutocompletePopupProps<T>): ReactElement | null {
 	const { t } = useTranslation();
 	const id = useId();
-	const composerBoxPopupRef = useRef<HTMLElement>(null);
-	const popupSizes = useContentBoxSize(composerBoxPopupRef);
+	const popupRef = useRef<HTMLElement>(null);
+	const popupSizes = useContentBoxSize(popupRef);
 
 	const variant = popupSizes && popupSizes.inlineSize < 480 ? 'small' : 'large';
 
@@ -58,6 +59,8 @@ function ComposerBoxPopup<
 		if (item.disabled) {
 			return t('Unavailable_in_encrypted_channels');
 		}
+
+		return undefined;
 	};
 
 	const itemsFlat = useMemo(
@@ -86,7 +89,8 @@ function ComposerBoxPopup<
 
 	return (
 		<Box position='relative'>
-			<Tile ref={composerBoxPopupRef} padding={0} role='menu' mbe={8} overflow='hidden' aria-labelledby={id} name='ComposerBoxPopup'>
+			{/* `name` exists for e2e selectors */}
+			<Tile ref={popupRef} padding={0} role='menu' mbe={8} overflow='hidden' aria-labelledby={id} name='AutocompletePopup'>
 				{title && (
 					<Box bg='tint' pi={16} pb={8} id={id}>
 						{title}
@@ -119,4 +123,4 @@ function ComposerBoxPopup<
 	);
 }
 
-export default memo(ComposerBoxPopup);
+export default memo(AutocompletePopup);

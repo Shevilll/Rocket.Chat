@@ -1,3 +1,4 @@
+export * from './useAutocompletePopup';
 export * from './useDefaultSettingFeaturePreviewList';
 export * from './useDocumentTitle';
 export * from './useDontAskAgain';

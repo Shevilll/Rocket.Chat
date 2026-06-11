@@ -1,15 +1,15 @@
 import { Box, Skeleton, Tile, Option } from '@rocket.chat/fuselage';
 import { Random } from '@rocket.chat/random';
+import type { AutocompletePopupProps } from '@rocket.chat/ui-client';
 import { useEndpoint } from '@rocket.chat/ui-contexts';
 import type { ForwardedRef, ReactNode } from 'react';
 import { forwardRef, useEffect, useId, useImperativeHandle } from 'react';
 
-import type { ComposerBoxPopupProps } from './ComposerBoxPopup';
 import { useChat } from '../contexts/ChatContext';
 
 type ComposerBoxPopupPreviewItem = { _id: string; type: 'image' | 'video' | 'audio' | 'text' | 'other'; value: string; sort?: number };
 
-type ComposerBoxPopupPreviewProps = ComposerBoxPopupProps<ComposerBoxPopupPreviewItem> & {
+type ComposerBoxPopupPreviewProps = AutocompletePopupProps<ComposerBoxPopupPreviewItem> & {
 	title?: ReactNode;
 	rid: string;
 	tmid?: string;
