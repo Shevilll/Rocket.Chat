@@ -1,0 +1,189 @@
+diff --git a/dist/cjs/index.d.ts b/dist/cjs/index.d.ts
+index 4f76380f22f0e3d5875c328274099efbf4230920..f0bb2c72e638db7cc5dced38c4e4c2d3674e953a 100644
+--- a/dist/cjs/index.d.ts
++++ b/dist/cjs/index.d.ts
+@@ -1,3 +1,3 @@
+-export { default } from './styled';
++export { default, type RefTypes } from './styled';
+ export * from './OwnerDocument';
+ //# sourceMappingURL=index.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/index.d.ts.map b/dist/cjs/index.d.ts.map
+index 8c43e5dcd3e07d3b371aa4e6b6cabc9c946d5f20..069a8ad133e670a8c98242b850e156438525af04 100644
+--- a/dist/cjs/index.d.ts.map
++++ b/dist/cjs/index.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../src/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAE,MAAM,UAAU,CAAC;AACnC,cAAc,iBAAiB,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../src/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAE,KAAK,QAAQ,EAAE,MAAM,UAAU,CAAC;AAClD,cAAc,iBAAiB,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/index.js.map b/dist/cjs/index.js.map
+index b9b61d88e3b897c84977fc82ce96ef0b6cd9cc0b..6ff04c54a78e4c36954623a973e3e2f86ed7544f 100644
+--- a/dist/cjs/index.js.map
++++ b/dist/cjs/index.js.map
+@@ -1 +1 @@
+-{"version":3,"file":"index.js","sourceRoot":"","sources":["../../src/index.ts"],"names":[],"mappings":";;;;;;;;;;;;;;;;;AAAA,mCAAmC;AAA1B,iGAAA,OAAO,OAAA;AAChB,kDAAgC"}
+\ No newline at end of file
++{"version":3,"file":"index.js","sourceRoot":"","sources":["../../src/index.ts"],"names":[],"mappings":";;;;;;;;;;;;;;;;;AAAA,mCAAkD;AAAzC,iGAAA,OAAO,OAAA;AAChB,kDAAgC"}
+\ No newline at end of file
+diff --git a/dist/cjs/styled.d.ts b/dist/cjs/styled.d.ts
+index 88cb4fd2f1a99fa4b7d0e5ad75a654fd16b768cf..a534fa8c6af2b5842f0960f022013ee29e56ed15 100644
+--- a/dist/cjs/styled.d.ts
++++ b/dist/cjs/styled.d.ts
+@@ -1,8 +1,8 @@
+-import type { DetailedHTMLProps, ForwardRefExoticComponent, HTMLAttributes, PropsWithoutRef, RefAttributes, SVGProps } from 'react';
++import type { DetailedHTMLProps, ForwardRefExoticComponent, HTMLAttributes, PropsWithoutRef, RefAttributes, SVGProps, JSX } from 'react';
+ export declare const attachClassName: <P extends {
+     className?: string;
+ }>(props: P, additionalClassName: string) => P;
+-type RefTypes = {
++export type RefTypes = {
+     [K in keyof JSX.IntrinsicElements]: JSX.IntrinsicElements[K] extends DetailedHTMLProps<HTMLAttributes<infer T>, any> ? T : JSX.IntrinsicElements[K] extends SVGProps<infer T> ? T : never;
+ };
+ declare const styled: <K extends keyof JSX.IntrinsicElements, P>(type: K, filter?: (p: PropsWithoutRef<JSX.IntrinsicElements[K] & P>) => JSX.IntrinsicElements[K]) => (slices: TemplateStringsArray, ...values: readonly (string | ((props: P) => string))[]) => ForwardRefExoticComponent<PropsWithoutRef<JSX.IntrinsicElements[K] & P> & RefAttributes<RefTypes[K]>>;
+diff --git a/dist/cjs/styled.d.ts.map b/dist/cjs/styled.d.ts.map
+index 916452d18d8a977b5cd844bc16aa164f9210b7af..9a1c4ea1d8f7237bae41fb0080d6bfed66e69a5a 100644
+--- a/dist/cjs/styled.d.ts.map
++++ b/dist/cjs/styled.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"styled.d.ts","sourceRoot":"","sources":["../../src/styled.ts"],"names":[],"mappings":"AAOA,OAAO,KAAK,EACV,iBAAiB,EACjB,yBAAyB,EAEzB,cAAc,EACd,eAAe,EACf,aAAa,EACb,QAAQ,EACT,MAAM,OAAO,CAAC;AAWf,eAAO,MAAM,eAAe,GAAI,CAAC,SAAS;IAAE,SAAS,CAAC,EAAE,MAAM,CAAA;CAAE,EAC9D,OAAO,CAAC,EACR,qBAAqB,MAAM,KAC1B,CAKD,CAAC;AAEH,KAAK,QAAQ,GAAG;KACb,CAAC,IAAI,MAAM,GAAG,CAAC,iBAAiB,GAAG,GAAG,CAAC,iBAAiB,CAAC,CAAC,CAAC,SAAS,iBAAiB,CACpF,cAAc,CAAC,MAAM,CAAC,CAAC,EACvB,GAAG,CACJ,GACG,CAAC,GACD,GAAG,CAAC,iBAAiB,CAAC,CAAC,CAAC,SAAS,QAAQ,CAAC,MAAM,CAAC,CAAC,GAChD,CAAC,GACD,KAAK;CACZ,CAAC;AAEF,QAAA,MAAM,MAAM,GACT,CAAC,SAAS,MAAM,GAAG,CAAC,iBAAiB,EAAE,CAAC,EACvC,MAAM,CAAC,EACP,SAAS,CACP,CAAC,EAAE,eAAe,CAAC,GAAG,CAAC,iBAAiB,CAAC,CAAC,CAAC,GAAG,CAAC,CAAC,KAC7C,GAAG,CAAC,iBAAiB,CAAC,CAAC,CAAC,MAG7B,QAAQ,oBAAoB,EAC5B,GAAG,QAAQ,SAAS,CAAC,MAAM,GAAG,CAAC,CAAC,KAAK,EAAE,CAAC,KAAK,MAAM,CAAC,CAAC,EAAE,KACtD,yBAAyB,CAC1B,eAAe,CAAC,GAAG,CAAC,iBAAiB,CAAC,CAAC,CAAC,GAAG,CAAC,CAAC,GAAG,aAAa,CAAC,QAAQ,CAAC,CAAC,CAAC,CAAC,CAuD3E,CAAC;AAEJ,eAAe,MAAM,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"styled.d.ts","sourceRoot":"","sources":["../../src/styled.ts"],"names":[],"mappings":"AAOA,OAAO,KAAK,EACV,iBAAiB,EACjB,yBAAyB,EAEzB,cAAc,EACd,eAAe,EACf,aAAa,EACb,QAAQ,EACR,GAAG,EACJ,MAAM,OAAO,CAAC;AAWf,eAAO,MAAM,eAAe,GAAI,CAAC,SAAS;IAAE,SAAS,CAAC,EAAE,MAAM,CAAA;CAAE,EAC9D,OAAO,CAAC,EACR,qBAAqB,MAAM,KAC1B,CAKD,CAAC;AAEH,MAAM,MAAM,QAAQ,GAAG;KACpB,CAAC,IAAI,MAAM,GAAG,CAAC,iBAAiB,GAAG,GAAG,CAAC,iBAAiB,CAAC,CAAC,CAAC,SAAS,iBAAiB,CACpF,cAAc,CAAC,MAAM,CAAC,CAAC,EACvB,GAAG,CACJ,GACG,CAAC,GACD,GAAG,CAAC,iBAAiB,CAAC,CAAC,CAAC,SAAS,QAAQ,CAAC,MAAM,CAAC,CAAC,GAChD,CAAC,GACD,KAAK;CACZ,CAAC;AAEF,QAAA,MAAM,MAAM,GACT,CAAC,SAAS,MAAM,GAAG,CAAC,iBAAiB,EAAE,CAAC,EACvC,MAAM,CAAC,EACP,SAAS,CACP,CAAC,EAAE,eAAe,CAAC,GAAG,CAAC,iBAAiB,CAAC,CAAC,CAAC,GAAG,CAAC,CAAC,KAC7C,GAAG,CAAC,iBAAiB,CAAC,CAAC,CAAC,MAG7B,QAAQ,oBAAoB,EAC5B,GAAG,QAAQ,SAAS,CAAC,MAAM,GAAG,CAAC,CAAC,KAAK,EAAE,CAAC,KAAK,MAAM,CAAC,CAAC,EAAE,KACtD,yBAAyB,CAC1B,eAAe,CAAC,GAAG,CAAC,iBAAiB,CAAC,CAAC,CAAC,GAAG,CAAC,CAAC,GAAG,aAAa,CAAC,QAAQ,CAAC,CAAC,CAAC,CAAC,CAuD3E,CAAC;AAEJ,eAAe,MAAM,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/styled.js.map b/dist/cjs/styled.js.map
+index 05117b8584c282df5fac5bb894f43860f8a58e97..991ba5c893ec706ddb099a870a1dc2461c56a077 100644
+--- a/dist/cjs/styled.js.map
++++ b/dist/cjs/styled.js.map
+@@ -1 +1 @@
+-{"version":3,"file":"styled.js","sourceRoot":"","sources":["../../src/styled.ts"],"names":[],"mappings":"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"}
+\ No newline at end of file
++{"version":3,"file":"styled.js","sourceRoot":"","sources":["../../src/styled.ts"],"names":[],"mappings":"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"}
+\ No newline at end of file
+diff --git a/dist/esm/index.d.ts b/dist/esm/index.d.ts
+index 4f76380f22f0e3d5875c328274099efbf4230920..f0bb2c72e638db7cc5dced38c4e4c2d3674e953a 100644
+--- a/dist/esm/index.d.ts
++++ b/dist/esm/index.d.ts
+@@ -1,3 +1,3 @@
+-export { default } from './styled';
++export { default, type RefTypes } from './styled';
+ export * from './OwnerDocument';
+ //# sourceMappingURL=index.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/index.d.ts.map b/dist/esm/index.d.ts.map
+index 8c43e5dcd3e07d3b371aa4e6b6cabc9c946d5f20..069a8ad133e670a8c98242b850e156438525af04 100644
+--- a/dist/esm/index.d.ts.map
++++ b/dist/esm/index.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../src/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAE,MAAM,UAAU,CAAC;AACnC,cAAc,iBAAiB,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../src/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAE,KAAK,QAAQ,EAAE,MAAM,UAAU,CAAC;AAClD,cAAc,iBAAiB,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/index.js.map b/dist/esm/index.js.map
+index b727d7ad8348b45b43395127b4179e5bcde09df1..700e9a50002d0287f182e2e9c920c339cd47a188 100644
+--- a/dist/esm/index.js.map
++++ b/dist/esm/index.js.map
+@@ -1 +1 @@
+-{"version":3,"file":"index.js","sourceRoot":"","sources":["../../src/index.ts"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;AAAA,mCAAmC;AAA1B,kHAAA,OAAO,OAAA;AAChB,kDAAgC"}
+\ No newline at end of file
++{"version":3,"file":"index.js","sourceRoot":"","sources":["../../src/index.ts"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;AAAA,mCAAkD;AAAzC,kHAAA,OAAO,OAAA;AAChB,kDAAgC"}
+\ No newline at end of file
+diff --git a/dist/esm/styled.d.ts b/dist/esm/styled.d.ts
+index 88cb4fd2f1a99fa4b7d0e5ad75a654fd16b768cf..a534fa8c6af2b5842f0960f022013ee29e56ed15 100644
+--- a/dist/esm/styled.d.ts
++++ b/dist/esm/styled.d.ts
+@@ -1,8 +1,8 @@
+-import type { DetailedHTMLProps, ForwardRefExoticComponent, HTMLAttributes, PropsWithoutRef, RefAttributes, SVGProps } from 'react';
++import type { DetailedHTMLProps, ForwardRefExoticComponent, HTMLAttributes, PropsWithoutRef, RefAttributes, SVGProps, JSX } from 'react';
+ export declare const attachClassName: <P extends {
+     className?: string;
+ }>(props: P, additionalClassName: string) => P;
+-type RefTypes = {
++export type RefTypes = {
+     [K in keyof JSX.IntrinsicElements]: JSX.IntrinsicElements[K] extends DetailedHTMLProps<HTMLAttributes<infer T>, any> ? T : JSX.IntrinsicElements[K] extends SVGProps<infer T> ? T : never;
+ };
+ declare const styled: <K extends keyof JSX.IntrinsicElements, P>(type: K, filter?: (p: PropsWithoutRef<JSX.IntrinsicElements[K] & P>) => JSX.IntrinsicElements[K]) => (slices: TemplateStringsArray, ...values: readonly (string | ((props: P) => string))[]) => ForwardRefExoticComponent<PropsWithoutRef<JSX.IntrinsicElements[K] & P> & RefAttributes<RefTypes[K]>>;
+diff --git a/dist/esm/styled.d.ts.map b/dist/esm/styled.d.ts.map
+index 916452d18d8a977b5cd844bc16aa164f9210b7af..9a1c4ea1d8f7237bae41fb0080d6bfed66e69a5a 100644
+--- a/dist/esm/styled.d.ts.map
++++ b/dist/esm/styled.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"styled.d.ts","sourceRoot":"","sources":["../../src/styled.ts"],"names":[],"mappings":"AAOA,OAAO,KAAK,EACV,iBAAiB,EACjB,yBAAyB,EAEzB,cAAc,EACd,eAAe,EACf,aAAa,EACb,QAAQ,EACT,MAAM,OAAO,CAAC;AAWf,eAAO,MAAM,eAAe,GAAI,CAAC,SAAS;IAAE,SAAS,CAAC,EAAE,MAAM,CAAA;CAAE,EAC9D,OAAO,CAAC,EACR,qBAAqB,MAAM,KAC1B,CAKD,CAAC;AAEH,KAAK,QAAQ,GAAG;KACb,CAAC,IAAI,MAAM,GAAG,CAAC,iBAAiB,GAAG,GAAG,CAAC,iBAAiB,CAAC,CAAC,CAAC,SAAS,iBAAiB,CACpF,cAAc,CAAC,MAAM,CAAC,CAAC,EACvB,GAAG,CACJ,GACG,CAAC,GACD,GAAG,CAAC,iBAAiB,CAAC,CAAC,CAAC,SAAS,QAAQ,CAAC,MAAM,CAAC,CAAC,GAChD,CAAC,GACD,KAAK;CACZ,CAAC;AAEF,QAAA,MAAM,MAAM,GACT,CAAC,SAAS,MAAM,GAAG,CAAC,iBAAiB,EAAE,CAAC,EACvC,MAAM,CAAC,EACP,SAAS,CACP,CAAC,EAAE,eAAe,CAAC,GAAG,CAAC,iBAAiB,CAAC,CAAC,CAAC,GAAG,CAAC,CAAC,KAC7C,GAAG,CAAC,iBAAiB,CAAC,CAAC,CAAC,MAG7B,QAAQ,oBAAoB,EAC5B,GAAG,QAAQ,SAAS,CAAC,MAAM,GAAG,CAAC,CAAC,KAAK,EAAE,CAAC,KAAK,MAAM,CAAC,CAAC,EAAE,KACtD,yBAAyB,CAC1B,eAAe,CAAC,GAAG,CAAC,iBAAiB,CAAC,CAAC,CAAC,GAAG,CAAC,CAAC,GAAG,aAAa,CAAC,QAAQ,CAAC,CAAC,CAAC,CAAC,CAuD3E,CAAC;AAEJ,eAAe,MAAM,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"styled.d.ts","sourceRoot":"","sources":["../../src/styled.ts"],"names":[],"mappings":"AAOA,OAAO,KAAK,EACV,iBAAiB,EACjB,yBAAyB,EAEzB,cAAc,EACd,eAAe,EACf,aAAa,EACb,QAAQ,EACR,GAAG,EACJ,MAAM,OAAO,CAAC;AAWf,eAAO,MAAM,eAAe,GAAI,CAAC,SAAS;IAAE,SAAS,CAAC,EAAE,MAAM,CAAA;CAAE,EAC9D,OAAO,CAAC,EACR,qBAAqB,MAAM,KAC1B,CAKD,CAAC;AAEH,MAAM,MAAM,QAAQ,GAAG;KACpB,CAAC,IAAI,MAAM,GAAG,CAAC,iBAAiB,GAAG,GAAG,CAAC,iBAAiB,CAAC,CAAC,CAAC,SAAS,iBAAiB,CACpF,cAAc,CAAC,MAAM,CAAC,CAAC,EACvB,GAAG,CACJ,GACG,CAAC,GACD,GAAG,CAAC,iBAAiB,CAAC,CAAC,CAAC,SAAS,QAAQ,CAAC,MAAM,CAAC,CAAC,GAChD,CAAC,GACD,KAAK;CACZ,CAAC;AAEF,QAAA,MAAM,MAAM,GACT,CAAC,SAAS,MAAM,GAAG,CAAC,iBAAiB,EAAE,CAAC,EACvC,MAAM,CAAC,EACP,SAAS,CACP,CAAC,EAAE,eAAe,CAAC,GAAG,CAAC,iBAAiB,CAAC,CAAC,CAAC,GAAG,CAAC,CAAC,KAC7C,GAAG,CAAC,iBAAiB,CAAC,CAAC,CAAC,MAG7B,QAAQ,oBAAoB,EAC5B,GAAG,QAAQ,SAAS,CAAC,MAAM,GAAG,CAAC,CAAC,KAAK,EAAE,CAAC,KAAK,MAAM,CAAC,CAAC,EAAE,KACtD,yBAAyB,CAC1B,eAAe,CAAC,GAAG,CAAC,iBAAiB,CAAC,CAAC,CAAC,GAAG,CAAC,CAAC,GAAG,aAAa,CAAC,QAAQ,CAAC,CAAC,CAAC,CAAC,CAuD3E,CAAC;AAEJ,eAAe,MAAM,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/styled.js.map b/dist/esm/styled.js.map
+index 05117b8584c282df5fac5bb894f43860f8a58e97..991ba5c893ec706ddb099a870a1dc2461c56a077 100644
+--- a/dist/esm/styled.js.map
++++ b/dist/esm/styled.js.map
+@@ -1 +1 @@
+-{"version":3,"file":"styled.js","sourceRoot":"","sources":["../../src/styled.ts"],"names":[],"mappings":"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"}
+\ No newline at end of file
++{"version":3,"file":"styled.js","sourceRoot":"","sources":["../../src/styled.ts"],"names":[],"mappings":"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"}
+\ No newline at end of file
+diff --git a/dist/esm/tsdoc-metadata.json b/dist/esm/tsdoc-metadata.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..6f2c000bcc52d7b1f1cb4831df82fe5389851ce0
+--- /dev/null
++++ b/dist/esm/tsdoc-metadata.json
+@@ -0,0 +1,11 @@
++// This file is read by tools that parse documentation comments conforming to the TSDoc standard.
++// It should be published with your NPM package.  It should not be tracked by Git.
++{
++  "tsdocVersion": "0.12",
++  "toolPackages": [
++    {
++      "packageName": "@microsoft/api-extractor",
++      "packageVersion": "7.58.7"
++    }
++  ]
++}
+diff --git a/package.json b/package.json
+index 8dec579c4a3216d3b44a6276250470c628a070d5..233e6c8d8f47cdfa254c1b9274c43a2687711748 100644
+--- a/package.json
++++ b/package.json
+@@ -23,10 +23,11 @@
+     "/dist"
+   ],
+   "scripts": {
+-    "build": "run-s .:build:clean .:build:esm .:build:cjs",
++    "build": "run .:build:clean && run .:build:esm && run .:build:cjs && run .:build:api",
+     ".:build:clean": "rimraf dist",
+     ".:build:esm": "tsc -p tsconfig.esm.json",
+     ".:build:cjs": "tsc -p tsconfig.cjs.json",
++    ".:build:api": "api-extractor run --local",
+     "lint": "lint",
+     "lint-and-fix": "lint-and-fix",
+     "test": "jest --runInBand",
+@@ -36,21 +37,21 @@
+     "@rocket.chat/css-in-js": "^0.32.0"
+   },
+   "devDependencies": {
++    "@microsoft/api-extractor": "~7.58.7",
+     "@testing-library/dom": "~10.4.1",
+     "@testing-library/react": "~16.3.2",
+-    "@types/react": "~18.3.27",
+-    "@types/react-dom": "~18.3.7",
+-    "eslint": "~9.39.2",
+-    "jest": "~30.3.0",
+-    "jest-environment-jsdom": "~30.3.0",
++    "@types/react": "~19.2.16",
++    "@types/react-dom": "~19.2.3",
++    "eslint": "~9.39.4",
++    "jest": "~30.4.2",
++    "jest-environment-jsdom": "~30.4.1",
+     "lint-all": "^0.31.25",
+-    "npm-run-all": "^4.1.5",
+     "prettier": "~3.6.2",
+-    "react": "~18.3.1",
+-    "react-dom": "~18.3.1",
+-    "rimraf": "~6.0.1",
+-    "ts-jest": "~29.4.6",
+-    "typedoc": "~0.28.18",
++    "react": "~19.2.7",
++    "react-dom": "~19.2.7",
++    "rimraf": "~6.1.3",
++    "ts-jest": "~29.4.11",
++    "typedoc": "~0.28.19",
+     "typescript": "~5.9.3"
+   },
+   "publishConfig": {

@@ -20,7 +20,7 @@
 	},
 	"dependencies": {
 		"@rocket.chat/emitter": "^0.32.0",
-		"@rocket.chat/fuselage-hooks": "^0.41.0",
+		"@rocket.chat/fuselage-hooks": "patch:@rocket.chat/fuselage-hooks@npm%3A0.41.0#~/.yarn/patches/@rocket.chat-fuselage-hooks-npm-0.41.0-d445af7af0.patch",
 		"@rocket.chat/fuselage-tokens": "~0.33.2",
 		"@storybook/addon-a11y": "^9.1.13",
 		"@storybook/addon-docs": "^9.1.13",
@@ -33,7 +33,7 @@
 		"webpack": "~5.104.1"
 	},
 	"devDependencies": {
-		"@rocket.chat/fuselage": "^0.79.0",
+		"@rocket.chat/fuselage": "patch:@rocket.chat/fuselage@npm%3A0.79.0#~/.yarn/patches/@rocket.chat-fuselage-npm-0.79.0-382e9bff67.patch",
 		"@rocket.chat/icons": "^0.48.0",
 		"@rocket.chat/tsconfig": "workspace:*",
 		"@storybook/react": "^9.1.13",

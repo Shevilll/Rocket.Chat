@@ -1,0 +1,991 @@
+diff --git a/dist/cjs/Field/Field.d.ts b/dist/cjs/Field/Field.d.ts
+index 088e8a357259c62d6e61714045571ab5d820d68e..b7559c7b193d732123fa96925954384d4d91f533 100644
+--- a/dist/cjs/Field/Field.d.ts
++++ b/dist/cjs/Field/Field.d.ts
+@@ -1,8 +1,8 @@
+ import { Field as FieldComponent } from '@rocket.chat/fuselage';
+ import type { ComponentProps, ReactNode } from 'react';
+-type FieldProps = {
++export type FieldProps = {
+     children: ReactNode;
+ } & ComponentProps<typeof FieldComponent>;
+-declare function Field({ children, ...props }: FieldProps): import("react/jsx-runtime").JSX.Element;
++declare function Field({ children, ...props }: FieldProps): import("react").JSX.Element;
+ export default Field;
+ //# sourceMappingURL=Field.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/Field/Field.d.ts.map b/dist/cjs/Field/Field.d.ts.map
+index f42b0767efd998608e2ad3db59c1d70b6a44cd20..3b15470bbf8afc203bd75f42b09b6dde27f77dc3 100644
+--- a/dist/cjs/Field/Field.d.ts.map
++++ b/dist/cjs/Field/Field.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"Field.d.ts","sourceRoot":"","sources":["../../../src/Field/Field.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,KAAK,IAAI,cAAc,EAAE,MAAM,uBAAuB,CAAC;AAChE,OAAO,KAAK,EAAE,cAAc,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAIvD,KAAK,UAAU,GAAG;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,GAAG,cAAc,CACxD,OAAO,cAAc,CACtB,CAAC;AAEF,iBAAS,KAAK,CAAC,EAAE,QAAQ,EAAE,GAAG,KAAK,EAAE,EAAE,UAAU,2CAMhD;AAED,eAAe,KAAK,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"Field.d.ts","sourceRoot":"","sources":["../../../src/Field/Field.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,KAAK,IAAI,cAAc,EAAE,MAAM,uBAAuB,CAAC;AAChE,OAAO,KAAK,EAAE,cAAc,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAIvD,MAAM,MAAM,UAAU,GAAG;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,GAAG,cAAc,CAC/D,OAAO,cAAc,CACtB,CAAC;AAEF,iBAAS,KAAK,CAAC,EAAE,QAAQ,EAAE,GAAG,KAAK,EAAE,EAAE,UAAU,+BAMhD;AAED,eAAe,KAAK,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/Field/FieldContext.d.ts b/dist/cjs/Field/FieldContext.d.ts
+index 5d8ed470fd3610e611bae4ebd5b7029d3bb1cb7a..b2f1828a405de74225f250651a292de411c8064b 100644
+--- a/dist/cjs/Field/FieldContext.d.ts
++++ b/dist/cjs/Field/FieldContext.d.ts
+@@ -1,5 +1,5 @@
+ import type { ReactNode, RefCallback } from 'react';
+-type FieldContextValue = {
++export type FieldContextValue = {
+     setDescriptor: (type: LabelTypes, unregister?: boolean) => void;
+     setLabel: (label: ReactNode) => void;
+     descriptors: Set<LabelTypes>;
+@@ -37,5 +37,4 @@ export declare const useFieldWrappedByInputLabel: () => [ReactNode, {
+     "id": string;
+     "aria-invalid": "true" | "false";
+ }, RefCallback<HTMLElement>];
+-export {};
+ //# sourceMappingURL=FieldContext.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/Field/FieldContext.d.ts.map b/dist/cjs/Field/FieldContext.d.ts.map
+index 8e6c3d6ece41b7fd71c9bc2c11649e39ad883591..356b731f3ec0bad3e01795559cadee023c1d1eeb 100644
+--- a/dist/cjs/Field/FieldContext.d.ts.map
++++ b/dist/cjs/Field/FieldContext.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"FieldContext.d.ts","sourceRoot":"","sources":["../../../src/Field/FieldContext.ts"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,WAAW,EAAE,MAAM,OAAO,CAAC;AASpD,KAAK,iBAAiB,GAAG;IACvB,aAAa,EAAE,CAAC,IAAI,EAAE,UAAU,EAAE,UAAU,CAAC,EAAE,OAAO,KAAK,IAAI,CAAC;IAChE,QAAQ,EAAE,CAAC,KAAK,EAAE,SAAS,KAAK,IAAI,CAAC;IACrC,WAAW,EAAE,GAAG,CAAC,UAAU,CAAC,CAAC;IAC7B,KAAK,EAAE,SAAS,GAAG,IAAI,CAAC;IACxB,EAAE,EAAE,MAAM,CAAC;IACX,SAAS,EAAE,SAAS,CAAC;IACrB,YAAY,EAAE,CAAC,SAAS,EAAE,SAAS,KAAK,IAAI,CAAC;IAC7C,UAAU,EAAE,MAAM,IAAI,CAAC;IACvB,QAAQ,EAAE,CAAC,EAAE,EAAE,MAAM,IAAI,KAAK,IAAI,CAAC;CACpC,CAAC;AAEF,eAAO,MAAM,YAAY,4CAUvB,CAAC;AAEH,MAAM,MAAM,UAAU,GAAG,MAAM,GAAG,aAAa,GAAG,OAAO,GAAG,aAAa,CAAC;AAE1E,MAAM,MAAM,SAAS,GACjB,gBAAgB,GAChB,mBAAmB,GACnB,mBAAmB,CAAC;AAoBxB,eAAO,MAAM,aAAa,QAAO,CAAC,WAAW,CAAC,WAAW,CAAC,EAAE,MAAM,CAsBjE,CAAC;AAEF,eAAO,MAAM,iBAAiB,iBAG7B,CAAC;AAEF,eAAO,MAAM,oBAAoB,GAAI,MAAM,UAAU,WASpD,CAAC;AA0BF,eAAO,MAAM,yBAAyB;oBARjB,MAAM,GAAG,OAAO;;;CAuBpC,CAAC;AAGF,eAAO,MAAM,yBAAyB;oBA1BjB,MAAM,GAAG,OAAO;;;CAyCpC,CAAC;AAGF,eAAO,MAAM,+BAA+B;oBA5CvB,MAAM,GAAG,OAAO;;;;CA4DpC,CAAC;AAGF,eAAO,MAAM,2BAA2B,QAAO,CAC7C,SAAS,EACT;IACE,kBAAkB,EAAE,MAAM,CAAC;IAC3B,IAAI,EAAE,MAAM,CAAC;IACb,cAAc,EAAE,MAAM,GAAG,OAAO,CAAC;CAClC,EACD,WAAW,CAAC,WAAW,CAAC,CAqCzB,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"FieldContext.d.ts","sourceRoot":"","sources":["../../../src/Field/FieldContext.ts"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,WAAW,EAAE,MAAM,OAAO,CAAC;AASpD,MAAM,MAAM,iBAAiB,GAAG;IAC9B,aAAa,EAAE,CAAC,IAAI,EAAE,UAAU,EAAE,UAAU,CAAC,EAAE,OAAO,KAAK,IAAI,CAAC;IAChE,QAAQ,EAAE,CAAC,KAAK,EAAE,SAAS,KAAK,IAAI,CAAC;IACrC,WAAW,EAAE,GAAG,CAAC,UAAU,CAAC,CAAC;IAC7B,KAAK,EAAE,SAAS,GAAG,IAAI,CAAC;IACxB,EAAE,EAAE,MAAM,CAAC;IACX,SAAS,EAAE,SAAS,CAAC;IACrB,YAAY,EAAE,CAAC,SAAS,EAAE,SAAS,KAAK,IAAI,CAAC;IAC7C,UAAU,EAAE,MAAM,IAAI,CAAC;IACvB,QAAQ,EAAE,CAAC,EAAE,EAAE,MAAM,IAAI,KAAK,IAAI,CAAC;CACpC,CAAC;AAEF,eAAO,MAAM,YAAY,4CAUvB,CAAC;AAEH,MAAM,MAAM,UAAU,GAAG,MAAM,GAAG,aAAa,GAAG,OAAO,GAAG,aAAa,CAAC;AAE1E,MAAM,MAAM,SAAS,GACjB,gBAAgB,GAChB,mBAAmB,GACnB,mBAAmB,CAAC;AAoBxB,eAAO,MAAM,aAAa,QAAO,CAAC,WAAW,CAAC,WAAW,CAAC,EAAE,MAAM,CAsBjE,CAAC;AAEF,eAAO,MAAM,iBAAiB,iBAG7B,CAAC;AAEF,eAAO,MAAM,oBAAoB,GAAI,MAAM,UAAU,WASpD,CAAC;AA0BF,eAAO,MAAM,yBAAyB;oBARjB,MAAM,GAAG,OAAO;;;CAuBpC,CAAC;AAGF,eAAO,MAAM,yBAAyB;oBA1BjB,MAAM,GAAG,OAAO;;;CAyCpC,CAAC;AAGF,eAAO,MAAM,+BAA+B;oBA5CvB,MAAM,GAAG,OAAO;;;;CA4DpC,CAAC;AAGF,eAAO,MAAM,2BAA2B,QAAO,CAC7C,SAAS,EACT;IACE,kBAAkB,EAAE,MAAM,CAAC;IAC3B,IAAI,EAAE,MAAM,CAAC;IACb,cAAc,EAAE,MAAM,GAAG,OAAO,CAAC;CAClC,EACD,WAAW,CAAC,WAAW,CAAC,CAqCzB,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/Field/FieldDescription.d.ts b/dist/cjs/Field/FieldDescription.d.ts
+index 6c071cbee15a8efa436632b2f63afaa9c53afff8..d91fe4ce81e1c22de216b28df3b1d5bfdf1a69f4 100644
+--- a/dist/cjs/Field/FieldDescription.d.ts
++++ b/dist/cjs/Field/FieldDescription.d.ts
+@@ -1,8 +1,8 @@
+ import { FieldDescription as FieldDescriptionComponent } from '@rocket.chat/fuselage';
+ import type { ReactNode, ComponentProps } from 'react';
+-type FieldDescriptionProps = {
++export type FieldDescriptionProps = {
+     children: ReactNode;
+ } & ComponentProps<typeof FieldDescriptionComponent>;
+-declare const FieldDescription: ({ children, ...props }: FieldDescriptionProps) => import("react/jsx-runtime").JSX.Element;
++declare const FieldDescription: ({ children, ...props }: FieldDescriptionProps) => import("react").JSX.Element;
+ export default FieldDescription;
+ //# sourceMappingURL=FieldDescription.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/Field/FieldDescription.d.ts.map b/dist/cjs/Field/FieldDescription.d.ts.map
+index d10122397048912c433bbcf307ba67997c0f4f80..350cac9b53c13c7e79c141a8feb6eed91d92ecc8 100644
+--- a/dist/cjs/Field/FieldDescription.d.ts.map
++++ b/dist/cjs/Field/FieldDescription.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"FieldDescription.d.ts","sourceRoot":"","sources":["../../../src/Field/FieldDescription.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,gBAAgB,IAAI,yBAAyB,EAAE,MAAM,uBAAuB,CAAC;AACtF,OAAO,KAAK,EAAE,SAAS,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAIvD,KAAK,qBAAqB,GAAG;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,GAAG,cAAc,CACnE,OAAO,yBAAyB,CACjC,CAAC;AAEF,QAAA,MAAM,gBAAgB,GAAI,wBAAwB,qBAAqB,4CAQtE,CAAC;AAEF,eAAe,gBAAgB,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"FieldDescription.d.ts","sourceRoot":"","sources":["../../../src/Field/FieldDescription.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,gBAAgB,IAAI,yBAAyB,EAAE,MAAM,uBAAuB,CAAC;AACtF,OAAO,KAAK,EAAE,SAAS,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAIvD,MAAM,MAAM,qBAAqB,GAAG;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,GAAG,cAAc,CAC1E,OAAO,yBAAyB,CACjC,CAAC;AAEF,QAAA,MAAM,gBAAgB,GAAI,wBAAwB,qBAAqB,gCAQtE,CAAC;AAEF,eAAe,gBAAgB,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/Field/FieldError.d.ts b/dist/cjs/Field/FieldError.d.ts
+index cfd7442febf469a19edb65315effd8f2109977dd..d7e846f441eeff767487db1c215c818cf4ea366c 100644
+--- a/dist/cjs/Field/FieldError.d.ts
++++ b/dist/cjs/Field/FieldError.d.ts
+@@ -1,8 +1,8 @@
+ import { FieldError as FieldErrorComponent } from '@rocket.chat/fuselage';
+ import type { ReactNode, ComponentProps } from 'react';
+-type FieldErrorProps = {
++export type FieldErrorProps = {
+     children: ReactNode;
+ } & ComponentProps<typeof FieldErrorComponent>;
+-declare const FieldError: ({ children, ...props }: FieldErrorProps) => import("react/jsx-runtime").JSX.Element;
++declare const FieldError: ({ children, ...props }: FieldErrorProps) => import("react").JSX.Element;
+ export default FieldError;
+ //# sourceMappingURL=FieldError.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/Field/FieldError.d.ts.map b/dist/cjs/Field/FieldError.d.ts.map
+index 03276cf047b15449b89514d3e2a913311f24f38b..0d60a8f8a6959454a8a28ab9be9c369bf7d3d0f4 100644
+--- a/dist/cjs/Field/FieldError.d.ts.map
++++ b/dist/cjs/Field/FieldError.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"FieldError.d.ts","sourceRoot":"","sources":["../../../src/Field/FieldError.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,IAAI,mBAAmB,EAAE,MAAM,uBAAuB,CAAC;AAC1E,OAAO,KAAK,EAAE,SAAS,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAIvD,KAAK,eAAe,GAAG;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,GAAG,cAAc,CAC7D,OAAO,mBAAmB,CAC3B,CAAC;AAEF,QAAA,MAAM,UAAU,GAAI,wBAAwB,eAAe,4CAO1D,CAAC;AAEF,eAAe,UAAU,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"FieldError.d.ts","sourceRoot":"","sources":["../../../src/Field/FieldError.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,IAAI,mBAAmB,EAAE,MAAM,uBAAuB,CAAC;AAC1E,OAAO,KAAK,EAAE,SAAS,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAIvD,MAAM,MAAM,eAAe,GAAG;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,GAAG,cAAc,CACpE,OAAO,mBAAmB,CAC3B,CAAC;AAEF,QAAA,MAAM,UAAU,GAAI,wBAAwB,eAAe,gCAO1D,CAAC;AAEF,eAAe,UAAU,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/Field/FieldHint.d.ts b/dist/cjs/Field/FieldHint.d.ts
+index 46d3201b7d5bb2c6d091bcbf022968724e8f6456..9683d4ec9c79b86ff47f33c47ca86c482678a22c 100644
+--- a/dist/cjs/Field/FieldHint.d.ts
++++ b/dist/cjs/Field/FieldHint.d.ts
+@@ -1,8 +1,8 @@
+ import { FieldHint as FieldHintComponent } from '@rocket.chat/fuselage';
+ import type { ReactNode, ComponentProps } from 'react';
+-type FieldHintProps = {
++export type FieldHintProps = {
+     children: ReactNode;
+ } & ComponentProps<typeof FieldHintComponent>;
+-declare const FieldHint: ({ children, ...props }: FieldHintProps) => import("react/jsx-runtime").JSX.Element;
++declare const FieldHint: ({ children, ...props }: FieldHintProps) => import("react").JSX.Element;
+ export default FieldHint;
+ //# sourceMappingURL=FieldHint.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/Field/FieldHint.d.ts.map b/dist/cjs/Field/FieldHint.d.ts.map
+index b09770304005ab119b552d5642acd6bf90ba3954..d888ac9768c6588cae139d4b69dfc6fedf50c526 100644
+--- a/dist/cjs/Field/FieldHint.d.ts.map
++++ b/dist/cjs/Field/FieldHint.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"FieldHint.d.ts","sourceRoot":"","sources":["../../../src/Field/FieldHint.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,SAAS,IAAI,kBAAkB,EAAE,MAAM,uBAAuB,CAAC;AACxE,OAAO,KAAK,EAAE,SAAS,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAIvD,KAAK,cAAc,GAAG;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,GAAG,cAAc,CAC5D,OAAO,kBAAkB,CAC1B,CAAC;AAEF,QAAA,MAAM,SAAS,GAAI,wBAAwB,cAAc,4CAQxD,CAAC;AAEF,eAAe,SAAS,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"FieldHint.d.ts","sourceRoot":"","sources":["../../../src/Field/FieldHint.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,SAAS,IAAI,kBAAkB,EAAE,MAAM,uBAAuB,CAAC;AACxE,OAAO,KAAK,EAAE,SAAS,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAIvD,MAAM,MAAM,cAAc,GAAG;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,GAAG,cAAc,CACnE,OAAO,kBAAkB,CAC1B,CAAC;AAEF,QAAA,MAAM,SAAS,GAAI,wBAAwB,cAAc,gCAQxD,CAAC;AAEF,eAAe,SAAS,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/Field/FieldProvider.d.ts b/dist/cjs/Field/FieldProvider.d.ts
+index 4efc8562743fe35a35a295f0eb0474bc53246bc1..02ef504c987e277d6dcbbb1cd33f9e28b375568c 100644
+--- a/dist/cjs/Field/FieldProvider.d.ts
++++ b/dist/cjs/Field/FieldProvider.d.ts
+@@ -1,7 +1,7 @@
+ import type { ReactNode } from 'react';
+-type FieldProviderProps = {
++export type FieldProviderProps = {
+     children: ReactNode;
+ };
+-declare function FieldProvider({ children }: FieldProviderProps): import("react/jsx-runtime").JSX.Element;
++declare function FieldProvider({ children }: FieldProviderProps): import("react").JSX.Element;
+ export default FieldProvider;
+ //# sourceMappingURL=FieldProvider.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/Field/FieldProvider.d.ts.map b/dist/cjs/Field/FieldProvider.d.ts.map
+index f7e3bb4ef5ac5474195aacd4916ff32a7e815a0b..624e0e82eae1223f2262b80aae139518f8ae7ee4 100644
+--- a/dist/cjs/Field/FieldProvider.d.ts.map
++++ b/dist/cjs/Field/FieldProvider.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"FieldProvider.d.ts","sourceRoot":"","sources":["../../../src/Field/FieldProvider.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAOvC,KAAK,kBAAkB,GAAG;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,CAAC;AAElD,iBAAS,aAAa,CAAC,EAAE,QAAQ,EAAE,EAAE,kBAAkB,2CAoDtD;AAED,eAAe,aAAa,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"FieldProvider.d.ts","sourceRoot":"","sources":["../../../src/Field/FieldProvider.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAOvC,MAAM,MAAM,kBAAkB,GAAG;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,CAAC;AAEzD,iBAAS,aAAa,CAAC,EAAE,QAAQ,EAAE,EAAE,kBAAkB,+BAoDtD;AAED,eAAe,aAAa,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/Field/Label/FieldLabel.d.ts b/dist/cjs/Field/Label/FieldLabel.d.ts
+index 607d93c47f89fbbd77b6af968ef9c25734d20cee..72d967a9a162b6ab00b32e72330c36339b29d6af 100644
+--- a/dist/cjs/Field/Label/FieldLabel.d.ts
++++ b/dist/cjs/Field/Label/FieldLabel.d.ts
+@@ -1,6 +1,6 @@
+ import type { FieldLabel as FieldLabelComponent } from '@rocket.chat/fuselage';
+ import { type ComponentPropsWithoutRef } from 'react';
+-type FieldLabelProps = ComponentPropsWithoutRef<typeof FieldLabelComponent>;
+-declare const FieldLabel: (props: FieldLabelProps) => import("react/jsx-runtime").JSX.Element;
++export type FieldLabelProps = ComponentPropsWithoutRef<typeof FieldLabelComponent>;
++declare const FieldLabel: (props: FieldLabelProps) => import("react").JSX.Element;
+ export default FieldLabel;
+ //# sourceMappingURL=FieldLabel.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/Field/Label/FieldLabel.d.ts.map b/dist/cjs/Field/Label/FieldLabel.d.ts.map
+index 027aa355c63b7eb6f6d20191e103ff936b1b7ca7..d160281698d88e3f5059e42d35a485d49ec234af 100644
+--- a/dist/cjs/Field/Label/FieldLabel.d.ts.map
++++ b/dist/cjs/Field/Label/FieldLabel.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"FieldLabel.d.ts","sourceRoot":"","sources":["../../../../src/Field/Label/FieldLabel.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,UAAU,IAAI,mBAAmB,EAAE,MAAM,uBAAuB,CAAC;AAC/E,OAAO,EAAE,KAAK,wBAAwB,EAAE,MAAM,OAAO,CAAC;AAQtD,KAAK,eAAe,GAAG,wBAAwB,CAAC,OAAO,mBAAmB,CAAC,CAAC;AAE5E,QAAA,MAAM,UAAU,GAAI,OAAO,eAAe,4CAWzC,CAAC;AAEF,eAAe,UAAU,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"FieldLabel.d.ts","sourceRoot":"","sources":["../../../../src/Field/Label/FieldLabel.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,UAAU,IAAI,mBAAmB,EAAE,MAAM,uBAAuB,CAAC;AAC/E,OAAO,EAAE,KAAK,wBAAwB,EAAE,MAAM,OAAO,CAAC;AAQtD,MAAM,MAAM,eAAe,GAAG,wBAAwB,CACpD,OAAO,mBAAmB,CAC3B,CAAC;AAEF,QAAA,MAAM,UAAU,GAAI,OAAO,eAAe,gCAWzC,CAAC;AAEF,eAAe,UAAU,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/Field/Label/FieldLabel.js.map b/dist/cjs/Field/Label/FieldLabel.js.map
+index e305997400572ed1bde2e8ba42b8f6b6df0b73c7..925ca524fb58e207927dd33af067faff65f7dcae 100644
+--- a/dist/cjs/Field/Label/FieldLabel.js.map
++++ b/dist/cjs/Field/Label/FieldLabel.js.map
+@@ -1 +1 @@
+-{"version":3,"file":"FieldLabel.js","sourceRoot":"","sources":["../../../../src/Field/Label/FieldLabel.tsx"],"names":[],"mappings":";;;AAGA,kDAAoD;AAEpD,+CAAwC;AACxC,yCAAkC;AAClC,uDAAgD;AAIhD,MAAM,UAAU,GAAG,CAAC,KAAsB,EAAE,EAAE;IAC5C,MAAM,SAAS,GAAG,IAAA,gCAAiB,GAAE,CAAC;IAEtC,IAAI,SAAS,KAAK,gBAAgB,EAAE,CAAC;QACnC,OAAO,uBAAC,qBAAW,OAAK,KAAK,GAAI,CAAC;IACpC,CAAC;IACD,IAAI,SAAS,KAAK,mBAAmB,EAAE,CAAC;QACtC,OAAO,uBAAC,yBAAe,OAAK,KAAK,GAAI,CAAC;IACxC,CAAC;IAED,OAAO,uBAAC,kBAAQ,OAAK,KAAK,GAAI,CAAC;AACjC,CAAC,CAAC;AAEF,kBAAe,UAAU,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"FieldLabel.js","sourceRoot":"","sources":["../../../../src/Field/Label/FieldLabel.tsx"],"names":[],"mappings":";;;AAGA,kDAAoD;AAEpD,+CAAwC;AACxC,yCAAkC;AAClC,uDAAgD;AAMhD,MAAM,UAAU,GAAG,CAAC,KAAsB,EAAE,EAAE;IAC5C,MAAM,SAAS,GAAG,IAAA,gCAAiB,GAAE,CAAC;IAEtC,IAAI,SAAS,KAAK,gBAAgB,EAAE,CAAC;QACnC,OAAO,uBAAC,qBAAW,OAAK,KAAK,GAAI,CAAC;IACpC,CAAC;IACD,IAAI,SAAS,KAAK,mBAAmB,EAAE,CAAC;QACtC,OAAO,uBAAC,yBAAe,OAAK,KAAK,GAAI,CAAC;IACxC,CAAC;IAED,OAAO,uBAAC,kBAAQ,OAAK,KAAK,GAAI,CAAC;AACjC,CAAC,CAAC;AAEF,kBAAe,UAAU,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/Field/Label/HiddenLabel.d.ts b/dist/cjs/Field/Label/HiddenLabel.d.ts
+index bc168bc54cb76c4e6af17df5985b0183413f02d5..e2227ec652be9ab1e54cb04315b99bad939ef1f7 100644
+--- a/dist/cjs/Field/Label/HiddenLabel.d.ts
++++ b/dist/cjs/Field/Label/HiddenLabel.d.ts
+@@ -1,6 +1,6 @@
+ import { FieldLabel as FieldLabelComponent } from '@rocket.chat/fuselage';
+ import type { ComponentProps } from 'react';
+-type HiddenLabelProps = ComponentProps<typeof FieldLabelComponent>;
+-declare const HiddenLabel: ({ children, ...props }: HiddenLabelProps) => import("react/jsx-runtime").JSX.Element;
++export type HiddenLabelProps = ComponentProps<typeof FieldLabelComponent>;
++declare const HiddenLabel: ({ children, ...props }: HiddenLabelProps) => import("react").JSX.Element;
+ export default HiddenLabel;
+ //# sourceMappingURL=HiddenLabel.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/Field/Label/HiddenLabel.d.ts.map b/dist/cjs/Field/Label/HiddenLabel.d.ts.map
+index 84c0a975b37d855b1fbe7525c76356b3c018686a..66d369f679755d8404a49cf49d00119a3bccbd46 100644
+--- a/dist/cjs/Field/Label/HiddenLabel.d.ts.map
++++ b/dist/cjs/Field/Label/HiddenLabel.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"HiddenLabel.d.ts","sourceRoot":"","sources":["../../../../src/Field/Label/HiddenLabel.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,IAAI,mBAAmB,EAAE,MAAM,uBAAuB,CAAC;AAC1E,OAAO,KAAK,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAI5C,KAAK,gBAAgB,GAAG,cAAc,CAAC,OAAO,mBAAmB,CAAC,CAAC;AAEnE,QAAA,MAAM,WAAW,GAAI,wBAAwB,gBAAgB,4CAQ5D,CAAC;AAEF,eAAe,WAAW,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"HiddenLabel.d.ts","sourceRoot":"","sources":["../../../../src/Field/Label/HiddenLabel.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,IAAI,mBAAmB,EAAE,MAAM,uBAAuB,CAAC;AAC1E,OAAO,KAAK,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAI5C,MAAM,MAAM,gBAAgB,GAAG,cAAc,CAAC,OAAO,mBAAmB,CAAC,CAAC;AAE1E,QAAA,MAAM,WAAW,GAAI,wBAAwB,gBAAgB,gCAQ5D,CAAC;AAEF,eAAe,WAAW,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/Field/Label/LabelFor.d.ts b/dist/cjs/Field/Label/LabelFor.d.ts
+index 27ac0a2d4141d4a6e6e87d727da61a1e896d5979..392eb302267c4523bdf1a198039dc32ad1f0d89b 100644
+--- a/dist/cjs/Field/Label/LabelFor.d.ts
++++ b/dist/cjs/Field/Label/LabelFor.d.ts
+@@ -1,6 +1,6 @@
+ import { FieldLabel as FieldLabelComponent } from '@rocket.chat/fuselage';
+ import type { ComponentProps } from 'react';
+-type LabelForProps = ComponentProps<typeof FieldLabelComponent>;
+-declare const LabelFor: ({ children, ...props }: LabelForProps) => import("react/jsx-runtime").JSX.Element;
++export type LabelForProps = ComponentProps<typeof FieldLabelComponent>;
++declare const LabelFor: ({ children, ...props }: LabelForProps) => import("react").JSX.Element;
+ export default LabelFor;
+ //# sourceMappingURL=LabelFor.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/Field/Label/LabelFor.d.ts.map b/dist/cjs/Field/Label/LabelFor.d.ts.map
+index 1daa7c675f175be3df49f2d2f965148135d0ba5b..d983b62a5df136a930c2f464c67a50563e528f3a 100644
+--- a/dist/cjs/Field/Label/LabelFor.d.ts.map
++++ b/dist/cjs/Field/Label/LabelFor.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"LabelFor.d.ts","sourceRoot":"","sources":["../../../../src/Field/Label/LabelFor.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,IAAI,mBAAmB,EAAE,MAAM,uBAAuB,CAAC;AAC1E,OAAO,KAAK,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAI5C,KAAK,aAAa,GAAG,cAAc,CAAC,OAAO,mBAAmB,CAAC,CAAC;AAEhE,QAAA,MAAM,QAAQ,GAAI,wBAAwB,aAAa,4CAOtD,CAAC;AAEF,eAAe,QAAQ,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"LabelFor.d.ts","sourceRoot":"","sources":["../../../../src/Field/Label/LabelFor.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,IAAI,mBAAmB,EAAE,MAAM,uBAAuB,CAAC;AAC1E,OAAO,KAAK,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAI5C,MAAM,MAAM,aAAa,GAAG,cAAc,CAAC,OAAO,mBAAmB,CAAC,CAAC;AAEvE,QAAA,MAAM,QAAQ,GAAI,wBAAwB,aAAa,gCAOtD,CAAC;AAEF,eAAe,QAAQ,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/Field/Label/ReferencedLabel.d.ts b/dist/cjs/Field/Label/ReferencedLabel.d.ts
+index 1eef45295f37ed611bf210bcdd5f2abdc74e22fd..d76121dc6bc7c1b7bde101be6a91aa7cd6dc0a0c 100644
+--- a/dist/cjs/Field/Label/ReferencedLabel.d.ts
++++ b/dist/cjs/Field/Label/ReferencedLabel.d.ts
+@@ -1,6 +1,6 @@
+ import { FieldLabel as FieldLabelComponent } from '@rocket.chat/fuselage';
+ import type { ComponentProps } from 'react';
+-type ReferencedLabelProps = ComponentProps<typeof FieldLabelComponent>;
+-declare const ReferencedLabel: ({ children, ...props }: ReferencedLabelProps) => import("react/jsx-runtime").JSX.Element;
++export type ReferencedLabelProps = ComponentProps<typeof FieldLabelComponent>;
++declare const ReferencedLabel: ({ children, ...props }: ReferencedLabelProps) => import("react").JSX.Element;
+ export default ReferencedLabel;
+ //# sourceMappingURL=ReferencedLabel.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/Field/Label/ReferencedLabel.d.ts.map b/dist/cjs/Field/Label/ReferencedLabel.d.ts.map
+index c26f46407a664e235910954345e64e8485ebe634..0ffb75e6422e29f10086cebb9c8ac420beffd697 100644
+--- a/dist/cjs/Field/Label/ReferencedLabel.d.ts.map
++++ b/dist/cjs/Field/Label/ReferencedLabel.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"ReferencedLabel.d.ts","sourceRoot":"","sources":["../../../../src/Field/Label/ReferencedLabel.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,IAAI,mBAAmB,EAAE,MAAM,uBAAuB,CAAC;AAC1E,OAAO,KAAK,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAI5C,KAAK,oBAAoB,GAAG,cAAc,CAAC,OAAO,mBAAmB,CAAC,CAAC;AAEvE,QAAA,MAAM,eAAe,GAAI,wBAAwB,oBAAoB,4CAQpE,CAAC;AAEF,eAAe,eAAe,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"ReferencedLabel.d.ts","sourceRoot":"","sources":["../../../../src/Field/Label/ReferencedLabel.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,IAAI,mBAAmB,EAAE,MAAM,uBAAuB,CAAC;AAC1E,OAAO,KAAK,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAI5C,MAAM,MAAM,oBAAoB,GAAG,cAAc,CAAC,OAAO,mBAAmB,CAAC,CAAC;AAE9E,QAAA,MAAM,eAAe,GAAI,wBAAwB,oBAAoB,gCAQpE,CAAC;AAEF,eAAe,eAAe,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/Field/Label/index.d.ts b/dist/cjs/Field/Label/index.d.ts
+index 7681ce3da2ea6cd6ef49dc2793b457beeca73f4f..dfc7ba6219de3875786b52c23d72188e7395d462 100644
+--- a/dist/cjs/Field/Label/index.d.ts
++++ b/dist/cjs/Field/Label/index.d.ts
+@@ -1,5 +1,5 @@
+-export { default as LabelFor } from './LabelFor';
+-export { default as HiddenLabel } from './HiddenLabel';
+-export { default as ReferencedLabel } from './ReferencedLabel';
+-export { default as FieldLabel } from './FieldLabel';
++export { default as LabelFor, type LabelForProps } from './LabelFor';
++export { default as HiddenLabel, type HiddenLabelProps } from './HiddenLabel';
++export { default as ReferencedLabel, type ReferencedLabelProps, } from './ReferencedLabel';
++export { default as FieldLabel, type FieldLabelProps } from './FieldLabel';
+ //# sourceMappingURL=index.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/Field/Label/index.d.ts.map b/dist/cjs/Field/Label/index.d.ts.map
+index a35a644e71c6643deb15a39e2864ca216ff7cf92..b30bb71b1b2f9305f9790290eb4ada643e5e675c 100644
+--- a/dist/cjs/Field/Label/index.d.ts.map
++++ b/dist/cjs/Field/Label/index.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../../src/Field/Label/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,IAAI,QAAQ,EAAE,MAAM,YAAY,CAAC;AACjD,OAAO,EAAE,OAAO,IAAI,WAAW,EAAE,MAAM,eAAe,CAAC;AACvD,OAAO,EAAE,OAAO,IAAI,eAAe,EAAE,MAAM,mBAAmB,CAAC;AAC/D,OAAO,EAAE,OAAO,IAAI,UAAU,EAAE,MAAM,cAAc,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../../src/Field/Label/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,IAAI,QAAQ,EAAE,KAAK,aAAa,EAAE,MAAM,YAAY,CAAC;AACrE,OAAO,EAAE,OAAO,IAAI,WAAW,EAAE,KAAK,gBAAgB,EAAE,MAAM,eAAe,CAAC;AAC9E,OAAO,EACL,OAAO,IAAI,eAAe,EAC1B,KAAK,oBAAoB,GAC1B,MAAM,mBAAmB,CAAC;AAC3B,OAAO,EAAE,OAAO,IAAI,UAAU,EAAE,KAAK,eAAe,EAAE,MAAM,cAAc,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/Field/Label/index.js.map b/dist/cjs/Field/Label/index.js.map
+index bd815170ab9f55c231a6ac7147a51d9ccfef0c2d..b7702494938228cbccbf2bdfadb92ecb8bd18e42 100644
+--- a/dist/cjs/Field/Label/index.js.map
++++ b/dist/cjs/Field/Label/index.js.map
+@@ -1 +1 @@
+-{"version":3,"file":"index.js","sourceRoot":"","sources":["../../../../src/Field/Label/index.ts"],"names":[],"mappings":";;;AAAA,uCAAiD;AAAxC,oGAAA,OAAO,OAAY;AAC5B,6CAAuD;AAA9C,0GAAA,OAAO,OAAe;AAC/B,qDAA+D;AAAtD,kHAAA,OAAO,OAAmB;AACnC,2CAAqD;AAA5C,wGAAA,OAAO,OAAc"}
+\ No newline at end of file
++{"version":3,"file":"index.js","sourceRoot":"","sources":["../../../../src/Field/Label/index.ts"],"names":[],"mappings":";;;AAAA,uCAAqE;AAA5D,oGAAA,OAAO,OAAY;AAC5B,6CAA8E;AAArE,0GAAA,OAAO,OAAe;AAC/B,qDAG2B;AAFzB,kHAAA,OAAO,OAAmB;AAG5B,2CAA2E;AAAlE,wGAAA,OAAO,OAAc"}
+\ No newline at end of file
+diff --git a/dist/cjs/Field/index.d.ts b/dist/cjs/Field/index.d.ts
+index 996f4c3a55c88cccba290f39d52c99d89f2105f7..0d634ee32e1d104c7411a5de3022b2adbb55e8db 100644
+--- a/dist/cjs/Field/index.d.ts
++++ b/dist/cjs/Field/index.d.ts
+@@ -1,8 +1,8 @@
+-export { default as Field } from './Field';
+-export { default as FieldProvider } from './FieldProvider';
+-export { default as FieldDescription } from './FieldDescription';
+-export { default as FieldError } from './FieldError';
+-export { default as FieldHint } from './FieldHint';
++export { default as Field, type FieldProps } from './Field';
++export { default as FieldProvider, type FieldProviderProps, } from './FieldProvider';
++export { default as FieldDescription, type FieldDescriptionProps, } from './FieldDescription';
++export { default as FieldError, type FieldErrorProps } from './FieldError';
++export { default as FieldHint, type FieldHintProps } from './FieldHint';
+ export * from './FieldContext';
+ export * from './Label';
+ export { FieldGroup, FieldRow, FieldLink, FieldLabelInfo, } from '@rocket.chat/fuselage';
+diff --git a/dist/cjs/Field/index.d.ts.map b/dist/cjs/Field/index.d.ts.map
+index 3da96ced238500bd2af0f53ee107eb318ada0639..e76f08e23293ce4c8cd05cd403c155958ae1ec3a 100644
+--- a/dist/cjs/Field/index.d.ts.map
++++ b/dist/cjs/Field/index.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../src/Field/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,IAAI,KAAK,EAAE,MAAM,SAAS,CAAC;AAC3C,OAAO,EAAE,OAAO,IAAI,aAAa,EAAE,MAAM,iBAAiB,CAAC;AAC3D,OAAO,EAAE,OAAO,IAAI,gBAAgB,EAAE,MAAM,oBAAoB,CAAC;AACjE,OAAO,EAAE,OAAO,IAAI,UAAU,EAAE,MAAM,cAAc,CAAC;AACrD,OAAO,EAAE,OAAO,IAAI,SAAS,EAAE,MAAM,aAAa,CAAC;AAEnD,cAAc,gBAAgB,CAAC;AAE/B,cAAc,SAAS,CAAC;AAExB,OAAO,EACL,UAAU,EACV,QAAQ,EACR,SAAS,EACT,cAAc,GACf,MAAM,uBAAuB,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../src/Field/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,IAAI,KAAK,EAAE,KAAK,UAAU,EAAE,MAAM,SAAS,CAAC;AAC5D,OAAO,EACL,OAAO,IAAI,aAAa,EACxB,KAAK,kBAAkB,GACxB,MAAM,iBAAiB,CAAC;AACzB,OAAO,EACL,OAAO,IAAI,gBAAgB,EAC3B,KAAK,qBAAqB,GAC3B,MAAM,oBAAoB,CAAC;AAC5B,OAAO,EAAE,OAAO,IAAI,UAAU,EAAE,KAAK,eAAe,EAAE,MAAM,cAAc,CAAC;AAC3E,OAAO,EAAE,OAAO,IAAI,SAAS,EAAE,KAAK,cAAc,EAAE,MAAM,aAAa,CAAC;AAExE,cAAc,gBAAgB,CAAC;AAE/B,cAAc,SAAS,CAAC;AAExB,OAAO,EACL,UAAU,EACV,QAAQ,EACR,SAAS,EACT,cAAc,GACf,MAAM,uBAAuB,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/Field/index.js.map b/dist/cjs/Field/index.js.map
+index 332c276614b072e805592b3e5b7689a25b125580..f8eb861c504f87ee99db4def84b389914e7c957b 100644
+--- a/dist/cjs/Field/index.js.map
++++ b/dist/cjs/Field/index.js.map
+@@ -1 +1 @@
+-{"version":3,"file":"index.js","sourceRoot":"","sources":["../../../src/Field/index.ts"],"names":[],"mappings":";;;;;;;;;;;;;;;;;AAAA,iCAA2C;AAAlC,8FAAA,OAAO,OAAS;AACzB,iDAA2D;AAAlD,8GAAA,OAAO,OAAiB;AACjC,uDAAiE;AAAxD,oHAAA,OAAO,OAAoB;AACpC,2CAAqD;AAA5C,wGAAA,OAAO,OAAc;AAC9B,yCAAmD;AAA1C,sGAAA,OAAO,OAAa;AAE7B,iDAA+B;AAE/B,0CAAwB;AAExB,kDAK+B;AAJ7B,sGAAA,UAAU,OAAA;AACV,oGAAA,QAAQ,OAAA;AACR,qGAAA,SAAS,OAAA;AACT,0GAAA,cAAc,OAAA"}
+\ No newline at end of file
++{"version":3,"file":"index.js","sourceRoot":"","sources":["../../../src/Field/index.ts"],"names":[],"mappings":";;;;;;;;;;;;;;;;;AAAA,iCAA4D;AAAnD,8FAAA,OAAO,OAAS;AACzB,iDAGyB;AAFvB,8GAAA,OAAO,OAAiB;AAG1B,uDAG4B;AAF1B,oHAAA,OAAO,OAAoB;AAG7B,2CAA2E;AAAlE,wGAAA,OAAO,OAAc;AAC9B,yCAAwE;AAA/D,sGAAA,OAAO,OAAa;AAE7B,iDAA+B;AAE/B,0CAAwB;AAExB,kDAK+B;AAJ7B,sGAAA,UAAU,OAAA;AACV,oGAAA,QAAQ,OAAA;AACR,qGAAA,SAAS,OAAA;AACT,0GAAA,cAAc,OAAA"}
+\ No newline at end of file
+diff --git a/dist/cjs/Inputs/WrappedInputComponents.d.ts b/dist/cjs/Inputs/WrappedInputComponents.d.ts
+index 81cef114c21653d908b2d042d8970047155ae19a..0256c8b7e8e48fbef13a7d2aa96a08ab5bc9f3e4 100644
+--- a/dist/cjs/Inputs/WrappedInputComponents.d.ts
++++ b/dist/cjs/Inputs/WrappedInputComponents.d.ts
+@@ -23,12 +23,12 @@ export declare const TelephoneInput: import("react").ForwardRefExoticComponent<O
+ } & import("react").RefAttributes<HTMLInputElement>, "ref"> & import("react").RefAttributes<HTMLInputElement>>;
+ export declare const NumberInput: import("react").ForwardRefExoticComponent<Omit<import("@rocket.chat/fuselage").NumberInputProps & import("react").RefAttributes<HTMLInputElement>, "ref"> & import("react").RefAttributes<HTMLInputElement>>;
+ export declare const UrlInput: import("react").ForwardRefExoticComponent<Omit<import("@rocket.chat/fuselage").UrlInputProps & import("react").RefAttributes<HTMLElement>, "ref"> & import("react").RefAttributes<HTMLElement>>;
+-export declare const Select: import("react").ForwardRefExoticComponent<Omit<Omit<import("react-aria").AriaSelectProps<object>, "value" | "children" | "onChange"> & {
++export declare const Select: import("react").ForwardRefExoticComponent<Omit<Omit<import("react-aria").AriaSelectProps<object>, "children" | "value" | "onChange"> & {
+     error?: string;
+     placeholder?: string;
+     value?: import("react").Key | null | undefined;
+     onChange?: ((key: import("react").Key) => any) | undefined;
+-    options: (readonly [value: string, label: string, selected?: boolean | undefined])[];
++    options: import("@rocket.chat/fuselage").SelectOption[];
+     small?: boolean;
+ } & Omit<import("react").AllHTMLAttributes<HTMLElement>, "value" | "onChange"> & import("react").RefAttributes<HTMLElement>, "ref"> & import("react").RefAttributes<HTMLElement>>;
+ export declare const AutoComplete: typeof AutoCompleteComponent;
+@@ -40,10 +40,15 @@ export declare const MultiSelect: import("react").ForwardRefExoticComponent<Omit
+     getLabel?: (params: import("@rocket.chat/fuselage").SelectOption) => import("@rocket.chat/fuselage").SelectOption[1];
+     getValue?: (params: import("@rocket.chat/fuselage").SelectOption) => import("@rocket.chat/fuselage").SelectOption[0];
+     customEmpty?: string;
+-    anchor?: import("react").ElementType<import("@rocket.chat/fuselage/dist/components/MultiSelect/MultiSelectAnchorParams").MultiSelectAnchorParams> | ((params: import("@rocket.chat/fuselage/dist/components/MultiSelect/MultiSelectAnchorParams").MultiSelectAnchorParams) => import("react").ReactNode);
++    anchor?: import("react").ElementType<import("@rocket.chat/fuselage").MultiSelectAnchorParams> | ((params: import("@rocket.chat/fuselage").MultiSelectAnchorParams) => import("react").ReactNode);
+     renderOptions?: import("react").ElementType;
+     renderItem?: import("react").ElementType;
+-    renderSelected?: import("react").ElementType;
++    renderSelected?: import("react").ElementType<{
++        value: import("@rocket.chat/fuselage").SelectOption[0];
++        label: import("@rocket.chat/fuselage").SelectOption[1];
++        onMouseDown: import("react").MouseEventHandler;
++        children: import("react").ReactNode;
++    }>;
+     addonIcon?: import("@rocket.chat/fuselage").IconProps["name"];
+     setFilter?: (filter: string) => void;
+ } & import("react").RefAttributes<HTMLInputElement>, "ref"> & import("react").RefAttributes<HTMLInputElement>>;
+@@ -55,10 +60,15 @@ export declare const MultiSelectFiltered: import("react").ForwardRefExoticCompon
+     getLabel?: (params: import("@rocket.chat/fuselage").SelectOption) => import("@rocket.chat/fuselage").SelectOption[1];
+     getValue?: (params: import("@rocket.chat/fuselage").SelectOption) => import("@rocket.chat/fuselage").SelectOption[0];
+     customEmpty?: string;
+-    anchor?: import("react").ElementType<import("@rocket.chat/fuselage/dist/components/MultiSelect/MultiSelectAnchorParams").MultiSelectAnchorParams> | ((params: import("@rocket.chat/fuselage/dist/components/MultiSelect/MultiSelectAnchorParams").MultiSelectAnchorParams) => import("react").ReactNode);
++    anchor?: import("react").ElementType<import("@rocket.chat/fuselage").MultiSelectAnchorParams> | ((params: import("@rocket.chat/fuselage").MultiSelectAnchorParams) => import("react").ReactNode);
+     renderOptions?: import("react").ElementType;
+     renderItem?: import("react").ElementType;
+-    renderSelected?: import("react").ElementType;
++    renderSelected?: import("react").ElementType<{
++        value: import("@rocket.chat/fuselage").SelectOption[0];
++        label: import("@rocket.chat/fuselage").SelectOption[1];
++        onMouseDown: import("react").MouseEventHandler;
++        children: import("react").ReactNode;
++    }>;
+     addonIcon?: import("@rocket.chat/fuselage").IconProps["name"];
+     setFilter?: (filter: string) => void;
+ } & {
+diff --git a/dist/cjs/Inputs/WrappedInputComponents.d.ts.map b/dist/cjs/Inputs/WrappedInputComponents.d.ts.map
+index 36f4fa2d1b37c9c84f2f36fa423e4766ecba63bb..ab3b3fd29cf9f1f02ab55789569587b45bf67f13 100644
+--- a/dist/cjs/Inputs/WrappedInputComponents.d.ts.map
++++ b/dist/cjs/Inputs/WrappedInputComponents.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"WrappedInputComponents.d.ts","sourceRoot":"","sources":["../../../src/Inputs/WrappedInputComponents.ts"],"names":[],"mappings":"AAAA,OAAO,EAaL,YAAY,IAAI,qBAAqB,EAGrC,MAAM,IAAI,eAAe,EAC1B,MAAM,uBAAuB,CAAC;AAY/B,eAAO,MAAM,SAAS;;;8GAAkC,CAAC;AACzD,eAAO,MAAM,UAAU;;;oGAAmC,CAAC;AAC3D,eAAO,MAAM,aAAa,gNAAsC,CAAC;AACjE,eAAO,MAAM,WAAW;;;8GAAoC,CAAC;AAC7D,eAAO,MAAM,aAAa;;;oHAAiC,CAAC;AAC5D,eAAO,MAAM,cAAc;;;;8GAAuC,CAAC;AACnE,eAAO,MAAM,WAAW,8MAAoC,CAAC;AAC7D,eAAO,MAAM,QAAQ,iMAAiC,CAAC;AAGvD,eAAO,MAAM,MAAM;;;;;;;iLAAsC,CAAC;AAG1D,eAAO,MAAM,YAAY,EAEpB,OAAO,qBAAqB,CAAC;AAClC,eAAO,MAAM,WAAW;;;;;;;;;;;;;;8GAAgD,CAAC;AACzE,eAAO,MAAM,mBAAmB;;;;;;;;;;;;;;;;;;8GAE/B,CAAC;AACF,eAAO,MAAM,MAAM,EAEd,OAAO,eAAe,CAAC;AAG5B,eAAO,MAAM,QAAQ;;;oKAA6C,CAAC;AACnE,eAAO,MAAM,YAAY;;8GAAiD,CAAC;AAC3E,eAAO,MAAM,WAAW;;8GAAgD,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"WrappedInputComponents.d.ts","sourceRoot":"","sources":["../../../src/Inputs/WrappedInputComponents.ts"],"names":[],"mappings":"AAAA,OAAO,EAaL,YAAY,IAAI,qBAAqB,EAGrC,MAAM,IAAI,eAAe,EAC1B,MAAM,uBAAuB,CAAC;AAY/B,eAAO,MAAM,SAAS;;;8GAAkC,CAAC;AACzD,eAAO,MAAM,UAAU;;;oGAAmC,CAAC;AAC3D,eAAO,MAAM,aAAa,gNAAsC,CAAC;AACjE,eAAO,MAAM,WAAW;;;8GAAoC,CAAC;AAC7D,eAAO,MAAM,aAAa;;;oHAAiC,CAAC;AAC5D,eAAO,MAAM,cAAc;;;;8GAAuC,CAAC;AACnE,eAAO,MAAM,WAAW,8MAAoC,CAAC;AAC7D,eAAO,MAAM,QAAQ,iMAAiC,CAAC;AAGvD,eAAO,MAAM,MAAM;;;;;;;iLAAsC,CAAC;AAG1D,eAAO,MAAM,YAAY,EAEpB,OAAO,qBAAqB,CAAC;AAClC,eAAO,MAAM,WAAW;;;;;;;;;;;;;;;;;;;8GAAgD,CAAC;AACzE,eAAO,MAAM,mBAAmB;;;;;;;;;;;;;;;;;;;;;;;8GAE/B,CAAC;AACF,eAAO,MAAM,MAAM,EAEd,OAAO,eAAe,CAAC;AAG5B,eAAO,MAAM,QAAQ;;;oKAA6C,CAAC;AACnE,eAAO,MAAM,YAAY;;8GAAiD,CAAC;AAC3E,eAAO,MAAM,WAAW;;8GAAgD,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/Inputs/WrappedInputComponents.js b/dist/cjs/Inputs/WrappedInputComponents.js
+index a2b7d660d9abbb9cbcbcf18a5d7fd6449e1bd029..726d2ce53911ea376a567ad743e005fd79fb7a00 100644
+--- a/dist/cjs/Inputs/WrappedInputComponents.js
++++ b/dist/cjs/Inputs/WrappedInputComponents.js
+@@ -12,7 +12,7 @@ exports.TelephoneInput = (0, withLabelHelpers_1.withLabelId)(fuselage_1.Telephon
+ exports.NumberInput = (0, withLabelHelpers_1.withLabelId)(fuselage_1.NumberInput);
+ exports.UrlInput = (0, withLabelHelpers_1.withLabelId)(fuselage_1.UrlInput);
+ exports.Select = (0, withLabelHelpers_1.withAriaLabelledBy)(fuselage_1.Select);
+-exports.AutoComplete = (0, withLabelHelpers_1.withAriaLabelledByAndId)(fuselage_1.AutoComplete);
++exports.AutoComplete = (0, withLabelHelpers_1.withAriaLabelledByAndId)((fuselage_1.AutoComplete));
+ exports.MultiSelect = (0, withLabelHelpers_1.withAriaLabelledByAndId)(fuselage_1.MultiSelect);
+ exports.MultiSelectFiltered = (0, withLabelHelpers_1.withAriaLabelledByAndId)(fuselage_1.MultiSelectFiltered);
+ exports.Slider = (0, withLabelHelpers_1.withAriaLabelledBy)(fuselage_1.Slider);
+diff --git a/dist/cjs/Inputs/WrappedInputComponents.js.map b/dist/cjs/Inputs/WrappedInputComponents.js.map
+index 8ae9cf01c8225dcd7720be13102b0b61a44a1a38..24ca325249c6fdbaebdcbb15423ba388cdf20d33 100644
+--- a/dist/cjs/Inputs/WrappedInputComponents.js.map
++++ b/dist/cjs/Inputs/WrappedInputComponents.js.map
+@@ -1 +1 @@
+-{"version":3,"file":"WrappedInputComponents.js","sourceRoot":"","sources":["../../../src/Inputs/WrappedInputComponents.ts"],"names":[],"mappings":";;;AAAA,oDAiB+B;AAE/B,yDAK4B;AAKf,QAAA,SAAS,GAAG,IAAA,8BAAW,EAAC,oBAAkB,CAAC,CAAC;AAC5C,QAAA,UAAU,GAAG,IAAA,8BAAW,EAAC,qBAAmB,CAAC,CAAC;AAC9C,QAAA,aAAa,GAAG,IAAA,8BAAW,EAAC,wBAAsB,CAAC,CAAC;AACpD,QAAA,WAAW,GAAG,IAAA,8BAAW,EAAC,sBAAoB,CAAC,CAAC;AAChD,QAAA,aAAa,GAAG,IAAA,8BAAW,EAAC,wBAAiB,CAAC,CAAC;AAC/C,QAAA,cAAc,GAAG,IAAA,8BAAW,EAAC,yBAAuB,CAAC,CAAC;AACtD,QAAA,WAAW,GAAG,IAAA,8BAAW,EAAC,sBAAoB,CAAC,CAAC;AAChD,QAAA,QAAQ,GAAG,IAAA,8BAAW,EAAC,mBAAiB,CAAC,CAAC;AAG1C,QAAA,MAAM,GAAG,IAAA,qCAAkB,EAAC,iBAAe,CAAC,CAAC;AAG7C,QAAA,YAAY,GAAG,IAAA,0CAAuB,EACjD,uBAAqB,CACU,CAAC;AACrB,QAAA,WAAW,GAAG,IAAA,0CAAuB,EAAC,sBAAoB,CAAC,CAAC;AAC5D,QAAA,mBAAmB,GAAG,IAAA,0CAAuB,EACxD,8BAA4B,CAC7B,CAAC;AACW,QAAA,MAAM,GAAG,IAAA,qCAAkB,EACtC,iBAAe,CACU,CAAC;AAGf,QAAA,QAAQ,GAAG,IAAA,0CAAuB,EAAC,mBAAiB,CAAC,CAAC;AACtD,QAAA,YAAY,GAAG,IAAA,0CAAuB,EAAC,uBAAqB,CAAC,CAAC;AAC9D,QAAA,WAAW,GAAG,IAAA,0CAAuB,EAAC,sBAAoB,CAAC,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"WrappedInputComponents.js","sourceRoot":"","sources":["../../../src/Inputs/WrappedInputComponents.ts"],"names":[],"mappings":";;;AAAA,oDAiB+B;AAE/B,yDAK4B;AAKf,QAAA,SAAS,GAAG,IAAA,8BAAW,EAAC,oBAAkB,CAAC,CAAC;AAC5C,QAAA,UAAU,GAAG,IAAA,8BAAW,EAAC,qBAAmB,CAAC,CAAC;AAC9C,QAAA,aAAa,GAAG,IAAA,8BAAW,EAAC,wBAAsB,CAAC,CAAC;AACpD,QAAA,WAAW,GAAG,IAAA,8BAAW,EAAC,sBAAoB,CAAC,CAAC;AAChD,QAAA,aAAa,GAAG,IAAA,8BAAW,EAAC,wBAAiB,CAAC,CAAC;AAC/C,QAAA,cAAc,GAAG,IAAA,8BAAW,EAAC,yBAAuB,CAAC,CAAC;AACtD,QAAA,WAAW,GAAG,IAAA,8BAAW,EAAC,sBAAoB,CAAC,CAAC;AAChD,QAAA,QAAQ,GAAG,IAAA,8BAAW,EAAC,mBAAiB,CAAC,CAAC;AAG1C,QAAA,MAAM,GAAG,IAAA,qCAAkB,EAAC,iBAAe,CAAC,CAAC;AAG7C,QAAA,YAAY,GAAG,IAAA,0CAAuB,EACjD,CAAA,uBAA0B,CAAA,CACK,CAAC;AACrB,QAAA,WAAW,GAAG,IAAA,0CAAuB,EAAC,sBAAoB,CAAC,CAAC;AAC5D,QAAA,mBAAmB,GAAG,IAAA,0CAAuB,EACxD,8BAA4B,CAC7B,CAAC;AACW,QAAA,MAAM,GAAG,IAAA,qCAAkB,EACtC,iBAAe,CACU,CAAC;AAGf,QAAA,QAAQ,GAAG,IAAA,0CAAuB,EAAC,mBAAiB,CAAC,CAAC;AACtD,QAAA,YAAY,GAAG,IAAA,0CAAuB,EAAC,uBAAqB,CAAC,CAAC;AAC9D,QAAA,WAAW,GAAG,IAAA,0CAAuB,EAAC,sBAAoB,CAAC,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/Inputs/withLabelHelpers.d.ts b/dist/cjs/Inputs/withLabelHelpers.d.ts
+index 4c09b42bbfcb0a994005005b382c281551334b70..dc73c34432ffac429549e8ae0567dbbe5152fb1e 100644
+--- a/dist/cjs/Inputs/withLabelHelpers.d.ts
++++ b/dist/cjs/Inputs/withLabelHelpers.d.ts
+@@ -1,20 +1,20 @@
+-import type { ReactNode, ForwardRefExoticComponent, RefAttributes } from 'react';
++import type { ReactNode, ComponentType, RefAttributes } from 'react';
+ type WithLabelId = {
+     id?: string;
+ };
+-declare function withLabelId<TProps, TRef>(Component: ForwardRefExoticComponent<TProps & WithLabelId & RefAttributes<TRef>>): ForwardRefExoticComponent<import("react").PropsWithoutRef<TProps> & RefAttributes<TRef>>;
++declare function withLabelId<TProps, TRef>(Component: ComponentType<TProps & WithLabelId & RefAttributes<TRef>>): import("react").ForwardRefExoticComponent<import("react").PropsWithoutRef<TProps> & RefAttributes<TRef>>;
+ type WithLabelledBy = {
+     'aria-labelledby'?: string;
+ };
+-declare function withAriaLabelledBy<TProps, TRef>(Component: ForwardRefExoticComponent<TProps & WithLabelledBy & RefAttributes<TRef>>): ForwardRefExoticComponent<import("react").PropsWithoutRef<TProps> & RefAttributes<TRef>>;
++declare function withAriaLabelledBy<TProps, TRef>(Component: ComponentType<TProps & WithLabelledBy & RefAttributes<TRef>>): import("react").ForwardRefExoticComponent<import("react").PropsWithoutRef<TProps> & RefAttributes<TRef>>;
+ type WithLabelledByAndId = {
+     'aria-labelledby'?: string;
+     'id'?: string;
+ };
+-declare function withAriaLabelledByAndId<TProps, TRef>(Component: ForwardRefExoticComponent<TProps & WithLabelledByAndId & RefAttributes<TRef>>): ForwardRefExoticComponent<import("react").PropsWithoutRef<TProps> & RefAttributes<TRef>>;
++declare function withAriaLabelledByAndId<TProps, TRef>(Component: ComponentType<TProps & WithLabelledByAndId & RefAttributes<TRef>>): import("react").ForwardRefExoticComponent<import("react").PropsWithoutRef<TProps> & RefAttributes<TRef>>;
+ type WithChildrenLabel = {
+     labelChildren: ReactNode;
+ };
+-declare function withVisuallyHiddenLabel<TProps, TRef>(Component: ForwardRefExoticComponent<TProps & WithChildrenLabel & RefAttributes<TRef>>): ForwardRefExoticComponent<import("react").PropsWithoutRef<TProps> & RefAttributes<TRef>>;
++declare function withVisuallyHiddenLabel<TProps, TRef>(Component: ComponentType<TProps & WithChildrenLabel & RefAttributes<TRef>>): import("react").ForwardRefExoticComponent<import("react").PropsWithoutRef<TProps> & RefAttributes<TRef>>;
+ export { withLabelId, withAriaLabelledBy, withAriaLabelledByAndId, withVisuallyHiddenLabel, };
+ //# sourceMappingURL=withLabelHelpers.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/Inputs/withLabelHelpers.d.ts.map b/dist/cjs/Inputs/withLabelHelpers.d.ts.map
+index 656a6e57726c29ecb3c4289a703292d433b5eddf..f6eac670f10137686157db470f28011f5e2715d9 100644
+--- a/dist/cjs/Inputs/withLabelHelpers.d.ts.map
++++ b/dist/cjs/Inputs/withLabelHelpers.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"withLabelHelpers.d.ts","sourceRoot":"","sources":["../../../src/Inputs/withLabelHelpers.tsx"],"names":[],"mappings":"AAGA,OAAO,KAAK,EACV,SAAS,EACT,yBAAyB,EAEzB,aAAa,EACd,MAAM,OAAO,CAAC;AAWf,KAAK,WAAW,GAAG;IAAE,EAAE,CAAC,EAAE,MAAM,CAAA;CAAE,CAAC;AAEnC,iBAAS,WAAW,CAAC,MAAM,EAAE,IAAI,EAC/B,SAAS,EAAE,yBAAyB,CAClC,MAAM,GAAG,WAAW,GAAG,aAAa,CAAC,IAAI,CAAC,CAC3C,4FAgBF;AAED,KAAK,cAAc,GAAG;IAAE,iBAAiB,CAAC,EAAE,MAAM,CAAA;CAAE,CAAC;AAErD,iBAAS,kBAAkB,CAAC,MAAM,EAAE,IAAI,EACtC,SAAS,EAAE,yBAAyB,CAClC,MAAM,GAAG,cAAc,GAAG,aAAa,CAAC,IAAI,CAAC,CAC9C,4FAgBF;AAED,KAAK,mBAAmB,GAAG;IAAE,iBAAiB,CAAC,EAAE,MAAM,CAAC;IAAC,IAAI,CAAC,EAAE,MAAM,CAAA;CAAE,CAAC;AAEzE,iBAAS,uBAAuB,CAAC,MAAM,EAAE,IAAI,EAC3C,SAAS,EAAE,yBAAyB,CAClC,MAAM,GAAG,mBAAmB,GAAG,aAAa,CAAC,IAAI,CAAC,CACnD,4FAgBF;AAED,KAAK,iBAAiB,GAAG;IAAE,aAAa,EAAE,SAAS,CAAA;CAAE,CAAC;AAEtD,iBAAS,uBAAuB,CAAC,MAAM,EAAE,IAAI,EAC3C,SAAS,EAAE,yBAAyB,CAClC,MAAM,GAAG,iBAAiB,GAAG,aAAa,CAAC,IAAI,CAAC,CACjD,4FAkBF;AAED,OAAO,EACL,WAAW,EACX,kBAAkB,EAClB,uBAAuB,EACvB,uBAAuB,GACxB,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"withLabelHelpers.d.ts","sourceRoot":"","sources":["../../../src/Inputs/withLabelHelpers.tsx"],"names":[],"mappings":"AAGA,OAAO,KAAK,EAAE,SAAS,EAAE,aAAa,EAAO,aAAa,EAAE,MAAM,OAAO,CAAC;AAW1E,KAAK,WAAW,GAAG;IAAE,EAAE,CAAC,EAAE,MAAM,CAAA;CAAE,CAAC;AAEnC,iBAAS,WAAW,CAAC,MAAM,EAAE,IAAI,EAC/B,SAAS,EAAE,aAAa,CAAC,MAAM,GAAG,WAAW,GAAG,aAAa,CAAC,IAAI,CAAC,CAAC,4GAgBrE;AAED,KAAK,cAAc,GAAG;IAAE,iBAAiB,CAAC,EAAE,MAAM,CAAA;CAAE,CAAC;AAErD,iBAAS,kBAAkB,CAAC,MAAM,EAAE,IAAI,EACtC,SAAS,EAAE,aAAa,CAAC,MAAM,GAAG,cAAc,GAAG,aAAa,CAAC,IAAI,CAAC,CAAC,4GAgBxE;AAED,KAAK,mBAAmB,GAAG;IAAE,iBAAiB,CAAC,EAAE,MAAM,CAAC;IAAC,IAAI,CAAC,EAAE,MAAM,CAAA;CAAE,CAAC;AAEzE,iBAAS,uBAAuB,CAAC,MAAM,EAAE,IAAI,EAC3C,SAAS,EAAE,aAAa,CAAC,MAAM,GAAG,mBAAmB,GAAG,aAAa,CAAC,IAAI,CAAC,CAAC,4GAgB7E;AAED,KAAK,iBAAiB,GAAG;IAAE,aAAa,EAAE,SAAS,CAAA;CAAE,CAAC;AAEtD,iBAAS,uBAAuB,CAAC,MAAM,EAAE,IAAI,EAC3C,SAAS,EAAE,aAAa,CAAC,MAAM,GAAG,iBAAiB,GAAG,aAAa,CAAC,IAAI,CAAC,CAAC,4GAkB3E;AAED,OAAO,EACL,WAAW,EACX,kBAAkB,EAClB,uBAAuB,EACvB,uBAAuB,GACxB,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/Inputs/withLabelHelpers.js.map b/dist/cjs/Inputs/withLabelHelpers.js.map
+index 067d00bf9adc09c522ea758c6efc015840116e44..c71f4d92e6cebe89d21cb9774cc1fb83080fe26a 100644
+--- a/dist/cjs/Inputs/withLabelHelpers.js.map
++++ b/dist/cjs/Inputs/withLabelHelpers.js.map
+@@ -1 +1 @@
+-{"version":3,"file":"withLabelHelpers.js","sourceRoot":"","sources":["../../../src/Inputs/withLabelHelpers.tsx"],"names":[],"mappings":";;AAkHE,kCAAW;AACX,gDAAkB;AAClB,0DAAuB;AACvB,0DAAuB;;AAnHzB,gEAA4D;AAO5D,iCAAmC;AACnC,2CAA4C;AAE5C,wDAK+B;AAI/B,SAAS,WAAW,CAClB,SAEC;IAED,MAAM,gBAAgB,GAAG,IAAA,kBAAU,EAAe,UAAU,KAAK,EAAE,GAAG;QACpE,MAAM,UAAU,GAAG,IAAA,wCAAyB,GAAE,CAAC;QAC/C,OAAO,CACL,uBAAC,SAAS,OACH,KAA8B,KAC/B,UAAU,EACd,GAAG,EAAE,GAAG,GACR,CACH,CAAC;IACJ,CAAC,CAAC,CAAC;IAEH,gBAAgB,CAAC,WAAW,GAAG,eAAe,SAAS,CAAC,WAAW,IAAI,SAAS,CAAC,IAAI,IAAI,gBAAgB,GAAG,CAAC;IAE7G,OAAO,gBAAgB,CAAC;AAC1B,CAAC;AAID,SAAS,kBAAkB,CACzB,SAEC;IAED,MAAM,gBAAgB,GAAG,IAAA,kBAAU,EAAe,UAAU,KAAK,EAAE,GAAG;QACpE,MAAM,UAAU,GAAG,IAAA,wCAAyB,GAAE,CAAC;QAC/C,OAAO,CACL,uBAAC,SAAS,OACH,KAAiC,KAClC,UAAU,EACd,GAAG,EAAE,GAAG,GACR,CACH,CAAC;IACJ,CAAC,CAAC,CAAC;IAEH,gBAAgB,CAAC,WAAW,GAAG,sBAAsB,SAAS,CAAC,WAAW,IAAI,SAAS,CAAC,IAAI,IAAI,gBAAgB,GAAG,CAAC;IAEpH,OAAO,gBAAgB,CAAC;AAC1B,CAAC;AAID,SAAS,uBAAuB,CAC9B,SAEC;IAED,MAAM,gBAAgB,GAAG,IAAA,kBAAU,EAAe,UAAU,KAAK,EAAE,GAAG;QACpE,MAAM,UAAU,GAAG,IAAA,8CAA+B,GAAE,CAAC;QACrD,OAAO,CACL,uBAAC,SAAS,OACH,KAAsC,KACvC,UAAU,EACd,GAAG,EAAE,GAAG,GACR,CACH,CAAC;IACJ,CAAC,CAAC,CAAC;IAEH,gBAAgB,CAAC,WAAW,GAAG,2BAA2B,SAAS,CAAC,WAAW,IAAI,SAAS,CAAC,IAAI,IAAI,gBAAgB,GAAG,CAAC;IAEzH,OAAO,gBAAgB,CAAC;AAC1B,CAAC;AAID,SAAS,uBAAuB,CAC9B,SAEC;IAED,MAAM,gBAAgB,GAAG,IAAA,kBAAU,EAAe,UAAU,KAAK,EAAE,GAAG;QACpE,MAAM,CAAC,KAAK,EAAE,UAAU,EAAE,QAAQ,CAAC,GAAG,IAAA,0CAA2B,GAAE,CAAC;QACpE,MAAM,SAAS,GAAG,IAAA,8BAAa,EAAC,GAAG,EAAE,QAAqB,CAAC,CAAC;QAC5D,OAAO,CACL,uBAAC,SAAS,OACH,KAAoC,KACrC,UAAU,EACd,GAAG,EAAE,SAAS,EACd,aAAa,EAAE,uBAAC,2BAAc,cAAE,KAAK,GAAkB,GACvD,CACH,CAAC;IACJ,CAAC,CAAC,CAAC;IAEH,gBAAgB,CAAC,WAAW,GAAG,2BAA2B,SAAS,CAAC,WAAW,IAAI,SAAS,CAAC,IAAI,IAAI,gBAAgB,GAAG,CAAC;IAEzH,OAAO,gBAAgB,CAAC;AAC1B,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"withLabelHelpers.js","sourceRoot":"","sources":["../../../src/Inputs/withLabelHelpers.tsx"],"names":[],"mappings":";;AAqGE,kCAAW;AACX,gDAAkB;AAClB,0DAAuB;AACvB,0DAAuB;;AAtGzB,gEAA4D;AAE5D,iCAAmC;AACnC,2CAA4C;AAE5C,wDAK+B;AAI/B,SAAS,WAAW,CAClB,SAAoE;IAEpE,MAAM,gBAAgB,GAAG,IAAA,kBAAU,EAAe,UAAU,KAAK,EAAE,GAAG;QACpE,MAAM,UAAU,GAAG,IAAA,wCAAyB,GAAE,CAAC;QAC/C,OAAO,CACL,uBAAC,SAAS,OACH,KAA8B,KAC/B,UAAU,EACd,GAAG,EAAE,GAAG,GACR,CACH,CAAC;IACJ,CAAC,CAAC,CAAC;IAEH,gBAAgB,CAAC,WAAW,GAAG,eAAe,SAAS,CAAC,WAAW,IAAI,SAAS,CAAC,IAAI,IAAI,gBAAgB,GAAG,CAAC;IAE7G,OAAO,gBAAgB,CAAC;AAC1B,CAAC;AAID,SAAS,kBAAkB,CACzB,SAAuE;IAEvE,MAAM,gBAAgB,GAAG,IAAA,kBAAU,EAAe,UAAU,KAAK,EAAE,GAAG;QACpE,MAAM,UAAU,GAAG,IAAA,wCAAyB,GAAE,CAAC;QAC/C,OAAO,CACL,uBAAC,SAAS,OACH,KAAiC,KAClC,UAAU,EACd,GAAG,EAAE,GAAG,GACR,CACH,CAAC;IACJ,CAAC,CAAC,CAAC;IAEH,gBAAgB,CAAC,WAAW,GAAG,sBAAsB,SAAS,CAAC,WAAW,IAAI,SAAS,CAAC,IAAI,IAAI,gBAAgB,GAAG,CAAC;IAEpH,OAAO,gBAAgB,CAAC;AAC1B,CAAC;AAID,SAAS,uBAAuB,CAC9B,SAA4E;IAE5E,MAAM,gBAAgB,GAAG,IAAA,kBAAU,EAAe,UAAU,KAAK,EAAE,GAAG;QACpE,MAAM,UAAU,GAAG,IAAA,8CAA+B,GAAE,CAAC;QACrD,OAAO,CACL,uBAAC,SAAS,OACH,KAAsC,KACvC,UAAU,EACd,GAAG,EAAE,GAAG,GACR,CACH,CAAC;IACJ,CAAC,CAAC,CAAC;IAEH,gBAAgB,CAAC,WAAW,GAAG,2BAA2B,SAAS,CAAC,WAAW,IAAI,SAAS,CAAC,IAAI,IAAI,gBAAgB,GAAG,CAAC;IAEzH,OAAO,gBAAgB,CAAC;AAC1B,CAAC;AAID,SAAS,uBAAuB,CAC9B,SAA0E;IAE1E,MAAM,gBAAgB,GAAG,IAAA,kBAAU,EAAe,UAAU,KAAK,EAAE,GAAG;QACpE,MAAM,CAAC,KAAK,EAAE,UAAU,EAAE,QAAQ,CAAC,GAAG,IAAA,0CAA2B,GAAE,CAAC;QACpE,MAAM,SAAS,GAAG,IAAA,8BAAa,EAAC,GAAG,EAAE,QAAqB,CAAC,CAAC;QAC5D,OAAO,CACL,uBAAC,SAAS,OACH,KAAoC,KACrC,UAAU,EACd,GAAG,EAAE,SAAS,EACd,aAAa,EAAE,uBAAC,2BAAc,cAAE,KAAK,GAAkB,GACvD,CACH,CAAC;IACJ,CAAC,CAAC,CAAC;IAEH,gBAAgB,CAAC,WAAW,GAAG,2BAA2B,SAAS,CAAC,WAAW,IAAI,SAAS,CAAC,IAAI,IAAI,gBAAgB,GAAG,CAAC;IAEzH,OAAO,gBAAgB,CAAC;AAC1B,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/Field/Field.d.ts b/dist/esm/Field/Field.d.ts
+index 088e8a357259c62d6e61714045571ab5d820d68e..b7559c7b193d732123fa96925954384d4d91f533 100644
+--- a/dist/esm/Field/Field.d.ts
++++ b/dist/esm/Field/Field.d.ts
+@@ -1,8 +1,8 @@
+ import { Field as FieldComponent } from '@rocket.chat/fuselage';
+ import type { ComponentProps, ReactNode } from 'react';
+-type FieldProps = {
++export type FieldProps = {
+     children: ReactNode;
+ } & ComponentProps<typeof FieldComponent>;
+-declare function Field({ children, ...props }: FieldProps): import("react/jsx-runtime").JSX.Element;
++declare function Field({ children, ...props }: FieldProps): import("react").JSX.Element;
+ export default Field;
+ //# sourceMappingURL=Field.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/Field/Field.d.ts.map b/dist/esm/Field/Field.d.ts.map
+index f42b0767efd998608e2ad3db59c1d70b6a44cd20..3b15470bbf8afc203bd75f42b09b6dde27f77dc3 100644
+--- a/dist/esm/Field/Field.d.ts.map
++++ b/dist/esm/Field/Field.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"Field.d.ts","sourceRoot":"","sources":["../../../src/Field/Field.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,KAAK,IAAI,cAAc,EAAE,MAAM,uBAAuB,CAAC;AAChE,OAAO,KAAK,EAAE,cAAc,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAIvD,KAAK,UAAU,GAAG;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,GAAG,cAAc,CACxD,OAAO,cAAc,CACtB,CAAC;AAEF,iBAAS,KAAK,CAAC,EAAE,QAAQ,EAAE,GAAG,KAAK,EAAE,EAAE,UAAU,2CAMhD;AAED,eAAe,KAAK,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"Field.d.ts","sourceRoot":"","sources":["../../../src/Field/Field.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,KAAK,IAAI,cAAc,EAAE,MAAM,uBAAuB,CAAC;AAChE,OAAO,KAAK,EAAE,cAAc,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAIvD,MAAM,MAAM,UAAU,GAAG;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,GAAG,cAAc,CAC/D,OAAO,cAAc,CACtB,CAAC;AAEF,iBAAS,KAAK,CAAC,EAAE,QAAQ,EAAE,GAAG,KAAK,EAAE,EAAE,UAAU,+BAMhD;AAED,eAAe,KAAK,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/Field/FieldContext.d.ts b/dist/esm/Field/FieldContext.d.ts
+index 5d8ed470fd3610e611bae4ebd5b7029d3bb1cb7a..b2f1828a405de74225f250651a292de411c8064b 100644
+--- a/dist/esm/Field/FieldContext.d.ts
++++ b/dist/esm/Field/FieldContext.d.ts
+@@ -1,5 +1,5 @@
+ import type { ReactNode, RefCallback } from 'react';
+-type FieldContextValue = {
++export type FieldContextValue = {
+     setDescriptor: (type: LabelTypes, unregister?: boolean) => void;
+     setLabel: (label: ReactNode) => void;
+     descriptors: Set<LabelTypes>;
+@@ -37,5 +37,4 @@ export declare const useFieldWrappedByInputLabel: () => [ReactNode, {
+     "id": string;
+     "aria-invalid": "true" | "false";
+ }, RefCallback<HTMLElement>];
+-export {};
+ //# sourceMappingURL=FieldContext.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/Field/FieldContext.d.ts.map b/dist/esm/Field/FieldContext.d.ts.map
+index 8e6c3d6ece41b7fd71c9bc2c11649e39ad883591..356b731f3ec0bad3e01795559cadee023c1d1eeb 100644
+--- a/dist/esm/Field/FieldContext.d.ts.map
++++ b/dist/esm/Field/FieldContext.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"FieldContext.d.ts","sourceRoot":"","sources":["../../../src/Field/FieldContext.ts"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,WAAW,EAAE,MAAM,OAAO,CAAC;AASpD,KAAK,iBAAiB,GAAG;IACvB,aAAa,EAAE,CAAC,IAAI,EAAE,UAAU,EAAE,UAAU,CAAC,EAAE,OAAO,KAAK,IAAI,CAAC;IAChE,QAAQ,EAAE,CAAC,KAAK,EAAE,SAAS,KAAK,IAAI,CAAC;IACrC,WAAW,EAAE,GAAG,CAAC,UAAU,CAAC,CAAC;IAC7B,KAAK,EAAE,SAAS,GAAG,IAAI,CAAC;IACxB,EAAE,EAAE,MAAM,CAAC;IACX,SAAS,EAAE,SAAS,CAAC;IACrB,YAAY,EAAE,CAAC,SAAS,EAAE,SAAS,KAAK,IAAI,CAAC;IAC7C,UAAU,EAAE,MAAM,IAAI,CAAC;IACvB,QAAQ,EAAE,CAAC,EAAE,EAAE,MAAM,IAAI,KAAK,IAAI,CAAC;CACpC,CAAC;AAEF,eAAO,MAAM,YAAY,4CAUvB,CAAC;AAEH,MAAM,MAAM,UAAU,GAAG,MAAM,GAAG,aAAa,GAAG,OAAO,GAAG,aAAa,CAAC;AAE1E,MAAM,MAAM,SAAS,GACjB,gBAAgB,GAChB,mBAAmB,GACnB,mBAAmB,CAAC;AAoBxB,eAAO,MAAM,aAAa,QAAO,CAAC,WAAW,CAAC,WAAW,CAAC,EAAE,MAAM,CAsBjE,CAAC;AAEF,eAAO,MAAM,iBAAiB,iBAG7B,CAAC;AAEF,eAAO,MAAM,oBAAoB,GAAI,MAAM,UAAU,WASpD,CAAC;AA0BF,eAAO,MAAM,yBAAyB;oBARjB,MAAM,GAAG,OAAO;;;CAuBpC,CAAC;AAGF,eAAO,MAAM,yBAAyB;oBA1BjB,MAAM,GAAG,OAAO;;;CAyCpC,CAAC;AAGF,eAAO,MAAM,+BAA+B;oBA5CvB,MAAM,GAAG,OAAO;;;;CA4DpC,CAAC;AAGF,eAAO,MAAM,2BAA2B,QAAO,CAC7C,SAAS,EACT;IACE,kBAAkB,EAAE,MAAM,CAAC;IAC3B,IAAI,EAAE,MAAM,CAAC;IACb,cAAc,EAAE,MAAM,GAAG,OAAO,CAAC;CAClC,EACD,WAAW,CAAC,WAAW,CAAC,CAqCzB,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"FieldContext.d.ts","sourceRoot":"","sources":["../../../src/Field/FieldContext.ts"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,WAAW,EAAE,MAAM,OAAO,CAAC;AASpD,MAAM,MAAM,iBAAiB,GAAG;IAC9B,aAAa,EAAE,CAAC,IAAI,EAAE,UAAU,EAAE,UAAU,CAAC,EAAE,OAAO,KAAK,IAAI,CAAC;IAChE,QAAQ,EAAE,CAAC,KAAK,EAAE,SAAS,KAAK,IAAI,CAAC;IACrC,WAAW,EAAE,GAAG,CAAC,UAAU,CAAC,CAAC;IAC7B,KAAK,EAAE,SAAS,GAAG,IAAI,CAAC;IACxB,EAAE,EAAE,MAAM,CAAC;IACX,SAAS,EAAE,SAAS,CAAC;IACrB,YAAY,EAAE,CAAC,SAAS,EAAE,SAAS,KAAK,IAAI,CAAC;IAC7C,UAAU,EAAE,MAAM,IAAI,CAAC;IACvB,QAAQ,EAAE,CAAC,EAAE,EAAE,MAAM,IAAI,KAAK,IAAI,CAAC;CACpC,CAAC;AAEF,eAAO,MAAM,YAAY,4CAUvB,CAAC;AAEH,MAAM,MAAM,UAAU,GAAG,MAAM,GAAG,aAAa,GAAG,OAAO,GAAG,aAAa,CAAC;AAE1E,MAAM,MAAM,SAAS,GACjB,gBAAgB,GAChB,mBAAmB,GACnB,mBAAmB,CAAC;AAoBxB,eAAO,MAAM,aAAa,QAAO,CAAC,WAAW,CAAC,WAAW,CAAC,EAAE,MAAM,CAsBjE,CAAC;AAEF,eAAO,MAAM,iBAAiB,iBAG7B,CAAC;AAEF,eAAO,MAAM,oBAAoB,GAAI,MAAM,UAAU,WASpD,CAAC;AA0BF,eAAO,MAAM,yBAAyB;oBARjB,MAAM,GAAG,OAAO;;;CAuBpC,CAAC;AAGF,eAAO,MAAM,yBAAyB;oBA1BjB,MAAM,GAAG,OAAO;;;CAyCpC,CAAC;AAGF,eAAO,MAAM,+BAA+B;oBA5CvB,MAAM,GAAG,OAAO;;;;CA4DpC,CAAC;AAGF,eAAO,MAAM,2BAA2B,QAAO,CAC7C,SAAS,EACT;IACE,kBAAkB,EAAE,MAAM,CAAC;IAC3B,IAAI,EAAE,MAAM,CAAC;IACb,cAAc,EAAE,MAAM,GAAG,OAAO,CAAC;CAClC,EACD,WAAW,CAAC,WAAW,CAAC,CAqCzB,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/Field/FieldDescription.d.ts b/dist/esm/Field/FieldDescription.d.ts
+index 6c071cbee15a8efa436632b2f63afaa9c53afff8..d91fe4ce81e1c22de216b28df3b1d5bfdf1a69f4 100644
+--- a/dist/esm/Field/FieldDescription.d.ts
++++ b/dist/esm/Field/FieldDescription.d.ts
+@@ -1,8 +1,8 @@
+ import { FieldDescription as FieldDescriptionComponent } from '@rocket.chat/fuselage';
+ import type { ReactNode, ComponentProps } from 'react';
+-type FieldDescriptionProps = {
++export type FieldDescriptionProps = {
+     children: ReactNode;
+ } & ComponentProps<typeof FieldDescriptionComponent>;
+-declare const FieldDescription: ({ children, ...props }: FieldDescriptionProps) => import("react/jsx-runtime").JSX.Element;
++declare const FieldDescription: ({ children, ...props }: FieldDescriptionProps) => import("react").JSX.Element;
+ export default FieldDescription;
+ //# sourceMappingURL=FieldDescription.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/Field/FieldDescription.d.ts.map b/dist/esm/Field/FieldDescription.d.ts.map
+index d10122397048912c433bbcf307ba67997c0f4f80..350cac9b53c13c7e79c141a8feb6eed91d92ecc8 100644
+--- a/dist/esm/Field/FieldDescription.d.ts.map
++++ b/dist/esm/Field/FieldDescription.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"FieldDescription.d.ts","sourceRoot":"","sources":["../../../src/Field/FieldDescription.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,gBAAgB,IAAI,yBAAyB,EAAE,MAAM,uBAAuB,CAAC;AACtF,OAAO,KAAK,EAAE,SAAS,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAIvD,KAAK,qBAAqB,GAAG;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,GAAG,cAAc,CACnE,OAAO,yBAAyB,CACjC,CAAC;AAEF,QAAA,MAAM,gBAAgB,GAAI,wBAAwB,qBAAqB,4CAQtE,CAAC;AAEF,eAAe,gBAAgB,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"FieldDescription.d.ts","sourceRoot":"","sources":["../../../src/Field/FieldDescription.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,gBAAgB,IAAI,yBAAyB,EAAE,MAAM,uBAAuB,CAAC;AACtF,OAAO,KAAK,EAAE,SAAS,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAIvD,MAAM,MAAM,qBAAqB,GAAG;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,GAAG,cAAc,CAC1E,OAAO,yBAAyB,CACjC,CAAC;AAEF,QAAA,MAAM,gBAAgB,GAAI,wBAAwB,qBAAqB,gCAQtE,CAAC;AAEF,eAAe,gBAAgB,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/Field/FieldError.d.ts b/dist/esm/Field/FieldError.d.ts
+index cfd7442febf469a19edb65315effd8f2109977dd..d7e846f441eeff767487db1c215c818cf4ea366c 100644
+--- a/dist/esm/Field/FieldError.d.ts
++++ b/dist/esm/Field/FieldError.d.ts
+@@ -1,8 +1,8 @@
+ import { FieldError as FieldErrorComponent } from '@rocket.chat/fuselage';
+ import type { ReactNode, ComponentProps } from 'react';
+-type FieldErrorProps = {
++export type FieldErrorProps = {
+     children: ReactNode;
+ } & ComponentProps<typeof FieldErrorComponent>;
+-declare const FieldError: ({ children, ...props }: FieldErrorProps) => import("react/jsx-runtime").JSX.Element;
++declare const FieldError: ({ children, ...props }: FieldErrorProps) => import("react").JSX.Element;
+ export default FieldError;
+ //# sourceMappingURL=FieldError.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/Field/FieldError.d.ts.map b/dist/esm/Field/FieldError.d.ts.map
+index 03276cf047b15449b89514d3e2a913311f24f38b..0d60a8f8a6959454a8a28ab9be9c369bf7d3d0f4 100644
+--- a/dist/esm/Field/FieldError.d.ts.map
++++ b/dist/esm/Field/FieldError.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"FieldError.d.ts","sourceRoot":"","sources":["../../../src/Field/FieldError.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,IAAI,mBAAmB,EAAE,MAAM,uBAAuB,CAAC;AAC1E,OAAO,KAAK,EAAE,SAAS,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAIvD,KAAK,eAAe,GAAG;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,GAAG,cAAc,CAC7D,OAAO,mBAAmB,CAC3B,CAAC;AAEF,QAAA,MAAM,UAAU,GAAI,wBAAwB,eAAe,4CAO1D,CAAC;AAEF,eAAe,UAAU,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"FieldError.d.ts","sourceRoot":"","sources":["../../../src/Field/FieldError.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,IAAI,mBAAmB,EAAE,MAAM,uBAAuB,CAAC;AAC1E,OAAO,KAAK,EAAE,SAAS,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAIvD,MAAM,MAAM,eAAe,GAAG;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,GAAG,cAAc,CACpE,OAAO,mBAAmB,CAC3B,CAAC;AAEF,QAAA,MAAM,UAAU,GAAI,wBAAwB,eAAe,gCAO1D,CAAC;AAEF,eAAe,UAAU,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/Field/FieldHint.d.ts b/dist/esm/Field/FieldHint.d.ts
+index 46d3201b7d5bb2c6d091bcbf022968724e8f6456..9683d4ec9c79b86ff47f33c47ca86c482678a22c 100644
+--- a/dist/esm/Field/FieldHint.d.ts
++++ b/dist/esm/Field/FieldHint.d.ts
+@@ -1,8 +1,8 @@
+ import { FieldHint as FieldHintComponent } from '@rocket.chat/fuselage';
+ import type { ReactNode, ComponentProps } from 'react';
+-type FieldHintProps = {
++export type FieldHintProps = {
+     children: ReactNode;
+ } & ComponentProps<typeof FieldHintComponent>;
+-declare const FieldHint: ({ children, ...props }: FieldHintProps) => import("react/jsx-runtime").JSX.Element;
++declare const FieldHint: ({ children, ...props }: FieldHintProps) => import("react").JSX.Element;
+ export default FieldHint;
+ //# sourceMappingURL=FieldHint.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/Field/FieldHint.d.ts.map b/dist/esm/Field/FieldHint.d.ts.map
+index b09770304005ab119b552d5642acd6bf90ba3954..d888ac9768c6588cae139d4b69dfc6fedf50c526 100644
+--- a/dist/esm/Field/FieldHint.d.ts.map
++++ b/dist/esm/Field/FieldHint.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"FieldHint.d.ts","sourceRoot":"","sources":["../../../src/Field/FieldHint.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,SAAS,IAAI,kBAAkB,EAAE,MAAM,uBAAuB,CAAC;AACxE,OAAO,KAAK,EAAE,SAAS,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAIvD,KAAK,cAAc,GAAG;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,GAAG,cAAc,CAC5D,OAAO,kBAAkB,CAC1B,CAAC;AAEF,QAAA,MAAM,SAAS,GAAI,wBAAwB,cAAc,4CAQxD,CAAC;AAEF,eAAe,SAAS,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"FieldHint.d.ts","sourceRoot":"","sources":["../../../src/Field/FieldHint.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,SAAS,IAAI,kBAAkB,EAAE,MAAM,uBAAuB,CAAC;AACxE,OAAO,KAAK,EAAE,SAAS,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAIvD,MAAM,MAAM,cAAc,GAAG;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,GAAG,cAAc,CACnE,OAAO,kBAAkB,CAC1B,CAAC;AAEF,QAAA,MAAM,SAAS,GAAI,wBAAwB,cAAc,gCAQxD,CAAC;AAEF,eAAe,SAAS,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/Field/FieldProvider.d.ts b/dist/esm/Field/FieldProvider.d.ts
+index 4efc8562743fe35a35a295f0eb0474bc53246bc1..02ef504c987e277d6dcbbb1cd33f9e28b375568c 100644
+--- a/dist/esm/Field/FieldProvider.d.ts
++++ b/dist/esm/Field/FieldProvider.d.ts
+@@ -1,7 +1,7 @@
+ import type { ReactNode } from 'react';
+-type FieldProviderProps = {
++export type FieldProviderProps = {
+     children: ReactNode;
+ };
+-declare function FieldProvider({ children }: FieldProviderProps): import("react/jsx-runtime").JSX.Element;
++declare function FieldProvider({ children }: FieldProviderProps): import("react").JSX.Element;
+ export default FieldProvider;
+ //# sourceMappingURL=FieldProvider.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/Field/FieldProvider.d.ts.map b/dist/esm/Field/FieldProvider.d.ts.map
+index f7e3bb4ef5ac5474195aacd4916ff32a7e815a0b..624e0e82eae1223f2262b80aae139518f8ae7ee4 100644
+--- a/dist/esm/Field/FieldProvider.d.ts.map
++++ b/dist/esm/Field/FieldProvider.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"FieldProvider.d.ts","sourceRoot":"","sources":["../../../src/Field/FieldProvider.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAOvC,KAAK,kBAAkB,GAAG;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,CAAC;AAElD,iBAAS,aAAa,CAAC,EAAE,QAAQ,EAAE,EAAE,kBAAkB,2CAoDtD;AAED,eAAe,aAAa,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"FieldProvider.d.ts","sourceRoot":"","sources":["../../../src/Field/FieldProvider.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAOvC,MAAM,MAAM,kBAAkB,GAAG;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,CAAC;AAEzD,iBAAS,aAAa,CAAC,EAAE,QAAQ,EAAE,EAAE,kBAAkB,+BAoDtD;AAED,eAAe,aAAa,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/Field/Label/FieldLabel.d.ts b/dist/esm/Field/Label/FieldLabel.d.ts
+index 607d93c47f89fbbd77b6af968ef9c25734d20cee..72d967a9a162b6ab00b32e72330c36339b29d6af 100644
+--- a/dist/esm/Field/Label/FieldLabel.d.ts
++++ b/dist/esm/Field/Label/FieldLabel.d.ts
+@@ -1,6 +1,6 @@
+ import type { FieldLabel as FieldLabelComponent } from '@rocket.chat/fuselage';
+ import { type ComponentPropsWithoutRef } from 'react';
+-type FieldLabelProps = ComponentPropsWithoutRef<typeof FieldLabelComponent>;
+-declare const FieldLabel: (props: FieldLabelProps) => import("react/jsx-runtime").JSX.Element;
++export type FieldLabelProps = ComponentPropsWithoutRef<typeof FieldLabelComponent>;
++declare const FieldLabel: (props: FieldLabelProps) => import("react").JSX.Element;
+ export default FieldLabel;
+ //# sourceMappingURL=FieldLabel.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/Field/Label/FieldLabel.d.ts.map b/dist/esm/Field/Label/FieldLabel.d.ts.map
+index 027aa355c63b7eb6f6d20191e103ff936b1b7ca7..d160281698d88e3f5059e42d35a485d49ec234af 100644
+--- a/dist/esm/Field/Label/FieldLabel.d.ts.map
++++ b/dist/esm/Field/Label/FieldLabel.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"FieldLabel.d.ts","sourceRoot":"","sources":["../../../../src/Field/Label/FieldLabel.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,UAAU,IAAI,mBAAmB,EAAE,MAAM,uBAAuB,CAAC;AAC/E,OAAO,EAAE,KAAK,wBAAwB,EAAE,MAAM,OAAO,CAAC;AAQtD,KAAK,eAAe,GAAG,wBAAwB,CAAC,OAAO,mBAAmB,CAAC,CAAC;AAE5E,QAAA,MAAM,UAAU,GAAI,OAAO,eAAe,4CAWzC,CAAC;AAEF,eAAe,UAAU,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"FieldLabel.d.ts","sourceRoot":"","sources":["../../../../src/Field/Label/FieldLabel.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,UAAU,IAAI,mBAAmB,EAAE,MAAM,uBAAuB,CAAC;AAC/E,OAAO,EAAE,KAAK,wBAAwB,EAAE,MAAM,OAAO,CAAC;AAQtD,MAAM,MAAM,eAAe,GAAG,wBAAwB,CACpD,OAAO,mBAAmB,CAC3B,CAAC;AAEF,QAAA,MAAM,UAAU,GAAI,OAAO,eAAe,gCAWzC,CAAC;AAEF,eAAe,UAAU,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/Field/Label/FieldLabel.js.map b/dist/esm/Field/Label/FieldLabel.js.map
+index 8984e391083262ac61c7bca0701182d9702a2897..6b93a1cbd1d3193912e00ed7f80e1e373de80670 100644
+--- a/dist/esm/Field/Label/FieldLabel.js.map
++++ b/dist/esm/Field/Label/FieldLabel.js.map
+@@ -1 +1 @@
+-{"version":3,"file":"FieldLabel.js","sourceRoot":"","sources":["../../../../src/Field/Label/FieldLabel.tsx"],"names":[],"mappings":";;;;;;AAGA,kDAAoD;AAEpD,gEAAwC;AACxC,0DAAkC;AAClC,wEAAgD;AAIhD,MAAM,UAAU,GAAG,CAAC,KAAsB,EAAE,EAAE;IAC5C,MAAM,SAAS,GAAG,IAAA,gCAAiB,GAAE,CAAC;IAEtC,IAAI,SAAS,KAAK,gBAAgB,EAAE,CAAC;QACnC,OAAO,uBAAC,qBAAW,OAAK,KAAK,GAAI,CAAC;IACpC,CAAC;IACD,IAAI,SAAS,KAAK,mBAAmB,EAAE,CAAC;QACtC,OAAO,uBAAC,yBAAe,OAAK,KAAK,GAAI,CAAC;IACxC,CAAC;IAED,OAAO,uBAAC,kBAAQ,OAAK,KAAK,GAAI,CAAC;AACjC,CAAC,CAAC;AAEF,kBAAe,UAAU,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"FieldLabel.js","sourceRoot":"","sources":["../../../../src/Field/Label/FieldLabel.tsx"],"names":[],"mappings":";;;;;;AAGA,kDAAoD;AAEpD,gEAAwC;AACxC,0DAAkC;AAClC,wEAAgD;AAMhD,MAAM,UAAU,GAAG,CAAC,KAAsB,EAAE,EAAE;IAC5C,MAAM,SAAS,GAAG,IAAA,gCAAiB,GAAE,CAAC;IAEtC,IAAI,SAAS,KAAK,gBAAgB,EAAE,CAAC;QACnC,OAAO,uBAAC,qBAAW,OAAK,KAAK,GAAI,CAAC;IACpC,CAAC;IACD,IAAI,SAAS,KAAK,mBAAmB,EAAE,CAAC;QACtC,OAAO,uBAAC,yBAAe,OAAK,KAAK,GAAI,CAAC;IACxC,CAAC;IAED,OAAO,uBAAC,kBAAQ,OAAK,KAAK,GAAI,CAAC;AACjC,CAAC,CAAC;AAEF,kBAAe,UAAU,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/Field/Label/HiddenLabel.d.ts b/dist/esm/Field/Label/HiddenLabel.d.ts
+index bc168bc54cb76c4e6af17df5985b0183413f02d5..e2227ec652be9ab1e54cb04315b99bad939ef1f7 100644
+--- a/dist/esm/Field/Label/HiddenLabel.d.ts
++++ b/dist/esm/Field/Label/HiddenLabel.d.ts
+@@ -1,6 +1,6 @@
+ import { FieldLabel as FieldLabelComponent } from '@rocket.chat/fuselage';
+ import type { ComponentProps } from 'react';
+-type HiddenLabelProps = ComponentProps<typeof FieldLabelComponent>;
+-declare const HiddenLabel: ({ children, ...props }: HiddenLabelProps) => import("react/jsx-runtime").JSX.Element;
++export type HiddenLabelProps = ComponentProps<typeof FieldLabelComponent>;
++declare const HiddenLabel: ({ children, ...props }: HiddenLabelProps) => import("react").JSX.Element;
+ export default HiddenLabel;
+ //# sourceMappingURL=HiddenLabel.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/Field/Label/HiddenLabel.d.ts.map b/dist/esm/Field/Label/HiddenLabel.d.ts.map
+index 84c0a975b37d855b1fbe7525c76356b3c018686a..66d369f679755d8404a49cf49d00119a3bccbd46 100644
+--- a/dist/esm/Field/Label/HiddenLabel.d.ts.map
++++ b/dist/esm/Field/Label/HiddenLabel.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"HiddenLabel.d.ts","sourceRoot":"","sources":["../../../../src/Field/Label/HiddenLabel.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,IAAI,mBAAmB,EAAE,MAAM,uBAAuB,CAAC;AAC1E,OAAO,KAAK,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAI5C,KAAK,gBAAgB,GAAG,cAAc,CAAC,OAAO,mBAAmB,CAAC,CAAC;AAEnE,QAAA,MAAM,WAAW,GAAI,wBAAwB,gBAAgB,4CAQ5D,CAAC;AAEF,eAAe,WAAW,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"HiddenLabel.d.ts","sourceRoot":"","sources":["../../../../src/Field/Label/HiddenLabel.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,IAAI,mBAAmB,EAAE,MAAM,uBAAuB,CAAC;AAC1E,OAAO,KAAK,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAI5C,MAAM,MAAM,gBAAgB,GAAG,cAAc,CAAC,OAAO,mBAAmB,CAAC,CAAC;AAE1E,QAAA,MAAM,WAAW,GAAI,wBAAwB,gBAAgB,gCAQ5D,CAAC;AAEF,eAAe,WAAW,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/Field/Label/LabelFor.d.ts b/dist/esm/Field/Label/LabelFor.d.ts
+index 27ac0a2d4141d4a6e6e87d727da61a1e896d5979..392eb302267c4523bdf1a198039dc32ad1f0d89b 100644
+--- a/dist/esm/Field/Label/LabelFor.d.ts
++++ b/dist/esm/Field/Label/LabelFor.d.ts
+@@ -1,6 +1,6 @@
+ import { FieldLabel as FieldLabelComponent } from '@rocket.chat/fuselage';
+ import type { ComponentProps } from 'react';
+-type LabelForProps = ComponentProps<typeof FieldLabelComponent>;
+-declare const LabelFor: ({ children, ...props }: LabelForProps) => import("react/jsx-runtime").JSX.Element;
++export type LabelForProps = ComponentProps<typeof FieldLabelComponent>;
++declare const LabelFor: ({ children, ...props }: LabelForProps) => import("react").JSX.Element;
+ export default LabelFor;
+ //# sourceMappingURL=LabelFor.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/Field/Label/LabelFor.d.ts.map b/dist/esm/Field/Label/LabelFor.d.ts.map
+index 1daa7c675f175be3df49f2d2f965148135d0ba5b..d983b62a5df136a930c2f464c67a50563e528f3a 100644
+--- a/dist/esm/Field/Label/LabelFor.d.ts.map
++++ b/dist/esm/Field/Label/LabelFor.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"LabelFor.d.ts","sourceRoot":"","sources":["../../../../src/Field/Label/LabelFor.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,IAAI,mBAAmB,EAAE,MAAM,uBAAuB,CAAC;AAC1E,OAAO,KAAK,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAI5C,KAAK,aAAa,GAAG,cAAc,CAAC,OAAO,mBAAmB,CAAC,CAAC;AAEhE,QAAA,MAAM,QAAQ,GAAI,wBAAwB,aAAa,4CAOtD,CAAC;AAEF,eAAe,QAAQ,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"LabelFor.d.ts","sourceRoot":"","sources":["../../../../src/Field/Label/LabelFor.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,IAAI,mBAAmB,EAAE,MAAM,uBAAuB,CAAC;AAC1E,OAAO,KAAK,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAI5C,MAAM,MAAM,aAAa,GAAG,cAAc,CAAC,OAAO,mBAAmB,CAAC,CAAC;AAEvE,QAAA,MAAM,QAAQ,GAAI,wBAAwB,aAAa,gCAOtD,CAAC;AAEF,eAAe,QAAQ,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/Field/Label/ReferencedLabel.d.ts b/dist/esm/Field/Label/ReferencedLabel.d.ts
+index 1eef45295f37ed611bf210bcdd5f2abdc74e22fd..d76121dc6bc7c1b7bde101be6a91aa7cd6dc0a0c 100644
+--- a/dist/esm/Field/Label/ReferencedLabel.d.ts
++++ b/dist/esm/Field/Label/ReferencedLabel.d.ts
+@@ -1,6 +1,6 @@
+ import { FieldLabel as FieldLabelComponent } from '@rocket.chat/fuselage';
+ import type { ComponentProps } from 'react';
+-type ReferencedLabelProps = ComponentProps<typeof FieldLabelComponent>;
+-declare const ReferencedLabel: ({ children, ...props }: ReferencedLabelProps) => import("react/jsx-runtime").JSX.Element;
++export type ReferencedLabelProps = ComponentProps<typeof FieldLabelComponent>;
++declare const ReferencedLabel: ({ children, ...props }: ReferencedLabelProps) => import("react").JSX.Element;
+ export default ReferencedLabel;
+ //# sourceMappingURL=ReferencedLabel.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/Field/Label/ReferencedLabel.d.ts.map b/dist/esm/Field/Label/ReferencedLabel.d.ts.map
+index c26f46407a664e235910954345e64e8485ebe634..0ffb75e6422e29f10086cebb9c8ac420beffd697 100644
+--- a/dist/esm/Field/Label/ReferencedLabel.d.ts.map
++++ b/dist/esm/Field/Label/ReferencedLabel.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"ReferencedLabel.d.ts","sourceRoot":"","sources":["../../../../src/Field/Label/ReferencedLabel.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,IAAI,mBAAmB,EAAE,MAAM,uBAAuB,CAAC;AAC1E,OAAO,KAAK,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAI5C,KAAK,oBAAoB,GAAG,cAAc,CAAC,OAAO,mBAAmB,CAAC,CAAC;AAEvE,QAAA,MAAM,eAAe,GAAI,wBAAwB,oBAAoB,4CAQpE,CAAC;AAEF,eAAe,eAAe,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"ReferencedLabel.d.ts","sourceRoot":"","sources":["../../../../src/Field/Label/ReferencedLabel.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,IAAI,mBAAmB,EAAE,MAAM,uBAAuB,CAAC;AAC1E,OAAO,KAAK,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAI5C,MAAM,MAAM,oBAAoB,GAAG,cAAc,CAAC,OAAO,mBAAmB,CAAC,CAAC;AAE9E,QAAA,MAAM,eAAe,GAAI,wBAAwB,oBAAoB,gCAQpE,CAAC;AAEF,eAAe,eAAe,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/Field/Label/index.d.ts b/dist/esm/Field/Label/index.d.ts
+index 7681ce3da2ea6cd6ef49dc2793b457beeca73f4f..dfc7ba6219de3875786b52c23d72188e7395d462 100644
+--- a/dist/esm/Field/Label/index.d.ts
++++ b/dist/esm/Field/Label/index.d.ts
+@@ -1,5 +1,5 @@
+-export { default as LabelFor } from './LabelFor';
+-export { default as HiddenLabel } from './HiddenLabel';
+-export { default as ReferencedLabel } from './ReferencedLabel';
+-export { default as FieldLabel } from './FieldLabel';
++export { default as LabelFor, type LabelForProps } from './LabelFor';
++export { default as HiddenLabel, type HiddenLabelProps } from './HiddenLabel';
++export { default as ReferencedLabel, type ReferencedLabelProps, } from './ReferencedLabel';
++export { default as FieldLabel, type FieldLabelProps } from './FieldLabel';
+ //# sourceMappingURL=index.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/Field/Label/index.d.ts.map b/dist/esm/Field/Label/index.d.ts.map
+index a35a644e71c6643deb15a39e2864ca216ff7cf92..b30bb71b1b2f9305f9790290eb4ada643e5e675c 100644
+--- a/dist/esm/Field/Label/index.d.ts.map
++++ b/dist/esm/Field/Label/index.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../../src/Field/Label/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,IAAI,QAAQ,EAAE,MAAM,YAAY,CAAC;AACjD,OAAO,EAAE,OAAO,IAAI,WAAW,EAAE,MAAM,eAAe,CAAC;AACvD,OAAO,EAAE,OAAO,IAAI,eAAe,EAAE,MAAM,mBAAmB,CAAC;AAC/D,OAAO,EAAE,OAAO,IAAI,UAAU,EAAE,MAAM,cAAc,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../../src/Field/Label/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,IAAI,QAAQ,EAAE,KAAK,aAAa,EAAE,MAAM,YAAY,CAAC;AACrE,OAAO,EAAE,OAAO,IAAI,WAAW,EAAE,KAAK,gBAAgB,EAAE,MAAM,eAAe,CAAC;AAC9E,OAAO,EACL,OAAO,IAAI,eAAe,EAC1B,KAAK,oBAAoB,GAC1B,MAAM,mBAAmB,CAAC;AAC3B,OAAO,EAAE,OAAO,IAAI,UAAU,EAAE,KAAK,eAAe,EAAE,MAAM,cAAc,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/Field/Label/index.js.map b/dist/esm/Field/Label/index.js.map
+index 810f43e9728b72728b7ece678f3f8d254cb4b106..6dbfd7125f881173edd58f57d47f5427ef9d9dd7 100644
+--- a/dist/esm/Field/Label/index.js.map
++++ b/dist/esm/Field/Label/index.js.map
+@@ -1 +1 @@
+-{"version":3,"file":"index.js","sourceRoot":"","sources":["../../../../src/Field/Label/index.ts"],"names":[],"mappings":";;;;;;AAAA,uCAAiD;AAAxC,qHAAA,OAAO,OAAY;AAC5B,6CAAuD;AAA9C,2HAAA,OAAO,OAAe;AAC/B,qDAA+D;AAAtD,mIAAA,OAAO,OAAmB;AACnC,2CAAqD;AAA5C,yHAAA,OAAO,OAAc"}
+\ No newline at end of file
++{"version":3,"file":"index.js","sourceRoot":"","sources":["../../../../src/Field/Label/index.ts"],"names":[],"mappings":";;;;;;AAAA,uCAAqE;AAA5D,qHAAA,OAAO,OAAY;AAC5B,6CAA8E;AAArE,2HAAA,OAAO,OAAe;AAC/B,qDAG2B;AAFzB,mIAAA,OAAO,OAAmB;AAG5B,2CAA2E;AAAlE,yHAAA,OAAO,OAAc"}
+\ No newline at end of file
+diff --git a/dist/esm/Field/index.d.ts b/dist/esm/Field/index.d.ts
+index 996f4c3a55c88cccba290f39d52c99d89f2105f7..0d634ee32e1d104c7411a5de3022b2adbb55e8db 100644
+--- a/dist/esm/Field/index.d.ts
++++ b/dist/esm/Field/index.d.ts
+@@ -1,8 +1,8 @@
+-export { default as Field } from './Field';
+-export { default as FieldProvider } from './FieldProvider';
+-export { default as FieldDescription } from './FieldDescription';
+-export { default as FieldError } from './FieldError';
+-export { default as FieldHint } from './FieldHint';
++export { default as Field, type FieldProps } from './Field';
++export { default as FieldProvider, type FieldProviderProps, } from './FieldProvider';
++export { default as FieldDescription, type FieldDescriptionProps, } from './FieldDescription';
++export { default as FieldError, type FieldErrorProps } from './FieldError';
++export { default as FieldHint, type FieldHintProps } from './FieldHint';
+ export * from './FieldContext';
+ export * from './Label';
+ export { FieldGroup, FieldRow, FieldLink, FieldLabelInfo, } from '@rocket.chat/fuselage';
+diff --git a/dist/esm/Field/index.d.ts.map b/dist/esm/Field/index.d.ts.map
+index 3da96ced238500bd2af0f53ee107eb318ada0639..e76f08e23293ce4c8cd05cd403c155958ae1ec3a 100644
+--- a/dist/esm/Field/index.d.ts.map
++++ b/dist/esm/Field/index.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../src/Field/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,IAAI,KAAK,EAAE,MAAM,SAAS,CAAC;AAC3C,OAAO,EAAE,OAAO,IAAI,aAAa,EAAE,MAAM,iBAAiB,CAAC;AAC3D,OAAO,EAAE,OAAO,IAAI,gBAAgB,EAAE,MAAM,oBAAoB,CAAC;AACjE,OAAO,EAAE,OAAO,IAAI,UAAU,EAAE,MAAM,cAAc,CAAC;AACrD,OAAO,EAAE,OAAO,IAAI,SAAS,EAAE,MAAM,aAAa,CAAC;AAEnD,cAAc,gBAAgB,CAAC;AAE/B,cAAc,SAAS,CAAC;AAExB,OAAO,EACL,UAAU,EACV,QAAQ,EACR,SAAS,EACT,cAAc,GACf,MAAM,uBAAuB,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../src/Field/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,IAAI,KAAK,EAAE,KAAK,UAAU,EAAE,MAAM,SAAS,CAAC;AAC5D,OAAO,EACL,OAAO,IAAI,aAAa,EACxB,KAAK,kBAAkB,GACxB,MAAM,iBAAiB,CAAC;AACzB,OAAO,EACL,OAAO,IAAI,gBAAgB,EAC3B,KAAK,qBAAqB,GAC3B,MAAM,oBAAoB,CAAC;AAC5B,OAAO,EAAE,OAAO,IAAI,UAAU,EAAE,KAAK,eAAe,EAAE,MAAM,cAAc,CAAC;AAC3E,OAAO,EAAE,OAAO,IAAI,SAAS,EAAE,KAAK,cAAc,EAAE,MAAM,aAAa,CAAC;AAExE,cAAc,gBAAgB,CAAC;AAE/B,cAAc,SAAS,CAAC;AAExB,OAAO,EACL,UAAU,EACV,QAAQ,EACR,SAAS,EACT,cAAc,GACf,MAAM,uBAAuB,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/Field/index.js.map b/dist/esm/Field/index.js.map
+index 039d5187934aa8fffe8c8a18c32770984cad025e..8a750bda569f8f549578ed8e6eb6736f50431f5b 100644
+--- a/dist/esm/Field/index.js.map
++++ b/dist/esm/Field/index.js.map
+@@ -1 +1 @@
+-{"version":3,"file":"index.js","sourceRoot":"","sources":["../../../src/Field/index.ts"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;AAAA,iCAA2C;AAAlC,+GAAA,OAAO,OAAS;AACzB,iDAA2D;AAAlD,+HAAA,OAAO,OAAiB;AACjC,uDAAiE;AAAxD,qIAAA,OAAO,OAAoB;AACpC,2CAAqD;AAA5C,yHAAA,OAAO,OAAc;AAC9B,yCAAmD;AAA1C,uHAAA,OAAO,OAAa;AAE7B,iDAA+B;AAE/B,0CAAwB;AAExB,kDAK+B;AAJ7B,sGAAA,UAAU,OAAA;AACV,oGAAA,QAAQ,OAAA;AACR,qGAAA,SAAS,OAAA;AACT,0GAAA,cAAc,OAAA"}
+\ No newline at end of file
++{"version":3,"file":"index.js","sourceRoot":"","sources":["../../../src/Field/index.ts"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;AAAA,iCAA4D;AAAnD,+GAAA,OAAO,OAAS;AACzB,iDAGyB;AAFvB,+HAAA,OAAO,OAAiB;AAG1B,uDAG4B;AAF1B,qIAAA,OAAO,OAAoB;AAG7B,2CAA2E;AAAlE,yHAAA,OAAO,OAAc;AAC9B,yCAAwE;AAA/D,uHAAA,OAAO,OAAa;AAE7B,iDAA+B;AAE/B,0CAAwB;AAExB,kDAK+B;AAJ7B,sGAAA,UAAU,OAAA;AACV,oGAAA,QAAQ,OAAA;AACR,qGAAA,SAAS,OAAA;AACT,0GAAA,cAAc,OAAA"}
+\ No newline at end of file
+diff --git a/dist/esm/Inputs/WrappedInputComponents.d.ts b/dist/esm/Inputs/WrappedInputComponents.d.ts
+index 81cef114c21653d908b2d042d8970047155ae19a..0256c8b7e8e48fbef13a7d2aa96a08ab5bc9f3e4 100644
+--- a/dist/esm/Inputs/WrappedInputComponents.d.ts
++++ b/dist/esm/Inputs/WrappedInputComponents.d.ts
+@@ -23,12 +23,12 @@ export declare const TelephoneInput: import("react").ForwardRefExoticComponent<O
+ } & import("react").RefAttributes<HTMLInputElement>, "ref"> & import("react").RefAttributes<HTMLInputElement>>;
+ export declare const NumberInput: import("react").ForwardRefExoticComponent<Omit<import("@rocket.chat/fuselage").NumberInputProps & import("react").RefAttributes<HTMLInputElement>, "ref"> & import("react").RefAttributes<HTMLInputElement>>;
+ export declare const UrlInput: import("react").ForwardRefExoticComponent<Omit<import("@rocket.chat/fuselage").UrlInputProps & import("react").RefAttributes<HTMLElement>, "ref"> & import("react").RefAttributes<HTMLElement>>;
+-export declare const Select: import("react").ForwardRefExoticComponent<Omit<Omit<import("react-aria").AriaSelectProps<object>, "value" | "children" | "onChange"> & {
++export declare const Select: import("react").ForwardRefExoticComponent<Omit<Omit<import("react-aria").AriaSelectProps<object>, "children" | "value" | "onChange"> & {
+     error?: string;
+     placeholder?: string;
+     value?: import("react").Key | null | undefined;
+     onChange?: ((key: import("react").Key) => any) | undefined;
+-    options: (readonly [value: string, label: string, selected?: boolean | undefined])[];
++    options: import("@rocket.chat/fuselage").SelectOption[];
+     small?: boolean;
+ } & Omit<import("react").AllHTMLAttributes<HTMLElement>, "value" | "onChange"> & import("react").RefAttributes<HTMLElement>, "ref"> & import("react").RefAttributes<HTMLElement>>;
+ export declare const AutoComplete: typeof AutoCompleteComponent;
+@@ -40,10 +40,15 @@ export declare const MultiSelect: import("react").ForwardRefExoticComponent<Omit
+     getLabel?: (params: import("@rocket.chat/fuselage").SelectOption) => import("@rocket.chat/fuselage").SelectOption[1];
+     getValue?: (params: import("@rocket.chat/fuselage").SelectOption) => import("@rocket.chat/fuselage").SelectOption[0];
+     customEmpty?: string;
+-    anchor?: import("react").ElementType<import("@rocket.chat/fuselage/dist/components/MultiSelect/MultiSelectAnchorParams").MultiSelectAnchorParams> | ((params: import("@rocket.chat/fuselage/dist/components/MultiSelect/MultiSelectAnchorParams").MultiSelectAnchorParams) => import("react").ReactNode);
++    anchor?: import("react").ElementType<import("@rocket.chat/fuselage").MultiSelectAnchorParams> | ((params: import("@rocket.chat/fuselage").MultiSelectAnchorParams) => import("react").ReactNode);
+     renderOptions?: import("react").ElementType;
+     renderItem?: import("react").ElementType;
+-    renderSelected?: import("react").ElementType;
++    renderSelected?: import("react").ElementType<{
++        value: import("@rocket.chat/fuselage").SelectOption[0];
++        label: import("@rocket.chat/fuselage").SelectOption[1];
++        onMouseDown: import("react").MouseEventHandler;
++        children: import("react").ReactNode;
++    }>;
+     addonIcon?: import("@rocket.chat/fuselage").IconProps["name"];
+     setFilter?: (filter: string) => void;
+ } & import("react").RefAttributes<HTMLInputElement>, "ref"> & import("react").RefAttributes<HTMLInputElement>>;
+@@ -55,10 +60,15 @@ export declare const MultiSelectFiltered: import("react").ForwardRefExoticCompon
+     getLabel?: (params: import("@rocket.chat/fuselage").SelectOption) => import("@rocket.chat/fuselage").SelectOption[1];
+     getValue?: (params: import("@rocket.chat/fuselage").SelectOption) => import("@rocket.chat/fuselage").SelectOption[0];
+     customEmpty?: string;
+-    anchor?: import("react").ElementType<import("@rocket.chat/fuselage/dist/components/MultiSelect/MultiSelectAnchorParams").MultiSelectAnchorParams> | ((params: import("@rocket.chat/fuselage/dist/components/MultiSelect/MultiSelectAnchorParams").MultiSelectAnchorParams) => import("react").ReactNode);
++    anchor?: import("react").ElementType<import("@rocket.chat/fuselage").MultiSelectAnchorParams> | ((params: import("@rocket.chat/fuselage").MultiSelectAnchorParams) => import("react").ReactNode);
+     renderOptions?: import("react").ElementType;
+     renderItem?: import("react").ElementType;
+-    renderSelected?: import("react").ElementType;
++    renderSelected?: import("react").ElementType<{
++        value: import("@rocket.chat/fuselage").SelectOption[0];
++        label: import("@rocket.chat/fuselage").SelectOption[1];
++        onMouseDown: import("react").MouseEventHandler;
++        children: import("react").ReactNode;
++    }>;
+     addonIcon?: import("@rocket.chat/fuselage").IconProps["name"];
+     setFilter?: (filter: string) => void;
+ } & {
+diff --git a/dist/esm/Inputs/WrappedInputComponents.d.ts.map b/dist/esm/Inputs/WrappedInputComponents.d.ts.map
+index 36f4fa2d1b37c9c84f2f36fa423e4766ecba63bb..ab3b3fd29cf9f1f02ab55789569587b45bf67f13 100644
+--- a/dist/esm/Inputs/WrappedInputComponents.d.ts.map
++++ b/dist/esm/Inputs/WrappedInputComponents.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"WrappedInputComponents.d.ts","sourceRoot":"","sources":["../../../src/Inputs/WrappedInputComponents.ts"],"names":[],"mappings":"AAAA,OAAO,EAaL,YAAY,IAAI,qBAAqB,EAGrC,MAAM,IAAI,eAAe,EAC1B,MAAM,uBAAuB,CAAC;AAY/B,eAAO,MAAM,SAAS;;;8GAAkC,CAAC;AACzD,eAAO,MAAM,UAAU;;;oGAAmC,CAAC;AAC3D,eAAO,MAAM,aAAa,gNAAsC,CAAC;AACjE,eAAO,MAAM,WAAW;;;8GAAoC,CAAC;AAC7D,eAAO,MAAM,aAAa;;;oHAAiC,CAAC;AAC5D,eAAO,MAAM,cAAc;;;;8GAAuC,CAAC;AACnE,eAAO,MAAM,WAAW,8MAAoC,CAAC;AAC7D,eAAO,MAAM,QAAQ,iMAAiC,CAAC;AAGvD,eAAO,MAAM,MAAM;;;;;;;iLAAsC,CAAC;AAG1D,eAAO,MAAM,YAAY,EAEpB,OAAO,qBAAqB,CAAC;AAClC,eAAO,MAAM,WAAW;;;;;;;;;;;;;;8GAAgD,CAAC;AACzE,eAAO,MAAM,mBAAmB;;;;;;;;;;;;;;;;;;8GAE/B,CAAC;AACF,eAAO,MAAM,MAAM,EAEd,OAAO,eAAe,CAAC;AAG5B,eAAO,MAAM,QAAQ;;;oKAA6C,CAAC;AACnE,eAAO,MAAM,YAAY;;8GAAiD,CAAC;AAC3E,eAAO,MAAM,WAAW;;8GAAgD,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"WrappedInputComponents.d.ts","sourceRoot":"","sources":["../../../src/Inputs/WrappedInputComponents.ts"],"names":[],"mappings":"AAAA,OAAO,EAaL,YAAY,IAAI,qBAAqB,EAGrC,MAAM,IAAI,eAAe,EAC1B,MAAM,uBAAuB,CAAC;AAY/B,eAAO,MAAM,SAAS;;;8GAAkC,CAAC;AACzD,eAAO,MAAM,UAAU;;;oGAAmC,CAAC;AAC3D,eAAO,MAAM,aAAa,gNAAsC,CAAC;AACjE,eAAO,MAAM,WAAW;;;8GAAoC,CAAC;AAC7D,eAAO,MAAM,aAAa;;;oHAAiC,CAAC;AAC5D,eAAO,MAAM,cAAc;;;;8GAAuC,CAAC;AACnE,eAAO,MAAM,WAAW,8MAAoC,CAAC;AAC7D,eAAO,MAAM,QAAQ,iMAAiC,CAAC;AAGvD,eAAO,MAAM,MAAM;;;;;;;iLAAsC,CAAC;AAG1D,eAAO,MAAM,YAAY,EAEpB,OAAO,qBAAqB,CAAC;AAClC,eAAO,MAAM,WAAW;;;;;;;;;;;;;;;;;;;8GAAgD,CAAC;AACzE,eAAO,MAAM,mBAAmB;;;;;;;;;;;;;;;;;;;;;;;8GAE/B,CAAC;AACF,eAAO,MAAM,MAAM,EAEd,OAAO,eAAe,CAAC;AAG5B,eAAO,MAAM,QAAQ;;;oKAA6C,CAAC;AACnE,eAAO,MAAM,YAAY;;8GAAiD,CAAC;AAC3E,eAAO,MAAM,WAAW;;8GAAgD,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/Inputs/WrappedInputComponents.js b/dist/esm/Inputs/WrappedInputComponents.js
+index a2b7d660d9abbb9cbcbcf18a5d7fd6449e1bd029..726d2ce53911ea376a567ad743e005fd79fb7a00 100644
+--- a/dist/esm/Inputs/WrappedInputComponents.js
++++ b/dist/esm/Inputs/WrappedInputComponents.js
+@@ -12,7 +12,7 @@ exports.TelephoneInput = (0, withLabelHelpers_1.withLabelId)(fuselage_1.Telephon
+ exports.NumberInput = (0, withLabelHelpers_1.withLabelId)(fuselage_1.NumberInput);
+ exports.UrlInput = (0, withLabelHelpers_1.withLabelId)(fuselage_1.UrlInput);
+ exports.Select = (0, withLabelHelpers_1.withAriaLabelledBy)(fuselage_1.Select);
+-exports.AutoComplete = (0, withLabelHelpers_1.withAriaLabelledByAndId)(fuselage_1.AutoComplete);
++exports.AutoComplete = (0, withLabelHelpers_1.withAriaLabelledByAndId)((fuselage_1.AutoComplete));
+ exports.MultiSelect = (0, withLabelHelpers_1.withAriaLabelledByAndId)(fuselage_1.MultiSelect);
+ exports.MultiSelectFiltered = (0, withLabelHelpers_1.withAriaLabelledByAndId)(fuselage_1.MultiSelectFiltered);
+ exports.Slider = (0, withLabelHelpers_1.withAriaLabelledBy)(fuselage_1.Slider);
+diff --git a/dist/esm/Inputs/WrappedInputComponents.js.map b/dist/esm/Inputs/WrappedInputComponents.js.map
+index 8ae9cf01c8225dcd7720be13102b0b61a44a1a38..24ca325249c6fdbaebdcbb15423ba388cdf20d33 100644
+--- a/dist/esm/Inputs/WrappedInputComponents.js.map
++++ b/dist/esm/Inputs/WrappedInputComponents.js.map
+@@ -1 +1 @@
+-{"version":3,"file":"WrappedInputComponents.js","sourceRoot":"","sources":["../../../src/Inputs/WrappedInputComponents.ts"],"names":[],"mappings":";;;AAAA,oDAiB+B;AAE/B,yDAK4B;AAKf,QAAA,SAAS,GAAG,IAAA,8BAAW,EAAC,oBAAkB,CAAC,CAAC;AAC5C,QAAA,UAAU,GAAG,IAAA,8BAAW,EAAC,qBAAmB,CAAC,CAAC;AAC9C,QAAA,aAAa,GAAG,IAAA,8BAAW,EAAC,wBAAsB,CAAC,CAAC;AACpD,QAAA,WAAW,GAAG,IAAA,8BAAW,EAAC,sBAAoB,CAAC,CAAC;AAChD,QAAA,aAAa,GAAG,IAAA,8BAAW,EAAC,wBAAiB,CAAC,CAAC;AAC/C,QAAA,cAAc,GAAG,IAAA,8BAAW,EAAC,yBAAuB,CAAC,CAAC;AACtD,QAAA,WAAW,GAAG,IAAA,8BAAW,EAAC,sBAAoB,CAAC,CAAC;AAChD,QAAA,QAAQ,GAAG,IAAA,8BAAW,EAAC,mBAAiB,CAAC,CAAC;AAG1C,QAAA,MAAM,GAAG,IAAA,qCAAkB,EAAC,iBAAe,CAAC,CAAC;AAG7C,QAAA,YAAY,GAAG,IAAA,0CAAuB,EACjD,uBAAqB,CACU,CAAC;AACrB,QAAA,WAAW,GAAG,IAAA,0CAAuB,EAAC,sBAAoB,CAAC,CAAC;AAC5D,QAAA,mBAAmB,GAAG,IAAA,0CAAuB,EACxD,8BAA4B,CAC7B,CAAC;AACW,QAAA,MAAM,GAAG,IAAA,qCAAkB,EACtC,iBAAe,CACU,CAAC;AAGf,QAAA,QAAQ,GAAG,IAAA,0CAAuB,EAAC,mBAAiB,CAAC,CAAC;AACtD,QAAA,YAAY,GAAG,IAAA,0CAAuB,EAAC,uBAAqB,CAAC,CAAC;AAC9D,QAAA,WAAW,GAAG,IAAA,0CAAuB,EAAC,sBAAoB,CAAC,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"WrappedInputComponents.js","sourceRoot":"","sources":["../../../src/Inputs/WrappedInputComponents.ts"],"names":[],"mappings":";;;AAAA,oDAiB+B;AAE/B,yDAK4B;AAKf,QAAA,SAAS,GAAG,IAAA,8BAAW,EAAC,oBAAkB,CAAC,CAAC;AAC5C,QAAA,UAAU,GAAG,IAAA,8BAAW,EAAC,qBAAmB,CAAC,CAAC;AAC9C,QAAA,aAAa,GAAG,IAAA,8BAAW,EAAC,wBAAsB,CAAC,CAAC;AACpD,QAAA,WAAW,GAAG,IAAA,8BAAW,EAAC,sBAAoB,CAAC,CAAC;AAChD,QAAA,aAAa,GAAG,IAAA,8BAAW,EAAC,wBAAiB,CAAC,CAAC;AAC/C,QAAA,cAAc,GAAG,IAAA,8BAAW,EAAC,yBAAuB,CAAC,CAAC;AACtD,QAAA,WAAW,GAAG,IAAA,8BAAW,EAAC,sBAAoB,CAAC,CAAC;AAChD,QAAA,QAAQ,GAAG,IAAA,8BAAW,EAAC,mBAAiB,CAAC,CAAC;AAG1C,QAAA,MAAM,GAAG,IAAA,qCAAkB,EAAC,iBAAe,CAAC,CAAC;AAG7C,QAAA,YAAY,GAAG,IAAA,0CAAuB,EACjD,CAAA,uBAA0B,CAAA,CACK,CAAC;AACrB,QAAA,WAAW,GAAG,IAAA,0CAAuB,EAAC,sBAAoB,CAAC,CAAC;AAC5D,QAAA,mBAAmB,GAAG,IAAA,0CAAuB,EACxD,8BAA4B,CAC7B,CAAC;AACW,QAAA,MAAM,GAAG,IAAA,qCAAkB,EACtC,iBAAe,CACU,CAAC;AAGf,QAAA,QAAQ,GAAG,IAAA,0CAAuB,EAAC,mBAAiB,CAAC,CAAC;AACtD,QAAA,YAAY,GAAG,IAAA,0CAAuB,EAAC,uBAAqB,CAAC,CAAC;AAC9D,QAAA,WAAW,GAAG,IAAA,0CAAuB,EAAC,sBAAoB,CAAC,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/Inputs/withLabelHelpers.d.ts b/dist/esm/Inputs/withLabelHelpers.d.ts
+index 4c09b42bbfcb0a994005005b382c281551334b70..dc73c34432ffac429549e8ae0567dbbe5152fb1e 100644
+--- a/dist/esm/Inputs/withLabelHelpers.d.ts
++++ b/dist/esm/Inputs/withLabelHelpers.d.ts
+@@ -1,20 +1,20 @@
+-import type { ReactNode, ForwardRefExoticComponent, RefAttributes } from 'react';
++import type { ReactNode, ComponentType, RefAttributes } from 'react';
+ type WithLabelId = {
+     id?: string;
+ };
+-declare function withLabelId<TProps, TRef>(Component: ForwardRefExoticComponent<TProps & WithLabelId & RefAttributes<TRef>>): ForwardRefExoticComponent<import("react").PropsWithoutRef<TProps> & RefAttributes<TRef>>;
++declare function withLabelId<TProps, TRef>(Component: ComponentType<TProps & WithLabelId & RefAttributes<TRef>>): import("react").ForwardRefExoticComponent<import("react").PropsWithoutRef<TProps> & RefAttributes<TRef>>;
+ type WithLabelledBy = {
+     'aria-labelledby'?: string;
+ };
+-declare function withAriaLabelledBy<TProps, TRef>(Component: ForwardRefExoticComponent<TProps & WithLabelledBy & RefAttributes<TRef>>): ForwardRefExoticComponent<import("react").PropsWithoutRef<TProps> & RefAttributes<TRef>>;
++declare function withAriaLabelledBy<TProps, TRef>(Component: ComponentType<TProps & WithLabelledBy & RefAttributes<TRef>>): import("react").ForwardRefExoticComponent<import("react").PropsWithoutRef<TProps> & RefAttributes<TRef>>;
+ type WithLabelledByAndId = {
+     'aria-labelledby'?: string;
+     'id'?: string;
+ };
+-declare function withAriaLabelledByAndId<TProps, TRef>(Component: ForwardRefExoticComponent<TProps & WithLabelledByAndId & RefAttributes<TRef>>): ForwardRefExoticComponent<import("react").PropsWithoutRef<TProps> & RefAttributes<TRef>>;
++declare function withAriaLabelledByAndId<TProps, TRef>(Component: ComponentType<TProps & WithLabelledByAndId & RefAttributes<TRef>>): import("react").ForwardRefExoticComponent<import("react").PropsWithoutRef<TProps> & RefAttributes<TRef>>;
+ type WithChildrenLabel = {
+     labelChildren: ReactNode;
+ };
+-declare function withVisuallyHiddenLabel<TProps, TRef>(Component: ForwardRefExoticComponent<TProps & WithChildrenLabel & RefAttributes<TRef>>): ForwardRefExoticComponent<import("react").PropsWithoutRef<TProps> & RefAttributes<TRef>>;
++declare function withVisuallyHiddenLabel<TProps, TRef>(Component: ComponentType<TProps & WithChildrenLabel & RefAttributes<TRef>>): import("react").ForwardRefExoticComponent<import("react").PropsWithoutRef<TProps> & RefAttributes<TRef>>;
+ export { withLabelId, withAriaLabelledBy, withAriaLabelledByAndId, withVisuallyHiddenLabel, };
+ //# sourceMappingURL=withLabelHelpers.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/Inputs/withLabelHelpers.d.ts.map b/dist/esm/Inputs/withLabelHelpers.d.ts.map
+index 656a6e57726c29ecb3c4289a703292d433b5eddf..f6eac670f10137686157db470f28011f5e2715d9 100644
+--- a/dist/esm/Inputs/withLabelHelpers.d.ts.map
++++ b/dist/esm/Inputs/withLabelHelpers.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"withLabelHelpers.d.ts","sourceRoot":"","sources":["../../../src/Inputs/withLabelHelpers.tsx"],"names":[],"mappings":"AAGA,OAAO,KAAK,EACV,SAAS,EACT,yBAAyB,EAEzB,aAAa,EACd,MAAM,OAAO,CAAC;AAWf,KAAK,WAAW,GAAG;IAAE,EAAE,CAAC,EAAE,MAAM,CAAA;CAAE,CAAC;AAEnC,iBAAS,WAAW,CAAC,MAAM,EAAE,IAAI,EAC/B,SAAS,EAAE,yBAAyB,CAClC,MAAM,GAAG,WAAW,GAAG,aAAa,CAAC,IAAI,CAAC,CAC3C,4FAgBF;AAED,KAAK,cAAc,GAAG;IAAE,iBAAiB,CAAC,EAAE,MAAM,CAAA;CAAE,CAAC;AAErD,iBAAS,kBAAkB,CAAC,MAAM,EAAE,IAAI,EACtC,SAAS,EAAE,yBAAyB,CAClC,MAAM,GAAG,cAAc,GAAG,aAAa,CAAC,IAAI,CAAC,CAC9C,4FAgBF;AAED,KAAK,mBAAmB,GAAG;IAAE,iBAAiB,CAAC,EAAE,MAAM,CAAC;IAAC,IAAI,CAAC,EAAE,MAAM,CAAA;CAAE,CAAC;AAEzE,iBAAS,uBAAuB,CAAC,MAAM,EAAE,IAAI,EAC3C,SAAS,EAAE,yBAAyB,CAClC,MAAM,GAAG,mBAAmB,GAAG,aAAa,CAAC,IAAI,CAAC,CACnD,4FAgBF;AAED,KAAK,iBAAiB,GAAG;IAAE,aAAa,EAAE,SAAS,CAAA;CAAE,CAAC;AAEtD,iBAAS,uBAAuB,CAAC,MAAM,EAAE,IAAI,EAC3C,SAAS,EAAE,yBAAyB,CAClC,MAAM,GAAG,iBAAiB,GAAG,aAAa,CAAC,IAAI,CAAC,CACjD,4FAkBF;AAED,OAAO,EACL,WAAW,EACX,kBAAkB,EAClB,uBAAuB,EACvB,uBAAuB,GACxB,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"withLabelHelpers.d.ts","sourceRoot":"","sources":["../../../src/Inputs/withLabelHelpers.tsx"],"names":[],"mappings":"AAGA,OAAO,KAAK,EAAE,SAAS,EAAE,aAAa,EAAO,aAAa,EAAE,MAAM,OAAO,CAAC;AAW1E,KAAK,WAAW,GAAG;IAAE,EAAE,CAAC,EAAE,MAAM,CAAA;CAAE,CAAC;AAEnC,iBAAS,WAAW,CAAC,MAAM,EAAE,IAAI,EAC/B,SAAS,EAAE,aAAa,CAAC,MAAM,GAAG,WAAW,GAAG,aAAa,CAAC,IAAI,CAAC,CAAC,4GAgBrE;AAED,KAAK,cAAc,GAAG;IAAE,iBAAiB,CAAC,EAAE,MAAM,CAAA;CAAE,CAAC;AAErD,iBAAS,kBAAkB,CAAC,MAAM,EAAE,IAAI,EACtC,SAAS,EAAE,aAAa,CAAC,MAAM,GAAG,cAAc,GAAG,aAAa,CAAC,IAAI,CAAC,CAAC,4GAgBxE;AAED,KAAK,mBAAmB,GAAG;IAAE,iBAAiB,CAAC,EAAE,MAAM,CAAC;IAAC,IAAI,CAAC,EAAE,MAAM,CAAA;CAAE,CAAC;AAEzE,iBAAS,uBAAuB,CAAC,MAAM,EAAE,IAAI,EAC3C,SAAS,EAAE,aAAa,CAAC,MAAM,GAAG,mBAAmB,GAAG,aAAa,CAAC,IAAI,CAAC,CAAC,4GAgB7E;AAED,KAAK,iBAAiB,GAAG;IAAE,aAAa,EAAE,SAAS,CAAA;CAAE,CAAC;AAEtD,iBAAS,uBAAuB,CAAC,MAAM,EAAE,IAAI,EAC3C,SAAS,EAAE,aAAa,CAAC,MAAM,GAAG,iBAAiB,GAAG,aAAa,CAAC,IAAI,CAAC,CAAC,4GAkB3E;AAED,OAAO,EACL,WAAW,EACX,kBAAkB,EAClB,uBAAuB,EACvB,uBAAuB,GACxB,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/Inputs/withLabelHelpers.js.map b/dist/esm/Inputs/withLabelHelpers.js.map
+index 067d00bf9adc09c522ea758c6efc015840116e44..c71f4d92e6cebe89d21cb9774cc1fb83080fe26a 100644
+--- a/dist/esm/Inputs/withLabelHelpers.js.map
++++ b/dist/esm/Inputs/withLabelHelpers.js.map
+@@ -1 +1 @@
+-{"version":3,"file":"withLabelHelpers.js","sourceRoot":"","sources":["../../../src/Inputs/withLabelHelpers.tsx"],"names":[],"mappings":";;AAkHE,kCAAW;AACX,gDAAkB;AAClB,0DAAuB;AACvB,0DAAuB;;AAnHzB,gEAA4D;AAO5D,iCAAmC;AACnC,2CAA4C;AAE5C,wDAK+B;AAI/B,SAAS,WAAW,CAClB,SAEC;IAED,MAAM,gBAAgB,GAAG,IAAA,kBAAU,EAAe,UAAU,KAAK,EAAE,GAAG;QACpE,MAAM,UAAU,GAAG,IAAA,wCAAyB,GAAE,CAAC;QAC/C,OAAO,CACL,uBAAC,SAAS,OACH,KAA8B,KAC/B,UAAU,EACd,GAAG,EAAE,GAAG,GACR,CACH,CAAC;IACJ,CAAC,CAAC,CAAC;IAEH,gBAAgB,CAAC,WAAW,GAAG,eAAe,SAAS,CAAC,WAAW,IAAI,SAAS,CAAC,IAAI,IAAI,gBAAgB,GAAG,CAAC;IAE7G,OAAO,gBAAgB,CAAC;AAC1B,CAAC;AAID,SAAS,kBAAkB,CACzB,SAEC;IAED,MAAM,gBAAgB,GAAG,IAAA,kBAAU,EAAe,UAAU,KAAK,EAAE,GAAG;QACpE,MAAM,UAAU,GAAG,IAAA,wCAAyB,GAAE,CAAC;QAC/C,OAAO,CACL,uBAAC,SAAS,OACH,KAAiC,KAClC,UAAU,EACd,GAAG,EAAE,GAAG,GACR,CACH,CAAC;IACJ,CAAC,CAAC,CAAC;IAEH,gBAAgB,CAAC,WAAW,GAAG,sBAAsB,SAAS,CAAC,WAAW,IAAI,SAAS,CAAC,IAAI,IAAI,gBAAgB,GAAG,CAAC;IAEpH,OAAO,gBAAgB,CAAC;AAC1B,CAAC;AAID,SAAS,uBAAuB,CAC9B,SAEC;IAED,MAAM,gBAAgB,GAAG,IAAA,kBAAU,EAAe,UAAU,KAAK,EAAE,GAAG;QACpE,MAAM,UAAU,GAAG,IAAA,8CAA+B,GAAE,CAAC;QACrD,OAAO,CACL,uBAAC,SAAS,OACH,KAAsC,KACvC,UAAU,EACd,GAAG,EAAE,GAAG,GACR,CACH,CAAC;IACJ,CAAC,CAAC,CAAC;IAEH,gBAAgB,CAAC,WAAW,GAAG,2BAA2B,SAAS,CAAC,WAAW,IAAI,SAAS,CAAC,IAAI,IAAI,gBAAgB,GAAG,CAAC;IAEzH,OAAO,gBAAgB,CAAC;AAC1B,CAAC;AAID,SAAS,uBAAuB,CAC9B,SAEC;IAED,MAAM,gBAAgB,GAAG,IAAA,kBAAU,EAAe,UAAU,KAAK,EAAE,GAAG;QACpE,MAAM,CAAC,KAAK,EAAE,UAAU,EAAE,QAAQ,CAAC,GAAG,IAAA,0CAA2B,GAAE,CAAC;QACpE,MAAM,SAAS,GAAG,IAAA,8BAAa,EAAC,GAAG,EAAE,QAAqB,CAAC,CAAC;QAC5D,OAAO,CACL,uBAAC,SAAS,OACH,KAAoC,KACrC,UAAU,EACd,GAAG,EAAE,SAAS,EACd,aAAa,EAAE,uBAAC,2BAAc,cAAE,KAAK,GAAkB,GACvD,CACH,CAAC;IACJ,CAAC,CAAC,CAAC;IAEH,gBAAgB,CAAC,WAAW,GAAG,2BAA2B,SAAS,CAAC,WAAW,IAAI,SAAS,CAAC,IAAI,IAAI,gBAAgB,GAAG,CAAC;IAEzH,OAAO,gBAAgB,CAAC;AAC1B,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"withLabelHelpers.js","sourceRoot":"","sources":["../../../src/Inputs/withLabelHelpers.tsx"],"names":[],"mappings":";;AAqGE,kCAAW;AACX,gDAAkB;AAClB,0DAAuB;AACvB,0DAAuB;;AAtGzB,gEAA4D;AAE5D,iCAAmC;AACnC,2CAA4C;AAE5C,wDAK+B;AAI/B,SAAS,WAAW,CAClB,SAAoE;IAEpE,MAAM,gBAAgB,GAAG,IAAA,kBAAU,EAAe,UAAU,KAAK,EAAE,GAAG;QACpE,MAAM,UAAU,GAAG,IAAA,wCAAyB,GAAE,CAAC;QAC/C,OAAO,CACL,uBAAC,SAAS,OACH,KAA8B,KAC/B,UAAU,EACd,GAAG,EAAE,GAAG,GACR,CACH,CAAC;IACJ,CAAC,CAAC,CAAC;IAEH,gBAAgB,CAAC,WAAW,GAAG,eAAe,SAAS,CAAC,WAAW,IAAI,SAAS,CAAC,IAAI,IAAI,gBAAgB,GAAG,CAAC;IAE7G,OAAO,gBAAgB,CAAC;AAC1B,CAAC;AAID,SAAS,kBAAkB,CACzB,SAAuE;IAEvE,MAAM,gBAAgB,GAAG,IAAA,kBAAU,EAAe,UAAU,KAAK,EAAE,GAAG;QACpE,MAAM,UAAU,GAAG,IAAA,wCAAyB,GAAE,CAAC;QAC/C,OAAO,CACL,uBAAC,SAAS,OACH,KAAiC,KAClC,UAAU,EACd,GAAG,EAAE,GAAG,GACR,CACH,CAAC;IACJ,CAAC,CAAC,CAAC;IAEH,gBAAgB,CAAC,WAAW,GAAG,sBAAsB,SAAS,CAAC,WAAW,IAAI,SAAS,CAAC,IAAI,IAAI,gBAAgB,GAAG,CAAC;IAEpH,OAAO,gBAAgB,CAAC;AAC1B,CAAC;AAID,SAAS,uBAAuB,CAC9B,SAA4E;IAE5E,MAAM,gBAAgB,GAAG,IAAA,kBAAU,EAAe,UAAU,KAAK,EAAE,GAAG;QACpE,MAAM,UAAU,GAAG,IAAA,8CAA+B,GAAE,CAAC;QACrD,OAAO,CACL,uBAAC,SAAS,OACH,KAAsC,KACvC,UAAU,EACd,GAAG,EAAE,GAAG,GACR,CACH,CAAC;IACJ,CAAC,CAAC,CAAC;IAEH,gBAAgB,CAAC,WAAW,GAAG,2BAA2B,SAAS,CAAC,WAAW,IAAI,SAAS,CAAC,IAAI,IAAI,gBAAgB,GAAG,CAAC;IAEzH,OAAO,gBAAgB,CAAC;AAC1B,CAAC;AAID,SAAS,uBAAuB,CAC9B,SAA0E;IAE1E,MAAM,gBAAgB,GAAG,IAAA,kBAAU,EAAe,UAAU,KAAK,EAAE,GAAG;QACpE,MAAM,CAAC,KAAK,EAAE,UAAU,EAAE,QAAQ,CAAC,GAAG,IAAA,0CAA2B,GAAE,CAAC;QACpE,MAAM,SAAS,GAAG,IAAA,8BAAa,EAAC,GAAG,EAAE,QAAqB,CAAC,CAAC;QAC5D,OAAO,CACL,uBAAC,SAAS,OACH,KAAoC,KACrC,UAAU,EACd,GAAG,EAAE,SAAS,EACd,aAAa,EAAE,uBAAC,2BAAc,cAAE,KAAK,GAAkB,GACvD,CACH,CAAC;IACJ,CAAC,CAAC,CAAC;IAEH,gBAAgB,CAAC,WAAW,GAAG,2BAA2B,SAAS,CAAC,WAAW,IAAI,SAAS,CAAC,IAAI,IAAI,gBAAgB,GAAG,CAAC;IAEzH,OAAO,gBAAgB,CAAC;AAC1B,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/tsdoc-metadata.json b/dist/esm/tsdoc-metadata.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..6f2c000bcc52d7b1f1cb4831df82fe5389851ce0
+--- /dev/null
++++ b/dist/esm/tsdoc-metadata.json
+@@ -0,0 +1,11 @@
++// This file is read by tools that parse documentation comments conforming to the TSDoc standard.
++// It should be published with your NPM package.  It should not be tracked by Git.
++{
++  "tsdocVersion": "0.12",
++  "toolPackages": [
++    {
++      "packageName": "@microsoft/api-extractor",
++      "packageVersion": "7.58.7"
++    }
++  ]
++}
+diff --git a/package.json b/package.json
+index 8ddb53aa017bed42e0044245be07fd7845d8f73a..27bc45b2492383f90435409b50a904caa2358fd2 100644
+--- a/package.json
++++ b/package.json
+@@ -26,41 +26,42 @@
+     ".:build:clean": "rimraf dist",
+     ".:build:cjs": "tsc -p tsconfig.cjs.json",
+     ".:build:esm": "tsc -p tsconfig.esm.json",
++    ".:build:api": "api-extractor run --local",
+     "storybook": "storybook dev -p 6006 --no-version-updates",
+-    "build": "run .:build:clean && run .:build:esm && run .:build:cjs",
++    "build": "run .:build:clean && run .:build:esm && run .:build:cjs && run .:build:api",
+     "clean": "rimraf dist",
+-    "docs": "cross-env NODE_ENV=production storybook build -o ../../static/fuselage-forms",
++    "docs": "NODE_ENV=production storybook build -o ../../static/fuselage-forms",
+     "lint": "lint",
+     "lint-and-fix": "lint-and-fix",
+     "test": "jest --runInBand"
+   },
+   "devDependencies": {
++    "@microsoft/api-extractor": "~7.58.7",
+     "@rocket.chat/fuselage": "^0.78.0",
+     "@rocket.chat/fuselage-hooks": "^0.41.0",
+     "@rocket.chat/fuselage-tokens": "^0.33.2",
+     "@rocket.chat/storybook-dark-mode": "^4.1.0",
+-    "@storybook/addon-docs": "~9.1.17",
++    "@storybook/addon-docs": "~9.1.20",
+     "@storybook/addon-webpack5-compiler-swc": "~4.0.3",
+-    "@storybook/react-webpack5": "~9.1.17",
++    "@storybook/react-webpack5": "~9.1.20",
+     "@testing-library/jest-dom": "~6.9.1",
+     "@testing-library/react": "~16.3.2",
+     "@testing-library/user-event": "~14.6.1",
+     "@types/jest": "~30.0.0",
+     "@types/jest-axe": "~3.5.9",
+-    "@types/react": "~18.3.27",
+-    "@types/react-dom": "~18.3.7",
+-    "cross-env": "^10.1.0",
+-    "eslint": "~9.39.2",
+-    "jest": "~30.3.0",
++    "@types/react": "~19.2.16",
++    "@types/react-dom": "~19.2.3",
++    "eslint": "~9.39.4",
++    "jest": "~30.4.2",
+     "jest-axe": "~10.0.0",
+-    "jest-environment-jsdom": "~30.3.0",
++    "jest-environment-jsdom": "~30.4.1",
+     "lint-all": "^0.31.25",
+     "prettier": "~3.6.2",
+-    "react": "~18.3.1",
+-    "react-dom": "~18.3.1",
+-    "rimraf": "~6.0.1",
+-    "storybook": "~9.1.19",
+-    "ts-jest": "~29.4.6",
++    "react": "~19.2.7",
++    "react-dom": "~19.2.7",
++    "rimraf": "~6.1.3",
++    "storybook": "~9.1.20",
++    "ts-jest": "~29.4.11",
+     "typescript": "~5.9.3",
+     "webpack": "~5.105.4"
+   },

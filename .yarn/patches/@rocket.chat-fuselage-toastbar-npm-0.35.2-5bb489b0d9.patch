@@ -1,0 +1,579 @@
+diff --git a/dist/cjs/ToastBarContext.d.ts b/dist/cjs/ToastBarContext.d.ts
+index 1ecd48440fbd9f939668d81b597877ad75cf9e0d..6c3371ce6973abe5bce2b45044b397a337aff631 100644
+--- a/dist/cjs/ToastBarContext.d.ts
++++ b/dist/cjs/ToastBarContext.d.ts
+@@ -8,7 +8,7 @@ export type ToastBarPayload = {
+     id: string;
+     isPersistent?: boolean;
+ };
+-type ToastBarContextValue = {
++export type ToastBarContextValue = {
+     dispatch: (payload: Omit<ToastBarPayload, 'id' | 'time'> & {
+         time?: number;
+     }) => void;
+@@ -17,5 +17,4 @@ type ToastBarContextValue = {
+ export declare const ToastBarContext: import("react").Context<ToastBarContextValue>;
+ export declare const useToastBarDispatch: () => ToastBarContextValue["dispatch"];
+ export declare const useToastBarDismiss: () => ToastBarContextValue["dismiss"];
+-export {};
+ //# sourceMappingURL=ToastBarContext.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/ToastBarContext.d.ts.map b/dist/cjs/ToastBarContext.d.ts.map
+index 6535606a71ed1e2cf284f8721ba74e5b8891bbcb..7dc47baad3e97ac3a81db2b0036c4258f096bf11 100644
+--- a/dist/cjs/ToastBarContext.d.ts.map
++++ b/dist/cjs/ToastBarContext.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"ToastBarContext.d.ts","sourceRoot":"","sources":["../../src/ToastBarContext.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAGvC,MAAM,MAAM,eAAe,GAAG;IAC5B,IAAI,CAAC,EAAE,SAAS,GAAG,MAAM,GAAG,OAAO,CAAC;IACpC,OAAO,EAAE,SAAS,GAAG,MAAM,GAAG,KAAK,CAAC;IACpC,KAAK,CAAC,EAAE,MAAM,CAAC;IACf,QAAQ,CAAC,EAAE,WAAW,GAAG,SAAS,GAAG,cAAc,GAAG,YAAY,CAAC;IACnE,IAAI,EAAE,MAAM,CAAC;IACb,EAAE,EAAE,MAAM,CAAC;IACX,YAAY,CAAC,EAAE,OAAO,CAAC;CACxB,CAAC;AAEF,KAAK,oBAAoB,GAAG;IAC1B,QAAQ,EAAE,CACR,OAAO,EAAE,IAAI,CAAC,eAAe,EAAE,IAAI,GAAG,MAAM,CAAC,GAAG;QAAE,IAAI,CAAC,EAAE,MAAM,CAAA;KAAE,KAC9D,IAAI,CAAC;IACV,OAAO,EAAE,CAAC,EAAE,EAAE,eAAe,CAAC,IAAI,CAAC,KAAK,IAAI,CAAC;CAC9C,CAAC;AAEF,eAAO,MAAM,eAAe,+CAG1B,CAAC;AAEH,eAAO,MAAM,mBAAmB,QAAO,oBAAoB,CAAC,UAAU,CAChC,CAAC;AACvC,eAAO,MAAM,kBAAkB,QAAO,oBAAoB,CAAC,SAAS,CAC/B,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"ToastBarContext.d.ts","sourceRoot":"","sources":["../../src/ToastBarContext.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAGvC,MAAM,MAAM,eAAe,GAAG;IAC5B,IAAI,CAAC,EAAE,SAAS,GAAG,MAAM,GAAG,OAAO,CAAC;IACpC,OAAO,EAAE,SAAS,GAAG,MAAM,GAAG,KAAK,CAAC;IACpC,KAAK,CAAC,EAAE,MAAM,CAAC;IACf,QAAQ,CAAC,EAAE,WAAW,GAAG,SAAS,GAAG,cAAc,GAAG,YAAY,CAAC;IACnE,IAAI,EAAE,MAAM,CAAC;IACb,EAAE,EAAE,MAAM,CAAC;IACX,YAAY,CAAC,EAAE,OAAO,CAAC;CACxB,CAAC;AAEF,MAAM,MAAM,oBAAoB,GAAG;IACjC,QAAQ,EAAE,CACR,OAAO,EAAE,IAAI,CAAC,eAAe,EAAE,IAAI,GAAG,MAAM,CAAC,GAAG;QAAE,IAAI,CAAC,EAAE,MAAM,CAAA;KAAE,KAC9D,IAAI,CAAC;IACV,OAAO,EAAE,CAAC,EAAE,EAAE,eAAe,CAAC,IAAI,CAAC,KAAK,IAAI,CAAC;CAC9C,CAAC;AAEF,eAAO,MAAM,eAAe,+CAG1B,CAAC;AAEH,eAAO,MAAM,mBAAmB,QAAO,oBAAoB,CAAC,UAAU,CAChC,CAAC;AACvC,eAAO,MAAM,kBAAkB,QAAO,oBAAoB,CAAC,SAAS,CAC/B,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/ToastBarPersistent.d.ts b/dist/cjs/ToastBarPersistent.d.ts
+index 29afff10f13f668c5886bba82957b688af59a6d3..09fae4875bf09a9ca6ab1f223b1984a86753fc40 100644
+--- a/dist/cjs/ToastBarPersistent.d.ts
++++ b/dist/cjs/ToastBarPersistent.d.ts
+@@ -1,5 +1,4 @@
+-import type { ReactElement } from 'react';
+ import type { ToastBarPayload } from './ToastBarContext';
+-declare const ToastBarPersistent: ({ type, message, title, id, }: ToastBarPayload) => ReactElement;
++declare const ToastBarPersistent: ({ type, message, title, id }: ToastBarPayload) => import("react").JSX.Element;
+ export default ToastBarPersistent;
+ //# sourceMappingURL=ToastBarPersistent.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/ToastBarPersistent.d.ts.map b/dist/cjs/ToastBarPersistent.d.ts.map
+index 13f1d4104b64922b06e51681314b3e7a2e3c689c..203ac80dba297becbdef7818994755f97d413295 100644
+--- a/dist/cjs/ToastBarPersistent.d.ts.map
++++ b/dist/cjs/ToastBarPersistent.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"ToastBarPersistent.d.ts","sourceRoot":"","sources":["../../src/ToastBarPersistent.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,YAAY,EAAE,MAAM,OAAO,CAAC;AAE1C,OAAO,KAAK,EAAE,eAAe,EAAE,MAAM,mBAAmB,CAAC;AAEzD,QAAA,MAAM,kBAAkB,GAAI,+BAKzB,eAAe,KAAG,YAOpB,CAAC;AAEF,eAAe,kBAAkB,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"ToastBarPersistent.d.ts","sourceRoot":"","sources":["../../src/ToastBarPersistent.tsx"],"names":[],"mappings":"AAEA,OAAO,KAAK,EAAE,eAAe,EAAE,MAAM,mBAAmB,CAAC;AAEzD,QAAA,MAAM,kBAAkB,GAAI,8BAA8B,eAAe,gCAOxE,CAAC;AAEF,eAAe,kBAAkB,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/ToastBarPersistent.js b/dist/cjs/ToastBarPersistent.js
+index 410b6a4421fb932fb701e61f7ddb853d665b5008..a1a8abba9a4bd5d80951bc7dab102b21ccae523f 100644
+--- a/dist/cjs/ToastBarPersistent.js
++++ b/dist/cjs/ToastBarPersistent.js
+@@ -2,7 +2,7 @@
+ Object.defineProperty(exports, "__esModule", { value: true });
+ const jsx_runtime_1 = require("react/jsx-runtime");
+ const fuselage_1 = require("@rocket.chat/fuselage");
+-const ToastBarPersistent = ({ type, message, title, id, }) => {
++const ToastBarPersistent = ({ type, message, title, id }) => {
+     return ((0, jsx_runtime_1.jsxs)(fuselage_1.ToastBar, { variant: type, id: id, isPaused: true, children: [title, message instanceof Error ? String(message) : message] }));
+ };
+ exports.default = ToastBarPersistent;
+diff --git a/dist/cjs/ToastBarPersistent.js.map b/dist/cjs/ToastBarPersistent.js.map
+index b9e80ff71f5c19bd298327bbe01cac21fc2af8f0..faf698ac595404bdc1faafbbe84cc4236abda0aa 100644
+--- a/dist/cjs/ToastBarPersistent.js.map
++++ b/dist/cjs/ToastBarPersistent.js.map
+@@ -1 +1 @@
+-{"version":3,"file":"ToastBarPersistent.js","sourceRoot":"","sources":["../../src/ToastBarPersistent.tsx"],"names":[],"mappings":";;;AAAA,oDAAiD;AAKjD,MAAM,kBAAkB,GAAG,CAAC,EAC1B,IAAI,EACJ,OAAO,EACP,KAAK,EACL,EAAE,GACc,EAAgB,EAAE;IAClC,OAAO,CACL,wBAAC,mBAAQ,IAAC,OAAO,EAAE,IAAI,EAAE,EAAE,EAAE,EAAE,EAAE,QAAQ,mBACtC,KAAK,EACL,OAAO,YAAY,KAAK,CAAC,CAAC,CAAC,MAAM,CAAC,OAAO,CAAC,CAAC,CAAC,CAAC,OAAO,IAC5C,CACZ,CAAC;AACJ,CAAC,CAAC;AAEF,kBAAe,kBAAkB,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"ToastBarPersistent.js","sourceRoot":"","sources":["../../src/ToastBarPersistent.tsx"],"names":[],"mappings":";;;AAAA,oDAAiD;AAIjD,MAAM,kBAAkB,GAAG,CAAC,EAAE,IAAI,EAAE,OAAO,EAAE,KAAK,EAAE,EAAE,EAAmB,EAAE,EAAE;IAC3E,OAAO,CACL,wBAAC,mBAAQ,IAAC,OAAO,EAAE,IAAI,EAAE,EAAE,EAAE,EAAE,EAAE,QAAQ,mBACtC,KAAK,EACL,OAAO,YAAY,KAAK,CAAC,CAAC,CAAC,MAAM,CAAC,OAAO,CAAC,CAAC,CAAC,CAAC,OAAO,IAC5C,CACZ,CAAC;AACJ,CAAC,CAAC;AAEF,kBAAe,kBAAkB,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/ToastBarPortal.d.ts b/dist/cjs/ToastBarPortal.d.ts
+index c1839207806b2689385b0abcf68ca729cca90578..629709e2f76262c567da948ad74db62ff01371f5 100644
+--- a/dist/cjs/ToastBarPortal.d.ts
++++ b/dist/cjs/ToastBarPortal.d.ts
+@@ -1,7 +1,7 @@
+-import type { ReactElement, ReactNode } from 'react';
++import type { ReactNode } from 'react';
+ type ToastBarPortalProps = {
+     children?: ReactNode;
+ };
+-declare const _default: import("react").MemoExoticComponent<({ children }: ToastBarPortalProps) => ReactElement>;
++declare const _default: import("react").MemoExoticComponent<({ children }: ToastBarPortalProps) => import("react").ReactPortal>;
+ export default _default;
+ //# sourceMappingURL=ToastBarPortal.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/ToastBarPortal.d.ts.map b/dist/cjs/ToastBarPortal.d.ts.map
+index c9e7fc7703fc57a4642bfd36e520b331858132e3..07c1a87d523dfb7f84c2d03a4eea37da16f97256 100644
+--- a/dist/cjs/ToastBarPortal.d.ts.map
++++ b/dist/cjs/ToastBarPortal.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"ToastBarPortal.d.ts","sourceRoot":"","sources":["../../src/ToastBarPortal.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,YAAY,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AA4CrD,KAAK,mBAAmB,GAAG;IACzB,QAAQ,CAAC,EAAE,SAAS,CAAC;CACtB,CAAC;2EAEoC,mBAAmB,KAAG,YAAY;AAcxE,wBAAoC"}
+\ No newline at end of file
++{"version":3,"file":"ToastBarPortal.d.ts","sourceRoot":"","sources":["../../src/ToastBarPortal.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AA4CvC,KAAK,mBAAmB,GAAG;IACzB,QAAQ,CAAC,EAAE,SAAS,CAAC;CACtB,CAAC;2EAEoC,mBAAmB;AAczD,wBAAoC"}
+\ No newline at end of file
+diff --git a/dist/cjs/ToastBarPortal.js.map b/dist/cjs/ToastBarPortal.js.map
+index 25a1aac5e1ea4aca9f79fb07962576d5b9eaf9d6..da781dbfefdbfa058656bf0a58aa37c02efe7d12 100644
+--- a/dist/cjs/ToastBarPortal.js.map
++++ b/dist/cjs/ToastBarPortal.js.map
+@@ -1 +1 @@
+-{"version":3,"file":"ToastBarPortal.js","sourceRoot":"","sources":["../../src/ToastBarPortal.ts"],"names":[],"mappings":";;AACA,iCAA8C;AAC9C,yCAAyC;AAEzC,MAAM,mBAAmB,GAAG,CAAC,EAAU,EAAe,EAAE;IACtD,MAAM,cAAc,GAAG,QAAQ,CAAC,cAAc,CAAC,EAAE,CAAC,CAAC;IACnD,IAAI,cAAc;QAAE,OAAO,cAAc,CAAC;IAE1C,MAAM,SAAS,GAAG,QAAQ,CAAC,aAAa,CAAC,KAAK,CAAC,CAAC;IAChD,SAAS,CAAC,EAAE,GAAG,EAAE,CAAC;IAClB,QAAQ,CAAC,IAAI,CAAC,WAAW,CAAC,SAAS,CAAC,CAAC;IACrC,OAAO,SAAS,CAAC;AACnB,CAAC,CAAC;AAEF,MAAM,iBAAiB,GAAG,CAAC,aAA0B,EAAU,EAAE;IAC/D,MAAM,EAAE,QAAQ,EAAE,GAAG,aAAa,CAAC,OAAO,CAAC;IAC3C,IAAI,QAAQ;QAAE,OAAO,QAAQ,CAAC,QAAQ,EAAE,EAAE,CAAC,CAAC;IAC5C,OAAO,CAAC,CAAC;AACX,CAAC,CAAC;AAEF,MAAM,iBAAiB,GAAG,CACxB,aAA0B,EAC1B,QAAgB,EACV,EAAE;IACR,aAAa,CAAC,OAAO,CAAC,UAAU,CAAC,GAAG,MAAM,CAAC,QAAQ,CAAC,CAAC;AACvD,CAAC,CAAC;AAEF,MAAM,gBAAgB,GAAG,CAAC,aAA0B,EAAQ,EAAE;IAC5D,iBAAiB,CAAC,aAAa,EAAE,iBAAiB,CAAC,aAAa,CAAC,GAAG,CAAC,CAAC,CAAC;IAEvE,IAAI,aAAa,CAAC,aAAa,KAAK,QAAQ,CAAC,IAAI,EAAE,CAAC;QAClD,QAAQ,CAAC,IAAI,CAAC,WAAW,CAAC,aAAa,CAAC,CAAC;IAC3C,CAAC;AACH,CAAC,CAAC;AAEF,MAAM,kBAAkB,GAAG,CAAC,aAA0B,EAAQ,EAAE;IAC9D,MAAM,QAAQ,GAAG,iBAAiB,CAAC,aAAa,CAAC,GAAG,CAAC,CAAC;IACtD,iBAAiB,CAAC,aAAa,EAAE,QAAQ,CAAC,CAAC;IAE3C,IAAI,QAAQ,IAAI,CAAC,EAAE,CAAC;QAClB,QAAQ,CAAC,IAAI,CAAC,WAAW,CAAC,aAAa,CAAC,CAAC;IAC3C,CAAC;AACH,CAAC,CAAC;AAMF,MAAM,cAAc,GAAG,CAAC,EAAE,QAAQ,EAAuB,EAAgB,EAAE;IACzE,MAAM,YAAY,GAAG,mBAAmB,CAAC,cAAc,CAAC,CAAC;IAEzD,IAAA,uBAAe,EAAC,GAAG,EAAE;QACnB,gBAAgB,CAAC,YAAY,CAAC,CAAC;QAE/B,OAAO,GAAG,EAAE;YACV,kBAAkB,CAAC,YAAY,CAAC,CAAC;QACnC,CAAC,CAAC;IACJ,CAAC,EAAE,CAAC,YAAY,CAAC,CAAC,CAAC;IAEnB,OAAO,IAAA,wBAAY,EAAC,QAAQ,EAAE,YAAY,CAAC,CAAC;AAC9C,CAAC,CAAC;AAEF,kBAAe,IAAA,YAAI,EAAC,cAAc,CAAC,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"ToastBarPortal.js","sourceRoot":"","sources":["../../src/ToastBarPortal.ts"],"names":[],"mappings":";;AACA,iCAA8C;AAC9C,yCAAyC;AAEzC,MAAM,mBAAmB,GAAG,CAAC,EAAU,EAAe,EAAE;IACtD,MAAM,cAAc,GAAG,QAAQ,CAAC,cAAc,CAAC,EAAE,CAAC,CAAC;IACnD,IAAI,cAAc;QAAE,OAAO,cAAc,CAAC;IAE1C,MAAM,SAAS,GAAG,QAAQ,CAAC,aAAa,CAAC,KAAK,CAAC,CAAC;IAChD,SAAS,CAAC,EAAE,GAAG,EAAE,CAAC;IAClB,QAAQ,CAAC,IAAI,CAAC,WAAW,CAAC,SAAS,CAAC,CAAC;IACrC,OAAO,SAAS,CAAC;AACnB,CAAC,CAAC;AAEF,MAAM,iBAAiB,GAAG,CAAC,aAA0B,EAAU,EAAE;IAC/D,MAAM,EAAE,QAAQ,EAAE,GAAG,aAAa,CAAC,OAAO,CAAC;IAC3C,IAAI,QAAQ;QAAE,OAAO,QAAQ,CAAC,QAAQ,EAAE,EAAE,CAAC,CAAC;IAC5C,OAAO,CAAC,CAAC;AACX,CAAC,CAAC;AAEF,MAAM,iBAAiB,GAAG,CACxB,aAA0B,EAC1B,QAAgB,EACV,EAAE;IACR,aAAa,CAAC,OAAO,CAAC,UAAU,CAAC,GAAG,MAAM,CAAC,QAAQ,CAAC,CAAC;AACvD,CAAC,CAAC;AAEF,MAAM,gBAAgB,GAAG,CAAC,aAA0B,EAAQ,EAAE;IAC5D,iBAAiB,CAAC,aAAa,EAAE,iBAAiB,CAAC,aAAa,CAAC,GAAG,CAAC,CAAC,CAAC;IAEvE,IAAI,aAAa,CAAC,aAAa,KAAK,QAAQ,CAAC,IAAI,EAAE,CAAC;QAClD,QAAQ,CAAC,IAAI,CAAC,WAAW,CAAC,aAAa,CAAC,CAAC;IAC3C,CAAC;AACH,CAAC,CAAC;AAEF,MAAM,kBAAkB,GAAG,CAAC,aAA0B,EAAQ,EAAE;IAC9D,MAAM,QAAQ,GAAG,iBAAiB,CAAC,aAAa,CAAC,GAAG,CAAC,CAAC;IACtD,iBAAiB,CAAC,aAAa,EAAE,QAAQ,CAAC,CAAC;IAE3C,IAAI,QAAQ,IAAI,CAAC,EAAE,CAAC;QAClB,QAAQ,CAAC,IAAI,CAAC,WAAW,CAAC,aAAa,CAAC,CAAC;IAC3C,CAAC;AACH,CAAC,CAAC;AAMF,MAAM,cAAc,GAAG,CAAC,EAAE,QAAQ,EAAuB,EAAE,EAAE;IAC3D,MAAM,YAAY,GAAG,mBAAmB,CAAC,cAAc,CAAC,CAAC;IAEzD,IAAA,uBAAe,EAAC,GAAG,EAAE;QACnB,gBAAgB,CAAC,YAAY,CAAC,CAAC;QAE/B,OAAO,GAAG,EAAE;YACV,kBAAkB,CAAC,YAAY,CAAC,CAAC;QACnC,CAAC,CAAC;IACJ,CAAC,EAAE,CAAC,YAAY,CAAC,CAAC,CAAC;IAEnB,OAAO,IAAA,wBAAY,EAAC,QAAQ,EAAE,YAAY,CAAC,CAAC;AAC9C,CAAC,CAAC;AAEF,kBAAe,IAAA,YAAI,EAAC,cAAc,CAAC,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/ToastBarProvider.d.ts b/dist/cjs/ToastBarProvider.d.ts
+index 9546f6cc2dfd37ff5bb0bca387e54e34695c0a6e..9ade2490282258c0e864a35febdb231be1f277ef 100644
+--- a/dist/cjs/ToastBarProvider.d.ts
++++ b/dist/cjs/ToastBarProvider.d.ts
+@@ -1,7 +1,7 @@
+-import type { ReactNode, ReactElement } from 'react';
+-type ToastBarProps = {
++import type { ReactNode } from 'react';
++export type ToastBarProps = {
+     children?: ReactNode;
+ };
+-declare const _default: import("react").MemoExoticComponent<({ children }: ToastBarProps) => ReactElement>;
++declare const _default: import("react").MemoExoticComponent<({ children }: ToastBarProps) => import("react").JSX.Element>;
+ export default _default;
+ //# sourceMappingURL=ToastBarProvider.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/ToastBarProvider.d.ts.map b/dist/cjs/ToastBarProvider.d.ts.map
+index b2d7afe6d0577b70d2d18cdfe040a47b4ab561db..025bc1962b04218058e076ad4e2c862b05d8a157 100644
+--- a/dist/cjs/ToastBarProvider.d.ts.map
++++ b/dist/cjs/ToastBarProvider.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"ToastBarProvider.d.ts","sourceRoot":"","sources":["../../src/ToastBarProvider.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,SAAS,EAAE,YAAY,EAAE,MAAM,OAAO,CAAC;AAUrD,KAAK,aAAa,GAAG;IACnB,QAAQ,CAAC,EAAE,SAAS,CAAC;CACtB,CAAC;2EAEsC,aAAa,KAAG,YAAY;AAuDpE,wBAA+D"}
+\ No newline at end of file
++{"version":3,"file":"ToastBarProvider.d.ts","sourceRoot":"","sources":["../../src/ToastBarProvider.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAUvC,MAAM,MAAM,aAAa,GAAG;IAC1B,QAAQ,CAAC,EAAE,SAAS,CAAC;CACtB,CAAC;2EAEsC,aAAa;AAuDrD,wBAA+D"}
+\ No newline at end of file
+diff --git a/dist/cjs/ToastBarProvider.js.map b/dist/cjs/ToastBarProvider.js.map
+index 65f92f5a5ea9b9b9a174fc590c722aac5bc4736e..b0338a3589940d4fb784deb5b9a79d02d65f02b6 100644
+--- a/dist/cjs/ToastBarProvider.js.map
++++ b/dist/cjs/ToastBarProvider.js.map
+@@ -1 +1 @@
+-{"version":3,"file":"ToastBarProvider.js","sourceRoot":"","sources":["../../src/ToastBarProvider.tsx"],"names":[],"mappings":";;;AACA,iCAAoD;AAGpD,uDAAoD;AACpD,6DAAsD;AACtD,qDAA8C;AAC9C,mDAA4C;AAC5C,iDAA0C;AAM1C,MAAM,gBAAgB,GAAG,CAAC,EAAE,QAAQ,EAAiB,EAAgB,EAAE;IACrE,MAAM,CAAC,MAAM,EAAE,SAAS,CAAC,GAAG,IAAA,gBAAQ,EAAoB,EAAE,CAAC,CAAC;IAE5D,MAAM,YAAY,GAAG;QACnB,QAAQ,EAAE,IAAA,mBAAW,EACnB,CAAC,MAAgE,EAAE,EAAE,CACnE,SAAS,CAAC,CAAC,MAAM,EAAE,EAAE,CAAC;YACpB,GAAG,MAAM;YACT,EAAE,GAAG,MAAM,EAAE,IAAI,EAAE,MAAM,CAAC,IAAI,IAAI,CAAC,EAAE,EAAE,EAAE,IAAI,CAAC,MAAM,EAAE,CAAC,QAAQ,EAAE,EAAE;SACpE,CAAC,EACJ,EAAE,CACH;QACD,OAAO,EAAE,IAAA,mBAAW,EAClB,CAAC,EAAyB,EAAE,EAAE,CAC5B,SAAS,CAAC,CAAC,SAAS,EAAE,EAAE,CAAC,SAAS,CAAC,MAAM,CAAC,CAAC,KAAK,EAAE,EAAE,CAAC,KAAK,CAAC,EAAE,KAAK,EAAE,CAAC,CAAC,EACxE,EAAE,CACH;KACF,CAAC;IAEF,OAAO,CACL,wBAAC,iCAAe,CAAC,QAAQ,IAAC,KAAK,EAAE,YAAY,aAC1C,QAAQ,EACT,uBAAC,wBAAc,cACZ,MAAM,CAAC,OAAO,CACb,MAAM,EAAE,MAAM,CACZ,CAAC,KAAK,EAAE,KAAK,EAAE,EAAE;oBACf,KAAK,CAAC,KAAK,CAAC,QAAQ,IAAI,SAAS,CAAC;wBAChC,KAAK,CAAC,KAAK,CAAC,QAAQ,IAAI,SAAS,CAAC,IAAI,EAAE,CAAC;oBAC3C,KAAK,CAAC,KAAK,CAAC,QAAQ,IAAI,SAAS,CAAC,CAAC,IAAI,CAAC,KAAK,CAAC,CAAC;oBAC/C,OAAO,KAAK,CAAC;gBACf,CAAC,EACD,EAGC,CACF,CACF,CAAC,GAAG,CAAC,CAAC,CAAC,IAAI,EAAE,MAAM,CAAC,EAAE,EAAE,CAAC,CACxB,uBAAC,sBAAY,IAEX,QAAQ,EAAE,IAAmC,YAE5C,MAAM,CAAC,GAAG,CAAC,CAAC,KAAK,EAAE,EAAE,CACpB,KAAK,CAAC,YAAY,CAAC,CAAC,CAAC,CACnB,uBAAC,4BAAkB,OAAoB,KAAK,IAAnB,KAAK,CAAC,EAAE,CAAe,CACjD,CAAC,CAAC,CAAC,CACF,uBAAC,uBAAa,OAAoB,KAAK,IAAnB,KAAK,CAAC,EAAE,CAAe,CAC5C,CACF,IATI,IAAI,CAUI,CAChB,CAAC,GACa,IACQ,CAC5B,CAAC;AACJ,CAAC,CAAC;AAEF,kBAAe,IAAA,YAAI,EAA0B,gBAAgB,CAAC,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"ToastBarProvider.js","sourceRoot":"","sources":["../../src/ToastBarProvider.tsx"],"names":[],"mappings":";;;AACA,iCAAoD;AAGpD,uDAAoD;AACpD,6DAAsD;AACtD,qDAA8C;AAC9C,mDAA4C;AAC5C,iDAA0C;AAM1C,MAAM,gBAAgB,GAAG,CAAC,EAAE,QAAQ,EAAiB,EAAE,EAAE;IACvD,MAAM,CAAC,MAAM,EAAE,SAAS,CAAC,GAAG,IAAA,gBAAQ,EAAoB,EAAE,CAAC,CAAC;IAE5D,MAAM,YAAY,GAAG;QACnB,QAAQ,EAAE,IAAA,mBAAW,EACnB,CAAC,MAAgE,EAAE,EAAE,CACnE,SAAS,CAAC,CAAC,MAAM,EAAE,EAAE,CAAC;YACpB,GAAG,MAAM;YACT,EAAE,GAAG,MAAM,EAAE,IAAI,EAAE,MAAM,CAAC,IAAI,IAAI,CAAC,EAAE,EAAE,EAAE,IAAI,CAAC,MAAM,EAAE,CAAC,QAAQ,EAAE,EAAE;SACpE,CAAC,EACJ,EAAE,CACH;QACD,OAAO,EAAE,IAAA,mBAAW,EAClB,CAAC,EAAyB,EAAE,EAAE,CAC5B,SAAS,CAAC,CAAC,SAAS,EAAE,EAAE,CAAC,SAAS,CAAC,MAAM,CAAC,CAAC,KAAK,EAAE,EAAE,CAAC,KAAK,CAAC,EAAE,KAAK,EAAE,CAAC,CAAC,EACxE,EAAE,CACH;KACF,CAAC;IAEF,OAAO,CACL,wBAAC,iCAAe,CAAC,QAAQ,IAAC,KAAK,EAAE,YAAY,aAC1C,QAAQ,EACT,uBAAC,wBAAc,cACZ,MAAM,CAAC,OAAO,CACb,MAAM,EAAE,MAAM,CACZ,CAAC,KAAK,EAAE,KAAK,EAAE,EAAE;oBACf,KAAK,CAAC,KAAK,CAAC,QAAQ,IAAI,SAAS,CAAC;wBAChC,KAAK,CAAC,KAAK,CAAC,QAAQ,IAAI,SAAS,CAAC,IAAI,EAAE,CAAC;oBAC3C,KAAK,CAAC,KAAK,CAAC,QAAQ,IAAI,SAAS,CAAC,CAAC,IAAI,CAAC,KAAK,CAAC,CAAC;oBAC/C,OAAO,KAAK,CAAC;gBACf,CAAC,EACD,EAGC,CACF,CACF,CAAC,GAAG,CAAC,CAAC,CAAC,IAAI,EAAE,MAAM,CAAC,EAAE,EAAE,CAAC,CACxB,uBAAC,sBAAY,IAEX,QAAQ,EAAE,IAAmC,YAE5C,MAAM,CAAC,GAAG,CAAC,CAAC,KAAK,EAAE,EAAE,CACpB,KAAK,CAAC,YAAY,CAAC,CAAC,CAAC,CACnB,uBAAC,4BAAkB,OAAoB,KAAK,IAAnB,KAAK,CAAC,EAAE,CAAe,CACjD,CAAC,CAAC,CAAC,CACF,uBAAC,uBAAa,OAAoB,KAAK,IAAnB,KAAK,CAAC,EAAE,CAAe,CAC5C,CACF,IATI,IAAI,CAUI,CAChB,CAAC,GACa,IACQ,CAC5B,CAAC;AACJ,CAAC,CAAC;AAEF,kBAAe,IAAA,YAAI,EAA0B,gBAAgB,CAAC,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/ToastBarTimed.d.ts b/dist/cjs/ToastBarTimed.d.ts
+index 2e1d5275fa0937c7443272df8c6726a8b12d9327..2665aadcda3184a7442ac061a96abed42d00d59a 100644
+--- a/dist/cjs/ToastBarTimed.d.ts
++++ b/dist/cjs/ToastBarTimed.d.ts
+@@ -1,5 +1,4 @@
+-import type { ReactElement } from 'react';
+ import type { ToastBarPayload } from './ToastBarContext';
+-declare const ToastBarTimed: ({ time, type, id, message, title, }: ToastBarPayload) => ReactElement;
++declare const ToastBarTimed: ({ time, type, id, message, title }: ToastBarPayload) => import("react").JSX.Element;
+ export default ToastBarTimed;
+ //# sourceMappingURL=ToastBarTimed.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/ToastBarTimed.d.ts.map b/dist/cjs/ToastBarTimed.d.ts.map
+index afe4aff1ffe7868e7a2a2820f15f3cf98ed21f92..3e359750ecac2bc970627ad0a4a0dc4cf080e30c 100644
+--- a/dist/cjs/ToastBarTimed.d.ts.map
++++ b/dist/cjs/ToastBarTimed.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"ToastBarTimed.d.ts","sourceRoot":"","sources":["../../src/ToastBarTimed.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,YAAY,EAAE,MAAM,OAAO,CAAC;AAG1C,OAAO,KAAK,EAAE,eAAe,EAAE,MAAM,mBAAmB,CAAC;AAGzD,QAAA,MAAM,aAAa,GAAI,qCAMpB,eAAe,KAAG,YAsBpB,CAAC;AAEF,eAAe,aAAa,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"ToastBarTimed.d.ts","sourceRoot":"","sources":["../../src/ToastBarTimed.tsx"],"names":[],"mappings":"AAGA,OAAO,KAAK,EAAE,eAAe,EAAE,MAAM,mBAAmB,CAAC;AAGzD,QAAA,MAAM,aAAa,GAAI,oCAAoC,eAAe,gCAsBzE,CAAC;AAEF,eAAe,aAAa,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/ToastBarTimed.js b/dist/cjs/ToastBarTimed.js
+index ec6c469865fe8152bf5a7dbf754ae2297a2e1814..6c3449e67a805474fecfb9dd8a9ce61d7bb20d8a 100644
+--- a/dist/cjs/ToastBarTimed.js
++++ b/dist/cjs/ToastBarTimed.js
+@@ -4,7 +4,7 @@ const jsx_runtime_1 = require("react/jsx-runtime");
+ const fuselage_1 = require("@rocket.chat/fuselage");
+ const react_timing_hooks_1 = require("react-timing-hooks");
+ const ToastBarContext_1 = require("./ToastBarContext");
+-const ToastBarTimed = ({ time, type, id, message, title, }) => {
++const ToastBarTimed = ({ time, type, id, message, title }) => {
+     const dismissToastMessage = (0, ToastBarContext_1.useToastBarDismiss)();
+     const [, { isPaused, pause, resume }] = (0, react_timing_hooks_1.useCountdown)(time, 0, {
+         onEnd: () => dismissToastMessage(id),
+diff --git a/dist/cjs/ToastBarTimed.js.map b/dist/cjs/ToastBarTimed.js.map
+index 85730424cb9e9671b5ae5836f2baf77f4c3b4d0b..db4b726d82cd87500a8182e4301440786c6cf013 100644
+--- a/dist/cjs/ToastBarTimed.js.map
++++ b/dist/cjs/ToastBarTimed.js.map
+@@ -1 +1 @@
+-{"version":3,"file":"ToastBarTimed.js","sourceRoot":"","sources":["../../src/ToastBarTimed.tsx"],"names":[],"mappings":";;;AAAA,oDAAiD;AAEjD,2DAAkD;AAGlD,uDAAuD;AAEvD,MAAM,aAAa,GAAG,CAAC,EACrB,IAAI,EACJ,IAAI,EACJ,EAAE,EACF,OAAO,EACP,KAAK,GACW,EAAgB,EAAE;IAClC,MAAM,mBAAmB,GAAG,IAAA,oCAAkB,GAAE,CAAC;IAEjD,MAAM,CAAC,EAAE,EAAE,QAAQ,EAAE,KAAK,EAAE,MAAM,EAAE,CAAC,GAAG,IAAA,iCAAY,EAAC,IAAI,EAAE,CAAC,EAAE;QAC5D,KAAK,EAAE,GAAG,EAAE,CAAC,mBAAmB,CAAC,EAAE,CAAC;QACpC,YAAY,EAAE,IAAI;KACnB,CAAC,CAAC;IAEH,OAAO,CACL,wBAAC,mBAAQ,IACP,OAAO,EAAE,IAAI,EACb,cAAc,EAAE,GAAG,EAAE,CAAC,KAAK,EAAE,EAC7B,cAAc,EAAE,GAAG,EAAE,CAAC,MAAM,EAAE,EAC9B,OAAO,EAAE,mBAAmB,EAC5B,EAAE,EAAE,EAAE,EACN,IAAI,EAAE,IAAI,EACV,QAAQ,EAAE,QAAQ,aAEjB,KAAK,EACL,OAAO,YAAY,KAAK,CAAC,CAAC,CAAC,MAAM,CAAC,OAAO,CAAC,CAAC,CAAC,CAAC,OAAO,IAC5C,CACZ,CAAC;AACJ,CAAC,CAAC;AAEF,kBAAe,aAAa,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"ToastBarTimed.js","sourceRoot":"","sources":["../../src/ToastBarTimed.tsx"],"names":[],"mappings":";;;AAAA,oDAAiD;AACjD,2DAAkD;AAGlD,uDAAuD;AAEvD,MAAM,aAAa,GAAG,CAAC,EAAE,IAAI,EAAE,IAAI,EAAE,EAAE,EAAE,OAAO,EAAE,KAAK,EAAmB,EAAE,EAAE;IAC5E,MAAM,mBAAmB,GAAG,IAAA,oCAAkB,GAAE,CAAC;IAEjD,MAAM,CAAC,EAAE,EAAE,QAAQ,EAAE,KAAK,EAAE,MAAM,EAAE,CAAC,GAAG,IAAA,iCAAY,EAAC,IAAI,EAAE,CAAC,EAAE;QAC5D,KAAK,EAAE,GAAG,EAAE,CAAC,mBAAmB,CAAC,EAAE,CAAC;QACpC,YAAY,EAAE,IAAI;KACnB,CAAC,CAAC;IAEH,OAAO,CACL,wBAAC,mBAAQ,IACP,OAAO,EAAE,IAAI,EACb,cAAc,EAAE,GAAG,EAAE,CAAC,KAAK,EAAE,EAC7B,cAAc,EAAE,GAAG,EAAE,CAAC,MAAM,EAAE,EAC9B,OAAO,EAAE,mBAAmB,EAC5B,EAAE,EAAE,EAAE,EACN,IAAI,EAAE,IAAI,EACV,QAAQ,EAAE,QAAQ,aAEjB,KAAK,EACL,OAAO,YAAY,KAAK,CAAC,CAAC,CAAC,MAAM,CAAC,OAAO,CAAC,CAAC,CAAC,CAAC,OAAO,IAC5C,CACZ,CAAC;AACJ,CAAC,CAAC;AAEF,kBAAe,aAAa,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/ToastBarZone.d.ts b/dist/cjs/ToastBarZone.d.ts
+index 4cf9bdd60c0f93e1ac7e84e25d3313cafdbd7db3..cb2b999ac190c27414e1164e9a3808a507fb666e 100644
+--- a/dist/cjs/ToastBarZone.d.ts
++++ b/dist/cjs/ToastBarZone.d.ts
+@@ -1,10 +1,10 @@
+-import type { ReactNode, ReactElement } from 'react';
++import type { ReactNode } from 'react';
+ import type { ToastBarPayload } from './ToastBarContext';
+ export declare const ToastBarContainer: import("react").ForwardRefExoticComponent<Omit<import("react").ClassAttributes<HTMLDivElement> & import("react").HTMLAttributes<HTMLDivElement> & Pick<ToastBarPayload, "position">, "ref"> & import("react").RefAttributes<HTMLDivElement>>;
+ type ToastBarZoneProps = {
+     position?: ToastBarPayload['position'];
+     children: ReactNode;
+ };
+-declare const ToastBarZone: ({ children, position, }: ToastBarZoneProps) => ReactElement;
++declare const ToastBarZone: ({ children, position, }: ToastBarZoneProps) => import("react").JSX.Element;
+ export default ToastBarZone;
+ //# sourceMappingURL=ToastBarZone.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/ToastBarZone.d.ts.map b/dist/cjs/ToastBarZone.d.ts.map
+index d7aa724e83d7d673631a3515f842cd813a975fd4..4f69a2d4340561b296a3319c112e1963b929606c 100644
+--- a/dist/cjs/ToastBarZone.d.ts.map
++++ b/dist/cjs/ToastBarZone.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"ToastBarZone.d.ts","sourceRoot":"","sources":["../../src/ToastBarZone.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,YAAY,EAAE,MAAM,OAAO,CAAC;AAErD,OAAO,KAAK,EAAE,eAAe,EAAE,MAAM,mBAAmB,CAAC;AAqBzD,eAAO,MAAM,iBAAiB,8OAc7B,CAAC;AAEF,KAAK,iBAAiB,GAAG;IACvB,QAAQ,CAAC,EAAE,eAAe,CAAC,UAAU,CAAC,CAAC;IACvC,QAAQ,EAAE,SAAS,CAAC;CACrB,CAAC;AAEF,QAAA,MAAM,YAAY,GAAI,yBAGnB,iBAAiB,KAAG,YAEtB,CAAC;AAEF,eAAe,YAAY,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"ToastBarZone.d.ts","sourceRoot":"","sources":["../../src/ToastBarZone.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAEvC,OAAO,KAAK,EAAE,eAAe,EAAE,MAAM,mBAAmB,CAAC;AAqBzD,eAAO,MAAM,iBAAiB,8OAc7B,CAAC;AAEF,KAAK,iBAAiB,GAAG;IACvB,QAAQ,CAAC,EAAE,eAAe,CAAC,UAAU,CAAC,CAAC;IACvC,QAAQ,EAAE,SAAS,CAAC;CACrB,CAAC;AAEF,QAAA,MAAM,YAAY,GAAI,yBAGnB,iBAAiB,gCAEnB,CAAC;AAEF,eAAe,YAAY,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/ToastBarZone.js.map b/dist/cjs/ToastBarZone.js.map
+index 3f3e3452deb53b55403d96aa4580b3c08f7447eb..d132eab103a6d238d0c81c574e3f7289224ec4b7 100644
+--- a/dist/cjs/ToastBarZone.js.map
++++ b/dist/cjs/ToastBarZone.js.map
+@@ -1 +1 @@
+-{"version":3,"file":"ToastBarZone.js","sourceRoot":"","sources":["../../src/ToastBarZone.tsx"],"names":[],"mappings":";;;;AAAA,gDAAyC;AAKzC,MAAM,aAAa,GAAG;IACpB,WAAW,EAAE;QACX,GAAG,EAAE,+CAA+C;QACpD,GAAG,EAAE,+CAA+C;KACrD;IACD,SAAS,EAAE;QACT,GAAG,EAAE,+CAA+C;QACpD,GAAG,EAAE,+CAA+C;KACrD;IACD,cAAc,EAAE;QACd,GAAG,EAAE,+CAA+C;QACpD,GAAG,EAAE,+CAA+C;KACrD;IACD,YAAY,EAAE;QACZ,GAAG,EAAE,+CAA+C;QACpD,GAAG,EAAE,+CAA+C;KACrD;CACF,CAAC;AAEW,QAAA,iBAAiB,GAAG,IAAA,gBAAM,EACrC,KAAK,EACL,CAAC,EAAE,QAAQ,EAAE,SAAS,EAAE,GAAG,KAAK,EAAqC,EAAE,EAAE,CACvE,KAAK,CACR,CAAA;;;;;;IAMG,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC,CAAC,aAAa,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC,GAAG,CAAC,CAAC,CAAC,EAAE,CAAC;;MAEtD,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC,CAAC,aAAa,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC,GAAG,CAAC,CAAC,CAAC,EAAE,CAAC;;CAE7D,CAAC;AAOF,MAAM,YAAY,GAAG,CAAC,EACpB,QAAQ,EACR,QAAQ,GAAG,SAAS,GACF,EAAgB,EAAE,CAAC,CACrC,uBAAC,yBAAiB,IAAC,QAAQ,EAAE,QAAQ,YAAG,QAAQ,GAAqB,CACtE,CAAC;AAEF,kBAAe,YAAY,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"ToastBarZone.js","sourceRoot":"","sources":["../../src/ToastBarZone.tsx"],"names":[],"mappings":";;;;AAAA,gDAAyC;AAKzC,MAAM,aAAa,GAAG;IACpB,WAAW,EAAE;QACX,GAAG,EAAE,+CAA+C;QACpD,GAAG,EAAE,+CAA+C;KACrD;IACD,SAAS,EAAE;QACT,GAAG,EAAE,+CAA+C;QACpD,GAAG,EAAE,+CAA+C;KACrD;IACD,cAAc,EAAE;QACd,GAAG,EAAE,+CAA+C;QACpD,GAAG,EAAE,+CAA+C;KACrD;IACD,YAAY,EAAE;QACZ,GAAG,EAAE,+CAA+C;QACpD,GAAG,EAAE,+CAA+C;KACrD;CACF,CAAC;AAEW,QAAA,iBAAiB,GAAG,IAAA,gBAAM,EACrC,KAAK,EACL,CAAC,EAAE,QAAQ,EAAE,SAAS,EAAE,GAAG,KAAK,EAAqC,EAAE,EAAE,CACvE,KAAK,CACR,CAAA;;;;;;IAMG,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC,CAAC,aAAa,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC,GAAG,CAAC,CAAC,CAAC,EAAE,CAAC;;MAEtD,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC,CAAC,aAAa,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC,GAAG,CAAC,CAAC,CAAC,EAAE,CAAC;;CAE7D,CAAC;AAOF,MAAM,YAAY,GAAG,CAAC,EACpB,QAAQ,EACR,QAAQ,GAAG,SAAS,GACF,EAAE,EAAE,CAAC,CACvB,uBAAC,yBAAiB,IAAC,QAAQ,EAAE,QAAQ,YAAG,QAAQ,GAAqB,CACtE,CAAC;AAEF,kBAAe,YAAY,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/index.d.ts b/dist/cjs/index.d.ts
+index 0c72abc871e91fa80f00d8fabafc2cf3b53d9a24..b2e7f6b40aea1115aa6321c98658245ce7ceac04 100644
+--- a/dist/cjs/index.d.ts
++++ b/dist/cjs/index.d.ts
+@@ -1,5 +1,5 @@
+ export { ToastBar } from '@rocket.chat/fuselage';
+ export * from './ToastBarContext';
+ export * from './ToastBarPortal';
+-export { default as ToastBarProvider } from './ToastBarProvider';
++export { default as ToastBarProvider, type ToastBarProps, } from './ToastBarProvider';
+ //# sourceMappingURL=index.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/index.d.ts.map b/dist/cjs/index.d.ts.map
+index abb7c6656166f02b4814ead57e09ea5369a0036c..ff5a942354d67a02a8a825a5da712a75a9209011 100644
+--- a/dist/cjs/index.d.ts.map
++++ b/dist/cjs/index.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../src/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,QAAQ,EAAE,MAAM,uBAAuB,CAAC;AACjD,cAAc,mBAAmB,CAAC;AAClC,cAAc,kBAAkB,CAAC;AACjC,OAAO,EAAE,OAAO,IAAI,gBAAgB,EAAE,MAAM,oBAAoB,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../src/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,QAAQ,EAAE,MAAM,uBAAuB,CAAC;AACjD,cAAc,mBAAmB,CAAC;AAClC,cAAc,kBAAkB,CAAC;AACjC,OAAO,EACL,OAAO,IAAI,gBAAgB,EAC3B,KAAK,aAAa,GACnB,MAAM,oBAAoB,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/index.js.map b/dist/cjs/index.js.map
+index 2aa898a365052f34bf575682ee7376889728bcd4..af2f1b9da1440dd401963256d5532cf11130af3c 100644
+--- a/dist/cjs/index.js.map
++++ b/dist/cjs/index.js.map
+@@ -1 +1 @@
+-{"version":3,"file":"index.js","sourceRoot":"","sources":["../../src/index.ts"],"names":[],"mappings":";;;;;;;;;;;;;;;;;AAAA,kDAAiD;AAAxC,oGAAA,QAAQ,OAAA;AACjB,oDAAkC;AAClC,mDAAiC;AACjC,uDAAiE;AAAxD,oHAAA,OAAO,OAAoB"}
+\ No newline at end of file
++{"version":3,"file":"index.js","sourceRoot":"","sources":["../../src/index.ts"],"names":[],"mappings":";;;;;;;;;;;;;;;;;AAAA,kDAAiD;AAAxC,oGAAA,QAAQ,OAAA;AACjB,oDAAkC;AAClC,mDAAiC;AACjC,uDAG4B;AAF1B,oHAAA,OAAO,OAAoB"}
+\ No newline at end of file
+diff --git a/dist/esm/ToastBarContext.d.ts b/dist/esm/ToastBarContext.d.ts
+index 1ecd48440fbd9f939668d81b597877ad75cf9e0d..6c3371ce6973abe5bce2b45044b397a337aff631 100644
+--- a/dist/esm/ToastBarContext.d.ts
++++ b/dist/esm/ToastBarContext.d.ts
+@@ -8,7 +8,7 @@ export type ToastBarPayload = {
+     id: string;
+     isPersistent?: boolean;
+ };
+-type ToastBarContextValue = {
++export type ToastBarContextValue = {
+     dispatch: (payload: Omit<ToastBarPayload, 'id' | 'time'> & {
+         time?: number;
+     }) => void;
+@@ -17,5 +17,4 @@ type ToastBarContextValue = {
+ export declare const ToastBarContext: import("react").Context<ToastBarContextValue>;
+ export declare const useToastBarDispatch: () => ToastBarContextValue["dispatch"];
+ export declare const useToastBarDismiss: () => ToastBarContextValue["dismiss"];
+-export {};
+ //# sourceMappingURL=ToastBarContext.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/ToastBarContext.d.ts.map b/dist/esm/ToastBarContext.d.ts.map
+index 6535606a71ed1e2cf284f8721ba74e5b8891bbcb..7dc47baad3e97ac3a81db2b0036c4258f096bf11 100644
+--- a/dist/esm/ToastBarContext.d.ts.map
++++ b/dist/esm/ToastBarContext.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"ToastBarContext.d.ts","sourceRoot":"","sources":["../../src/ToastBarContext.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAGvC,MAAM,MAAM,eAAe,GAAG;IAC5B,IAAI,CAAC,EAAE,SAAS,GAAG,MAAM,GAAG,OAAO,CAAC;IACpC,OAAO,EAAE,SAAS,GAAG,MAAM,GAAG,KAAK,CAAC;IACpC,KAAK,CAAC,EAAE,MAAM,CAAC;IACf,QAAQ,CAAC,EAAE,WAAW,GAAG,SAAS,GAAG,cAAc,GAAG,YAAY,CAAC;IACnE,IAAI,EAAE,MAAM,CAAC;IACb,EAAE,EAAE,MAAM,CAAC;IACX,YAAY,CAAC,EAAE,OAAO,CAAC;CACxB,CAAC;AAEF,KAAK,oBAAoB,GAAG;IAC1B,QAAQ,EAAE,CACR,OAAO,EAAE,IAAI,CAAC,eAAe,EAAE,IAAI,GAAG,MAAM,CAAC,GAAG;QAAE,IAAI,CAAC,EAAE,MAAM,CAAA;KAAE,KAC9D,IAAI,CAAC;IACV,OAAO,EAAE,CAAC,EAAE,EAAE,eAAe,CAAC,IAAI,CAAC,KAAK,IAAI,CAAC;CAC9C,CAAC;AAEF,eAAO,MAAM,eAAe,+CAG1B,CAAC;AAEH,eAAO,MAAM,mBAAmB,QAAO,oBAAoB,CAAC,UAAU,CAChC,CAAC;AACvC,eAAO,MAAM,kBAAkB,QAAO,oBAAoB,CAAC,SAAS,CAC/B,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"ToastBarContext.d.ts","sourceRoot":"","sources":["../../src/ToastBarContext.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAGvC,MAAM,MAAM,eAAe,GAAG;IAC5B,IAAI,CAAC,EAAE,SAAS,GAAG,MAAM,GAAG,OAAO,CAAC;IACpC,OAAO,EAAE,SAAS,GAAG,MAAM,GAAG,KAAK,CAAC;IACpC,KAAK,CAAC,EAAE,MAAM,CAAC;IACf,QAAQ,CAAC,EAAE,WAAW,GAAG,SAAS,GAAG,cAAc,GAAG,YAAY,CAAC;IACnE,IAAI,EAAE,MAAM,CAAC;IACb,EAAE,EAAE,MAAM,CAAC;IACX,YAAY,CAAC,EAAE,OAAO,CAAC;CACxB,CAAC;AAEF,MAAM,MAAM,oBAAoB,GAAG;IACjC,QAAQ,EAAE,CACR,OAAO,EAAE,IAAI,CAAC,eAAe,EAAE,IAAI,GAAG,MAAM,CAAC,GAAG;QAAE,IAAI,CAAC,EAAE,MAAM,CAAA;KAAE,KAC9D,IAAI,CAAC;IACV,OAAO,EAAE,CAAC,EAAE,EAAE,eAAe,CAAC,IAAI,CAAC,KAAK,IAAI,CAAC;CAC9C,CAAC;AAEF,eAAO,MAAM,eAAe,+CAG1B,CAAC;AAEH,eAAO,MAAM,mBAAmB,QAAO,oBAAoB,CAAC,UAAU,CAChC,CAAC;AACvC,eAAO,MAAM,kBAAkB,QAAO,oBAAoB,CAAC,SAAS,CAC/B,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/ToastBarPersistent.d.ts b/dist/esm/ToastBarPersistent.d.ts
+index 29afff10f13f668c5886bba82957b688af59a6d3..09fae4875bf09a9ca6ab1f223b1984a86753fc40 100644
+--- a/dist/esm/ToastBarPersistent.d.ts
++++ b/dist/esm/ToastBarPersistent.d.ts
+@@ -1,5 +1,4 @@
+-import type { ReactElement } from 'react';
+ import type { ToastBarPayload } from './ToastBarContext';
+-declare const ToastBarPersistent: ({ type, message, title, id, }: ToastBarPayload) => ReactElement;
++declare const ToastBarPersistent: ({ type, message, title, id }: ToastBarPayload) => import("react").JSX.Element;
+ export default ToastBarPersistent;
+ //# sourceMappingURL=ToastBarPersistent.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/ToastBarPersistent.d.ts.map b/dist/esm/ToastBarPersistent.d.ts.map
+index 13f1d4104b64922b06e51681314b3e7a2e3c689c..203ac80dba297becbdef7818994755f97d413295 100644
+--- a/dist/esm/ToastBarPersistent.d.ts.map
++++ b/dist/esm/ToastBarPersistent.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"ToastBarPersistent.d.ts","sourceRoot":"","sources":["../../src/ToastBarPersistent.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,YAAY,EAAE,MAAM,OAAO,CAAC;AAE1C,OAAO,KAAK,EAAE,eAAe,EAAE,MAAM,mBAAmB,CAAC;AAEzD,QAAA,MAAM,kBAAkB,GAAI,+BAKzB,eAAe,KAAG,YAOpB,CAAC;AAEF,eAAe,kBAAkB,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"ToastBarPersistent.d.ts","sourceRoot":"","sources":["../../src/ToastBarPersistent.tsx"],"names":[],"mappings":"AAEA,OAAO,KAAK,EAAE,eAAe,EAAE,MAAM,mBAAmB,CAAC;AAEzD,QAAA,MAAM,kBAAkB,GAAI,8BAA8B,eAAe,gCAOxE,CAAC;AAEF,eAAe,kBAAkB,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/ToastBarPersistent.js b/dist/esm/ToastBarPersistent.js
+index 410b6a4421fb932fb701e61f7ddb853d665b5008..a1a8abba9a4bd5d80951bc7dab102b21ccae523f 100644
+--- a/dist/esm/ToastBarPersistent.js
++++ b/dist/esm/ToastBarPersistent.js
+@@ -2,7 +2,7 @@
+ Object.defineProperty(exports, "__esModule", { value: true });
+ const jsx_runtime_1 = require("react/jsx-runtime");
+ const fuselage_1 = require("@rocket.chat/fuselage");
+-const ToastBarPersistent = ({ type, message, title, id, }) => {
++const ToastBarPersistent = ({ type, message, title, id }) => {
+     return ((0, jsx_runtime_1.jsxs)(fuselage_1.ToastBar, { variant: type, id: id, isPaused: true, children: [title, message instanceof Error ? String(message) : message] }));
+ };
+ exports.default = ToastBarPersistent;
+diff --git a/dist/esm/ToastBarPersistent.js.map b/dist/esm/ToastBarPersistent.js.map
+index b9e80ff71f5c19bd298327bbe01cac21fc2af8f0..faf698ac595404bdc1faafbbe84cc4236abda0aa 100644
+--- a/dist/esm/ToastBarPersistent.js.map
++++ b/dist/esm/ToastBarPersistent.js.map
+@@ -1 +1 @@
+-{"version":3,"file":"ToastBarPersistent.js","sourceRoot":"","sources":["../../src/ToastBarPersistent.tsx"],"names":[],"mappings":";;;AAAA,oDAAiD;AAKjD,MAAM,kBAAkB,GAAG,CAAC,EAC1B,IAAI,EACJ,OAAO,EACP,KAAK,EACL,EAAE,GACc,EAAgB,EAAE;IAClC,OAAO,CACL,wBAAC,mBAAQ,IAAC,OAAO,EAAE,IAAI,EAAE,EAAE,EAAE,EAAE,EAAE,QAAQ,mBACtC,KAAK,EACL,OAAO,YAAY,KAAK,CAAC,CAAC,CAAC,MAAM,CAAC,OAAO,CAAC,CAAC,CAAC,CAAC,OAAO,IAC5C,CACZ,CAAC;AACJ,CAAC,CAAC;AAEF,kBAAe,kBAAkB,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"ToastBarPersistent.js","sourceRoot":"","sources":["../../src/ToastBarPersistent.tsx"],"names":[],"mappings":";;;AAAA,oDAAiD;AAIjD,MAAM,kBAAkB,GAAG,CAAC,EAAE,IAAI,EAAE,OAAO,EAAE,KAAK,EAAE,EAAE,EAAmB,EAAE,EAAE;IAC3E,OAAO,CACL,wBAAC,mBAAQ,IAAC,OAAO,EAAE,IAAI,EAAE,EAAE,EAAE,EAAE,EAAE,QAAQ,mBACtC,KAAK,EACL,OAAO,YAAY,KAAK,CAAC,CAAC,CAAC,MAAM,CAAC,OAAO,CAAC,CAAC,CAAC,CAAC,OAAO,IAC5C,CACZ,CAAC;AACJ,CAAC,CAAC;AAEF,kBAAe,kBAAkB,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/ToastBarPortal.d.ts b/dist/esm/ToastBarPortal.d.ts
+index c1839207806b2689385b0abcf68ca729cca90578..629709e2f76262c567da948ad74db62ff01371f5 100644
+--- a/dist/esm/ToastBarPortal.d.ts
++++ b/dist/esm/ToastBarPortal.d.ts
+@@ -1,7 +1,7 @@
+-import type { ReactElement, ReactNode } from 'react';
++import type { ReactNode } from 'react';
+ type ToastBarPortalProps = {
+     children?: ReactNode;
+ };
+-declare const _default: import("react").MemoExoticComponent<({ children }: ToastBarPortalProps) => ReactElement>;
++declare const _default: import("react").MemoExoticComponent<({ children }: ToastBarPortalProps) => import("react").ReactPortal>;
+ export default _default;
+ //# sourceMappingURL=ToastBarPortal.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/ToastBarPortal.d.ts.map b/dist/esm/ToastBarPortal.d.ts.map
+index c9e7fc7703fc57a4642bfd36e520b331858132e3..07c1a87d523dfb7f84c2d03a4eea37da16f97256 100644
+--- a/dist/esm/ToastBarPortal.d.ts.map
++++ b/dist/esm/ToastBarPortal.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"ToastBarPortal.d.ts","sourceRoot":"","sources":["../../src/ToastBarPortal.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,YAAY,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AA4CrD,KAAK,mBAAmB,GAAG;IACzB,QAAQ,CAAC,EAAE,SAAS,CAAC;CACtB,CAAC;2EAEoC,mBAAmB,KAAG,YAAY;AAcxE,wBAAoC"}
+\ No newline at end of file
++{"version":3,"file":"ToastBarPortal.d.ts","sourceRoot":"","sources":["../../src/ToastBarPortal.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AA4CvC,KAAK,mBAAmB,GAAG;IACzB,QAAQ,CAAC,EAAE,SAAS,CAAC;CACtB,CAAC;2EAEoC,mBAAmB;AAczD,wBAAoC"}
+\ No newline at end of file
+diff --git a/dist/esm/ToastBarPortal.js.map b/dist/esm/ToastBarPortal.js.map
+index 25a1aac5e1ea4aca9f79fb07962576d5b9eaf9d6..da781dbfefdbfa058656bf0a58aa37c02efe7d12 100644
+--- a/dist/esm/ToastBarPortal.js.map
++++ b/dist/esm/ToastBarPortal.js.map
+@@ -1 +1 @@
+-{"version":3,"file":"ToastBarPortal.js","sourceRoot":"","sources":["../../src/ToastBarPortal.ts"],"names":[],"mappings":";;AACA,iCAA8C;AAC9C,yCAAyC;AAEzC,MAAM,mBAAmB,GAAG,CAAC,EAAU,EAAe,EAAE;IACtD,MAAM,cAAc,GAAG,QAAQ,CAAC,cAAc,CAAC,EAAE,CAAC,CAAC;IACnD,IAAI,cAAc;QAAE,OAAO,cAAc,CAAC;IAE1C,MAAM,SAAS,GAAG,QAAQ,CAAC,aAAa,CAAC,KAAK,CAAC,CAAC;IAChD,SAAS,CAAC,EAAE,GAAG,EAAE,CAAC;IAClB,QAAQ,CAAC,IAAI,CAAC,WAAW,CAAC,SAAS,CAAC,CAAC;IACrC,OAAO,SAAS,CAAC;AACnB,CAAC,CAAC;AAEF,MAAM,iBAAiB,GAAG,CAAC,aAA0B,EAAU,EAAE;IAC/D,MAAM,EAAE,QAAQ,EAAE,GAAG,aAAa,CAAC,OAAO,CAAC;IAC3C,IAAI,QAAQ;QAAE,OAAO,QAAQ,CAAC,QAAQ,EAAE,EAAE,CAAC,CAAC;IAC5C,OAAO,CAAC,CAAC;AACX,CAAC,CAAC;AAEF,MAAM,iBAAiB,GAAG,CACxB,aAA0B,EAC1B,QAAgB,EACV,EAAE;IACR,aAAa,CAAC,OAAO,CAAC,UAAU,CAAC,GAAG,MAAM,CAAC,QAAQ,CAAC,CAAC;AACvD,CAAC,CAAC;AAEF,MAAM,gBAAgB,GAAG,CAAC,aAA0B,EAAQ,EAAE;IAC5D,iBAAiB,CAAC,aAAa,EAAE,iBAAiB,CAAC,aAAa,CAAC,GAAG,CAAC,CAAC,CAAC;IAEvE,IAAI,aAAa,CAAC,aAAa,KAAK,QAAQ,CAAC,IAAI,EAAE,CAAC;QAClD,QAAQ,CAAC,IAAI,CAAC,WAAW,CAAC,aAAa,CAAC,CAAC;IAC3C,CAAC;AACH,CAAC,CAAC;AAEF,MAAM,kBAAkB,GAAG,CAAC,aAA0B,EAAQ,EAAE;IAC9D,MAAM,QAAQ,GAAG,iBAAiB,CAAC,aAAa,CAAC,GAAG,CAAC,CAAC;IACtD,iBAAiB,CAAC,aAAa,EAAE,QAAQ,CAAC,CAAC;IAE3C,IAAI,QAAQ,IAAI,CAAC,EAAE,CAAC;QAClB,QAAQ,CAAC,IAAI,CAAC,WAAW,CAAC,aAAa,CAAC,CAAC;IAC3C,CAAC;AACH,CAAC,CAAC;AAMF,MAAM,cAAc,GAAG,CAAC,EAAE,QAAQ,EAAuB,EAAgB,EAAE;IACzE,MAAM,YAAY,GAAG,mBAAmB,CAAC,cAAc,CAAC,CAAC;IAEzD,IAAA,uBAAe,EAAC,GAAG,EAAE;QACnB,gBAAgB,CAAC,YAAY,CAAC,CAAC;QAE/B,OAAO,GAAG,EAAE;YACV,kBAAkB,CAAC,YAAY,CAAC,CAAC;QACnC,CAAC,CAAC;IACJ,CAAC,EAAE,CAAC,YAAY,CAAC,CAAC,CAAC;IAEnB,OAAO,IAAA,wBAAY,EAAC,QAAQ,EAAE,YAAY,CAAC,CAAC;AAC9C,CAAC,CAAC;AAEF,kBAAe,IAAA,YAAI,EAAC,cAAc,CAAC,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"ToastBarPortal.js","sourceRoot":"","sources":["../../src/ToastBarPortal.ts"],"names":[],"mappings":";;AACA,iCAA8C;AAC9C,yCAAyC;AAEzC,MAAM,mBAAmB,GAAG,CAAC,EAAU,EAAe,EAAE;IACtD,MAAM,cAAc,GAAG,QAAQ,CAAC,cAAc,CAAC,EAAE,CAAC,CAAC;IACnD,IAAI,cAAc;QAAE,OAAO,cAAc,CAAC;IAE1C,MAAM,SAAS,GAAG,QAAQ,CAAC,aAAa,CAAC,KAAK,CAAC,CAAC;IAChD,SAAS,CAAC,EAAE,GAAG,EAAE,CAAC;IAClB,QAAQ,CAAC,IAAI,CAAC,WAAW,CAAC,SAAS,CAAC,CAAC;IACrC,OAAO,SAAS,CAAC;AACnB,CAAC,CAAC;AAEF,MAAM,iBAAiB,GAAG,CAAC,aAA0B,EAAU,EAAE;IAC/D,MAAM,EAAE,QAAQ,EAAE,GAAG,aAAa,CAAC,OAAO,CAAC;IAC3C,IAAI,QAAQ;QAAE,OAAO,QAAQ,CAAC,QAAQ,EAAE,EAAE,CAAC,CAAC;IAC5C,OAAO,CAAC,CAAC;AACX,CAAC,CAAC;AAEF,MAAM,iBAAiB,GAAG,CACxB,aAA0B,EAC1B,QAAgB,EACV,EAAE;IACR,aAAa,CAAC,OAAO,CAAC,UAAU,CAAC,GAAG,MAAM,CAAC,QAAQ,CAAC,CAAC;AACvD,CAAC,CAAC;AAEF,MAAM,gBAAgB,GAAG,CAAC,aAA0B,EAAQ,EAAE;IAC5D,iBAAiB,CAAC,aAAa,EAAE,iBAAiB,CAAC,aAAa,CAAC,GAAG,CAAC,CAAC,CAAC;IAEvE,IAAI,aAAa,CAAC,aAAa,KAAK,QAAQ,CAAC,IAAI,EAAE,CAAC;QAClD,QAAQ,CAAC,IAAI,CAAC,WAAW,CAAC,aAAa,CAAC,CAAC;IAC3C,CAAC;AACH,CAAC,CAAC;AAEF,MAAM,kBAAkB,GAAG,CAAC,aAA0B,EAAQ,EAAE;IAC9D,MAAM,QAAQ,GAAG,iBAAiB,CAAC,aAAa,CAAC,GAAG,CAAC,CAAC;IACtD,iBAAiB,CAAC,aAAa,EAAE,QAAQ,CAAC,CAAC;IAE3C,IAAI,QAAQ,IAAI,CAAC,EAAE,CAAC;QAClB,QAAQ,CAAC,IAAI,CAAC,WAAW,CAAC,aAAa,CAAC,CAAC;IAC3C,CAAC;AACH,CAAC,CAAC;AAMF,MAAM,cAAc,GAAG,CAAC,EAAE,QAAQ,EAAuB,EAAE,EAAE;IAC3D,MAAM,YAAY,GAAG,mBAAmB,CAAC,cAAc,CAAC,CAAC;IAEzD,IAAA,uBAAe,EAAC,GAAG,EAAE;QACnB,gBAAgB,CAAC,YAAY,CAAC,CAAC;QAE/B,OAAO,GAAG,EAAE;YACV,kBAAkB,CAAC,YAAY,CAAC,CAAC;QACnC,CAAC,CAAC;IACJ,CAAC,EAAE,CAAC,YAAY,CAAC,CAAC,CAAC;IAEnB,OAAO,IAAA,wBAAY,EAAC,QAAQ,EAAE,YAAY,CAAC,CAAC;AAC9C,CAAC,CAAC;AAEF,kBAAe,IAAA,YAAI,EAAC,cAAc,CAAC,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/ToastBarProvider.d.ts b/dist/esm/ToastBarProvider.d.ts
+index 9546f6cc2dfd37ff5bb0bca387e54e34695c0a6e..9ade2490282258c0e864a35febdb231be1f277ef 100644
+--- a/dist/esm/ToastBarProvider.d.ts
++++ b/dist/esm/ToastBarProvider.d.ts
+@@ -1,7 +1,7 @@
+-import type { ReactNode, ReactElement } from 'react';
+-type ToastBarProps = {
++import type { ReactNode } from 'react';
++export type ToastBarProps = {
+     children?: ReactNode;
+ };
+-declare const _default: import("react").MemoExoticComponent<({ children }: ToastBarProps) => ReactElement>;
++declare const _default: import("react").MemoExoticComponent<({ children }: ToastBarProps) => import("react").JSX.Element>;
+ export default _default;
+ //# sourceMappingURL=ToastBarProvider.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/ToastBarProvider.d.ts.map b/dist/esm/ToastBarProvider.d.ts.map
+index b2d7afe6d0577b70d2d18cdfe040a47b4ab561db..025bc1962b04218058e076ad4e2c862b05d8a157 100644
+--- a/dist/esm/ToastBarProvider.d.ts.map
++++ b/dist/esm/ToastBarProvider.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"ToastBarProvider.d.ts","sourceRoot":"","sources":["../../src/ToastBarProvider.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,SAAS,EAAE,YAAY,EAAE,MAAM,OAAO,CAAC;AAUrD,KAAK,aAAa,GAAG;IACnB,QAAQ,CAAC,EAAE,SAAS,CAAC;CACtB,CAAC;2EAEsC,aAAa,KAAG,YAAY;AAuDpE,wBAA+D"}
+\ No newline at end of file
++{"version":3,"file":"ToastBarProvider.d.ts","sourceRoot":"","sources":["../../src/ToastBarProvider.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAUvC,MAAM,MAAM,aAAa,GAAG;IAC1B,QAAQ,CAAC,EAAE,SAAS,CAAC;CACtB,CAAC;2EAEsC,aAAa;AAuDrD,wBAA+D"}
+\ No newline at end of file
+diff --git a/dist/esm/ToastBarProvider.js.map b/dist/esm/ToastBarProvider.js.map
+index b33f9439a885a287671f0105d4d2b7f75a99bf41..15b0acc58d984cdcc6326db3560466eca52b8f8e 100644
+--- a/dist/esm/ToastBarProvider.js.map
++++ b/dist/esm/ToastBarProvider.js.map
+@@ -1 +1 @@
+-{"version":3,"file":"ToastBarProvider.js","sourceRoot":"","sources":["../../src/ToastBarProvider.tsx"],"names":[],"mappings":";;;;;;AACA,iCAAoD;AAGpD,uDAAoD;AACpD,8EAAsD;AACtD,sEAA8C;AAC9C,oEAA4C;AAC5C,kEAA0C;AAM1C,MAAM,gBAAgB,GAAG,CAAC,EAAE,QAAQ,EAAiB,EAAgB,EAAE;IACrE,MAAM,CAAC,MAAM,EAAE,SAAS,CAAC,GAAG,IAAA,gBAAQ,EAAoB,EAAE,CAAC,CAAC;IAE5D,MAAM,YAAY,GAAG;QACnB,QAAQ,EAAE,IAAA,mBAAW,EACnB,CAAC,MAAgE,EAAE,EAAE,CACnE,SAAS,CAAC,CAAC,MAAM,EAAE,EAAE,CAAC;YACpB,GAAG,MAAM;YACT,EAAE,GAAG,MAAM,EAAE,IAAI,EAAE,MAAM,CAAC,IAAI,IAAI,CAAC,EAAE,EAAE,EAAE,IAAI,CAAC,MAAM,EAAE,CAAC,QAAQ,EAAE,EAAE;SACpE,CAAC,EACJ,EAAE,CACH;QACD,OAAO,EAAE,IAAA,mBAAW,EAClB,CAAC,EAAyB,EAAE,EAAE,CAC5B,SAAS,CAAC,CAAC,SAAS,EAAE,EAAE,CAAC,SAAS,CAAC,MAAM,CAAC,CAAC,KAAK,EAAE,EAAE,CAAC,KAAK,CAAC,EAAE,KAAK,EAAE,CAAC,CAAC,EACxE,EAAE,CACH;KACF,CAAC;IAEF,OAAO,CACL,wBAAC,iCAAe,CAAC,QAAQ,IAAC,KAAK,EAAE,YAAY,aAC1C,QAAQ,EACT,uBAAC,wBAAc,cACZ,MAAM,CAAC,OAAO,CACb,MAAM,EAAE,MAAM,CACZ,CAAC,KAAK,EAAE,KAAK,EAAE,EAAE;oBACf,KAAK,CAAC,KAAK,CAAC,QAAQ,IAAI,SAAS,CAAC;wBAChC,KAAK,CAAC,KAAK,CAAC,QAAQ,IAAI,SAAS,CAAC,IAAI,EAAE,CAAC;oBAC3C,KAAK,CAAC,KAAK,CAAC,QAAQ,IAAI,SAAS,CAAC,CAAC,IAAI,CAAC,KAAK,CAAC,CAAC;oBAC/C,OAAO,KAAK,CAAC;gBACf,CAAC,EACD,EAGC,CACF,CACF,CAAC,GAAG,CAAC,CAAC,CAAC,IAAI,EAAE,MAAM,CAAC,EAAE,EAAE,CAAC,CACxB,uBAAC,sBAAY,IAEX,QAAQ,EAAE,IAAmC,YAE5C,MAAM,CAAC,GAAG,CAAC,CAAC,KAAK,EAAE,EAAE,CACpB,KAAK,CAAC,YAAY,CAAC,CAAC,CAAC,CACnB,uBAAC,4BAAkB,OAAoB,KAAK,IAAnB,KAAK,CAAC,EAAE,CAAe,CACjD,CAAC,CAAC,CAAC,CACF,uBAAC,uBAAa,OAAoB,KAAK,IAAnB,KAAK,CAAC,EAAE,CAAe,CAC5C,CACF,IATI,IAAI,CAUI,CAChB,CAAC,GACa,IACQ,CAC5B,CAAC;AACJ,CAAC,CAAC;AAEF,kBAAe,IAAA,YAAI,EAA0B,gBAAgB,CAAC,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"ToastBarProvider.js","sourceRoot":"","sources":["../../src/ToastBarProvider.tsx"],"names":[],"mappings":";;;;;;AACA,iCAAoD;AAGpD,uDAAoD;AACpD,8EAAsD;AACtD,sEAA8C;AAC9C,oEAA4C;AAC5C,kEAA0C;AAM1C,MAAM,gBAAgB,GAAG,CAAC,EAAE,QAAQ,EAAiB,EAAE,EAAE;IACvD,MAAM,CAAC,MAAM,EAAE,SAAS,CAAC,GAAG,IAAA,gBAAQ,EAAoB,EAAE,CAAC,CAAC;IAE5D,MAAM,YAAY,GAAG;QACnB,QAAQ,EAAE,IAAA,mBAAW,EACnB,CAAC,MAAgE,EAAE,EAAE,CACnE,SAAS,CAAC,CAAC,MAAM,EAAE,EAAE,CAAC;YACpB,GAAG,MAAM;YACT,EAAE,GAAG,MAAM,EAAE,IAAI,EAAE,MAAM,CAAC,IAAI,IAAI,CAAC,EAAE,EAAE,EAAE,IAAI,CAAC,MAAM,EAAE,CAAC,QAAQ,EAAE,EAAE;SACpE,CAAC,EACJ,EAAE,CACH;QACD,OAAO,EAAE,IAAA,mBAAW,EAClB,CAAC,EAAyB,EAAE,EAAE,CAC5B,SAAS,CAAC,CAAC,SAAS,EAAE,EAAE,CAAC,SAAS,CAAC,MAAM,CAAC,CAAC,KAAK,EAAE,EAAE,CAAC,KAAK,CAAC,EAAE,KAAK,EAAE,CAAC,CAAC,EACxE,EAAE,CACH;KACF,CAAC;IAEF,OAAO,CACL,wBAAC,iCAAe,CAAC,QAAQ,IAAC,KAAK,EAAE,YAAY,aAC1C,QAAQ,EACT,uBAAC,wBAAc,cACZ,MAAM,CAAC,OAAO,CACb,MAAM,EAAE,MAAM,CACZ,CAAC,KAAK,EAAE,KAAK,EAAE,EAAE;oBACf,KAAK,CAAC,KAAK,CAAC,QAAQ,IAAI,SAAS,CAAC;wBAChC,KAAK,CAAC,KAAK,CAAC,QAAQ,IAAI,SAAS,CAAC,IAAI,EAAE,CAAC;oBAC3C,KAAK,CAAC,KAAK,CAAC,QAAQ,IAAI,SAAS,CAAC,CAAC,IAAI,CAAC,KAAK,CAAC,CAAC;oBAC/C,OAAO,KAAK,CAAC;gBACf,CAAC,EACD,EAGC,CACF,CACF,CAAC,GAAG,CAAC,CAAC,CAAC,IAAI,EAAE,MAAM,CAAC,EAAE,EAAE,CAAC,CACxB,uBAAC,sBAAY,IAEX,QAAQ,EAAE,IAAmC,YAE5C,MAAM,CAAC,GAAG,CAAC,CAAC,KAAK,EAAE,EAAE,CACpB,KAAK,CAAC,YAAY,CAAC,CAAC,CAAC,CACnB,uBAAC,4BAAkB,OAAoB,KAAK,IAAnB,KAAK,CAAC,EAAE,CAAe,CACjD,CAAC,CAAC,CAAC,CACF,uBAAC,uBAAa,OAAoB,KAAK,IAAnB,KAAK,CAAC,EAAE,CAAe,CAC5C,CACF,IATI,IAAI,CAUI,CAChB,CAAC,GACa,IACQ,CAC5B,CAAC;AACJ,CAAC,CAAC;AAEF,kBAAe,IAAA,YAAI,EAA0B,gBAAgB,CAAC,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/ToastBarTimed.d.ts b/dist/esm/ToastBarTimed.d.ts
+index 2e1d5275fa0937c7443272df8c6726a8b12d9327..2665aadcda3184a7442ac061a96abed42d00d59a 100644
+--- a/dist/esm/ToastBarTimed.d.ts
++++ b/dist/esm/ToastBarTimed.d.ts
+@@ -1,5 +1,4 @@
+-import type { ReactElement } from 'react';
+ import type { ToastBarPayload } from './ToastBarContext';
+-declare const ToastBarTimed: ({ time, type, id, message, title, }: ToastBarPayload) => ReactElement;
++declare const ToastBarTimed: ({ time, type, id, message, title }: ToastBarPayload) => import("react").JSX.Element;
+ export default ToastBarTimed;
+ //# sourceMappingURL=ToastBarTimed.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/ToastBarTimed.d.ts.map b/dist/esm/ToastBarTimed.d.ts.map
+index afe4aff1ffe7868e7a2a2820f15f3cf98ed21f92..3e359750ecac2bc970627ad0a4a0dc4cf080e30c 100644
+--- a/dist/esm/ToastBarTimed.d.ts.map
++++ b/dist/esm/ToastBarTimed.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"ToastBarTimed.d.ts","sourceRoot":"","sources":["../../src/ToastBarTimed.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,YAAY,EAAE,MAAM,OAAO,CAAC;AAG1C,OAAO,KAAK,EAAE,eAAe,EAAE,MAAM,mBAAmB,CAAC;AAGzD,QAAA,MAAM,aAAa,GAAI,qCAMpB,eAAe,KAAG,YAsBpB,CAAC;AAEF,eAAe,aAAa,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"ToastBarTimed.d.ts","sourceRoot":"","sources":["../../src/ToastBarTimed.tsx"],"names":[],"mappings":"AAGA,OAAO,KAAK,EAAE,eAAe,EAAE,MAAM,mBAAmB,CAAC;AAGzD,QAAA,MAAM,aAAa,GAAI,oCAAoC,eAAe,gCAsBzE,CAAC;AAEF,eAAe,aAAa,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/ToastBarTimed.js b/dist/esm/ToastBarTimed.js
+index ec6c469865fe8152bf5a7dbf754ae2297a2e1814..6c3449e67a805474fecfb9dd8a9ce61d7bb20d8a 100644
+--- a/dist/esm/ToastBarTimed.js
++++ b/dist/esm/ToastBarTimed.js
+@@ -4,7 +4,7 @@ const jsx_runtime_1 = require("react/jsx-runtime");
+ const fuselage_1 = require("@rocket.chat/fuselage");
+ const react_timing_hooks_1 = require("react-timing-hooks");
+ const ToastBarContext_1 = require("./ToastBarContext");
+-const ToastBarTimed = ({ time, type, id, message, title, }) => {
++const ToastBarTimed = ({ time, type, id, message, title }) => {
+     const dismissToastMessage = (0, ToastBarContext_1.useToastBarDismiss)();
+     const [, { isPaused, pause, resume }] = (0, react_timing_hooks_1.useCountdown)(time, 0, {
+         onEnd: () => dismissToastMessage(id),
+diff --git a/dist/esm/ToastBarTimed.js.map b/dist/esm/ToastBarTimed.js.map
+index 85730424cb9e9671b5ae5836f2baf77f4c3b4d0b..db4b726d82cd87500a8182e4301440786c6cf013 100644
+--- a/dist/esm/ToastBarTimed.js.map
++++ b/dist/esm/ToastBarTimed.js.map
+@@ -1 +1 @@
+-{"version":3,"file":"ToastBarTimed.js","sourceRoot":"","sources":["../../src/ToastBarTimed.tsx"],"names":[],"mappings":";;;AAAA,oDAAiD;AAEjD,2DAAkD;AAGlD,uDAAuD;AAEvD,MAAM,aAAa,GAAG,CAAC,EACrB,IAAI,EACJ,IAAI,EACJ,EAAE,EACF,OAAO,EACP,KAAK,GACW,EAAgB,EAAE;IAClC,MAAM,mBAAmB,GAAG,IAAA,oCAAkB,GAAE,CAAC;IAEjD,MAAM,CAAC,EAAE,EAAE,QAAQ,EAAE,KAAK,EAAE,MAAM,EAAE,CAAC,GAAG,IAAA,iCAAY,EAAC,IAAI,EAAE,CAAC,EAAE;QAC5D,KAAK,EAAE,GAAG,EAAE,CAAC,mBAAmB,CAAC,EAAE,CAAC;QACpC,YAAY,EAAE,IAAI;KACnB,CAAC,CAAC;IAEH,OAAO,CACL,wBAAC,mBAAQ,IACP,OAAO,EAAE,IAAI,EACb,cAAc,EAAE,GAAG,EAAE,CAAC,KAAK,EAAE,EAC7B,cAAc,EAAE,GAAG,EAAE,CAAC,MAAM,EAAE,EAC9B,OAAO,EAAE,mBAAmB,EAC5B,EAAE,EAAE,EAAE,EACN,IAAI,EAAE,IAAI,EACV,QAAQ,EAAE,QAAQ,aAEjB,KAAK,EACL,OAAO,YAAY,KAAK,CAAC,CAAC,CAAC,MAAM,CAAC,OAAO,CAAC,CAAC,CAAC,CAAC,OAAO,IAC5C,CACZ,CAAC;AACJ,CAAC,CAAC;AAEF,kBAAe,aAAa,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"ToastBarTimed.js","sourceRoot":"","sources":["../../src/ToastBarTimed.tsx"],"names":[],"mappings":";;;AAAA,oDAAiD;AACjD,2DAAkD;AAGlD,uDAAuD;AAEvD,MAAM,aAAa,GAAG,CAAC,EAAE,IAAI,EAAE,IAAI,EAAE,EAAE,EAAE,OAAO,EAAE,KAAK,EAAmB,EAAE,EAAE;IAC5E,MAAM,mBAAmB,GAAG,IAAA,oCAAkB,GAAE,CAAC;IAEjD,MAAM,CAAC,EAAE,EAAE,QAAQ,EAAE,KAAK,EAAE,MAAM,EAAE,CAAC,GAAG,IAAA,iCAAY,EAAC,IAAI,EAAE,CAAC,EAAE;QAC5D,KAAK,EAAE,GAAG,EAAE,CAAC,mBAAmB,CAAC,EAAE,CAAC;QACpC,YAAY,EAAE,IAAI;KACnB,CAAC,CAAC;IAEH,OAAO,CACL,wBAAC,mBAAQ,IACP,OAAO,EAAE,IAAI,EACb,cAAc,EAAE,GAAG,EAAE,CAAC,KAAK,EAAE,EAC7B,cAAc,EAAE,GAAG,EAAE,CAAC,MAAM,EAAE,EAC9B,OAAO,EAAE,mBAAmB,EAC5B,EAAE,EAAE,EAAE,EACN,IAAI,EAAE,IAAI,EACV,QAAQ,EAAE,QAAQ,aAEjB,KAAK,EACL,OAAO,YAAY,KAAK,CAAC,CAAC,CAAC,MAAM,CAAC,OAAO,CAAC,CAAC,CAAC,CAAC,OAAO,IAC5C,CACZ,CAAC;AACJ,CAAC,CAAC;AAEF,kBAAe,aAAa,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/ToastBarZone.d.ts b/dist/esm/ToastBarZone.d.ts
+index 4cf9bdd60c0f93e1ac7e84e25d3313cafdbd7db3..cb2b999ac190c27414e1164e9a3808a507fb666e 100644
+--- a/dist/esm/ToastBarZone.d.ts
++++ b/dist/esm/ToastBarZone.d.ts
+@@ -1,10 +1,10 @@
+-import type { ReactNode, ReactElement } from 'react';
++import type { ReactNode } from 'react';
+ import type { ToastBarPayload } from './ToastBarContext';
+ export declare const ToastBarContainer: import("react").ForwardRefExoticComponent<Omit<import("react").ClassAttributes<HTMLDivElement> & import("react").HTMLAttributes<HTMLDivElement> & Pick<ToastBarPayload, "position">, "ref"> & import("react").RefAttributes<HTMLDivElement>>;
+ type ToastBarZoneProps = {
+     position?: ToastBarPayload['position'];
+     children: ReactNode;
+ };
+-declare const ToastBarZone: ({ children, position, }: ToastBarZoneProps) => ReactElement;
++declare const ToastBarZone: ({ children, position, }: ToastBarZoneProps) => import("react").JSX.Element;
+ export default ToastBarZone;
+ //# sourceMappingURL=ToastBarZone.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/ToastBarZone.d.ts.map b/dist/esm/ToastBarZone.d.ts.map
+index d7aa724e83d7d673631a3515f842cd813a975fd4..4f69a2d4340561b296a3319c112e1963b929606c 100644
+--- a/dist/esm/ToastBarZone.d.ts.map
++++ b/dist/esm/ToastBarZone.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"ToastBarZone.d.ts","sourceRoot":"","sources":["../../src/ToastBarZone.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,YAAY,EAAE,MAAM,OAAO,CAAC;AAErD,OAAO,KAAK,EAAE,eAAe,EAAE,MAAM,mBAAmB,CAAC;AAqBzD,eAAO,MAAM,iBAAiB,8OAc7B,CAAC;AAEF,KAAK,iBAAiB,GAAG;IACvB,QAAQ,CAAC,EAAE,eAAe,CAAC,UAAU,CAAC,CAAC;IACvC,QAAQ,EAAE,SAAS,CAAC;CACrB,CAAC;AAEF,QAAA,MAAM,YAAY,GAAI,yBAGnB,iBAAiB,KAAG,YAEtB,CAAC;AAEF,eAAe,YAAY,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"ToastBarZone.d.ts","sourceRoot":"","sources":["../../src/ToastBarZone.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAEvC,OAAO,KAAK,EAAE,eAAe,EAAE,MAAM,mBAAmB,CAAC;AAqBzD,eAAO,MAAM,iBAAiB,8OAc7B,CAAC;AAEF,KAAK,iBAAiB,GAAG;IACvB,QAAQ,CAAC,EAAE,eAAe,CAAC,UAAU,CAAC,CAAC;IACvC,QAAQ,EAAE,SAAS,CAAC;CACrB,CAAC;AAEF,QAAA,MAAM,YAAY,GAAI,yBAGnB,iBAAiB,gCAEnB,CAAC;AAEF,eAAe,YAAY,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/ToastBarZone.js.map b/dist/esm/ToastBarZone.js.map
+index b4d0936422bb9ed0b0492db7b309d7285762a46b..047967b8219743435d47dc9123b56a72af00a95b 100644
+--- a/dist/esm/ToastBarZone.js.map
++++ b/dist/esm/ToastBarZone.js.map
+@@ -1 +1 @@
+-{"version":3,"file":"ToastBarZone.js","sourceRoot":"","sources":["../../src/ToastBarZone.tsx"],"names":[],"mappings":";;;;;;;AAAA,iEAAyC;AAKzC,MAAM,aAAa,GAAG;IACpB,WAAW,EAAE;QACX,GAAG,EAAE,+CAA+C;QACpD,GAAG,EAAE,+CAA+C;KACrD;IACD,SAAS,EAAE;QACT,GAAG,EAAE,+CAA+C;QACpD,GAAG,EAAE,+CAA+C;KACrD;IACD,cAAc,EAAE;QACd,GAAG,EAAE,+CAA+C;QACpD,GAAG,EAAE,+CAA+C;KACrD;IACD,YAAY,EAAE;QACZ,GAAG,EAAE,+CAA+C;QACpD,GAAG,EAAE,+CAA+C;KACrD;CACF,CAAC;AAEW,QAAA,iBAAiB,GAAG,IAAA,gBAAM,EACrC,KAAK,EACL,CAAC,EAAE,QAAQ,EAAE,SAAS,EAAE,GAAG,KAAK,EAAqC,EAAE,EAAE,CACvE,KAAK,CACR,CAAA;;;;;;IAMG,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC,CAAC,aAAa,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC,GAAG,CAAC,CAAC,CAAC,EAAE,CAAC;;MAEtD,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC,CAAC,aAAa,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC,GAAG,CAAC,CAAC,CAAC,EAAE,CAAC;;CAE7D,CAAC;AAOF,MAAM,YAAY,GAAG,CAAC,EACpB,QAAQ,EACR,QAAQ,GAAG,SAAS,GACF,EAAgB,EAAE,CAAC,CACrC,uBAAC,yBAAiB,IAAC,QAAQ,EAAE,QAAQ,YAAG,QAAQ,GAAqB,CACtE,CAAC;AAEF,kBAAe,YAAY,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"ToastBarZone.js","sourceRoot":"","sources":["../../src/ToastBarZone.tsx"],"names":[],"mappings":";;;;;;;AAAA,iEAAyC;AAKzC,MAAM,aAAa,GAAG;IACpB,WAAW,EAAE;QACX,GAAG,EAAE,+CAA+C;QACpD,GAAG,EAAE,+CAA+C;KACrD;IACD,SAAS,EAAE;QACT,GAAG,EAAE,+CAA+C;QACpD,GAAG,EAAE,+CAA+C;KACrD;IACD,cAAc,EAAE;QACd,GAAG,EAAE,+CAA+C;QACpD,GAAG,EAAE,+CAA+C;KACrD;IACD,YAAY,EAAE;QACZ,GAAG,EAAE,+CAA+C;QACpD,GAAG,EAAE,+CAA+C;KACrD;CACF,CAAC;AAEW,QAAA,iBAAiB,GAAG,IAAA,gBAAM,EACrC,KAAK,EACL,CAAC,EAAE,QAAQ,EAAE,SAAS,EAAE,GAAG,KAAK,EAAqC,EAAE,EAAE,CACvE,KAAK,CACR,CAAA;;;;;;IAMG,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC,CAAC,aAAa,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC,GAAG,CAAC,CAAC,CAAC,EAAE,CAAC;;MAEtD,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC,CAAC,aAAa,CAAC,CAAC,CAAC,QAAQ,CAAC,CAAC,GAAG,CAAC,CAAC,CAAC,EAAE,CAAC;;CAE7D,CAAC;AAOF,MAAM,YAAY,GAAG,CAAC,EACpB,QAAQ,EACR,QAAQ,GAAG,SAAS,GACF,EAAE,EAAE,CAAC,CACvB,uBAAC,yBAAiB,IAAC,QAAQ,EAAE,QAAQ,YAAG,QAAQ,GAAqB,CACtE,CAAC;AAEF,kBAAe,YAAY,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/index.d.ts b/dist/esm/index.d.ts
+index 0c72abc871e91fa80f00d8fabafc2cf3b53d9a24..b2e7f6b40aea1115aa6321c98658245ce7ceac04 100644
+--- a/dist/esm/index.d.ts
++++ b/dist/esm/index.d.ts
+@@ -1,5 +1,5 @@
+ export { ToastBar } from '@rocket.chat/fuselage';
+ export * from './ToastBarContext';
+ export * from './ToastBarPortal';
+-export { default as ToastBarProvider } from './ToastBarProvider';
++export { default as ToastBarProvider, type ToastBarProps, } from './ToastBarProvider';
+ //# sourceMappingURL=index.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/index.d.ts.map b/dist/esm/index.d.ts.map
+index abb7c6656166f02b4814ead57e09ea5369a0036c..ff5a942354d67a02a8a825a5da712a75a9209011 100644
+--- a/dist/esm/index.d.ts.map
++++ b/dist/esm/index.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../src/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,QAAQ,EAAE,MAAM,uBAAuB,CAAC;AACjD,cAAc,mBAAmB,CAAC;AAClC,cAAc,kBAAkB,CAAC;AACjC,OAAO,EAAE,OAAO,IAAI,gBAAgB,EAAE,MAAM,oBAAoB,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../src/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,QAAQ,EAAE,MAAM,uBAAuB,CAAC;AACjD,cAAc,mBAAmB,CAAC;AAClC,cAAc,kBAAkB,CAAC;AACjC,OAAO,EACL,OAAO,IAAI,gBAAgB,EAC3B,KAAK,aAAa,GACnB,MAAM,oBAAoB,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/index.js.map b/dist/esm/index.js.map
+index 85062cbc4404791259b563c12d5df3780269c4b4..3697e5c49ddd7ef4ada0ffda2e8856868580a7de 100644
+--- a/dist/esm/index.js.map
++++ b/dist/esm/index.js.map
+@@ -1 +1 @@
+-{"version":3,"file":"index.js","sourceRoot":"","sources":["../../src/index.ts"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;AAAA,kDAAiD;AAAxC,oGAAA,QAAQ,OAAA;AACjB,oDAAkC;AAClC,mDAAiC;AACjC,uDAAiE;AAAxD,qIAAA,OAAO,OAAoB"}
+\ No newline at end of file
++{"version":3,"file":"index.js","sourceRoot":"","sources":["../../src/index.ts"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;AAAA,kDAAiD;AAAxC,oGAAA,QAAQ,OAAA;AACjB,oDAAkC;AAClC,mDAAiC;AACjC,uDAG4B;AAF1B,qIAAA,OAAO,OAAoB"}
+\ No newline at end of file
+diff --git a/dist/esm/tsdoc-metadata.json b/dist/esm/tsdoc-metadata.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..6f2c000bcc52d7b1f1cb4831df82fe5389851ce0
+--- /dev/null
++++ b/dist/esm/tsdoc-metadata.json
+@@ -0,0 +1,11 @@
++// This file is read by tools that parse documentation comments conforming to the TSDoc standard.
++// It should be published with your NPM package.  It should not be tracked by Git.
++{
++  "tsdocVersion": "0.12",
++  "toolPackages": [
++    {
++      "packageName": "@microsoft/api-extractor",
++      "packageVersion": "7.58.7"
++    }
++  ]
++}
+diff --git a/package.json b/package.json
+index 940ee6db30c6f345a360407478a9874a3834e1d2..0d6a9a1f289227c7e16983fcef839e49bbffa5b7 100644
+--- a/package.json
++++ b/package.json
+@@ -30,10 +30,11 @@
+     "/dist"
+   ],
+   "scripts": {
+-    "build": "run-s .:build:clean .:build:esm .:build:cjs",
++    "build": "run .:build:clean && run .:build:esm && run .:build:cjs && run .:build:api",
+     ".:build:clean": "rimraf dist",
+     ".:build:esm": "tsc -p tsconfig.esm.json",
+     ".:build:cjs": "tsc -p tsconfig.cjs.json",
++    ".:build:api": "api-extractor run --local",
+     "lint": "lint",
+     "lint-and-fix": "lint-and-fix",
+     "test": "jest --runInBand",
+@@ -45,33 +46,33 @@
+     "react-timing-hooks": "~4.0.2"
+   },
+   "devDependencies": {
++    "@microsoft/api-extractor": "~7.58.7",
+     "@rocket.chat/fuselage": "^0.71.0",
+     "@rocket.chat/fuselage-hooks": "^0.39.0",
+     "@rocket.chat/fuselage-tokens": "^0.33.2",
+     "@rocket.chat/layout": "^0.34.2",
+     "@rocket.chat/storybook-dark-mode": "^4.1.0",
+     "@rocket.chat/styled": "^0.32.0",
+-    "@storybook/addon-docs": "~9.1.17",
+-    "@storybook/addon-webpack5-compiler-swc": "~4.0.2",
+-    "@storybook/react-webpack5": "~9.1.17",
++    "@storybook/addon-docs": "~9.1.20",
++    "@storybook/addon-webpack5-compiler-swc": "~4.0.3",
++    "@storybook/react-webpack5": "~9.1.20",
+     "@testing-library/dom": "~10.4.1",
+     "@testing-library/jest-dom": "~6.9.1",
+     "@testing-library/react": "~16.3.2",
+     "@testing-library/user-event": "~14.6.1",
+-    "@types/react": "~18.3.27",
+-    "@types/react-dom": "~18.3.7",
+-    "eslint": "~9.39.2",
+-    "jest": "~30.2.0",
+-    "jest-environment-jsdom": "~30.2.0",
++    "@types/react": "~19.2.16",
++    "@types/react-dom": "~19.2.3",
++    "eslint": "~9.39.4",
++    "jest": "~30.4.2",
++    "jest-environment-jsdom": "~30.4.1",
+     "lint-all": "^0.31.25",
+-    "npm-run-all": "^4.1.5",
+     "prettier": "~3.6.2",
+-    "react": "~18.3.1",
+-    "react-dom": "~18.3.1",
+-    "rimraf": "~6.0.1",
+-    "storybook": "~9.1.17",
+-    "ts-jest": "~29.4.6",
+-    "typedoc": "~0.28.16",
++    "react": "~19.2.7",
++    "react-dom": "~19.2.7",
++    "rimraf": "~6.1.3",
++    "storybook": "~9.1.20",
++    "ts-jest": "~29.4.11",
++    "typedoc": "~0.28.19",
+     "typescript": "~5.9.3"
+   },
+   "peerDependencies": {

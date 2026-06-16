@@ -168,7 +168,9 @@
 		"storybook/esbuild": "~0.28.1",
 		"tsx/esbuild": "0.28.1",
 		"qs": "6.15.2",
-		"uuid@npm:13": "13.0.1"
+		"uuid@npm:13": "13.0.1",
+		"@rocket.chat/styled@npm:^0.33.0": "patch:@rocket.chat/styled@npm%3A0.33.0#~/.yarn/patches/@rocket.chat-styled-npm-0.33.0-aee7eadf8b.patch",
+		"react-keyed-flatten-children@npm:^1.3.0": "~5.1.2"
 	},
 	"dependencies": {
 		"@types/stream-buffers": "^3.0.8",

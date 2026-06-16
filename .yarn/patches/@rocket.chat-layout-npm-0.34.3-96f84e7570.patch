@@ -1,0 +1,1273 @@
+diff --git a/dist/cjs/DarkModeProvider.d.ts b/dist/cjs/DarkModeProvider.d.ts
+index b60bac91b484619d30674cc87799c2db7787e8c4..b4b5367069faafc14411e19aca444e1b93fedda0 100644
+--- a/dist/cjs/DarkModeProvider.d.ts
++++ b/dist/cjs/DarkModeProvider.d.ts
+@@ -3,7 +3,7 @@ export type DarkModeProviderProps = {
+     children?: ReactNode;
+     forcedDarkMode?: boolean;
+ };
+-declare const DarkModeProvider: ({ children, forcedDarkMode, }: DarkModeProviderProps) => import("react/jsx-runtime").JSX.Element;
++declare const DarkModeProvider: ({ children, forcedDarkMode, }: DarkModeProviderProps) => import("react").JSX.Element;
+ export default DarkModeProvider;
+ export declare const useDarkMode: () => boolean;
+ //# sourceMappingURL=DarkModeProvider.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/DarkModeProvider.d.ts.map b/dist/cjs/DarkModeProvider.d.ts.map
+index f218af32dd117d2f30dfa97a4b8078c7e11e7ce8..2b10c2d172590639bd09e82ef3ad3ca5c6bd830e 100644
+--- a/dist/cjs/DarkModeProvider.d.ts.map
++++ b/dist/cjs/DarkModeProvider.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"DarkModeProvider.d.ts","sourceRoot":"","sources":["../../src/DarkModeProvider.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAKvC,MAAM,MAAM,qBAAqB,GAAG;IAClC,QAAQ,CAAC,EAAE,SAAS,CAAC;IACrB,cAAc,CAAC,EAAE,OAAO,CAAC;CAC1B,CAAC;AAEF,QAAA,MAAM,gBAAgB,GAAI,+BAGvB,qBAAqB,4CAGvB,CAAC;AAEF,eAAe,gBAAgB,CAAC;AAEhC,eAAO,MAAM,WAAW,QAAO,OAAsC,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"DarkModeProvider.d.ts","sourceRoot":"","sources":["../../src/DarkModeProvider.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAKvC,MAAM,MAAM,qBAAqB,GAAG;IAClC,QAAQ,CAAC,EAAE,SAAS,CAAC;IACrB,cAAc,CAAC,EAAE,OAAO,CAAC;CAC1B,CAAC;AAEF,QAAA,MAAM,gBAAgB,GAAI,+BAGvB,qBAAqB,gCAGvB,CAAC;AAEF,eAAe,gBAAgB,CAAC;AAEhC,eAAO,MAAM,WAAW,QAAO,OAAsC,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/components/ActionLink/ActionLink.d.ts b/dist/cjs/components/ActionLink/ActionLink.d.ts
+index d66fedc321f572bceba9af439c4966af7154927a..6a290cda428b18c803ab0566bd442bbc659757ef 100644
+--- a/dist/cjs/components/ActionLink/ActionLink.d.ts
++++ b/dist/cjs/components/ActionLink/ActionLink.d.ts
+@@ -5,6 +5,6 @@ export type ActionLinkProps = {
+     href?: string;
+     fontScale?: ComponentProps<typeof Box>['fontScale'];
+ } & AnchorHTMLAttributes<HTMLAnchorElement>;
+-declare const ActionLink: ({ children, href, onClick, ...props }: ActionLinkProps) => import("react/jsx-runtime").JSX.Element;
++declare const ActionLink: ({ children, href, onClick, ...props }: ActionLinkProps) => import("react").JSX.Element;
+ export default ActionLink;
+ //# sourceMappingURL=ActionLink.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/components/ActionLink/ActionLink.d.ts.map b/dist/cjs/components/ActionLink/ActionLink.d.ts.map
+index f428954d6fcc3984d20f35e0ae48e78c4966d748..da5f040cad153d657a9fb116234890cb36f54085 100644
+--- a/dist/cjs/components/ActionLink/ActionLink.d.ts.map
++++ b/dist/cjs/components/ActionLink/ActionLink.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"ActionLink.d.ts","sourceRoot":"","sources":["../../../../src/components/ActionLink/ActionLink.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,GAAG,EAAE,MAAM,uBAAuB,CAAC;AAC5C,OAAO,KAAK,EAEV,cAAc,EACd,SAAS,EACT,oBAAoB,EACrB,MAAM,OAAO,CAAC;AAGf,MAAM,MAAM,eAAe,GAAG;IAC5B,QAAQ,EAAE,SAAS,CAAC;IACpB,IAAI,CAAC,EAAE,MAAM,CAAC;IACd,SAAS,CAAC,EAAE,cAAc,CAAC,OAAO,GAAG,CAAC,CAAC,WAAW,CAAC,CAAC;CACrD,GAAG,oBAAoB,CAAC,iBAAiB,CAAC,CAAC;AAE5C,QAAA,MAAM,UAAU,GAAI,uCAKjB,eAAe,4CAuBjB,CAAC;AAEF,eAAe,UAAU,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"ActionLink.d.ts","sourceRoot":"","sources":["../../../../src/components/ActionLink/ActionLink.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,GAAG,EAAE,MAAM,uBAAuB,CAAC;AAC5C,OAAO,KAAK,EAEV,cAAc,EACd,SAAS,EACT,oBAAoB,EACrB,MAAM,OAAO,CAAC;AAGf,MAAM,MAAM,eAAe,GAAG;IAC5B,QAAQ,EAAE,SAAS,CAAC;IACpB,IAAI,CAAC,EAAE,MAAM,CAAC;IACd,SAAS,CAAC,EAAE,cAAc,CAAC,OAAO,GAAG,CAAC,CAAC,WAAW,CAAC,CAAC;CACrD,GAAG,oBAAoB,CAAC,iBAAiB,CAAC,CAAC;AAE5C,QAAA,MAAM,UAAU,GAAI,uCAKjB,eAAe,gCAuBjB,CAAC;AAEF,eAAe,UAAU,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/components/BackgroundLayer/BackgroundImage.d.ts b/dist/cjs/components/BackgroundLayer/BackgroundImage.d.ts
+index 7750e32be69d083d4e8429abaa1bf8e6e953d2f3..bbc557347dfbea3d0dc97adb3d7ee44748175b4c 100644
+--- a/dist/cjs/components/BackgroundLayer/BackgroundImage.d.ts
++++ b/dist/cjs/components/BackgroundLayer/BackgroundImage.d.ts
+@@ -1,5 +1,5 @@
+ declare const BackgroundImage: ({ backgroundColor }: {
+     backgroundColor: string;
+-}) => import("react/jsx-runtime").JSX.Element;
++}) => import("react").JSX.Element;
+ export default BackgroundImage;
+ //# sourceMappingURL=BackgroundImage.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/components/BackgroundLayer/BackgroundImage.d.ts.map b/dist/cjs/components/BackgroundLayer/BackgroundImage.d.ts.map
+index 49a24dc22c2cfba837a5f33828c4fb8bc3ad168c..4a573f6766c9bb9f4091fac216c3bdecfcb0c6c3 100644
+--- a/dist/cjs/components/BackgroundLayer/BackgroundImage.d.ts.map
++++ b/dist/cjs/components/BackgroundLayer/BackgroundImage.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"BackgroundImage.d.ts","sourceRoot":"","sources":["../../../../src/components/BackgroundLayer/BackgroundImage.tsx"],"names":[],"mappings":"AAAA,QAAA,MAAM,eAAe,GAAI,qBAAqB;IAAE,eAAe,EAAE,MAAM,CAAA;CAAE,4CAoHxE,CAAC;AAEF,eAAe,eAAe,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"BackgroundImage.d.ts","sourceRoot":"","sources":["../../../../src/components/BackgroundLayer/BackgroundImage.tsx"],"names":[],"mappings":"AAAA,QAAA,MAAM,eAAe,GAAI,qBAAqB;IAAE,eAAe,EAAE,MAAM,CAAA;CAAE,gCAoHxE,CAAC;AAEF,eAAe,eAAe,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/components/BackgroundLayer/BackgroundLayer.d.ts b/dist/cjs/components/BackgroundLayer/BackgroundLayer.d.ts
+index 271309d5e2d010045c8755d703720bd9f618fe0f..c61c111f70cf0b5fa62d4d166f262392a273e6c7 100644
+--- a/dist/cjs/components/BackgroundLayer/BackgroundLayer.d.ts
++++ b/dist/cjs/components/BackgroundLayer/BackgroundLayer.d.ts
+@@ -2,6 +2,6 @@ import type { ReactNode } from 'react';
+ export type BackgroundLayerProps = {
+     children?: ReactNode;
+ };
+-declare const BackgroundLayer: ({ children }: BackgroundLayerProps) => import("react/jsx-runtime").JSX.Element;
++declare const BackgroundLayer: ({ children }: BackgroundLayerProps) => import("react").JSX.Element;
+ export default BackgroundLayer;
+ //# sourceMappingURL=BackgroundLayer.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/components/BackgroundLayer/BackgroundLayer.d.ts.map b/dist/cjs/components/BackgroundLayer/BackgroundLayer.d.ts.map
+index f686aa1d6112ca644bc8bb244649c1ce40f4a21d..c6aa4c39e2e199ccba937f31fe248b5b5dcf2d18 100644
+--- a/dist/cjs/components/BackgroundLayer/BackgroundLayer.d.ts.map
++++ b/dist/cjs/components/BackgroundLayer/BackgroundLayer.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"BackgroundLayer.d.ts","sourceRoot":"","sources":["../../../../src/components/BackgroundLayer/BackgroundLayer.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAUvC,MAAM,MAAM,oBAAoB,GAAG;IACjC,QAAQ,CAAC,EAAE,SAAS,CAAC;CACtB,CAAC;AAEF,QAAA,MAAM,eAAe,GAAI,cAAc,oBAAoB,4CAyB1D,CAAC;AAEF,eAAe,eAAe,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"BackgroundLayer.d.ts","sourceRoot":"","sources":["../../../../src/components/BackgroundLayer/BackgroundLayer.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAUvC,MAAM,MAAM,oBAAoB,GAAG;IACjC,QAAQ,CAAC,EAAE,SAAS,CAAC;CACtB,CAAC;AAEF,QAAA,MAAM,eAAe,GAAI,cAAc,oBAAoB,gCAyB1D,CAAC;AAEF,eAAe,eAAe,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/components/FormPageLayout/FormContainer.d.ts b/dist/cjs/components/FormPageLayout/FormContainer.d.ts
+index 6d42c609959ba8ad9fafdfe928f5b1aa6c31bb74..6b7ae584e3317bc1aeb5905cd768ee63ec398439 100644
+--- a/dist/cjs/components/FormPageLayout/FormContainer.d.ts
++++ b/dist/cjs/components/FormPageLayout/FormContainer.d.ts
+@@ -1,5 +1,5 @@
+ import { Box } from '@rocket.chat/fuselage';
+ import type { ComponentProps } from 'react';
+-declare const FormContainer: (props: ComponentProps<typeof Box>) => import("react/jsx-runtime").JSX.Element;
++declare const FormContainer: (props: ComponentProps<typeof Box>) => import("react").JSX.Element;
+ export default FormContainer;
+ //# sourceMappingURL=FormContainer.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/components/FormPageLayout/FormContainer.d.ts.map b/dist/cjs/components/FormPageLayout/FormContainer.d.ts.map
+index d4fb998ad0a39fefa2db3856ceb35593b6ebc412..8f76f557be854a2fd8855ef883d688b82b2ceb7b 100644
+--- a/dist/cjs/components/FormPageLayout/FormContainer.d.ts.map
++++ b/dist/cjs/components/FormPageLayout/FormContainer.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"FormContainer.d.ts","sourceRoot":"","sources":["../../../../src/components/FormPageLayout/FormContainer.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,GAAG,EAAE,MAAM,uBAAuB,CAAC;AAC5C,OAAO,KAAK,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAE5C,QAAA,MAAM,aAAa,GAAI,OAAO,cAAc,CAAC,OAAO,GAAG,CAAC,4CAAuB,CAAC;AAEhF,eAAe,aAAa,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"FormContainer.d.ts","sourceRoot":"","sources":["../../../../src/components/FormPageLayout/FormContainer.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,GAAG,EAAE,MAAM,uBAAuB,CAAC;AAC5C,OAAO,KAAK,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAE5C,QAAA,MAAM,aAAa,GAAI,OAAO,cAAc,CAAC,OAAO,GAAG,CAAC,gCAAuB,CAAC;AAEhF,eAAe,aAAa,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/components/FormPageLayout/FormSteps.d.ts b/dist/cjs/components/FormPageLayout/FormSteps.d.ts
+index 1e125277990a6a032af5c345e2581c22652e2b03..eda7ccd5f035bc37a6231745d5ef6d924676c835 100644
+--- a/dist/cjs/components/FormPageLayout/FormSteps.d.ts
++++ b/dist/cjs/components/FormPageLayout/FormSteps.d.ts
+@@ -2,6 +2,6 @@ export type FormStepsProps = {
+     currentStep: number;
+     stepCount: number;
+ };
+-declare const FormSteps: ({ currentStep, stepCount }: FormStepsProps) => import("react/jsx-runtime").JSX.Element;
++declare const FormSteps: ({ currentStep, stepCount }: FormStepsProps) => import("react").JSX.Element;
+ export default FormSteps;
+ //# sourceMappingURL=FormSteps.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/components/FormPageLayout/FormSteps.d.ts.map b/dist/cjs/components/FormPageLayout/FormSteps.d.ts.map
+index dd3254a22ff918a7a5290003e36283ac04deff1d..afa25004df248d04669f16f5788afe2e3b9fee60 100644
+--- a/dist/cjs/components/FormPageLayout/FormSteps.d.ts.map
++++ b/dist/cjs/components/FormPageLayout/FormSteps.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"FormSteps.d.ts","sourceRoot":"","sources":["../../../../src/components/FormPageLayout/FormSteps.tsx"],"names":[],"mappings":"AAGA,MAAM,MAAM,cAAc,GAAG;IAC3B,WAAW,EAAE,MAAM,CAAC;IACpB,SAAS,EAAE,MAAM,CAAC;CACnB,CAAC;AAEF,QAAA,MAAM,SAAS,GAAI,4BAA4B,cAAc,4CAQ5D,CAAC;AAEF,eAAe,SAAS,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"FormSteps.d.ts","sourceRoot":"","sources":["../../../../src/components/FormPageLayout/FormSteps.tsx"],"names":[],"mappings":"AAGA,MAAM,MAAM,cAAc,GAAG;IAC3B,WAAW,EAAE,MAAM,CAAC;IACpB,SAAS,EAAE,MAAM,CAAC;CACnB,CAAC;AAEF,QAAA,MAAM,SAAS,GAAI,4BAA4B,cAAc,gCAQ5D,CAAC;AAEF,eAAe,SAAS,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/components/FormPageLayout/index.d.ts b/dist/cjs/components/FormPageLayout/index.d.ts
+index 6fa368467130975180d925df62abd876fa36e64c..41dfcbb2d782d630c5d7d2bb7e24020cc76dacb0 100644
+--- a/dist/cjs/components/FormPageLayout/index.d.ts
++++ b/dist/cjs/components/FormPageLayout/index.d.ts
+@@ -12,14 +12,14 @@ declare const _default: import("react").ForwardRefExoticComponent<Omit<import("r
+     Header: import("react").ForwardRefExoticComponent<Omit<import("react").FormHTMLAttributes<HTMLElement>, "is"> & {
+         children: import("react").ReactNode;
+     } & import("react").RefAttributes<HTMLElement>>;
+-    Steps: ({ currentStep, stepCount }: import("./FormSteps").FormStepsProps) => import("react/jsx-runtime").JSX.Element;
++    Steps: ({ currentStep, stepCount }: import("./FormSteps").FormStepsProps) => import("react").JSX.Element;
+     Title: import("react").ForwardRefExoticComponent<Omit<import("react").FormHTMLAttributes<HTMLElement>, "is"> & {
+         children: import("react").ReactNode;
+     } & import("react").RefAttributes<HTMLElement>>;
+     Subtitle: import("react").ForwardRefExoticComponent<Omit<import("react").FormHTMLAttributes<HTMLElement>, "is"> & {
+         children: import("react").ReactNode;
+     } & import("react").RefAttributes<HTMLElement>>;
+-    Container: (props: import("react").ComponentProps<import("react").MemoExoticComponent<import("react").ForwardRefExoticComponent<import("@rocket.chat/fuselage").BoxProps & import("react").RefAttributes<any>>>>) => import("react/jsx-runtime").JSX.Element;
++    Container: (props: import("react").ComponentProps<import("react").NamedExoticComponent<import("@rocket.chat/fuselage").BoxProps & import("react").RefAttributes<any>>>) => import("react").JSX.Element;
+     Footer: import("react").ForwardRefExoticComponent<Omit<import("react").FormHTMLAttributes<HTMLElement>, "is"> & {
+         children: import("react").ReactNode;
+     } & import("react").RefAttributes<HTMLElement>>;
+diff --git a/dist/cjs/components/LayoutLogo/LayoutLogo.d.ts b/dist/cjs/components/LayoutLogo/LayoutLogo.d.ts
+index 60b7de14e18ac1dab37ef484835f1a4a4e2ddbc0..6a304c7096022541dde4084cc680876df14809a8 100644
+--- a/dist/cjs/components/LayoutLogo/LayoutLogo.d.ts
++++ b/dist/cjs/components/LayoutLogo/LayoutLogo.d.ts
+@@ -1,3 +1,3 @@
+-declare const LayoutLogo: () => import("react/jsx-runtime").JSX.Element;
++declare const LayoutLogo: () => import("react").JSX.Element;
+ export default LayoutLogo;
+ //# sourceMappingURL=LayoutLogo.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/components/LayoutLogo/LayoutLogo.d.ts.map b/dist/cjs/components/LayoutLogo/LayoutLogo.d.ts.map
+index 559840b7eef1fd7ff5a3a6b287045629d07b53b6..6154f4691c4fc719d6434f8f85589316d40933ac 100644
+--- a/dist/cjs/components/LayoutLogo/LayoutLogo.d.ts.map
++++ b/dist/cjs/components/LayoutLogo/LayoutLogo.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"LayoutLogo.d.ts","sourceRoot":"","sources":["../../../../src/components/LayoutLogo/LayoutLogo.tsx"],"names":[],"mappings":"AAMA,QAAA,MAAM,UAAU,+CAQf,CAAC;AAEF,eAAe,UAAU,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"LayoutLogo.d.ts","sourceRoot":"","sources":["../../../../src/components/LayoutLogo/LayoutLogo.tsx"],"names":[],"mappings":"AAMA,QAAA,MAAM,UAAU,mCAQf,CAAC;AAEF,eAAe,UAAU,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/components/List/List.d.ts b/dist/cjs/components/List/List.d.ts
+index 7a775c5b72f65a6b77b36e7dde71e4b1b8caef0b..55f69966d78779d2ef0a2ad9d529e300b419801f 100644
+--- a/dist/cjs/components/List/List.d.ts
++++ b/dist/cjs/components/List/List.d.ts
+@@ -6,6 +6,6 @@ declare const List: ({ children, listStyleType, icon, spacing, color, }: {
+     listStyleType?: CSSProperties["listStyleType"];
+     color?: CSSProperties["color"];
+     icon?: string;
+-}) => import("react/jsx-runtime").JSX.Element;
++}) => import("react").JSX.Element;
+ export default List;
+ //# sourceMappingURL=List.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/components/List/List.d.ts.map b/dist/cjs/components/List/List.d.ts.map
+index 233a0faa5b38cd0c45939f1e07e645c3b54587b0..c0a0fedd538f535879b5e818d26887e4726b35ff 100644
+--- a/dist/cjs/components/List/List.d.ts.map
++++ b/dist/cjs/components/List/List.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"List.d.ts","sourceRoot":"","sources":["../../../../src/components/List/List.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAW,MAAM,uBAAuB,CAAC;AACzD,OAAO,KAAK,EAAE,SAAS,EAAE,cAAc,EAAE,aAAa,EAAE,MAAM,OAAO,CAAC;AAItE,QAAA,MAAM,IAAI,GAAI,oDAMX;IACD,QAAQ,EAAE,SAAS,CAAC;IACpB,OAAO,CAAC,EAAE,cAAc,CAAC,OAAO,OAAO,CAAC,CAAC,OAAO,CAAC,CAAC;IAClD,aAAa,CAAC,EAAE,aAAa,CAAC,eAAe,CAAC,CAAC;IAC/C,KAAK,CAAC,EAAE,aAAa,CAAC,OAAO,CAAC,CAAC;IAC/B,IAAI,CAAC,EAAE,MAAM,CAAC;CACf,4CAIA,CAAC;AAEF,eAAe,IAAI,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"List.d.ts","sourceRoot":"","sources":["../../../../src/components/List/List.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAW,MAAM,uBAAuB,CAAC;AACzD,OAAO,KAAK,EAAE,SAAS,EAAE,cAAc,EAAE,aAAa,EAAE,MAAM,OAAO,CAAC;AAItE,QAAA,MAAM,IAAI,GAAI,oDAMX;IACD,QAAQ,EAAE,SAAS,CAAC;IACpB,OAAO,CAAC,EAAE,cAAc,CAAC,OAAO,OAAO,CAAC,CAAC,OAAO,CAAC,CAAC;IAClD,aAAa,CAAC,EAAE,aAAa,CAAC,eAAe,CAAC,CAAC;IAC/C,KAAK,CAAC,EAAE,aAAa,CAAC,OAAO,CAAC,CAAC;IAC/B,IAAI,CAAC,EAAE,MAAM,CAAC;CACf,gCAIA,CAAC;AAEF,eAAe,IAAI,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/components/List/ListItem.d.ts b/dist/cjs/components/List/ListItem.d.ts
+index f55f6ab9ca91adc82ea23df8232f4fa2ba5c9ac3..59b5077fcd289edb070d8b5cb5efbdd2e784bc29 100644
+--- a/dist/cjs/components/List/ListItem.d.ts
++++ b/dist/cjs/components/List/ListItem.d.ts
+@@ -5,6 +5,6 @@ declare const ListItem: ({ children, icon, iconColor, fontScale, }: {
+     icon?: ComponentProps<typeof Icon>["name"];
+     iconColor?: ComponentProps<typeof Icon>["color"];
+     fontScale?: ComponentProps<typeof Box>["fontScale"];
+-}) => import("react/jsx-runtime").JSX.Element;
++}) => import("react").JSX.Element;
+ export default ListItem;
+ //# sourceMappingURL=ListItem.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/components/List/ListItem.d.ts.map b/dist/cjs/components/List/ListItem.d.ts.map
+index daeefcfeeaaf454557bd5a4ecfb943a836a6b98a..b302be67dc7ca3f1626539c1eb79f1b00e7efd06 100644
+--- a/dist/cjs/components/List/ListItem.d.ts.map
++++ b/dist/cjs/components/List/ListItem.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"ListItem.d.ts","sourceRoot":"","sources":["../../../../src/components/List/ListItem.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,GAAG,EAAE,IAAI,EAAE,MAAM,uBAAuB,CAAC;AAClD,OAAO,KAAK,EAAE,cAAc,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAEvD,QAAA,MAAM,QAAQ,GAAI,2CAKf;IACD,QAAQ,EAAE,SAAS,CAAC;IACpB,IAAI,CAAC,EAAE,cAAc,CAAC,OAAO,IAAI,CAAC,CAAC,MAAM,CAAC,CAAC;IAC3C,SAAS,CAAC,EAAE,cAAc,CAAC,OAAO,IAAI,CAAC,CAAC,OAAO,CAAC,CAAC;IACjD,SAAS,CAAC,EAAE,cAAc,CAAC,OAAO,GAAG,CAAC,CAAC,WAAW,CAAC,CAAC;CACrD,4CAKA,CAAC;AAEF,eAAe,QAAQ,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"ListItem.d.ts","sourceRoot":"","sources":["../../../../src/components/List/ListItem.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,GAAG,EAAE,IAAI,EAAE,MAAM,uBAAuB,CAAC;AAClD,OAAO,KAAK,EAAE,cAAc,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAEvD,QAAA,MAAM,QAAQ,GAAI,2CAKf;IACD,QAAQ,EAAE,SAAS,CAAC;IACpB,IAAI,CAAC,EAAE,cAAc,CAAC,OAAO,IAAI,CAAC,CAAC,MAAM,CAAC,CAAC;IAC3C,SAAS,CAAC,EAAE,cAAc,CAAC,OAAO,IAAI,CAAC,CAAC,OAAO,CAAC,CAAC;IACjD,SAAS,CAAC,EAAE,cAAc,CAAC,OAAO,GAAG,CAAC,CAAC,WAAW,CAAC,CAAC;CACrD,gCAKA,CAAC;AAEF,eAAe,QAAQ,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/components/List/index.d.ts b/dist/cjs/components/List/index.d.ts
+index 503fa24ba10f6663e913ecc92d3a750cd28e3a87..93ae8e9e969346fba130c15114f04f8fbf0888ce 100644
+--- a/dist/cjs/components/List/index.d.ts
++++ b/dist/cjs/components/List/index.d.ts
+@@ -2,11 +2,11 @@ import List from './List';
+ import ListItem from './ListItem';
+ declare const _default: (({ children, listStyleType, icon, spacing, color, }: {
+     children: import("react").ReactNode;
+-    spacing?: import("react").ComponentProps<(props: import("@rocket.chat/fuselage").MarginsProps) => import("react/jsx-runtime").JSX.Element>["block"];
++    spacing?: import("react").ComponentProps<(props: import("@rocket.chat/fuselage").MarginsProps) => import("react").JSX.Element>["block"];
+     listStyleType?: import("react").CSSProperties["listStyleType"];
+     color?: import("react").CSSProperties["color"];
+     icon?: string;
+-}) => import("react/jsx-runtime").JSX.Element) & {
++}) => import("react").JSX.Element) & {
+     Item: ({ children, icon, iconColor, fontScale, }: {
+         children: import("react").ReactNode;
+         icon?: import("react").ComponentProps<import("react").ForwardRefExoticComponent<Omit<import("@rocket.chat/fuselage").BoxProps, "name" | "size"> & {
+@@ -17,8 +17,8 @@ declare const _default: (({ children, listStyleType, icon, spacing, color, }: {
+             name: import("@rocket.chat/icons").Keys;
+             size?: import("@rocket.chat/fuselage").BoxProps["width"];
+         } & import("react").RefAttributes<HTMLElement>>>["color"];
+-        fontScale?: import("react").ComponentProps<import("react").MemoExoticComponent<import("react").ForwardRefExoticComponent<import("@rocket.chat/fuselage").BoxProps & import("react").RefAttributes<any>>>>["fontScale"];
+-    }) => import("react/jsx-runtime").JSX.Element;
++        fontScale?: import("react").ComponentProps<import("react").NamedExoticComponent<import("@rocket.chat/fuselage").BoxProps & import("react").RefAttributes<any>>>["fontScale"];
++    }) => import("react").JSX.Element;
+ };
+ export default _default;
+ export { List, ListItem };
+diff --git a/dist/cjs/components/TooltipWrapper/TooltipWrapper.d.ts b/dist/cjs/components/TooltipWrapper/TooltipWrapper.d.ts
+index 9615a13eabc7e58239d325198889b92bef00ce18..9b8600703d75935f76e4eb7ffa132491b246e8ac 100644
+--- a/dist/cjs/components/TooltipWrapper/TooltipWrapper.d.ts
++++ b/dist/cjs/components/TooltipWrapper/TooltipWrapper.d.ts
+@@ -1,6 +1,6 @@
+-import type { Dispatch, MutableRefObject, ReactElement, ReactNode, SetStateAction } from 'react';
++import type { Dispatch, RefObject, ReactElement, ReactNode, SetStateAction } from 'react';
+ export type AnchorParams = {
+-    ref: MutableRefObject<Element | null>;
++    ref: RefObject<Element | null>;
+     toggle: Dispatch<SetStateAction<boolean>>;
+     id: string;
+ };
+@@ -8,6 +8,6 @@ export type TooltipWrapperProps = {
+     children: ReactElement<any> | ((props: AnchorParams) => ReactNode);
+     text: string;
+ };
+-declare const TooltipWrapper: ({ children, text }: TooltipWrapperProps) => import("react/jsx-runtime").JSX.Element;
++declare const TooltipWrapper: ({ children, text }: TooltipWrapperProps) => import("react").JSX.Element;
+ export default TooltipWrapper;
+ //# sourceMappingURL=TooltipWrapper.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/components/TooltipWrapper/TooltipWrapper.d.ts.map b/dist/cjs/components/TooltipWrapper/TooltipWrapper.d.ts.map
+index db00a9a95f40e537bdec5a08a2e4329df2e84210..737db538495f7134c4977e9e4a612a3118a8a8f3 100644
+--- a/dist/cjs/components/TooltipWrapper/TooltipWrapper.d.ts.map
++++ b/dist/cjs/components/TooltipWrapper/TooltipWrapper.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"TooltipWrapper.d.ts","sourceRoot":"","sources":["../../../../src/components/TooltipWrapper/TooltipWrapper.tsx"],"names":[],"mappings":"AAMA,OAAO,KAAK,EAEV,QAAQ,EACR,gBAAgB,EAChB,YAAY,EACZ,SAAS,EAET,cAAc,EACf,MAAM,OAAO,CAAC;AAUf,MAAM,MAAM,YAAY,GAAG;IACzB,GAAG,EAAE,gBAAgB,CAAC,OAAO,GAAG,IAAI,CAAC,CAAC;IACtC,MAAM,EAAE,QAAQ,CAAC,cAAc,CAAC,OAAO,CAAC,CAAC,CAAC;IAC1C,EAAE,EAAE,MAAM,CAAC;CACZ,CAAC;AAgCF,MAAM,MAAM,mBAAmB,GAAG;IAChC,QAAQ,EAAE,YAAY,CAAC,GAAG,CAAC,GAAG,CAAC,CAAC,KAAK,EAAE,YAAY,KAAK,SAAS,CAAC,CAAC;IACnE,IAAI,EAAE,MAAM,CAAC;CACd,CAAC;AAEF,QAAA,MAAM,cAAc,GAAI,oBAAoB,mBAAmB,4CA6C9D,CAAC;AAEF,eAAe,cAAc,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"TooltipWrapper.d.ts","sourceRoot":"","sources":["../../../../src/components/TooltipWrapper/TooltipWrapper.tsx"],"names":[],"mappings":"AAMA,OAAO,KAAK,EAEV,QAAQ,EACR,SAAS,EACT,YAAY,EACZ,SAAS,EAET,cAAc,EACf,MAAM,OAAO,CAAC;AAUf,MAAM,MAAM,YAAY,GAAG;IACzB,GAAG,EAAE,SAAS,CAAC,OAAO,GAAG,IAAI,CAAC,CAAC;IAC/B,MAAM,EAAE,QAAQ,CAAC,cAAc,CAAC,OAAO,CAAC,CAAC,CAAC;IAC1C,EAAE,EAAE,MAAM,CAAC;CACZ,CAAC;AAgCF,MAAM,MAAM,mBAAmB,GAAG;IAChC,QAAQ,EAAE,YAAY,CAAC,GAAG,CAAC,GAAG,CAAC,CAAC,KAAK,EAAE,YAAY,KAAK,SAAS,CAAC,CAAC;IACnE,IAAI,EAAE,MAAM,CAAC;CACd,CAAC;AAEF,QAAA,MAAM,cAAc,GAAI,oBAAoB,mBAAmB,gCA6C9D,CAAC;AAEF,eAAe,cAAc,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/layouts/HeroLayout/HeroLayout.d.ts b/dist/cjs/layouts/HeroLayout/HeroLayout.d.ts
+index 394e15a51989509728b668dbcbf436305822fee7..220dbe49307dcc42b67f276f141ef6fa4623862c 100644
+--- a/dist/cjs/layouts/HeroLayout/HeroLayout.d.ts
++++ b/dist/cjs/layouts/HeroLayout/HeroLayout.d.ts
+@@ -2,6 +2,6 @@ import type { ReactNode } from 'react';
+ import type { LayoutContextValue } from '../../contexts/LayoutContext';
+ declare const HeroLayout: ({ children, forceDarkMode, ...rest }: LayoutContextValue & {
+     children: ReactNode;
+-}) => import("react/jsx-runtime").JSX.Element;
++}) => import("react").JSX.Element;
+ export default HeroLayout;
+ //# sourceMappingURL=HeroLayout.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/layouts/HeroLayout/HeroLayout.d.ts.map b/dist/cjs/layouts/HeroLayout/HeroLayout.d.ts.map
+index 788a9d9001b659d7a0259b25848b45240e0c2d09..b615f85911324f704ea84e1eb06688580650adcb 100644
+--- a/dist/cjs/layouts/HeroLayout/HeroLayout.d.ts.map
++++ b/dist/cjs/layouts/HeroLayout/HeroLayout.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"HeroLayout.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HeroLayout/HeroLayout.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAKvC,OAAO,KAAK,EAAE,kBAAkB,EAAE,MAAM,8BAA8B,CAAC;AAGvE,QAAA,MAAM,UAAU,GAAI,sCAIjB,kBAAkB,GAAG;IACtB,QAAQ,EAAE,SAAS,CAAC;CACrB,4CAsBA,CAAC;AAEF,eAAe,UAAU,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"HeroLayout.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HeroLayout/HeroLayout.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAKvC,OAAO,KAAK,EAAE,kBAAkB,EAAE,MAAM,8BAA8B,CAAC;AAGvE,QAAA,MAAM,UAAU,GAAI,sCAIjB,kBAAkB,GAAG;IACtB,QAAQ,EAAE,SAAS,CAAC;CACrB,gCAsBA,CAAC;AAEF,eAAe,UAAU,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/layouts/HeroLayout/HeroLayoutSubtitle.d.ts b/dist/cjs/layouts/HeroLayout/HeroLayoutSubtitle.d.ts
+index d8d570b0fe2a540b0bf8dc9baf7905083bff4a30..16c239b0396cb0ea7dae173a2736b14db4ac02e7 100644
+--- a/dist/cjs/layouts/HeroLayout/HeroLayoutSubtitle.d.ts
++++ b/dist/cjs/layouts/HeroLayout/HeroLayoutSubtitle.d.ts
+@@ -1,6 +1,6 @@
+ import type { ReactNode } from 'react';
+ declare const HeroLayoutSubtitle: ({ children }: {
+     children: ReactNode;
+-}) => import("react/jsx-runtime").JSX.Element;
++}) => import("react").JSX.Element;
+ export default HeroLayoutSubtitle;
+ //# sourceMappingURL=HeroLayoutSubtitle.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/layouts/HeroLayout/HeroLayoutSubtitle.d.ts.map b/dist/cjs/layouts/HeroLayout/HeroLayoutSubtitle.d.ts.map
+index 1ee40a5f64c58223954b7df87fb78b802d10a943..a58fef18dd540426bc30ae8cfa5993f9c14cfd22 100644
+--- a/dist/cjs/layouts/HeroLayout/HeroLayoutSubtitle.d.ts.map
++++ b/dist/cjs/layouts/HeroLayout/HeroLayoutSubtitle.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"HeroLayoutSubtitle.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HeroLayout/HeroLayoutSubtitle.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAEvC,QAAA,MAAM,kBAAkB,GAAI,cAAc;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,4CAEhE,CAAC;AAEF,eAAe,kBAAkB,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"HeroLayoutSubtitle.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HeroLayout/HeroLayoutSubtitle.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAEvC,QAAA,MAAM,kBAAkB,GAAI,cAAc;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,gCAEhE,CAAC;AAEF,eAAe,kBAAkB,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/layouts/HeroLayout/HeroLayoutTitle.d.ts b/dist/cjs/layouts/HeroLayout/HeroLayoutTitle.d.ts
+index e48c04d3676e3cc52f0f827f04200dfc8ceb2dd9..a33ca7796bc6bea3339267998edaa387555b8593 100644
+--- a/dist/cjs/layouts/HeroLayout/HeroLayoutTitle.d.ts
++++ b/dist/cjs/layouts/HeroLayout/HeroLayoutTitle.d.ts
+@@ -1,6 +1,6 @@
+ import type { ReactNode } from 'react';
+ declare const HeroLayoutTitle: ({ children }: {
+     children: ReactNode;
+-}) => import("react/jsx-runtime").JSX.Element;
++}) => import("react").JSX.Element;
+ export default HeroLayoutTitle;
+ //# sourceMappingURL=HeroLayoutTitle.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/layouts/HeroLayout/HeroLayoutTitle.d.ts.map b/dist/cjs/layouts/HeroLayout/HeroLayoutTitle.d.ts.map
+index dc06de8a73a740b8f475c40ff2ffd2d57027a373..ad59a08a914c3ea47bf42ed1261622b3cb8c25e7 100644
+--- a/dist/cjs/layouts/HeroLayout/HeroLayoutTitle.d.ts.map
++++ b/dist/cjs/layouts/HeroLayout/HeroLayoutTitle.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"HeroLayoutTitle.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HeroLayout/HeroLayoutTitle.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAEvC,QAAA,MAAM,eAAe,GAAI,cAAc;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,4CAE7D,CAAC;AAEF,eAAe,eAAe,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"HeroLayoutTitle.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HeroLayout/HeroLayoutTitle.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAEvC,QAAA,MAAM,eAAe,GAAI,cAAc;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,gCAE7D,CAAC;AAEF,eAAe,eAAe,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayout.d.ts b/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayout.d.ts
+index b6f9466319d3fc7d8d98094002a46978a010a7de..3b3e16ac54e7becb774af45ddee2d995596f50a7 100644
+--- a/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayout.d.ts
++++ b/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayout.d.ts
+@@ -2,6 +2,6 @@ import type { ReactNode } from 'react';
+ import type { LayoutContextValue } from '../../contexts/LayoutContext';
+ declare const HorizontalWizardLayout: ({ children, forceDarkMode, ...rest }: LayoutContextValue & {
+     children: ReactNode;
+-}) => import("react/jsx-runtime").JSX.Element;
++}) => import("react").JSX.Element;
+ export default HorizontalWizardLayout;
+ //# sourceMappingURL=HorizontalWizardLayout.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayout.d.ts.map b/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayout.d.ts.map
+index 0e50b673092312e173faec7f3c242da38c5be4fd..77dd2d5425a4698e05a307a9d6a7ce411e25ff6c 100644
+--- a/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayout.d.ts.map
++++ b/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayout.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"HorizontalWizardLayout.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HorizontalWizardLayout/HorizontalWizardLayout.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAKvC,OAAO,KAAK,EAAE,kBAAkB,EAAE,MAAM,8BAA8B,CAAC;AAGvE,QAAA,MAAM,sBAAsB,GAAI,sCAI7B,kBAAkB,GAAG;IACtB,QAAQ,EAAE,SAAS,CAAC;CACrB,4CAQA,CAAC;AAEF,eAAe,sBAAsB,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"HorizontalWizardLayout.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HorizontalWizardLayout/HorizontalWizardLayout.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAKvC,OAAO,KAAK,EAAE,kBAAkB,EAAE,MAAM,8BAA8B,CAAC;AAGvE,QAAA,MAAM,sBAAsB,GAAI,sCAI7B,kBAAkB,GAAG;IACtB,QAAQ,EAAE,SAAS,CAAC;CACrB,gCAQA,CAAC;AAEF,eAAe,sBAAsB,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutAside.d.ts b/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutAside.d.ts
+index 479747280dac5c0e14df4d1bb265e5fb67cee509..cf3d210d90d96f2a3110f5fae47992da0fb3e3ad 100644
+--- a/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutAside.d.ts
++++ b/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutAside.d.ts
+@@ -1,6 +1,6 @@
+ import type { ReactNode } from 'react';
+ declare const HorizontalWizardLayoutAside: ({ children }: {
+     children: ReactNode;
+-}) => import("react/jsx-runtime").JSX.Element;
++}) => import("react").JSX.Element;
+ export default HorizontalWizardLayoutAside;
+ //# sourceMappingURL=HorizontalWizardLayoutAside.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutAside.d.ts.map b/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutAside.d.ts.map
+index 9690298e0cbfec04722fda985ccf18364f527b73..cc77cd18949415102375a7f2cc17346fcb8ab50a 100644
+--- a/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutAside.d.ts.map
++++ b/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutAside.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"HorizontalWizardLayoutAside.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HorizontalWizardLayout/HorizontalWizardLayoutAside.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAKvC,QAAA,MAAM,2BAA2B,GAAI,cAAc;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,4CAOzE,CAAC;AAEF,eAAe,2BAA2B,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"HorizontalWizardLayoutAside.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HorizontalWizardLayout/HorizontalWizardLayoutAside.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAKvC,QAAA,MAAM,2BAA2B,GAAI,cAAc;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,gCAOzE,CAAC;AAEF,eAAe,2BAA2B,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutCaption.d.ts b/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutCaption.d.ts
+index 004c29ce0f4bda654fc5fe552c4e58920d074b96..97becce402b235ef2c84cb3171f976320438bdf3 100644
+--- a/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutCaption.d.ts
++++ b/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutCaption.d.ts
+@@ -1,6 +1,6 @@
+ import type { ReactNode } from 'react';
+ declare const HorizontalWizardLayoutCaption: ({ children, }: {
+     children: ReactNode;
+-}) => import("react/jsx-runtime").JSX.Element;
++}) => import("react").JSX.Element;
+ export default HorizontalWizardLayoutCaption;
+ //# sourceMappingURL=HorizontalWizardLayoutCaption.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutCaption.d.ts.map b/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutCaption.d.ts.map
+index 2493cee6ed321d2cff4444ab5f585d14325d3182..52a7015f9b74ea992d2f7814f26a5becd6d5e6e8 100644
+--- a/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutCaption.d.ts.map
++++ b/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutCaption.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"HorizontalWizardLayoutCaption.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HorizontalWizardLayout/HorizontalWizardLayoutCaption.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAIvC,QAAA,MAAM,6BAA6B,GAAI,eAEpC;IACD,QAAQ,EAAE,SAAS,CAAC;CACrB,4CAcA,CAAC;AAEF,eAAe,6BAA6B,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"HorizontalWizardLayoutCaption.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HorizontalWizardLayout/HorizontalWizardLayoutCaption.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAIvC,QAAA,MAAM,6BAA6B,GAAI,eAEpC;IACD,QAAQ,EAAE,SAAS,CAAC;CACrB,gCAcA,CAAC;AAEF,eAAe,6BAA6B,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutContent.d.ts b/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutContent.d.ts
+index 2e3b1db4140505e8d9885c189514d3a7f9d1ecae..1c4548983d3ef9aab30248528ff79dbde5a6beea 100644
+--- a/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutContent.d.ts
++++ b/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutContent.d.ts
+@@ -1,6 +1,6 @@
+ import type { ReactNode } from 'react';
+ declare const HorizontalWizardLayoutContent: ({ children, }: {
+     children: ReactNode;
+-}) => import("react/jsx-runtime").JSX.Element;
++}) => import("react").JSX.Element;
+ export default HorizontalWizardLayoutContent;
+ //# sourceMappingURL=HorizontalWizardLayoutContent.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutContent.d.ts.map b/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutContent.d.ts.map
+index 1b845c8add1475a91dc199206b85fae75cf7b48b..27e2c4922b65f698c52417cf9c4b3c0ab111f35c 100644
+--- a/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutContent.d.ts.map
++++ b/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutContent.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"HorizontalWizardLayoutContent.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HorizontalWizardLayout/HorizontalWizardLayoutContent.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAIvC,QAAA,MAAM,6BAA6B,GAAI,eAEpC;IACD,QAAQ,EAAE,SAAS,CAAC;CACrB,4CAAgE,CAAC;AAElE,eAAe,6BAA6B,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"HorizontalWizardLayoutContent.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HorizontalWizardLayout/HorizontalWizardLayoutContent.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAIvC,QAAA,MAAM,6BAA6B,GAAI,eAEpC;IACD,QAAQ,EAAE,SAAS,CAAC;CACrB,gCAAgE,CAAC;AAElE,eAAe,6BAA6B,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutDescription.d.ts b/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutDescription.d.ts
+index 039ba10ff11f18af2782995b945a4f5c51d65398..864e05f15c8cdaeed2dbbc037e57ea873252537a 100644
+--- a/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutDescription.d.ts
++++ b/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutDescription.d.ts
+@@ -1,5 +1,5 @@
+ import type { ComponentProps } from 'react';
+ import * as FormPageLayout from '../../components/FormPageLayout/FormPageLayout.styles';
+-declare const HorizontalWizardLayoutDescription: (props: ComponentProps<typeof FormPageLayout.Description>) => import("react/jsx-runtime").JSX.Element;
++declare const HorizontalWizardLayoutDescription: (props: ComponentProps<typeof FormPageLayout.Description>) => import("react").JSX.Element;
+ export default HorizontalWizardLayoutDescription;
+ //# sourceMappingURL=HorizontalWizardLayoutDescription.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutDescription.d.ts.map b/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutDescription.d.ts.map
+index e99269ecdb9819582cec76d78e8d4f66d4f49445..83495a4d06348cf4d2dddb611a159a099560f10a 100644
+--- a/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutDescription.d.ts.map
++++ b/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutDescription.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"HorizontalWizardLayoutDescription.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HorizontalWizardLayout/HorizontalWizardLayoutDescription.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAE5C,OAAO,KAAK,cAAc,MAAM,uDAAuD,CAAC;AAExF,QAAA,MAAM,iCAAiC,GACrC,OAAO,cAAc,CAAC,OAAO,cAAc,CAAC,WAAW,CAAC,4CACZ,CAAC;AAE/C,eAAe,iCAAiC,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"HorizontalWizardLayoutDescription.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HorizontalWizardLayout/HorizontalWizardLayoutDescription.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAE5C,OAAO,KAAK,cAAc,MAAM,uDAAuD,CAAC;AAExF,QAAA,MAAM,iCAAiC,GACrC,OAAO,cAAc,CAAC,OAAO,cAAc,CAAC,WAAW,CAAC,gCACZ,CAAC;AAE/C,eAAe,iCAAiC,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutFooter.d.ts b/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutFooter.d.ts
+index 80ab1446b4dbdc70d359c4d8ea1534f05297e6f7..a215a28d157a2d187644a5e49bc8d3a85aa97691 100644
+--- a/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutFooter.d.ts
++++ b/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutFooter.d.ts
+@@ -1,6 +1,6 @@
+ import type { ReactNode } from 'react';
+ declare const HorizontalWizardLayoutFooter: ({ children, }: {
+     children: ReactNode;
+-}) => import("react/jsx-runtime").JSX.Element;
++}) => import("react").JSX.Element;
+ export default HorizontalWizardLayoutFooter;
+ //# sourceMappingURL=HorizontalWizardLayoutFooter.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutFooter.d.ts.map b/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutFooter.d.ts.map
+index 2882a03e42f71f2273b875b95077e9eba7e45919..133824b396da0eba12b6e7c70b70224af937d862 100644
+--- a/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutFooter.d.ts.map
++++ b/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutFooter.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"HorizontalWizardLayoutFooter.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HorizontalWizardLayout/HorizontalWizardLayoutFooter.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAEvC,QAAA,MAAM,4BAA4B,GAAI,eAEnC;IACD,QAAQ,EAAE,SAAS,CAAC;CACrB,4CAIA,CAAC;AAEF,eAAe,4BAA4B,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"HorizontalWizardLayoutFooter.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HorizontalWizardLayout/HorizontalWizardLayoutFooter.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAEvC,QAAA,MAAM,4BAA4B,GAAI,eAEnC;IACD,QAAQ,EAAE,SAAS,CAAC;CACrB,gCAIA,CAAC;AAEF,eAAe,4BAA4B,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutSubtitle.d.ts b/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutSubtitle.d.ts
+index 980a11fb7129b9042edcc3d0a68a918afb8634ee..4f07d5dba0f1d99bf94f15fa0cb8872023863169 100644
+--- a/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutSubtitle.d.ts
++++ b/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutSubtitle.d.ts
+@@ -1,5 +1,5 @@
+ import type { ComponentProps } from 'react';
+ import * as FormPageLayout from '../../components/FormPageLayout/FormPageLayout.styles';
+-declare const HorizontalWizardLayoutSubtitle: (props: ComponentProps<typeof FormPageLayout.Subtitle>) => import("react/jsx-runtime").JSX.Element;
++declare const HorizontalWizardLayoutSubtitle: (props: ComponentProps<typeof FormPageLayout.Subtitle>) => import("react").JSX.Element;
+ export default HorizontalWizardLayoutSubtitle;
+ //# sourceMappingURL=HorizontalWizardLayoutSubtitle.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutSubtitle.d.ts.map b/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutSubtitle.d.ts.map
+index f118e989b37c4cd06834ca3bf801ebf51af3efa7..f7fd25d414a85a41b3e5a8f07458c68bd472212b 100644
+--- a/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutSubtitle.d.ts.map
++++ b/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutSubtitle.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"HorizontalWizardLayoutSubtitle.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HorizontalWizardLayout/HorizontalWizardLayoutSubtitle.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAE5C,OAAO,KAAK,cAAc,MAAM,uDAAuD,CAAC;AAExF,QAAA,MAAM,8BAA8B,GAClC,OAAO,cAAc,CAAC,OAAO,cAAc,CAAC,QAAQ,CAAC,4CACZ,CAAC;AAE5C,eAAe,8BAA8B,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"HorizontalWizardLayoutSubtitle.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HorizontalWizardLayout/HorizontalWizardLayoutSubtitle.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAE5C,OAAO,KAAK,cAAc,MAAM,uDAAuD,CAAC;AAExF,QAAA,MAAM,8BAA8B,GAClC,OAAO,cAAc,CAAC,OAAO,cAAc,CAAC,QAAQ,CAAC,gCACZ,CAAC;AAE5C,eAAe,8BAA8B,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutTitle.d.ts b/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutTitle.d.ts
+index 2def18824d049e8909018e6e9928e333519b25ca..aab0404bb3edd556616141ee216c334982100458 100644
+--- a/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutTitle.d.ts
++++ b/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutTitle.d.ts
+@@ -1,5 +1,5 @@
+ import type { ComponentProps } from 'react';
+ import * as FormPageLayout from '../../components/FormPageLayout/FormPageLayout.styles';
+-declare const HorizontalWizardLayoutTitle: (props: ComponentProps<typeof FormPageLayout.Title>) => import("react/jsx-runtime").JSX.Element;
++declare const HorizontalWizardLayoutTitle: (props: ComponentProps<typeof FormPageLayout.Title>) => import("react").JSX.Element;
+ export default HorizontalWizardLayoutTitle;
+ //# sourceMappingURL=HorizontalWizardLayoutTitle.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutTitle.d.ts.map b/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutTitle.d.ts.map
+index 363c681807fe1bcce1883d90032d6a8196b1e958..8108ff3d7cec24d703b2fd9e3fe443e2d71f5450 100644
+--- a/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutTitle.d.ts.map
++++ b/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardLayoutTitle.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"HorizontalWizardLayoutTitle.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HorizontalWizardLayout/HorizontalWizardLayoutTitle.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAE5C,OAAO,KAAK,cAAc,MAAM,uDAAuD,CAAC;AAExF,QAAA,MAAM,2BAA2B,GAC/B,OAAO,cAAc,CAAC,OAAO,cAAc,CAAC,KAAK,CAAC,4CACZ,CAAC;AAEzC,eAAe,2BAA2B,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"HorizontalWizardLayoutTitle.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HorizontalWizardLayout/HorizontalWizardLayoutTitle.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAE5C,OAAO,KAAK,cAAc,MAAM,uDAAuD,CAAC;AAExF,QAAA,MAAM,2BAA2B,GAC/B,OAAO,cAAc,CAAC,OAAO,cAAc,CAAC,KAAK,CAAC,gCACZ,CAAC;AAEzC,eAAe,2BAA2B,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardTextHighlight.d.ts b/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardTextHighlight.d.ts
+index 976c21f20bf1ca5a947b83ff83770ddbc7a5d4f6..111da06c762df424e2dd743766f2a4b71d301058 100644
+--- a/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardTextHighlight.d.ts
++++ b/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardTextHighlight.d.ts
+@@ -1,6 +1,6 @@
+ import type { ReactNode } from 'react';
+ export declare const HorizontalWizardTextHighlight: (props: {
+     children: ReactNode;
+-}) => import("react/jsx-runtime").JSX.Element;
++}) => import("react").JSX.Element;
+ export default HorizontalWizardTextHighlight;
+ //# sourceMappingURL=HorizontalWizardTextHighlight.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardTextHighlight.d.ts.map b/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardTextHighlight.d.ts.map
+index 28af65f6881b001d28842a990c83383427fb48d2..2f0ad2aa8f7dfc0663f11879bb063a530f08ab7a 100644
+--- a/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardTextHighlight.d.ts.map
++++ b/dist/cjs/layouts/HorizontalWizardLayout/HorizontalWizardTextHighlight.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"HorizontalWizardTextHighlight.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HorizontalWizardLayout/HorizontalWizardTextHighlight.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAKvC,eAAO,MAAM,6BAA6B,GAAI,OAAO;IACnD,QAAQ,EAAE,SAAS,CAAC;CACrB,4CAGA,CAAC;AAEF,eAAe,6BAA6B,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"HorizontalWizardTextHighlight.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HorizontalWizardLayout/HorizontalWizardTextHighlight.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAKvC,eAAO,MAAM,6BAA6B,GAAI,OAAO;IACnD,QAAQ,EAAE,SAAS,CAAC;CACrB,gCAGA,CAAC;AAEF,eAAe,6BAA6B,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/layouts/VerticalWizardLayout/VerticalWizardLayout.d.ts b/dist/cjs/layouts/VerticalWizardLayout/VerticalWizardLayout.d.ts
+index 61bc2b047f8cb77263081939dada9f73635b4675..93954d0565142c5837bd9305351700d0bcfc6de4 100644
+--- a/dist/cjs/layouts/VerticalWizardLayout/VerticalWizardLayout.d.ts
++++ b/dist/cjs/layouts/VerticalWizardLayout/VerticalWizardLayout.d.ts
+@@ -2,6 +2,6 @@ import type { ReactNode } from 'react';
+ import type { LayoutContextValue } from '../../contexts/LayoutContext';
+ declare const VerticalWizardLayout: ({ children, forceDarkMode, ...rest }: LayoutContextValue & {
+     children: ReactNode;
+-}) => import("react/jsx-runtime").JSX.Element;
++}) => import("react").JSX.Element;
+ export default VerticalWizardLayout;
+ //# sourceMappingURL=VerticalWizardLayout.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/layouts/VerticalWizardLayout/VerticalWizardLayout.d.ts.map b/dist/cjs/layouts/VerticalWizardLayout/VerticalWizardLayout.d.ts.map
+index a3adbcd4ddf99f6ba4f96e61ec8dbdd8416e0c18..ea0044a3895e62edd8f15521f4b2d3097be9db92 100644
+--- a/dist/cjs/layouts/VerticalWizardLayout/VerticalWizardLayout.d.ts.map
++++ b/dist/cjs/layouts/VerticalWizardLayout/VerticalWizardLayout.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"VerticalWizardLayout.d.ts","sourceRoot":"","sources":["../../../../src/layouts/VerticalWizardLayout/VerticalWizardLayout.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAKvC,OAAO,KAAK,EAAE,kBAAkB,EAAE,MAAM,8BAA8B,CAAC;AAGvE,QAAA,MAAM,oBAAoB,GAAI,sCAI3B,kBAAkB,GAAG;IACtB,QAAQ,EAAE,SAAS,CAAC;CACrB,4CAsBA,CAAC;AAEF,eAAe,oBAAoB,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"VerticalWizardLayout.d.ts","sourceRoot":"","sources":["../../../../src/layouts/VerticalWizardLayout/VerticalWizardLayout.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAKvC,OAAO,KAAK,EAAE,kBAAkB,EAAE,MAAM,8BAA8B,CAAC;AAGvE,QAAA,MAAM,oBAAoB,GAAI,sCAI3B,kBAAkB,GAAG;IACtB,QAAQ,EAAE,SAAS,CAAC;CACrB,gCAsBA,CAAC;AAEF,eAAe,oBAAoB,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/layouts/VerticalWizardLayout/VerticalWizardLayoutFooter.d.ts b/dist/cjs/layouts/VerticalWizardLayout/VerticalWizardLayoutFooter.d.ts
+index b7cfb3f6a961fa57a2667e8619581d702305a8ac..6aea275298ebe4a89bf7b85e8a533a1b7f5bf8ea 100644
+--- a/dist/cjs/layouts/VerticalWizardLayout/VerticalWizardLayoutFooter.d.ts
++++ b/dist/cjs/layouts/VerticalWizardLayout/VerticalWizardLayoutFooter.d.ts
+@@ -1,6 +1,6 @@
+ import type { ReactNode } from 'react';
+ declare const VerticalWizardLayoutFooter: ({ children }: {
+     children: ReactNode;
+-}) => import("react/jsx-runtime").JSX.Element;
++}) => import("react").JSX.Element;
+ export default VerticalWizardLayoutFooter;
+ //# sourceMappingURL=VerticalWizardLayoutFooter.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/layouts/VerticalWizardLayout/VerticalWizardLayoutFooter.d.ts.map b/dist/cjs/layouts/VerticalWizardLayout/VerticalWizardLayoutFooter.d.ts.map
+index 97d2910dbdaec984eaa459f2817dd0874c92671e..3660e315daccfcd8ff1e584a4d40f01f92c388d3 100644
+--- a/dist/cjs/layouts/VerticalWizardLayout/VerticalWizardLayoutFooter.d.ts.map
++++ b/dist/cjs/layouts/VerticalWizardLayout/VerticalWizardLayoutFooter.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"VerticalWizardLayoutFooter.d.ts","sourceRoot":"","sources":["../../../../src/layouts/VerticalWizardLayout/VerticalWizardLayoutFooter.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAEvC,QAAA,MAAM,0BAA0B,GAAI,cAAc;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,4CAUxE,CAAC;AAEF,eAAe,0BAA0B,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"VerticalWizardLayoutFooter.d.ts","sourceRoot":"","sources":["../../../../src/layouts/VerticalWizardLayout/VerticalWizardLayoutFooter.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAEvC,QAAA,MAAM,0BAA0B,GAAI,cAAc;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,gCAUxE,CAAC;AAEF,eAAe,0BAA0B,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/layouts/VerticalWizardLayout/VerticalWizardLayoutForm.d.ts b/dist/cjs/layouts/VerticalWizardLayout/VerticalWizardLayoutForm.d.ts
+index b2f3eccf794e798352b5273bb1631047c8ef0624..34dadca379eca0bf15506bc607e90a4f75bdd8be 100644
+--- a/dist/cjs/layouts/VerticalWizardLayout/VerticalWizardLayoutForm.d.ts
++++ b/dist/cjs/layouts/VerticalWizardLayout/VerticalWizardLayoutForm.d.ts
+@@ -1,6 +1,6 @@
+ import type { ReactNode } from 'react';
+ declare const VerticalWizardLayoutForm: ({ children }: {
+     children: ReactNode;
+-}) => import("react/jsx-runtime").JSX.Element;
++}) => import("react").JSX.Element;
+ export default VerticalWizardLayoutForm;
+ //# sourceMappingURL=VerticalWizardLayoutForm.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/layouts/VerticalWizardLayout/VerticalWizardLayoutForm.d.ts.map b/dist/cjs/layouts/VerticalWizardLayout/VerticalWizardLayoutForm.d.ts.map
+index 7e7e19a2a398a1e94e1fd525f28f2cd485c409f2..2acdc6a157db73b6630be78e1649025357450fdd 100644
+--- a/dist/cjs/layouts/VerticalWizardLayout/VerticalWizardLayoutForm.d.ts.map
++++ b/dist/cjs/layouts/VerticalWizardLayout/VerticalWizardLayoutForm.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"VerticalWizardLayoutForm.d.ts","sourceRoot":"","sources":["../../../../src/layouts/VerticalWizardLayout/VerticalWizardLayoutForm.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAEvC,QAAA,MAAM,wBAAwB,GAAI,cAAc;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,4CAItE,CAAC;AAEF,eAAe,wBAAwB,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"VerticalWizardLayoutForm.d.ts","sourceRoot":"","sources":["../../../../src/layouts/VerticalWizardLayout/VerticalWizardLayoutForm.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAEvC,QAAA,MAAM,wBAAwB,GAAI,cAAc;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,gCAItE,CAAC;AAEF,eAAe,wBAAwB,CAAC"}
+\ No newline at end of file
+diff --git a/dist/cjs/layouts/VerticalWizardLayout/VerticalWizardLayoutTitle.d.ts b/dist/cjs/layouts/VerticalWizardLayout/VerticalWizardLayoutTitle.d.ts
+index dc742ee5c509ac421e2270bc90ce3216351e4bf0..c452afb45ecfd4f13ab6e2f87b5d0f420e2e8948 100644
+--- a/dist/cjs/layouts/VerticalWizardLayout/VerticalWizardLayoutTitle.d.ts
++++ b/dist/cjs/layouts/VerticalWizardLayout/VerticalWizardLayoutTitle.d.ts
+@@ -1,6 +1,6 @@
+ import type { ReactNode } from 'react';
+ declare const VerticalWizardLayoutTitle: ({ children }: {
+     children: ReactNode;
+-}) => import("react/jsx-runtime").JSX.Element;
++}) => import("react").JSX.Element;
+ export default VerticalWizardLayoutTitle;
+ //# sourceMappingURL=VerticalWizardLayoutTitle.d.ts.map
+\ No newline at end of file
+diff --git a/dist/cjs/layouts/VerticalWizardLayout/VerticalWizardLayoutTitle.d.ts.map b/dist/cjs/layouts/VerticalWizardLayout/VerticalWizardLayoutTitle.d.ts.map
+index 895023ae20da28c953c5651ae765c6d6712ed79c..96fadc1971c6ad83230f2c2149da5c69366585d0 100644
+--- a/dist/cjs/layouts/VerticalWizardLayout/VerticalWizardLayoutTitle.d.ts.map
++++ b/dist/cjs/layouts/VerticalWizardLayout/VerticalWizardLayoutTitle.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"VerticalWizardLayoutTitle.d.ts","sourceRoot":"","sources":["../../../../src/layouts/VerticalWizardLayout/VerticalWizardLayoutTitle.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAEvC,QAAA,MAAM,yBAAyB,GAAI,cAAc;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,4CAWvE,CAAC;AAEF,eAAe,yBAAyB,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"VerticalWizardLayoutTitle.d.ts","sourceRoot":"","sources":["../../../../src/layouts/VerticalWizardLayout/VerticalWizardLayoutTitle.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAEvC,QAAA,MAAM,yBAAyB,GAAI,cAAc;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,gCAWvE,CAAC;AAEF,eAAe,yBAAyB,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/DarkModeProvider.d.ts b/dist/esm/DarkModeProvider.d.ts
+index b60bac91b484619d30674cc87799c2db7787e8c4..b4b5367069faafc14411e19aca444e1b93fedda0 100644
+--- a/dist/esm/DarkModeProvider.d.ts
++++ b/dist/esm/DarkModeProvider.d.ts
+@@ -3,7 +3,7 @@ export type DarkModeProviderProps = {
+     children?: ReactNode;
+     forcedDarkMode?: boolean;
+ };
+-declare const DarkModeProvider: ({ children, forcedDarkMode, }: DarkModeProviderProps) => import("react/jsx-runtime").JSX.Element;
++declare const DarkModeProvider: ({ children, forcedDarkMode, }: DarkModeProviderProps) => import("react").JSX.Element;
+ export default DarkModeProvider;
+ export declare const useDarkMode: () => boolean;
+ //# sourceMappingURL=DarkModeProvider.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/DarkModeProvider.d.ts.map b/dist/esm/DarkModeProvider.d.ts.map
+index f218af32dd117d2f30dfa97a4b8078c7e11e7ce8..2b10c2d172590639bd09e82ef3ad3ca5c6bd830e 100644
+--- a/dist/esm/DarkModeProvider.d.ts.map
++++ b/dist/esm/DarkModeProvider.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"DarkModeProvider.d.ts","sourceRoot":"","sources":["../../src/DarkModeProvider.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAKvC,MAAM,MAAM,qBAAqB,GAAG;IAClC,QAAQ,CAAC,EAAE,SAAS,CAAC;IACrB,cAAc,CAAC,EAAE,OAAO,CAAC;CAC1B,CAAC;AAEF,QAAA,MAAM,gBAAgB,GAAI,+BAGvB,qBAAqB,4CAGvB,CAAC;AAEF,eAAe,gBAAgB,CAAC;AAEhC,eAAO,MAAM,WAAW,QAAO,OAAsC,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"DarkModeProvider.d.ts","sourceRoot":"","sources":["../../src/DarkModeProvider.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAKvC,MAAM,MAAM,qBAAqB,GAAG;IAClC,QAAQ,CAAC,EAAE,SAAS,CAAC;IACrB,cAAc,CAAC,EAAE,OAAO,CAAC;CAC1B,CAAC;AAEF,QAAA,MAAM,gBAAgB,GAAI,+BAGvB,qBAAqB,gCAGvB,CAAC;AAEF,eAAe,gBAAgB,CAAC;AAEhC,eAAO,MAAM,WAAW,QAAO,OAAsC,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/components/ActionLink/ActionLink.d.ts b/dist/esm/components/ActionLink/ActionLink.d.ts
+index d66fedc321f572bceba9af439c4966af7154927a..6a290cda428b18c803ab0566bd442bbc659757ef 100644
+--- a/dist/esm/components/ActionLink/ActionLink.d.ts
++++ b/dist/esm/components/ActionLink/ActionLink.d.ts
+@@ -5,6 +5,6 @@ export type ActionLinkProps = {
+     href?: string;
+     fontScale?: ComponentProps<typeof Box>['fontScale'];
+ } & AnchorHTMLAttributes<HTMLAnchorElement>;
+-declare const ActionLink: ({ children, href, onClick, ...props }: ActionLinkProps) => import("react/jsx-runtime").JSX.Element;
++declare const ActionLink: ({ children, href, onClick, ...props }: ActionLinkProps) => import("react").JSX.Element;
+ export default ActionLink;
+ //# sourceMappingURL=ActionLink.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/components/ActionLink/ActionLink.d.ts.map b/dist/esm/components/ActionLink/ActionLink.d.ts.map
+index f428954d6fcc3984d20f35e0ae48e78c4966d748..da5f040cad153d657a9fb116234890cb36f54085 100644
+--- a/dist/esm/components/ActionLink/ActionLink.d.ts.map
++++ b/dist/esm/components/ActionLink/ActionLink.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"ActionLink.d.ts","sourceRoot":"","sources":["../../../../src/components/ActionLink/ActionLink.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,GAAG,EAAE,MAAM,uBAAuB,CAAC;AAC5C,OAAO,KAAK,EAEV,cAAc,EACd,SAAS,EACT,oBAAoB,EACrB,MAAM,OAAO,CAAC;AAGf,MAAM,MAAM,eAAe,GAAG;IAC5B,QAAQ,EAAE,SAAS,CAAC;IACpB,IAAI,CAAC,EAAE,MAAM,CAAC;IACd,SAAS,CAAC,EAAE,cAAc,CAAC,OAAO,GAAG,CAAC,CAAC,WAAW,CAAC,CAAC;CACrD,GAAG,oBAAoB,CAAC,iBAAiB,CAAC,CAAC;AAE5C,QAAA,MAAM,UAAU,GAAI,uCAKjB,eAAe,4CAuBjB,CAAC;AAEF,eAAe,UAAU,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"ActionLink.d.ts","sourceRoot":"","sources":["../../../../src/components/ActionLink/ActionLink.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,GAAG,EAAE,MAAM,uBAAuB,CAAC;AAC5C,OAAO,KAAK,EAEV,cAAc,EACd,SAAS,EACT,oBAAoB,EACrB,MAAM,OAAO,CAAC;AAGf,MAAM,MAAM,eAAe,GAAG;IAC5B,QAAQ,EAAE,SAAS,CAAC;IACpB,IAAI,CAAC,EAAE,MAAM,CAAC;IACd,SAAS,CAAC,EAAE,cAAc,CAAC,OAAO,GAAG,CAAC,CAAC,WAAW,CAAC,CAAC;CACrD,GAAG,oBAAoB,CAAC,iBAAiB,CAAC,CAAC;AAE5C,QAAA,MAAM,UAAU,GAAI,uCAKjB,eAAe,gCAuBjB,CAAC;AAEF,eAAe,UAAU,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/components/BackgroundLayer/BackgroundImage.d.ts b/dist/esm/components/BackgroundLayer/BackgroundImage.d.ts
+index 7750e32be69d083d4e8429abaa1bf8e6e953d2f3..bbc557347dfbea3d0dc97adb3d7ee44748175b4c 100644
+--- a/dist/esm/components/BackgroundLayer/BackgroundImage.d.ts
++++ b/dist/esm/components/BackgroundLayer/BackgroundImage.d.ts
+@@ -1,5 +1,5 @@
+ declare const BackgroundImage: ({ backgroundColor }: {
+     backgroundColor: string;
+-}) => import("react/jsx-runtime").JSX.Element;
++}) => import("react").JSX.Element;
+ export default BackgroundImage;
+ //# sourceMappingURL=BackgroundImage.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/components/BackgroundLayer/BackgroundImage.d.ts.map b/dist/esm/components/BackgroundLayer/BackgroundImage.d.ts.map
+index 49a24dc22c2cfba837a5f33828c4fb8bc3ad168c..4a573f6766c9bb9f4091fac216c3bdecfcb0c6c3 100644
+--- a/dist/esm/components/BackgroundLayer/BackgroundImage.d.ts.map
++++ b/dist/esm/components/BackgroundLayer/BackgroundImage.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"BackgroundImage.d.ts","sourceRoot":"","sources":["../../../../src/components/BackgroundLayer/BackgroundImage.tsx"],"names":[],"mappings":"AAAA,QAAA,MAAM,eAAe,GAAI,qBAAqB;IAAE,eAAe,EAAE,MAAM,CAAA;CAAE,4CAoHxE,CAAC;AAEF,eAAe,eAAe,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"BackgroundImage.d.ts","sourceRoot":"","sources":["../../../../src/components/BackgroundLayer/BackgroundImage.tsx"],"names":[],"mappings":"AAAA,QAAA,MAAM,eAAe,GAAI,qBAAqB;IAAE,eAAe,EAAE,MAAM,CAAA;CAAE,gCAoHxE,CAAC;AAEF,eAAe,eAAe,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/components/BackgroundLayer/BackgroundLayer.d.ts b/dist/esm/components/BackgroundLayer/BackgroundLayer.d.ts
+index 271309d5e2d010045c8755d703720bd9f618fe0f..c61c111f70cf0b5fa62d4d166f262392a273e6c7 100644
+--- a/dist/esm/components/BackgroundLayer/BackgroundLayer.d.ts
++++ b/dist/esm/components/BackgroundLayer/BackgroundLayer.d.ts
+@@ -2,6 +2,6 @@ import type { ReactNode } from 'react';
+ export type BackgroundLayerProps = {
+     children?: ReactNode;
+ };
+-declare const BackgroundLayer: ({ children }: BackgroundLayerProps) => import("react/jsx-runtime").JSX.Element;
++declare const BackgroundLayer: ({ children }: BackgroundLayerProps) => import("react").JSX.Element;
+ export default BackgroundLayer;
+ //# sourceMappingURL=BackgroundLayer.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/components/BackgroundLayer/BackgroundLayer.d.ts.map b/dist/esm/components/BackgroundLayer/BackgroundLayer.d.ts.map
+index f686aa1d6112ca644bc8bb244649c1ce40f4a21d..c6aa4c39e2e199ccba937f31fe248b5b5dcf2d18 100644
+--- a/dist/esm/components/BackgroundLayer/BackgroundLayer.d.ts.map
++++ b/dist/esm/components/BackgroundLayer/BackgroundLayer.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"BackgroundLayer.d.ts","sourceRoot":"","sources":["../../../../src/components/BackgroundLayer/BackgroundLayer.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAUvC,MAAM,MAAM,oBAAoB,GAAG;IACjC,QAAQ,CAAC,EAAE,SAAS,CAAC;CACtB,CAAC;AAEF,QAAA,MAAM,eAAe,GAAI,cAAc,oBAAoB,4CAyB1D,CAAC;AAEF,eAAe,eAAe,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"BackgroundLayer.d.ts","sourceRoot":"","sources":["../../../../src/components/BackgroundLayer/BackgroundLayer.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAUvC,MAAM,MAAM,oBAAoB,GAAG;IACjC,QAAQ,CAAC,EAAE,SAAS,CAAC;CACtB,CAAC;AAEF,QAAA,MAAM,eAAe,GAAI,cAAc,oBAAoB,gCAyB1D,CAAC;AAEF,eAAe,eAAe,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/components/FormPageLayout/FormContainer.d.ts b/dist/esm/components/FormPageLayout/FormContainer.d.ts
+index 6d42c609959ba8ad9fafdfe928f5b1aa6c31bb74..6b7ae584e3317bc1aeb5905cd768ee63ec398439 100644
+--- a/dist/esm/components/FormPageLayout/FormContainer.d.ts
++++ b/dist/esm/components/FormPageLayout/FormContainer.d.ts
+@@ -1,5 +1,5 @@
+ import { Box } from '@rocket.chat/fuselage';
+ import type { ComponentProps } from 'react';
+-declare const FormContainer: (props: ComponentProps<typeof Box>) => import("react/jsx-runtime").JSX.Element;
++declare const FormContainer: (props: ComponentProps<typeof Box>) => import("react").JSX.Element;
+ export default FormContainer;
+ //# sourceMappingURL=FormContainer.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/components/FormPageLayout/FormContainer.d.ts.map b/dist/esm/components/FormPageLayout/FormContainer.d.ts.map
+index d4fb998ad0a39fefa2db3856ceb35593b6ebc412..8f76f557be854a2fd8855ef883d688b82b2ceb7b 100644
+--- a/dist/esm/components/FormPageLayout/FormContainer.d.ts.map
++++ b/dist/esm/components/FormPageLayout/FormContainer.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"FormContainer.d.ts","sourceRoot":"","sources":["../../../../src/components/FormPageLayout/FormContainer.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,GAAG,EAAE,MAAM,uBAAuB,CAAC;AAC5C,OAAO,KAAK,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAE5C,QAAA,MAAM,aAAa,GAAI,OAAO,cAAc,CAAC,OAAO,GAAG,CAAC,4CAAuB,CAAC;AAEhF,eAAe,aAAa,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"FormContainer.d.ts","sourceRoot":"","sources":["../../../../src/components/FormPageLayout/FormContainer.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,GAAG,EAAE,MAAM,uBAAuB,CAAC;AAC5C,OAAO,KAAK,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAE5C,QAAA,MAAM,aAAa,GAAI,OAAO,cAAc,CAAC,OAAO,GAAG,CAAC,gCAAuB,CAAC;AAEhF,eAAe,aAAa,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/components/FormPageLayout/FormSteps.d.ts b/dist/esm/components/FormPageLayout/FormSteps.d.ts
+index 1e125277990a6a032af5c345e2581c22652e2b03..eda7ccd5f035bc37a6231745d5ef6d924676c835 100644
+--- a/dist/esm/components/FormPageLayout/FormSteps.d.ts
++++ b/dist/esm/components/FormPageLayout/FormSteps.d.ts
+@@ -2,6 +2,6 @@ export type FormStepsProps = {
+     currentStep: number;
+     stepCount: number;
+ };
+-declare const FormSteps: ({ currentStep, stepCount }: FormStepsProps) => import("react/jsx-runtime").JSX.Element;
++declare const FormSteps: ({ currentStep, stepCount }: FormStepsProps) => import("react").JSX.Element;
+ export default FormSteps;
+ //# sourceMappingURL=FormSteps.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/components/FormPageLayout/FormSteps.d.ts.map b/dist/esm/components/FormPageLayout/FormSteps.d.ts.map
+index dd3254a22ff918a7a5290003e36283ac04deff1d..afa25004df248d04669f16f5788afe2e3b9fee60 100644
+--- a/dist/esm/components/FormPageLayout/FormSteps.d.ts.map
++++ b/dist/esm/components/FormPageLayout/FormSteps.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"FormSteps.d.ts","sourceRoot":"","sources":["../../../../src/components/FormPageLayout/FormSteps.tsx"],"names":[],"mappings":"AAGA,MAAM,MAAM,cAAc,GAAG;IAC3B,WAAW,EAAE,MAAM,CAAC;IACpB,SAAS,EAAE,MAAM,CAAC;CACnB,CAAC;AAEF,QAAA,MAAM,SAAS,GAAI,4BAA4B,cAAc,4CAQ5D,CAAC;AAEF,eAAe,SAAS,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"FormSteps.d.ts","sourceRoot":"","sources":["../../../../src/components/FormPageLayout/FormSteps.tsx"],"names":[],"mappings":"AAGA,MAAM,MAAM,cAAc,GAAG;IAC3B,WAAW,EAAE,MAAM,CAAC;IACpB,SAAS,EAAE,MAAM,CAAC;CACnB,CAAC;AAEF,QAAA,MAAM,SAAS,GAAI,4BAA4B,cAAc,gCAQ5D,CAAC;AAEF,eAAe,SAAS,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/components/FormPageLayout/index.d.ts b/dist/esm/components/FormPageLayout/index.d.ts
+index 6fa368467130975180d925df62abd876fa36e64c..41dfcbb2d782d630c5d7d2bb7e24020cc76dacb0 100644
+--- a/dist/esm/components/FormPageLayout/index.d.ts
++++ b/dist/esm/components/FormPageLayout/index.d.ts
+@@ -12,14 +12,14 @@ declare const _default: import("react").ForwardRefExoticComponent<Omit<import("r
+     Header: import("react").ForwardRefExoticComponent<Omit<import("react").FormHTMLAttributes<HTMLElement>, "is"> & {
+         children: import("react").ReactNode;
+     } & import("react").RefAttributes<HTMLElement>>;
+-    Steps: ({ currentStep, stepCount }: import("./FormSteps").FormStepsProps) => import("react/jsx-runtime").JSX.Element;
++    Steps: ({ currentStep, stepCount }: import("./FormSteps").FormStepsProps) => import("react").JSX.Element;
+     Title: import("react").ForwardRefExoticComponent<Omit<import("react").FormHTMLAttributes<HTMLElement>, "is"> & {
+         children: import("react").ReactNode;
+     } & import("react").RefAttributes<HTMLElement>>;
+     Subtitle: import("react").ForwardRefExoticComponent<Omit<import("react").FormHTMLAttributes<HTMLElement>, "is"> & {
+         children: import("react").ReactNode;
+     } & import("react").RefAttributes<HTMLElement>>;
+-    Container: (props: import("react").ComponentProps<import("react").MemoExoticComponent<import("react").ForwardRefExoticComponent<import("@rocket.chat/fuselage").BoxProps & import("react").RefAttributes<any>>>>) => import("react/jsx-runtime").JSX.Element;
++    Container: (props: import("react").ComponentProps<import("react").NamedExoticComponent<import("@rocket.chat/fuselage").BoxProps & import("react").RefAttributes<any>>>) => import("react").JSX.Element;
+     Footer: import("react").ForwardRefExoticComponent<Omit<import("react").FormHTMLAttributes<HTMLElement>, "is"> & {
+         children: import("react").ReactNode;
+     } & import("react").RefAttributes<HTMLElement>>;
+diff --git a/dist/esm/components/LayoutLogo/LayoutLogo.d.ts b/dist/esm/components/LayoutLogo/LayoutLogo.d.ts
+index 60b7de14e18ac1dab37ef484835f1a4a4e2ddbc0..6a304c7096022541dde4084cc680876df14809a8 100644
+--- a/dist/esm/components/LayoutLogo/LayoutLogo.d.ts
++++ b/dist/esm/components/LayoutLogo/LayoutLogo.d.ts
+@@ -1,3 +1,3 @@
+-declare const LayoutLogo: () => import("react/jsx-runtime").JSX.Element;
++declare const LayoutLogo: () => import("react").JSX.Element;
+ export default LayoutLogo;
+ //# sourceMappingURL=LayoutLogo.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/components/LayoutLogo/LayoutLogo.d.ts.map b/dist/esm/components/LayoutLogo/LayoutLogo.d.ts.map
+index 559840b7eef1fd7ff5a3a6b287045629d07b53b6..6154f4691c4fc719d6434f8f85589316d40933ac 100644
+--- a/dist/esm/components/LayoutLogo/LayoutLogo.d.ts.map
++++ b/dist/esm/components/LayoutLogo/LayoutLogo.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"LayoutLogo.d.ts","sourceRoot":"","sources":["../../../../src/components/LayoutLogo/LayoutLogo.tsx"],"names":[],"mappings":"AAMA,QAAA,MAAM,UAAU,+CAQf,CAAC;AAEF,eAAe,UAAU,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"LayoutLogo.d.ts","sourceRoot":"","sources":["../../../../src/components/LayoutLogo/LayoutLogo.tsx"],"names":[],"mappings":"AAMA,QAAA,MAAM,UAAU,mCAQf,CAAC;AAEF,eAAe,UAAU,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/components/List/List.d.ts b/dist/esm/components/List/List.d.ts
+index 7a775c5b72f65a6b77b36e7dde71e4b1b8caef0b..55f69966d78779d2ef0a2ad9d529e300b419801f 100644
+--- a/dist/esm/components/List/List.d.ts
++++ b/dist/esm/components/List/List.d.ts
+@@ -6,6 +6,6 @@ declare const List: ({ children, listStyleType, icon, spacing, color, }: {
+     listStyleType?: CSSProperties["listStyleType"];
+     color?: CSSProperties["color"];
+     icon?: string;
+-}) => import("react/jsx-runtime").JSX.Element;
++}) => import("react").JSX.Element;
+ export default List;
+ //# sourceMappingURL=List.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/components/List/List.d.ts.map b/dist/esm/components/List/List.d.ts.map
+index 233a0faa5b38cd0c45939f1e07e645c3b54587b0..c0a0fedd538f535879b5e818d26887e4726b35ff 100644
+--- a/dist/esm/components/List/List.d.ts.map
++++ b/dist/esm/components/List/List.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"List.d.ts","sourceRoot":"","sources":["../../../../src/components/List/List.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAW,MAAM,uBAAuB,CAAC;AACzD,OAAO,KAAK,EAAE,SAAS,EAAE,cAAc,EAAE,aAAa,EAAE,MAAM,OAAO,CAAC;AAItE,QAAA,MAAM,IAAI,GAAI,oDAMX;IACD,QAAQ,EAAE,SAAS,CAAC;IACpB,OAAO,CAAC,EAAE,cAAc,CAAC,OAAO,OAAO,CAAC,CAAC,OAAO,CAAC,CAAC;IAClD,aAAa,CAAC,EAAE,aAAa,CAAC,eAAe,CAAC,CAAC;IAC/C,KAAK,CAAC,EAAE,aAAa,CAAC,OAAO,CAAC,CAAC;IAC/B,IAAI,CAAC,EAAE,MAAM,CAAC;CACf,4CAIA,CAAC;AAEF,eAAe,IAAI,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"List.d.ts","sourceRoot":"","sources":["../../../../src/components/List/List.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAW,MAAM,uBAAuB,CAAC;AACzD,OAAO,KAAK,EAAE,SAAS,EAAE,cAAc,EAAE,aAAa,EAAE,MAAM,OAAO,CAAC;AAItE,QAAA,MAAM,IAAI,GAAI,oDAMX;IACD,QAAQ,EAAE,SAAS,CAAC;IACpB,OAAO,CAAC,EAAE,cAAc,CAAC,OAAO,OAAO,CAAC,CAAC,OAAO,CAAC,CAAC;IAClD,aAAa,CAAC,EAAE,aAAa,CAAC,eAAe,CAAC,CAAC;IAC/C,KAAK,CAAC,EAAE,aAAa,CAAC,OAAO,CAAC,CAAC;IAC/B,IAAI,CAAC,EAAE,MAAM,CAAC;CACf,gCAIA,CAAC;AAEF,eAAe,IAAI,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/components/List/ListItem.d.ts b/dist/esm/components/List/ListItem.d.ts
+index f55f6ab9ca91adc82ea23df8232f4fa2ba5c9ac3..59b5077fcd289edb070d8b5cb5efbdd2e784bc29 100644
+--- a/dist/esm/components/List/ListItem.d.ts
++++ b/dist/esm/components/List/ListItem.d.ts
+@@ -5,6 +5,6 @@ declare const ListItem: ({ children, icon, iconColor, fontScale, }: {
+     icon?: ComponentProps<typeof Icon>["name"];
+     iconColor?: ComponentProps<typeof Icon>["color"];
+     fontScale?: ComponentProps<typeof Box>["fontScale"];
+-}) => import("react/jsx-runtime").JSX.Element;
++}) => import("react").JSX.Element;
+ export default ListItem;
+ //# sourceMappingURL=ListItem.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/components/List/ListItem.d.ts.map b/dist/esm/components/List/ListItem.d.ts.map
+index daeefcfeeaaf454557bd5a4ecfb943a836a6b98a..b302be67dc7ca3f1626539c1eb79f1b00e7efd06 100644
+--- a/dist/esm/components/List/ListItem.d.ts.map
++++ b/dist/esm/components/List/ListItem.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"ListItem.d.ts","sourceRoot":"","sources":["../../../../src/components/List/ListItem.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,GAAG,EAAE,IAAI,EAAE,MAAM,uBAAuB,CAAC;AAClD,OAAO,KAAK,EAAE,cAAc,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAEvD,QAAA,MAAM,QAAQ,GAAI,2CAKf;IACD,QAAQ,EAAE,SAAS,CAAC;IACpB,IAAI,CAAC,EAAE,cAAc,CAAC,OAAO,IAAI,CAAC,CAAC,MAAM,CAAC,CAAC;IAC3C,SAAS,CAAC,EAAE,cAAc,CAAC,OAAO,IAAI,CAAC,CAAC,OAAO,CAAC,CAAC;IACjD,SAAS,CAAC,EAAE,cAAc,CAAC,OAAO,GAAG,CAAC,CAAC,WAAW,CAAC,CAAC;CACrD,4CAKA,CAAC;AAEF,eAAe,QAAQ,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"ListItem.d.ts","sourceRoot":"","sources":["../../../../src/components/List/ListItem.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,GAAG,EAAE,IAAI,EAAE,MAAM,uBAAuB,CAAC;AAClD,OAAO,KAAK,EAAE,cAAc,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAEvD,QAAA,MAAM,QAAQ,GAAI,2CAKf;IACD,QAAQ,EAAE,SAAS,CAAC;IACpB,IAAI,CAAC,EAAE,cAAc,CAAC,OAAO,IAAI,CAAC,CAAC,MAAM,CAAC,CAAC;IAC3C,SAAS,CAAC,EAAE,cAAc,CAAC,OAAO,IAAI,CAAC,CAAC,OAAO,CAAC,CAAC;IACjD,SAAS,CAAC,EAAE,cAAc,CAAC,OAAO,GAAG,CAAC,CAAC,WAAW,CAAC,CAAC;CACrD,gCAKA,CAAC;AAEF,eAAe,QAAQ,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/components/List/index.d.ts b/dist/esm/components/List/index.d.ts
+index 503fa24ba10f6663e913ecc92d3a750cd28e3a87..93ae8e9e969346fba130c15114f04f8fbf0888ce 100644
+--- a/dist/esm/components/List/index.d.ts
++++ b/dist/esm/components/List/index.d.ts
+@@ -2,11 +2,11 @@ import List from './List';
+ import ListItem from './ListItem';
+ declare const _default: (({ children, listStyleType, icon, spacing, color, }: {
+     children: import("react").ReactNode;
+-    spacing?: import("react").ComponentProps<(props: import("@rocket.chat/fuselage").MarginsProps) => import("react/jsx-runtime").JSX.Element>["block"];
++    spacing?: import("react").ComponentProps<(props: import("@rocket.chat/fuselage").MarginsProps) => import("react").JSX.Element>["block"];
+     listStyleType?: import("react").CSSProperties["listStyleType"];
+     color?: import("react").CSSProperties["color"];
+     icon?: string;
+-}) => import("react/jsx-runtime").JSX.Element) & {
++}) => import("react").JSX.Element) & {
+     Item: ({ children, icon, iconColor, fontScale, }: {
+         children: import("react").ReactNode;
+         icon?: import("react").ComponentProps<import("react").ForwardRefExoticComponent<Omit<import("@rocket.chat/fuselage").BoxProps, "name" | "size"> & {
+@@ -17,8 +17,8 @@ declare const _default: (({ children, listStyleType, icon, spacing, color, }: {
+             name: import("@rocket.chat/icons").Keys;
+             size?: import("@rocket.chat/fuselage").BoxProps["width"];
+         } & import("react").RefAttributes<HTMLElement>>>["color"];
+-        fontScale?: import("react").ComponentProps<import("react").MemoExoticComponent<import("react").ForwardRefExoticComponent<import("@rocket.chat/fuselage").BoxProps & import("react").RefAttributes<any>>>>["fontScale"];
+-    }) => import("react/jsx-runtime").JSX.Element;
++        fontScale?: import("react").ComponentProps<import("react").NamedExoticComponent<import("@rocket.chat/fuselage").BoxProps & import("react").RefAttributes<any>>>["fontScale"];
++    }) => import("react").JSX.Element;
+ };
+ export default _default;
+ export { List, ListItem };
+diff --git a/dist/esm/components/TooltipWrapper/TooltipWrapper.d.ts b/dist/esm/components/TooltipWrapper/TooltipWrapper.d.ts
+index 9615a13eabc7e58239d325198889b92bef00ce18..9b8600703d75935f76e4eb7ffa132491b246e8ac 100644
+--- a/dist/esm/components/TooltipWrapper/TooltipWrapper.d.ts
++++ b/dist/esm/components/TooltipWrapper/TooltipWrapper.d.ts
+@@ -1,6 +1,6 @@
+-import type { Dispatch, MutableRefObject, ReactElement, ReactNode, SetStateAction } from 'react';
++import type { Dispatch, RefObject, ReactElement, ReactNode, SetStateAction } from 'react';
+ export type AnchorParams = {
+-    ref: MutableRefObject<Element | null>;
++    ref: RefObject<Element | null>;
+     toggle: Dispatch<SetStateAction<boolean>>;
+     id: string;
+ };
+@@ -8,6 +8,6 @@ export type TooltipWrapperProps = {
+     children: ReactElement<any> | ((props: AnchorParams) => ReactNode);
+     text: string;
+ };
+-declare const TooltipWrapper: ({ children, text }: TooltipWrapperProps) => import("react/jsx-runtime").JSX.Element;
++declare const TooltipWrapper: ({ children, text }: TooltipWrapperProps) => import("react").JSX.Element;
+ export default TooltipWrapper;
+ //# sourceMappingURL=TooltipWrapper.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/components/TooltipWrapper/TooltipWrapper.d.ts.map b/dist/esm/components/TooltipWrapper/TooltipWrapper.d.ts.map
+index db00a9a95f40e537bdec5a08a2e4329df2e84210..737db538495f7134c4977e9e4a612a3118a8a8f3 100644
+--- a/dist/esm/components/TooltipWrapper/TooltipWrapper.d.ts.map
++++ b/dist/esm/components/TooltipWrapper/TooltipWrapper.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"TooltipWrapper.d.ts","sourceRoot":"","sources":["../../../../src/components/TooltipWrapper/TooltipWrapper.tsx"],"names":[],"mappings":"AAMA,OAAO,KAAK,EAEV,QAAQ,EACR,gBAAgB,EAChB,YAAY,EACZ,SAAS,EAET,cAAc,EACf,MAAM,OAAO,CAAC;AAUf,MAAM,MAAM,YAAY,GAAG;IACzB,GAAG,EAAE,gBAAgB,CAAC,OAAO,GAAG,IAAI,CAAC,CAAC;IACtC,MAAM,EAAE,QAAQ,CAAC,cAAc,CAAC,OAAO,CAAC,CAAC,CAAC;IAC1C,EAAE,EAAE,MAAM,CAAC;CACZ,CAAC;AAgCF,MAAM,MAAM,mBAAmB,GAAG;IAChC,QAAQ,EAAE,YAAY,CAAC,GAAG,CAAC,GAAG,CAAC,CAAC,KAAK,EAAE,YAAY,KAAK,SAAS,CAAC,CAAC;IACnE,IAAI,EAAE,MAAM,CAAC;CACd,CAAC;AAEF,QAAA,MAAM,cAAc,GAAI,oBAAoB,mBAAmB,4CA6C9D,CAAC;AAEF,eAAe,cAAc,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"TooltipWrapper.d.ts","sourceRoot":"","sources":["../../../../src/components/TooltipWrapper/TooltipWrapper.tsx"],"names":[],"mappings":"AAMA,OAAO,KAAK,EAEV,QAAQ,EACR,SAAS,EACT,YAAY,EACZ,SAAS,EAET,cAAc,EACf,MAAM,OAAO,CAAC;AAUf,MAAM,MAAM,YAAY,GAAG;IACzB,GAAG,EAAE,SAAS,CAAC,OAAO,GAAG,IAAI,CAAC,CAAC;IAC/B,MAAM,EAAE,QAAQ,CAAC,cAAc,CAAC,OAAO,CAAC,CAAC,CAAC;IAC1C,EAAE,EAAE,MAAM,CAAC;CACZ,CAAC;AAgCF,MAAM,MAAM,mBAAmB,GAAG;IAChC,QAAQ,EAAE,YAAY,CAAC,GAAG,CAAC,GAAG,CAAC,CAAC,KAAK,EAAE,YAAY,KAAK,SAAS,CAAC,CAAC;IACnE,IAAI,EAAE,MAAM,CAAC;CACd,CAAC;AAEF,QAAA,MAAM,cAAc,GAAI,oBAAoB,mBAAmB,gCA6C9D,CAAC;AAEF,eAAe,cAAc,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/layouts/HeroLayout/HeroLayout.d.ts b/dist/esm/layouts/HeroLayout/HeroLayout.d.ts
+index 394e15a51989509728b668dbcbf436305822fee7..220dbe49307dcc42b67f276f141ef6fa4623862c 100644
+--- a/dist/esm/layouts/HeroLayout/HeroLayout.d.ts
++++ b/dist/esm/layouts/HeroLayout/HeroLayout.d.ts
+@@ -2,6 +2,6 @@ import type { ReactNode } from 'react';
+ import type { LayoutContextValue } from '../../contexts/LayoutContext';
+ declare const HeroLayout: ({ children, forceDarkMode, ...rest }: LayoutContextValue & {
+     children: ReactNode;
+-}) => import("react/jsx-runtime").JSX.Element;
++}) => import("react").JSX.Element;
+ export default HeroLayout;
+ //# sourceMappingURL=HeroLayout.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/layouts/HeroLayout/HeroLayout.d.ts.map b/dist/esm/layouts/HeroLayout/HeroLayout.d.ts.map
+index 788a9d9001b659d7a0259b25848b45240e0c2d09..b615f85911324f704ea84e1eb06688580650adcb 100644
+--- a/dist/esm/layouts/HeroLayout/HeroLayout.d.ts.map
++++ b/dist/esm/layouts/HeroLayout/HeroLayout.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"HeroLayout.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HeroLayout/HeroLayout.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAKvC,OAAO,KAAK,EAAE,kBAAkB,EAAE,MAAM,8BAA8B,CAAC;AAGvE,QAAA,MAAM,UAAU,GAAI,sCAIjB,kBAAkB,GAAG;IACtB,QAAQ,EAAE,SAAS,CAAC;CACrB,4CAsBA,CAAC;AAEF,eAAe,UAAU,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"HeroLayout.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HeroLayout/HeroLayout.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAKvC,OAAO,KAAK,EAAE,kBAAkB,EAAE,MAAM,8BAA8B,CAAC;AAGvE,QAAA,MAAM,UAAU,GAAI,sCAIjB,kBAAkB,GAAG;IACtB,QAAQ,EAAE,SAAS,CAAC;CACrB,gCAsBA,CAAC;AAEF,eAAe,UAAU,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/layouts/HeroLayout/HeroLayoutSubtitle.d.ts b/dist/esm/layouts/HeroLayout/HeroLayoutSubtitle.d.ts
+index d8d570b0fe2a540b0bf8dc9baf7905083bff4a30..16c239b0396cb0ea7dae173a2736b14db4ac02e7 100644
+--- a/dist/esm/layouts/HeroLayout/HeroLayoutSubtitle.d.ts
++++ b/dist/esm/layouts/HeroLayout/HeroLayoutSubtitle.d.ts
+@@ -1,6 +1,6 @@
+ import type { ReactNode } from 'react';
+ declare const HeroLayoutSubtitle: ({ children }: {
+     children: ReactNode;
+-}) => import("react/jsx-runtime").JSX.Element;
++}) => import("react").JSX.Element;
+ export default HeroLayoutSubtitle;
+ //# sourceMappingURL=HeroLayoutSubtitle.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/layouts/HeroLayout/HeroLayoutSubtitle.d.ts.map b/dist/esm/layouts/HeroLayout/HeroLayoutSubtitle.d.ts.map
+index 1ee40a5f64c58223954b7df87fb78b802d10a943..a58fef18dd540426bc30ae8cfa5993f9c14cfd22 100644
+--- a/dist/esm/layouts/HeroLayout/HeroLayoutSubtitle.d.ts.map
++++ b/dist/esm/layouts/HeroLayout/HeroLayoutSubtitle.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"HeroLayoutSubtitle.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HeroLayout/HeroLayoutSubtitle.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAEvC,QAAA,MAAM,kBAAkB,GAAI,cAAc;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,4CAEhE,CAAC;AAEF,eAAe,kBAAkB,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"HeroLayoutSubtitle.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HeroLayout/HeroLayoutSubtitle.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAEvC,QAAA,MAAM,kBAAkB,GAAI,cAAc;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,gCAEhE,CAAC;AAEF,eAAe,kBAAkB,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/layouts/HeroLayout/HeroLayoutTitle.d.ts b/dist/esm/layouts/HeroLayout/HeroLayoutTitle.d.ts
+index e48c04d3676e3cc52f0f827f04200dfc8ceb2dd9..a33ca7796bc6bea3339267998edaa387555b8593 100644
+--- a/dist/esm/layouts/HeroLayout/HeroLayoutTitle.d.ts
++++ b/dist/esm/layouts/HeroLayout/HeroLayoutTitle.d.ts
+@@ -1,6 +1,6 @@
+ import type { ReactNode } from 'react';
+ declare const HeroLayoutTitle: ({ children }: {
+     children: ReactNode;
+-}) => import("react/jsx-runtime").JSX.Element;
++}) => import("react").JSX.Element;
+ export default HeroLayoutTitle;
+ //# sourceMappingURL=HeroLayoutTitle.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/layouts/HeroLayout/HeroLayoutTitle.d.ts.map b/dist/esm/layouts/HeroLayout/HeroLayoutTitle.d.ts.map
+index dc06de8a73a740b8f475c40ff2ffd2d57027a373..ad59a08a914c3ea47bf42ed1261622b3cb8c25e7 100644
+--- a/dist/esm/layouts/HeroLayout/HeroLayoutTitle.d.ts.map
++++ b/dist/esm/layouts/HeroLayout/HeroLayoutTitle.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"HeroLayoutTitle.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HeroLayout/HeroLayoutTitle.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAEvC,QAAA,MAAM,eAAe,GAAI,cAAc;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,4CAE7D,CAAC;AAEF,eAAe,eAAe,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"HeroLayoutTitle.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HeroLayout/HeroLayoutTitle.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAEvC,QAAA,MAAM,eAAe,GAAI,cAAc;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,gCAE7D,CAAC;AAEF,eAAe,eAAe,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayout.d.ts b/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayout.d.ts
+index b6f9466319d3fc7d8d98094002a46978a010a7de..3b3e16ac54e7becb774af45ddee2d995596f50a7 100644
+--- a/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayout.d.ts
++++ b/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayout.d.ts
+@@ -2,6 +2,6 @@ import type { ReactNode } from 'react';
+ import type { LayoutContextValue } from '../../contexts/LayoutContext';
+ declare const HorizontalWizardLayout: ({ children, forceDarkMode, ...rest }: LayoutContextValue & {
+     children: ReactNode;
+-}) => import("react/jsx-runtime").JSX.Element;
++}) => import("react").JSX.Element;
+ export default HorizontalWizardLayout;
+ //# sourceMappingURL=HorizontalWizardLayout.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayout.d.ts.map b/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayout.d.ts.map
+index 0e50b673092312e173faec7f3c242da38c5be4fd..77dd2d5425a4698e05a307a9d6a7ce411e25ff6c 100644
+--- a/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayout.d.ts.map
++++ b/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayout.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"HorizontalWizardLayout.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HorizontalWizardLayout/HorizontalWizardLayout.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAKvC,OAAO,KAAK,EAAE,kBAAkB,EAAE,MAAM,8BAA8B,CAAC;AAGvE,QAAA,MAAM,sBAAsB,GAAI,sCAI7B,kBAAkB,GAAG;IACtB,QAAQ,EAAE,SAAS,CAAC;CACrB,4CAQA,CAAC;AAEF,eAAe,sBAAsB,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"HorizontalWizardLayout.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HorizontalWizardLayout/HorizontalWizardLayout.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAKvC,OAAO,KAAK,EAAE,kBAAkB,EAAE,MAAM,8BAA8B,CAAC;AAGvE,QAAA,MAAM,sBAAsB,GAAI,sCAI7B,kBAAkB,GAAG;IACtB,QAAQ,EAAE,SAAS,CAAC;CACrB,gCAQA,CAAC;AAEF,eAAe,sBAAsB,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutAside.d.ts b/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutAside.d.ts
+index 479747280dac5c0e14df4d1bb265e5fb67cee509..cf3d210d90d96f2a3110f5fae47992da0fb3e3ad 100644
+--- a/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutAside.d.ts
++++ b/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutAside.d.ts
+@@ -1,6 +1,6 @@
+ import type { ReactNode } from 'react';
+ declare const HorizontalWizardLayoutAside: ({ children }: {
+     children: ReactNode;
+-}) => import("react/jsx-runtime").JSX.Element;
++}) => import("react").JSX.Element;
+ export default HorizontalWizardLayoutAside;
+ //# sourceMappingURL=HorizontalWizardLayoutAside.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutAside.d.ts.map b/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutAside.d.ts.map
+index 9690298e0cbfec04722fda985ccf18364f527b73..cc77cd18949415102375a7f2cc17346fcb8ab50a 100644
+--- a/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutAside.d.ts.map
++++ b/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutAside.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"HorizontalWizardLayoutAside.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HorizontalWizardLayout/HorizontalWizardLayoutAside.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAKvC,QAAA,MAAM,2BAA2B,GAAI,cAAc;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,4CAOzE,CAAC;AAEF,eAAe,2BAA2B,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"HorizontalWizardLayoutAside.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HorizontalWizardLayout/HorizontalWizardLayoutAside.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAKvC,QAAA,MAAM,2BAA2B,GAAI,cAAc;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,gCAOzE,CAAC;AAEF,eAAe,2BAA2B,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutCaption.d.ts b/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutCaption.d.ts
+index 004c29ce0f4bda654fc5fe552c4e58920d074b96..97becce402b235ef2c84cb3171f976320438bdf3 100644
+--- a/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutCaption.d.ts
++++ b/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutCaption.d.ts
+@@ -1,6 +1,6 @@
+ import type { ReactNode } from 'react';
+ declare const HorizontalWizardLayoutCaption: ({ children, }: {
+     children: ReactNode;
+-}) => import("react/jsx-runtime").JSX.Element;
++}) => import("react").JSX.Element;
+ export default HorizontalWizardLayoutCaption;
+ //# sourceMappingURL=HorizontalWizardLayoutCaption.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutCaption.d.ts.map b/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutCaption.d.ts.map
+index 2493cee6ed321d2cff4444ab5f585d14325d3182..52a7015f9b74ea992d2f7814f26a5becd6d5e6e8 100644
+--- a/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutCaption.d.ts.map
++++ b/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutCaption.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"HorizontalWizardLayoutCaption.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HorizontalWizardLayout/HorizontalWizardLayoutCaption.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAIvC,QAAA,MAAM,6BAA6B,GAAI,eAEpC;IACD,QAAQ,EAAE,SAAS,CAAC;CACrB,4CAcA,CAAC;AAEF,eAAe,6BAA6B,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"HorizontalWizardLayoutCaption.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HorizontalWizardLayout/HorizontalWizardLayoutCaption.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAIvC,QAAA,MAAM,6BAA6B,GAAI,eAEpC;IACD,QAAQ,EAAE,SAAS,CAAC;CACrB,gCAcA,CAAC;AAEF,eAAe,6BAA6B,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutContent.d.ts b/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutContent.d.ts
+index 2e3b1db4140505e8d9885c189514d3a7f9d1ecae..1c4548983d3ef9aab30248528ff79dbde5a6beea 100644
+--- a/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutContent.d.ts
++++ b/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutContent.d.ts
+@@ -1,6 +1,6 @@
+ import type { ReactNode } from 'react';
+ declare const HorizontalWizardLayoutContent: ({ children, }: {
+     children: ReactNode;
+-}) => import("react/jsx-runtime").JSX.Element;
++}) => import("react").JSX.Element;
+ export default HorizontalWizardLayoutContent;
+ //# sourceMappingURL=HorizontalWizardLayoutContent.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutContent.d.ts.map b/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutContent.d.ts.map
+index 1b845c8add1475a91dc199206b85fae75cf7b48b..27e2c4922b65f698c52417cf9c4b3c0ab111f35c 100644
+--- a/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutContent.d.ts.map
++++ b/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutContent.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"HorizontalWizardLayoutContent.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HorizontalWizardLayout/HorizontalWizardLayoutContent.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAIvC,QAAA,MAAM,6BAA6B,GAAI,eAEpC;IACD,QAAQ,EAAE,SAAS,CAAC;CACrB,4CAAgE,CAAC;AAElE,eAAe,6BAA6B,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"HorizontalWizardLayoutContent.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HorizontalWizardLayout/HorizontalWizardLayoutContent.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAIvC,QAAA,MAAM,6BAA6B,GAAI,eAEpC;IACD,QAAQ,EAAE,SAAS,CAAC;CACrB,gCAAgE,CAAC;AAElE,eAAe,6BAA6B,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutDescription.d.ts b/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutDescription.d.ts
+index 039ba10ff11f18af2782995b945a4f5c51d65398..864e05f15c8cdaeed2dbbc037e57ea873252537a 100644
+--- a/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutDescription.d.ts
++++ b/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutDescription.d.ts
+@@ -1,5 +1,5 @@
+ import type { ComponentProps } from 'react';
+ import * as FormPageLayout from '../../components/FormPageLayout/FormPageLayout.styles';
+-declare const HorizontalWizardLayoutDescription: (props: ComponentProps<typeof FormPageLayout.Description>) => import("react/jsx-runtime").JSX.Element;
++declare const HorizontalWizardLayoutDescription: (props: ComponentProps<typeof FormPageLayout.Description>) => import("react").JSX.Element;
+ export default HorizontalWizardLayoutDescription;
+ //# sourceMappingURL=HorizontalWizardLayoutDescription.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutDescription.d.ts.map b/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutDescription.d.ts.map
+index e99269ecdb9819582cec76d78e8d4f66d4f49445..83495a4d06348cf4d2dddb611a159a099560f10a 100644
+--- a/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutDescription.d.ts.map
++++ b/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutDescription.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"HorizontalWizardLayoutDescription.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HorizontalWizardLayout/HorizontalWizardLayoutDescription.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAE5C,OAAO,KAAK,cAAc,MAAM,uDAAuD,CAAC;AAExF,QAAA,MAAM,iCAAiC,GACrC,OAAO,cAAc,CAAC,OAAO,cAAc,CAAC,WAAW,CAAC,4CACZ,CAAC;AAE/C,eAAe,iCAAiC,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"HorizontalWizardLayoutDescription.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HorizontalWizardLayout/HorizontalWizardLayoutDescription.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAE5C,OAAO,KAAK,cAAc,MAAM,uDAAuD,CAAC;AAExF,QAAA,MAAM,iCAAiC,GACrC,OAAO,cAAc,CAAC,OAAO,cAAc,CAAC,WAAW,CAAC,gCACZ,CAAC;AAE/C,eAAe,iCAAiC,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutFooter.d.ts b/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutFooter.d.ts
+index 80ab1446b4dbdc70d359c4d8ea1534f05297e6f7..a215a28d157a2d187644a5e49bc8d3a85aa97691 100644
+--- a/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutFooter.d.ts
++++ b/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutFooter.d.ts
+@@ -1,6 +1,6 @@
+ import type { ReactNode } from 'react';
+ declare const HorizontalWizardLayoutFooter: ({ children, }: {
+     children: ReactNode;
+-}) => import("react/jsx-runtime").JSX.Element;
++}) => import("react").JSX.Element;
+ export default HorizontalWizardLayoutFooter;
+ //# sourceMappingURL=HorizontalWizardLayoutFooter.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutFooter.d.ts.map b/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutFooter.d.ts.map
+index 2882a03e42f71f2273b875b95077e9eba7e45919..133824b396da0eba12b6e7c70b70224af937d862 100644
+--- a/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutFooter.d.ts.map
++++ b/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutFooter.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"HorizontalWizardLayoutFooter.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HorizontalWizardLayout/HorizontalWizardLayoutFooter.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAEvC,QAAA,MAAM,4BAA4B,GAAI,eAEnC;IACD,QAAQ,EAAE,SAAS,CAAC;CACrB,4CAIA,CAAC;AAEF,eAAe,4BAA4B,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"HorizontalWizardLayoutFooter.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HorizontalWizardLayout/HorizontalWizardLayoutFooter.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAEvC,QAAA,MAAM,4BAA4B,GAAI,eAEnC;IACD,QAAQ,EAAE,SAAS,CAAC;CACrB,gCAIA,CAAC;AAEF,eAAe,4BAA4B,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutSubtitle.d.ts b/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutSubtitle.d.ts
+index 980a11fb7129b9042edcc3d0a68a918afb8634ee..4f07d5dba0f1d99bf94f15fa0cb8872023863169 100644
+--- a/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutSubtitle.d.ts
++++ b/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutSubtitle.d.ts
+@@ -1,5 +1,5 @@
+ import type { ComponentProps } from 'react';
+ import * as FormPageLayout from '../../components/FormPageLayout/FormPageLayout.styles';
+-declare const HorizontalWizardLayoutSubtitle: (props: ComponentProps<typeof FormPageLayout.Subtitle>) => import("react/jsx-runtime").JSX.Element;
++declare const HorizontalWizardLayoutSubtitle: (props: ComponentProps<typeof FormPageLayout.Subtitle>) => import("react").JSX.Element;
+ export default HorizontalWizardLayoutSubtitle;
+ //# sourceMappingURL=HorizontalWizardLayoutSubtitle.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutSubtitle.d.ts.map b/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutSubtitle.d.ts.map
+index f118e989b37c4cd06834ca3bf801ebf51af3efa7..f7fd25d414a85a41b3e5a8f07458c68bd472212b 100644
+--- a/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutSubtitle.d.ts.map
++++ b/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutSubtitle.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"HorizontalWizardLayoutSubtitle.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HorizontalWizardLayout/HorizontalWizardLayoutSubtitle.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAE5C,OAAO,KAAK,cAAc,MAAM,uDAAuD,CAAC;AAExF,QAAA,MAAM,8BAA8B,GAClC,OAAO,cAAc,CAAC,OAAO,cAAc,CAAC,QAAQ,CAAC,4CACZ,CAAC;AAE5C,eAAe,8BAA8B,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"HorizontalWizardLayoutSubtitle.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HorizontalWizardLayout/HorizontalWizardLayoutSubtitle.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAE5C,OAAO,KAAK,cAAc,MAAM,uDAAuD,CAAC;AAExF,QAAA,MAAM,8BAA8B,GAClC,OAAO,cAAc,CAAC,OAAO,cAAc,CAAC,QAAQ,CAAC,gCACZ,CAAC;AAE5C,eAAe,8BAA8B,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutTitle.d.ts b/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutTitle.d.ts
+index 2def18824d049e8909018e6e9928e333519b25ca..aab0404bb3edd556616141ee216c334982100458 100644
+--- a/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutTitle.d.ts
++++ b/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutTitle.d.ts
+@@ -1,5 +1,5 @@
+ import type { ComponentProps } from 'react';
+ import * as FormPageLayout from '../../components/FormPageLayout/FormPageLayout.styles';
+-declare const HorizontalWizardLayoutTitle: (props: ComponentProps<typeof FormPageLayout.Title>) => import("react/jsx-runtime").JSX.Element;
++declare const HorizontalWizardLayoutTitle: (props: ComponentProps<typeof FormPageLayout.Title>) => import("react").JSX.Element;
+ export default HorizontalWizardLayoutTitle;
+ //# sourceMappingURL=HorizontalWizardLayoutTitle.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutTitle.d.ts.map b/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutTitle.d.ts.map
+index 363c681807fe1bcce1883d90032d6a8196b1e958..8108ff3d7cec24d703b2fd9e3fe443e2d71f5450 100644
+--- a/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutTitle.d.ts.map
++++ b/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardLayoutTitle.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"HorizontalWizardLayoutTitle.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HorizontalWizardLayout/HorizontalWizardLayoutTitle.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAE5C,OAAO,KAAK,cAAc,MAAM,uDAAuD,CAAC;AAExF,QAAA,MAAM,2BAA2B,GAC/B,OAAO,cAAc,CAAC,OAAO,cAAc,CAAC,KAAK,CAAC,4CACZ,CAAC;AAEzC,eAAe,2BAA2B,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"HorizontalWizardLayoutTitle.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HorizontalWizardLayout/HorizontalWizardLayoutTitle.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAE5C,OAAO,KAAK,cAAc,MAAM,uDAAuD,CAAC;AAExF,QAAA,MAAM,2BAA2B,GAC/B,OAAO,cAAc,CAAC,OAAO,cAAc,CAAC,KAAK,CAAC,gCACZ,CAAC;AAEzC,eAAe,2BAA2B,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardTextHighlight.d.ts b/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardTextHighlight.d.ts
+index 976c21f20bf1ca5a947b83ff83770ddbc7a5d4f6..111da06c762df424e2dd743766f2a4b71d301058 100644
+--- a/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardTextHighlight.d.ts
++++ b/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardTextHighlight.d.ts
+@@ -1,6 +1,6 @@
+ import type { ReactNode } from 'react';
+ export declare const HorizontalWizardTextHighlight: (props: {
+     children: ReactNode;
+-}) => import("react/jsx-runtime").JSX.Element;
++}) => import("react").JSX.Element;
+ export default HorizontalWizardTextHighlight;
+ //# sourceMappingURL=HorizontalWizardTextHighlight.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardTextHighlight.d.ts.map b/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardTextHighlight.d.ts.map
+index 28af65f6881b001d28842a990c83383427fb48d2..2f0ad2aa8f7dfc0663f11879bb063a530f08ab7a 100644
+--- a/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardTextHighlight.d.ts.map
++++ b/dist/esm/layouts/HorizontalWizardLayout/HorizontalWizardTextHighlight.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"HorizontalWizardTextHighlight.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HorizontalWizardLayout/HorizontalWizardTextHighlight.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAKvC,eAAO,MAAM,6BAA6B,GAAI,OAAO;IACnD,QAAQ,EAAE,SAAS,CAAC;CACrB,4CAGA,CAAC;AAEF,eAAe,6BAA6B,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"HorizontalWizardTextHighlight.d.ts","sourceRoot":"","sources":["../../../../src/layouts/HorizontalWizardLayout/HorizontalWizardTextHighlight.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAKvC,eAAO,MAAM,6BAA6B,GAAI,OAAO;IACnD,QAAQ,EAAE,SAAS,CAAC;CACrB,gCAGA,CAAC;AAEF,eAAe,6BAA6B,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/layouts/VerticalWizardLayout/VerticalWizardLayout.d.ts b/dist/esm/layouts/VerticalWizardLayout/VerticalWizardLayout.d.ts
+index 61bc2b047f8cb77263081939dada9f73635b4675..93954d0565142c5837bd9305351700d0bcfc6de4 100644
+--- a/dist/esm/layouts/VerticalWizardLayout/VerticalWizardLayout.d.ts
++++ b/dist/esm/layouts/VerticalWizardLayout/VerticalWizardLayout.d.ts
+@@ -2,6 +2,6 @@ import type { ReactNode } from 'react';
+ import type { LayoutContextValue } from '../../contexts/LayoutContext';
+ declare const VerticalWizardLayout: ({ children, forceDarkMode, ...rest }: LayoutContextValue & {
+     children: ReactNode;
+-}) => import("react/jsx-runtime").JSX.Element;
++}) => import("react").JSX.Element;
+ export default VerticalWizardLayout;
+ //# sourceMappingURL=VerticalWizardLayout.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/layouts/VerticalWizardLayout/VerticalWizardLayout.d.ts.map b/dist/esm/layouts/VerticalWizardLayout/VerticalWizardLayout.d.ts.map
+index a3adbcd4ddf99f6ba4f96e61ec8dbdd8416e0c18..ea0044a3895e62edd8f15521f4b2d3097be9db92 100644
+--- a/dist/esm/layouts/VerticalWizardLayout/VerticalWizardLayout.d.ts.map
++++ b/dist/esm/layouts/VerticalWizardLayout/VerticalWizardLayout.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"VerticalWizardLayout.d.ts","sourceRoot":"","sources":["../../../../src/layouts/VerticalWizardLayout/VerticalWizardLayout.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAKvC,OAAO,KAAK,EAAE,kBAAkB,EAAE,MAAM,8BAA8B,CAAC;AAGvE,QAAA,MAAM,oBAAoB,GAAI,sCAI3B,kBAAkB,GAAG;IACtB,QAAQ,EAAE,SAAS,CAAC;CACrB,4CAsBA,CAAC;AAEF,eAAe,oBAAoB,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"VerticalWizardLayout.d.ts","sourceRoot":"","sources":["../../../../src/layouts/VerticalWizardLayout/VerticalWizardLayout.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAKvC,OAAO,KAAK,EAAE,kBAAkB,EAAE,MAAM,8BAA8B,CAAC;AAGvE,QAAA,MAAM,oBAAoB,GAAI,sCAI3B,kBAAkB,GAAG;IACtB,QAAQ,EAAE,SAAS,CAAC;CACrB,gCAsBA,CAAC;AAEF,eAAe,oBAAoB,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/layouts/VerticalWizardLayout/VerticalWizardLayoutFooter.d.ts b/dist/esm/layouts/VerticalWizardLayout/VerticalWizardLayoutFooter.d.ts
+index b7cfb3f6a961fa57a2667e8619581d702305a8ac..6aea275298ebe4a89bf7b85e8a533a1b7f5bf8ea 100644
+--- a/dist/esm/layouts/VerticalWizardLayout/VerticalWizardLayoutFooter.d.ts
++++ b/dist/esm/layouts/VerticalWizardLayout/VerticalWizardLayoutFooter.d.ts
+@@ -1,6 +1,6 @@
+ import type { ReactNode } from 'react';
+ declare const VerticalWizardLayoutFooter: ({ children }: {
+     children: ReactNode;
+-}) => import("react/jsx-runtime").JSX.Element;
++}) => import("react").JSX.Element;
+ export default VerticalWizardLayoutFooter;
+ //# sourceMappingURL=VerticalWizardLayoutFooter.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/layouts/VerticalWizardLayout/VerticalWizardLayoutFooter.d.ts.map b/dist/esm/layouts/VerticalWizardLayout/VerticalWizardLayoutFooter.d.ts.map
+index 97d2910dbdaec984eaa459f2817dd0874c92671e..3660e315daccfcd8ff1e584a4d40f01f92c388d3 100644
+--- a/dist/esm/layouts/VerticalWizardLayout/VerticalWizardLayoutFooter.d.ts.map
++++ b/dist/esm/layouts/VerticalWizardLayout/VerticalWizardLayoutFooter.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"VerticalWizardLayoutFooter.d.ts","sourceRoot":"","sources":["../../../../src/layouts/VerticalWizardLayout/VerticalWizardLayoutFooter.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAEvC,QAAA,MAAM,0BAA0B,GAAI,cAAc;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,4CAUxE,CAAC;AAEF,eAAe,0BAA0B,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"VerticalWizardLayoutFooter.d.ts","sourceRoot":"","sources":["../../../../src/layouts/VerticalWizardLayout/VerticalWizardLayoutFooter.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAEvC,QAAA,MAAM,0BAA0B,GAAI,cAAc;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,gCAUxE,CAAC;AAEF,eAAe,0BAA0B,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/layouts/VerticalWizardLayout/VerticalWizardLayoutForm.d.ts b/dist/esm/layouts/VerticalWizardLayout/VerticalWizardLayoutForm.d.ts
+index b2f3eccf794e798352b5273bb1631047c8ef0624..34dadca379eca0bf15506bc607e90a4f75bdd8be 100644
+--- a/dist/esm/layouts/VerticalWizardLayout/VerticalWizardLayoutForm.d.ts
++++ b/dist/esm/layouts/VerticalWizardLayout/VerticalWizardLayoutForm.d.ts
+@@ -1,6 +1,6 @@
+ import type { ReactNode } from 'react';
+ declare const VerticalWizardLayoutForm: ({ children }: {
+     children: ReactNode;
+-}) => import("react/jsx-runtime").JSX.Element;
++}) => import("react").JSX.Element;
+ export default VerticalWizardLayoutForm;
+ //# sourceMappingURL=VerticalWizardLayoutForm.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/layouts/VerticalWizardLayout/VerticalWizardLayoutForm.d.ts.map b/dist/esm/layouts/VerticalWizardLayout/VerticalWizardLayoutForm.d.ts.map
+index 7e7e19a2a398a1e94e1fd525f28f2cd485c409f2..2acdc6a157db73b6630be78e1649025357450fdd 100644
+--- a/dist/esm/layouts/VerticalWizardLayout/VerticalWizardLayoutForm.d.ts.map
++++ b/dist/esm/layouts/VerticalWizardLayout/VerticalWizardLayoutForm.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"VerticalWizardLayoutForm.d.ts","sourceRoot":"","sources":["../../../../src/layouts/VerticalWizardLayout/VerticalWizardLayoutForm.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAEvC,QAAA,MAAM,wBAAwB,GAAI,cAAc;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,4CAItE,CAAC;AAEF,eAAe,wBAAwB,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"VerticalWizardLayoutForm.d.ts","sourceRoot":"","sources":["../../../../src/layouts/VerticalWizardLayout/VerticalWizardLayoutForm.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAEvC,QAAA,MAAM,wBAAwB,GAAI,cAAc;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,gCAItE,CAAC;AAEF,eAAe,wBAAwB,CAAC"}
+\ No newline at end of file
+diff --git a/dist/esm/layouts/VerticalWizardLayout/VerticalWizardLayoutTitle.d.ts b/dist/esm/layouts/VerticalWizardLayout/VerticalWizardLayoutTitle.d.ts
+index dc742ee5c509ac421e2270bc90ce3216351e4bf0..c452afb45ecfd4f13ab6e2f87b5d0f420e2e8948 100644
+--- a/dist/esm/layouts/VerticalWizardLayout/VerticalWizardLayoutTitle.d.ts
++++ b/dist/esm/layouts/VerticalWizardLayout/VerticalWizardLayoutTitle.d.ts
+@@ -1,6 +1,6 @@
+ import type { ReactNode } from 'react';
+ declare const VerticalWizardLayoutTitle: ({ children }: {
+     children: ReactNode;
+-}) => import("react/jsx-runtime").JSX.Element;
++}) => import("react").JSX.Element;
+ export default VerticalWizardLayoutTitle;
+ //# sourceMappingURL=VerticalWizardLayoutTitle.d.ts.map
+\ No newline at end of file
+diff --git a/dist/esm/layouts/VerticalWizardLayout/VerticalWizardLayoutTitle.d.ts.map b/dist/esm/layouts/VerticalWizardLayout/VerticalWizardLayoutTitle.d.ts.map
+index 895023ae20da28c953c5651ae765c6d6712ed79c..96fadc1971c6ad83230f2c2149da5c69366585d0 100644
+--- a/dist/esm/layouts/VerticalWizardLayout/VerticalWizardLayoutTitle.d.ts.map
++++ b/dist/esm/layouts/VerticalWizardLayout/VerticalWizardLayoutTitle.d.ts.map
+@@ -1 +1 @@
+-{"version":3,"file":"VerticalWizardLayoutTitle.d.ts","sourceRoot":"","sources":["../../../../src/layouts/VerticalWizardLayout/VerticalWizardLayoutTitle.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAEvC,QAAA,MAAM,yBAAyB,GAAI,cAAc;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,4CAWvE,CAAC;AAEF,eAAe,yBAAyB,CAAC"}
+\ No newline at end of file
++{"version":3,"file":"VerticalWizardLayoutTitle.d.ts","sourceRoot":"","sources":["../../../../src/layouts/VerticalWizardLayout/VerticalWizardLayoutTitle.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAEvC,QAAA,MAAM,yBAAyB,GAAI,cAAc;IAAE,QAAQ,EAAE,SAAS,CAAA;CAAE,gCAWvE,CAAC;AAEF,eAAe,yBAAyB,CAAC"}
+\ No newline at end of file
+diff --git a/package.json b/package.json
+index b6d7b61d519f9c9973ea0dd07f2a18d34e0eecd6..e1b8c4078f929b0afedf5f12e644e7be76db370a 100644
+--- a/package.json
++++ b/package.json
+@@ -47,16 +47,16 @@
+     "@storybook/react-webpack5": "~9.1.20",
+     "@testing-library/dom": "~10.4.1",
+     "@testing-library/react": "~16.3.2",
+-    "@types/react": "~18.3.29",
+-    "@types/react-dom": "~18.3.7",
++    "@types/react": "~19.2.16",
++    "@types/react-dom": "~19.2.3",
+     "eslint": "~9.39.4",
+     "i18next": "~23.4.9",
+     "jest": "~30.4.2",
+     "jest-environment-jsdom": "~30.4.1",
+     "lint-all": "^0.31.25",
+     "prettier": "~3.6.2",
+-    "react": "~18.3.1",
+-    "react-dom": "~18.3.1",
++    "react": "~19.2.7",
++    "react-dom": "~19.2.7",
+     "react-i18next": "~13.2.2",
+     "rimraf": "~6.1.3",
+     "storybook": "~9.1.20",
