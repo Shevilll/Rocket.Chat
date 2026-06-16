@@ -21,10 +21,7 @@ export const getURL = function (
 		typeof window !== 'undefined' &&
 		(window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
 
-	const runtimeRootUrl =
-		typeof __meteor_runtime_config__ !== 'undefined' ? __meteor_runtime_config__.ROOT_URL || window.location.origin : '';
-
-	const resolvedSiteUrl = params.full && isLocalhost ? runtimeRootUrl : siteUrl;
+	const resolvedSiteUrl = params.full && isLocalhost ? window.location.origin : siteUrl;
 
 	if (cacheKey) {
 		path += `${path.includes('?') ? '&' : '?'}cacheKey=${Info.version}`;
