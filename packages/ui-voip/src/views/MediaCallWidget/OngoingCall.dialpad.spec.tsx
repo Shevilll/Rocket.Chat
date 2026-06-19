@@ -29,6 +29,7 @@ const renderView = (Component: ComponentType, { peerInfo, inline = false, localS
 		remoteMuted: false,
 		remoteHeld: false,
 		callId: 'call-1',
+		escalated: false,
 		supportedFeatures: ['audio', 'screen-share', 'hold', 'transfer'],
 	} as SessionState;
 

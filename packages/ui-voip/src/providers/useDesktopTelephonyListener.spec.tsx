@@ -12,6 +12,7 @@ const baseSession = {
 	remoteMuted: false,
 	remoteHeld: false,
 	hidden: false,
+	escalated: false,
 	supportedFeatures: [],
 } as const;
 

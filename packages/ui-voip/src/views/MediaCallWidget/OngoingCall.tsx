@@ -19,9 +19,9 @@ import {
 	VideoCallWidgetAction,
 } from '../../components';
 import { useMediaCallView } from '../../context/MediaCallViewContext';
-import { isExternalPeer } from '../../utils/isExternalPeer';
-import AppActions from '../../experimental/AppActionButtons/components/AppActions';
 import { useMediaCallWidgetSlot } from '../../context/MediaCallWidgetSlotContext';
+import AppActions from '../../experimental/AppActionButtons/components/AppActions';
+import { isExternalPeer } from '../../utils/isExternalPeer';
 
 const OngoingCall = () => {
 	const { t } = useTranslation();

@@ -68,7 +68,7 @@ const MediaCallRoomSection = ({ showChat, onToggleChat, user, containerHeight }:
 
 	const visibleActions = useVisibleAppActions();
 	const features = usePeekMediaSessionFeatures();
-	
+
 	const screenShareAvailable = features.includes('screen-share');
 	const holdAvailable = features.includes('hold');
 
@@ -86,9 +86,7 @@ const MediaCallRoomSection = ({ showChat, onToggleChat, user, containerHeight }:
 			flexDirection='column'
 			{...getSplitStyles(showChat)}
 		>
-			{!escalated ? (
-				<ActionStrip leftSlot={visibleActions} rightSlot={<VideoCallButton onClick={onRequestVideoCall} />} />
-			) : null}
+			{!escalated ? <ActionStrip leftSlot={visibleActions} rightSlot={<VideoCallButton onClick={onRequestVideoCall} />} /> : null}
 
 			{escalated ? <VideoEscalatedView /> : <PeerCardsView user={user} shouldWrapCards={shouldWrapCards} />}
 
