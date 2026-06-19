@@ -1,0 +1,41 @@
+import { assertEquals } from 'https://deno.land/std@0.203.0/assert/mod';
+import { afterAll, beforeEach, describe, it } from 'https://deno.land/std@0.203.0/testing/bdd';
+
+import { AppObjectRegistry } from '../../AppObjectRegistry';
+import { AppAccessors } from '../../lib/accessors/mod';
+import handleScheduler from '../scheduler-handler';
+import { createMockApp, createMockRequest } from './helpers/mod';
+
+describe('handlers > scheduler', () => {
+	const mockAppAccessors = new AppAccessors(() =>
+		Promise.resolve({
+			id: 'mockId',
+			result: {},
+			jsonrpc: '2.0',
+			serialize: () => '',
+		}),
+	);
+
+	const mockApp = createMockApp();
+
+	beforeEach(() => {
+		AppObjectRegistry.clear();
+		AppObjectRegistry.set('app', mockApp);
+		mockAppAccessors.getConfigurationExtend().scheduler.registerProcessors([
+			{
+				id: 'mockId',
+				processor: () => Promise.resolve('it works!'),
+			},
+		]);
+	});
+
+	afterAll(() => {
+		AppObjectRegistry.clear();
+	});
+
+	it('correctly executes a request to a processor', async () => {
+		const result = await handleScheduler(createMockRequest({ method: 'scheduler:mockId', params: [{}] }));
+
+		assertEquals(result, null);
+	});
+});
