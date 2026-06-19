@@ -19,6 +19,7 @@ import {
 } from '../../components';
 import { useMediaCallView } from '../../context/MediaCallViewContext';
 import { isExternalPeer } from '../../utils/isExternalPeer';
+import AppActions from '../../experimental/AppActionButtons/components/AppActions';
 
 const OngoingCall = () => {
 	const { t } = useTranslation();
@@ -73,6 +74,7 @@ const OngoingCall = () => {
 						<Divider w='100%' />
 					</Box>
 				) : null}
+				<AppActions />
 				<ButtonGroup large>
 					<ActionButton
 						disabled={connecting || reconnecting}
