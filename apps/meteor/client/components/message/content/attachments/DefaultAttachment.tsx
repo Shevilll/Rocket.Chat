@@ -16,6 +16,7 @@ import AttachmentThumb from './structure/AttachmentThumb';
 import AttachmentTitle from './structure/AttachmentTitle';
 import MarkdownText from '../../../MarkdownText';
 import { useCollapse } from '../../hooks/useCollapse';
+import CollapsibleContent from '../collapsible/CollapsibleContent';
 
 const applyMarkdownIfRequires = (
 	list: MessageAttachmentDefault['mrkdwn_in'] = ['text', 'pretext'],
@@ -27,7 +28,7 @@ const applyMarkdownIfRequires = (
 type DefaultAttachmentProps = MessageAttachmentDefault;
 
 const DefaultAttachment = (attachment: DefaultAttachmentProps) => {
-	const [collapsed, collapse] = useCollapse(!!attachment.collapsed);
+	const [collapsed, toggleCollapse] = useCollapse(!!attachment.collapsed);
 
 	return (
 		<AttachmentBlock
@@ -66,7 +67,7 @@ const DefaultAttachment = (attachment: DefaultAttachmentProps) => {
 						>
 							{attachment.title}
 						</AttachmentTitle>{' '}
-						{collapse}
+						<CollapsibleContent key='collapsible-content-action' collapsed={collapsed} onClick={toggleCollapse} />
 					</AttachmentRow>
 				)}
 				{!collapsed && (
@@ -90,14 +91,14 @@ const DefaultAttachment = (attachment: DefaultAttachmentProps) => {
 											<MarkdownText variant='inline' parseEmoji content={title.replace(/(.*)/g, (line: string) => `${line}  `)} />
 										) : null,
 										value: value ? (
-											<MarkdownText variant='inline' parseEmoji content={value.replace(/(.*)/g, (line: string) => `${line}  `)} />
+											<MarkdownText variant='inline' parseEmoji content={String(value).replace(/(.*)/g, (line: string) => `${line}  `)} />
 										) : null,
 									};
 								})}
 							/>
 						)}
 						{attachment.image_url && (
-							<AttachmentImage {...(attachment.image_dimensions as any)} src={attachment.image_url} alt={attachment.description || ''} />
+							<AttachmentImage {...(attachment.image_dimensions as any)} src={attachment.image_url} alt={attachment.image_alt || ''} />
 						)}
 						{/* DEPRECATED */}
 						{isActionAttachment(attachment) && <ActionAttachment {...attachment} />}
