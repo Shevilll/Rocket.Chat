@@ -64,12 +64,12 @@ export const ExternalUser: StoryObj<typeof PeerInfo> = {
 	render: () => <PeerInfo number='1234567890' />,
 };
 
-export const ExternalUserWithDisplayName: StoryFn<typeof PeerInfo> = () => {
-	return <PeerInfo number='1234567890' displayName='Jane Doe' />;
+export const ExternalUserWithDisplayName: StoryObj<typeof PeerInfo> = {
+	render: () => <PeerInfo number='1234567890' displayName='Jane Doe' />,
 };
 
-export const ExternalUserWithDisplayNameAndAvatar: StoryFn<typeof PeerInfo> = () => {
-	return (
+export const ExternalUserWithDisplayNameAndAvatar: StoryObj<typeof PeerInfo> = {
+	render: () => (
 		<PeerInfo
 			number='1234567890'
 			displayName='Jane Doe'
@@ -85,5 +85,5 @@ export const ExternalUserWithDisplayNameAndAvatar: StoryFn<typeof PeerInfo> = ()
               SuvjQ/FFJayjDWrCTepAQ2vUH0oo/Jk3ovpwJJeVCP5CN+lFFaaMqy+nAyuChvrTI2kN9JAsi2ZOy4IBHMnkSCP+iqBexSWdxLazoUljJVlP
               UH2oorkV10pRc7b1zXb/hZOzuJvM86QWEXeELxOzHSIPcmiiiunVlF2RNTpRkrs//Z'
 		/>
-	);
+	),
 };
