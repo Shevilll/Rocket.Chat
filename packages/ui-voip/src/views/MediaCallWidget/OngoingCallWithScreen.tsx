@@ -17,6 +17,7 @@ import {
 	useInfoSlots,
 	CardWidgetContainer,
 	StreamCard,
+	VideoCallWidgetAction,
 } from '../../components';
 import { useMediaCallView } from '../../context/MediaCallViewContext';
 import AppActions from '../../experimental/AppActionButtons/components/AppActions';
@@ -28,6 +29,8 @@ const OngoingCall = () => {
 
 	const {
 		sessionState,
+		isRequestingVideoCall,
+		onRequestVideoCall,
 		onMute,
 		onHold,
 		onForward,
@@ -37,7 +40,7 @@ const OngoingCall = () => {
 		onToggleScreenSharing,
 		widgetPositionTracker,
 	} = useMediaCallView();
-	const { muted, held, remoteMuted, remoteHeld, peerInfo, connectionState, startedAt } = sessionState;
+	const { muted, held, remoteMuted, remoteHeld, peerInfo, connectionState, startedAt, escalated, supportedFeatures } = sessionState;
 
 	const { localScreen, remoteScreen } = streams;
 
@@ -49,6 +52,10 @@ const OngoingCall = () => {
 
 	const connecting = connectionState === 'CONNECTING';
 	const reconnecting = connectionState === 'RECONNECTING';
+
+	const transferDisabled = !supportedFeatures.includes('transfer');
+	const holdDisabled = !supportedFeatures.includes('hold');
+	const videoConfAvailable = supportedFeatures.includes('conference-escalation');
 
 	// TODO: Figure out how to ensure this always exist before rendering the component
 	if (!peerInfo) {
@@ -87,6 +94,10 @@ const OngoingCall = () => {
 							<WidgetInfo slots={[{ text: t('You_are_sharing_your_screen'), type: 'warning' }]} variant='card-content' />
 						</Box>
 					)}
+
+					{videoConfAvailable && (
+						<VideoCallWidgetAction escalated={escalated} loading={isRequestingVideoCall} onClick={onRequestVideoCall} />
+					)}
 				</CardWidgetContainer>
 			</WidgetContent>
 			<WidgetInfo slots={slots} />
@@ -98,9 +109,10 @@ const OngoingCall = () => {
 					<ToggleButton
 						label={t('Hold')}
 						icons={['pause-shape-unfilled', 'pause-shape-unfilled']}
-						titles={[t('Hold'), t('Resume')]}
+						titles={[holdDisabled ? t('Call_feature_unsupported') : t('Hold'), t('Resume')]}
 						pressed={held}
 						onToggle={onHold}
+						disabled={connecting || reconnecting || holdDisabled}
 					/>
 					<ToggleButton
 						label={t('Share_screen')}
@@ -109,7 +121,13 @@ const OngoingCall = () => {
 						pressed={localScreen?.active ?? false}
 						onToggle={onToggleScreenSharing}
 					/>
-					<ActionButton disabled={connecting || reconnecting} label={t('Forward')} icon='arrow-forward' onClick={onForward} />
+					<ActionButton
+						disabled={connecting || reconnecting || transferDisabled}
+						label={t('Forward')}
+						icon='arrow-forward'
+						title={transferDisabled ? t('Call_feature_unsupported') : t('Forward')}
+						onClick={onForward}
+					/>
 					<ActionButton
 						label={t('Voice_call__user__hangup', {
 							user: isExternalPeer(peerInfo) ? peerInfo.displayName || peerInfo.number : peerInfo.displayName,
