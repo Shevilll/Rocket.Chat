@@ -206,6 +206,6 @@ describe('formatErrorResponse', () => {
 		assert.ok(result instanceof Error, `Expected instance of Error`);
 		assert.deepStrictEqual(result.message, 'An unknown error occurred');
 		// Ensure the message is not "[object Object]"
-		assert.deepStrictEqual(result.message !== '[object Object]', true);
+		assert.deepStrictEqual((result.message as string) !== '[object Object]', true);
 	});
 });

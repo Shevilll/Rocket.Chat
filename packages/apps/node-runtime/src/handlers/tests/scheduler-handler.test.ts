@@ -24,7 +24,7 @@ describe('handlers > scheduler', () => {
 		mockAppAccessors.getConfigurationExtend().scheduler.registerProcessors([
 			{
 				id: 'mockId',
-				processor: () => Promise.resolve('it works!'),
+				processor: () => Promise.resolve(),
 			},
 		]);
 	});

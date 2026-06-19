@@ -1,5 +1,17 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion -- acceptable for this test file */
 import * as assert from 'node:assert';
 import { beforeEach, describe, it } from 'node:test';
+
+import type {
+	AnyNode,
+	ArrowFunctionExpression,
+	AssignmentExpression,
+	AwaitExpression,
+	Expression,
+	MethodDefinition,
+	ReturnStatement,
+	VariableDeclaration,
+} from 'acorn';
 
 import type { WalkerState } from '../operations';
 import {
@@ -24,16 +36,6 @@ import {
 	SimpleCallExpressionOfFoo,
 	SyncFunctionDeclarationWithAsyncCallExpression,
 } from './data/ast_blocks';
-import type {
-	AnyNode,
-	ArrowFunctionExpression,
-	AssignmentExpression,
-	AwaitExpression,
-	Expression,
-	MethodDefinition,
-	ReturnStatement,
-	VariableDeclaration,
-} from '../../../acorn.d';
 
 describe('getFunctionIdentifier', () => {
 	it(`identifies the name "foo" for the code \`${FunctionDeclarationFoo.code}\``, () => {

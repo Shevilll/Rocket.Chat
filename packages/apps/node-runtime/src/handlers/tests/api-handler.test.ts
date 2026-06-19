@@ -1,6 +1,8 @@
 import * as assert from 'node:assert';
 import { beforeEach, describe, it, mock } from 'node:test';
 
+import type { IRead, IModify, IHttp, IPersistence } from '@rocket.chat/apps-engine/definition/accessors';
+import type { IApiRequest, IApiEndpointInfo, IApiResponse } from '@rocket.chat/apps-engine/definition/api';
 import type { IApiEndpoint } from '@rocket.chat/apps-engine/definition/api/IApiEndpoint';
 import { JsonRpcError } from 'jsonrpc-lite';
 
@@ -9,12 +11,70 @@ import apiHandler from '../api-handler';
 import { createMockRequest } from './helpers/mod';
 
 describe('handlers > api', () => {
-	const mockEndpoint: IApiEndpoint = {
+	const mockEndpoint: Required<Omit<IApiEndpoint, 'delete'>> = {
 		path: '/test',
-		get: (request: any, endpoint: any, read: any, modify: any, http: any, persis: any) => Promise.resolve('ok'),
-		post: (request: any, endpoint: any, read: any, modify: any, http: any, persis: any) => Promise.resolve('ok'),
-		put: (request: any, endpoint: any, read: any, modify: any, http: any, persis: any) => {
+		examples: {},
+		authRequired: false,
+		_availableMethods: [],
+		get(
+			_request: IApiRequest,
+			_endpoint: IApiEndpointInfo,
+			_read: IRead,
+			_modify: IModify,
+			_http: IHttp,
+			_persis: IPersistence,
+		): Promise<IApiResponse> {
+			return Promise.resolve({ status: 200 });
+		},
+		post(
+			_request: IApiRequest,
+			_endpoint: IApiEndpointInfo,
+			_read: IRead,
+			_modify: IModify,
+			_http: IHttp,
+			_persis: IPersistence,
+		): Promise<IApiResponse> {
+			return Promise.resolve({ status: 200 });
+		},
+		put(
+			_request: IApiRequest,
+			_endpoint: IApiEndpointInfo,
+			_read: IRead,
+			_modify: IModify,
+			_http: IHttp,
+			_persis: IPersistence,
+		): Promise<IApiResponse> {
 			throw new Error('Method execution error example');
+		},
+		head(
+			_request: IApiRequest,
+			_endpoint: IApiEndpointInfo,
+			_read: IRead,
+			_modify: IModify,
+			_http: IHttp,
+			_persis: IPersistence,
+		): Promise<IApiResponse> {
+			throw new Error('Function not implemented.');
+		},
+		options(
+			_request: IApiRequest,
+			_endpoint: IApiEndpointInfo,
+			_read: IRead,
+			_modify: IModify,
+			_http: IHttp,
+			_persis: IPersistence,
+		): Promise<IApiResponse> {
+			throw new Error('Function not implemented.');
+		},
+		patch(
+			_request: IApiRequest,
+			_endpoint: IApiEndpointInfo,
+			_read: IRead,
+			_modify: IModify,
+			_http: IHttp,
+			_persis: IPersistence,
+		): Promise<IApiResponse> {
+			throw new Error('Function not implemented.');
 		},
 	};
 
@@ -28,7 +88,7 @@ describe('handlers > api', () => {
 
 		const result = await apiHandler(createMockRequest({ method: 'api:/test:get', params: ['request', 'endpointInfo'] }));
 
-		assert.deepStrictEqual(result, 'ok');
+		assert.deepStrictEqual(result, { status: 200 });
 		assert.deepStrictEqual(_spy.mock.calls[0].arguments.length, 6);
 		assert.deepStrictEqual(_spy.mock.calls[0].arguments[0], 'request');
 		assert.deepStrictEqual(_spy.mock.calls[0].arguments[1], 'endpointInfo');
@@ -41,7 +101,7 @@ describe('handlers > api', () => {
 
 		const result = await apiHandler(createMockRequest({ method: 'api:/test:post', params: ['request', 'endpointInfo'] }));
 
-		assert.deepStrictEqual(result, 'ok');
+		assert.deepStrictEqual(result, { status: 200 });
 		assert.deepStrictEqual(_spy.mock.calls[0].arguments.length, 6);
 		assert.deepStrictEqual(_spy.mock.calls[0].arguments[0], 'request');
 		assert.deepStrictEqual(_spy.mock.calls[0].arguments[1], 'endpointInfo');
@@ -53,8 +113,8 @@ describe('handlers > api', () => {
 		const result = await apiHandler(createMockRequest({ method: `api:/test:delete`, params: ['request', 'endpointInfo'] }));
 
 		assert.ok(result instanceof JsonRpcError, `Expected instance of ${JsonRpcError.name}`);
-		assert.strictEqual((result as any).message, `/test's delete not exists`);
-		assert.strictEqual((result as any).code, -32000);
+		assert.strictEqual(result.message, `/test's delete not exists`);
+		assert.strictEqual(result.code, -32000);
 	});
 
 	it('correctly handles an error if endpoint not exists', async () => {
@@ -74,9 +134,11 @@ describe('handlers > api', () => {
 	});
 
 	it('correctly handles dynamic paths with parameters (e.g., webhook/:event)', async () => {
-		const mockDynamicEndpoint: IApiEndpoint = {
+		const mockDynamicEndpoint = {
+			...mockEndpoint,
 			path: 'webhook/:event',
-			post: (request: any, endpoint: any, read: any, modify: any, http: any, persis: any) => Promise.resolve('webhook handled'),
+			post: (_request: any, _endpoint: any, _read: any, _modify: any, _http: any, _persis: any) =>
+				Promise.resolve('webhook handled' as any),
 		};
 
 		AppObjectRegistry.set('api:webhook/:event', mockDynamicEndpoint);
@@ -94,9 +156,10 @@ describe('handlers > api', () => {
 	});
 
 	it('correctly handles paths with multiple segments and colons', async () => {
-		const mockComplexEndpoint: IApiEndpoint = {
+		const mockComplexEndpoint = {
+			...mockEndpoint,
 			path: 'api/v1/:resource/:id',
-			get: (request: any, endpoint: any, read: any, modify: any, http: any, persis: any) => Promise.resolve('complex path'),
+			get: (_request: any, _endpoint: any, _read: any, _modify: any, _http: any, _persis: any) => Promise.resolve({ status: 201 }),
 		};
 
 		AppObjectRegistry.set('api:api/v1/:resource/:id', mockComplexEndpoint);
@@ -105,7 +168,7 @@ describe('handlers > api', () => {
 
 		const result = await apiHandler(createMockRequest({ method: 'api:api/v1/:resource/:id:get', params: ['request', 'endpointInfo'] }));
 
-		assert.deepStrictEqual(result, 'complex path');
+		assert.deepStrictEqual(result, { status: 201 });
 		assert.deepStrictEqual(_spy.mock.calls[0].arguments.length, 6);
 
 		_spy.mock.restore();

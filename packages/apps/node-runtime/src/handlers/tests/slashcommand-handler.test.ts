@@ -1,6 +1,9 @@
 import * as assert from 'node:assert';
 import { beforeEach, describe, it, mock } from 'node:test';
 
+import type { IRead, IModify, IHttp, IPersistence } from '@rocket.chat/apps-engine/definition/accessors';
+import type { ISlashCommand, SlashCommandContext } from '@rocket.chat/apps-engine/definition/slashcommands';
+
 import { AppObjectRegistry } from '../../AppObjectRegistry';
 import { createMockRequest } from './helpers/mod';
 import type { AppAccessors } from '../../lib/accessors/mod';
@@ -16,38 +19,36 @@ describe('handlers > slashcommand', () => {
 		getSenderFn: () => (id: string) => Promise.resolve([{ __type: 'bridgeCall' }, { id }]),
 	} as unknown as AppAccessors;
 
-	const mockCommandExecutorOnly = {
+	const mockCommandExecutorOnly: ISlashCommand = {
 		command: 'executor-only',
 		i18nParamsExample: 'test',
 		i18nDescription: 'test',
 		providesPreview: false,
-		async executor(context: any, read: any, modify: any, http: any, persis: any): Promise<void> {},
+		executor(_context: SlashCommandContext, _read: IRead, _modify: IModify, _http: IHttp, _persis: IPersistence): Promise<void> {
+			return Promise.resolve();
+		},
 	};
 
-	const mockCommandExecutorAndPreview = {
+	const mockCommandExecutorAndPreview: ISlashCommand = {
 		command: 'executor-and-preview',
 		i18nParamsExample: 'test',
 		i18nDescription: 'test',
 		providesPreview: true,
-		async executor(context: any, read: any, modify: any, http: any, persis: any): Promise<void> {},
-		async previewer(context: any, read: any, modify: any, http: any, persis: any): Promise<void> {},
-		async executePreviewItem(previewItem: any, context: any, read: any, modify: any, http: any, persis: any): Promise<void> {},
-	};
-
-	const mockCommandPreviewWithNoExecutor = {
-		command: 'preview-with-no-executor',
-		i18nParamsExample: 'test',
-		i18nDescription: 'test',
-		providesPreview: true,
-		async previewer(context: any, read: any, modify: any, http: any, persis: any): Promise<void> {},
-		async executePreviewItem(previewItem: any, context: any, read: any, modify: any, http: any, persis: any): Promise<void> {},
+		executor(_context: SlashCommandContext, _read: IRead, _modify: IModify, _http: IHttp, _persis: IPersistence): Promise<void> {
+			return Promise.resolve();
+		},
+		previewer(_context, _read, _modify, _http, _persis) {
+			return Promise.resolve({ i18nTitle: 'test', items: [] });
+		},
+		executePreviewItem(_item, _context, _read, _modify, _http, _persis) {
+			return Promise.resolve();
+		},
 	};
 
 	beforeEach(() => {
 		AppObjectRegistry.clear();
 		AppObjectRegistry.set('slashcommand:executor-only', mockCommandExecutorOnly);
 		AppObjectRegistry.set('slashcommand:executor-and-preview', mockCommandExecutorAndPreview);
-		AppObjectRegistry.set('slashcommand:preview-with-no-executor', mockCommandPreviewWithNoExecutor);
 	});
 
 	it('correctly handles execution of a slash command', async () => {

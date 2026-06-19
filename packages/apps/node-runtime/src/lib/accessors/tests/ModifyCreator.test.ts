@@ -1,6 +1,10 @@
 import * as assert from 'node:assert';
 import { after, beforeEach, describe, it, mock } from 'node:test';
 
+import type { IRoom } from '@rocket.chat/apps-engine/definition/rooms';
+import type { IUploadDescriptor } from '@rocket.chat/apps-engine/definition/uploads/IUploadDescriptor';
+import type { IUser } from '@rocket.chat/apps-engine/definition/users';
+
 import { AppObjectRegistry } from '../../../AppObjectRegistry';
 import { ModifyCreator } from '../modify/ModifyCreator';
 
@@ -31,8 +35,8 @@ describe('ModifyCreator', () => {
 
 		// Importing types from the Apps-Engine is problematic, so we'll go with `any` here
 		messageBuilder
-			.setRoom({ id: '123' } as any)
-			.setSender({ id: '456' } as any)
+			.setRoom({ id: '123' } as IRoom)
+			.setSender({ id: '456' } as IUser)
 			.setText('Hello World')
 			.setUsernameAlias('alias')
 			.setAvatarUrl('https://avatars.com/123');
@@ -61,11 +65,13 @@ describe('ModifyCreator', () => {
 	it('sends the correct payload in the request to upload a buffer', async () => {
 		const modifyCreator = new ModifyCreator(senderFn);
 
-		const result = await modifyCreator.getUploadCreator().uploadBuffer(new Uint8Array([1, 2, 3, 4]), 'text/plain');
+		const result = await modifyCreator
+			.getUploadCreator()
+			.uploadBuffer(Buffer.from([1, 2, 3, 4]), { filename: 'testfile' } as IUploadDescriptor);
 
 		assert.deepStrictEqual(result, {
 			method: 'accessor:getModifier:getCreator:getUploadCreator:uploadBuffer',
-			params: [new Uint8Array([1, 2, 3, 4]), 'text/plain'],
+			params: [Buffer.from([1, 2, 3, 4]), { filename: 'testfile' }],
 		});
 	});
 
@@ -96,7 +102,7 @@ describe('ModifyCreator', () => {
 
 		const result = modifyCreator.getLivechatCreator().createToken();
 
-		assert.ok(!(result instanceof Promise));
+		assert.ok(!((result as any) instanceof Promise));
 		assert.ok(typeof result === 'string', `Expected "${result}" to be of type "string", but got "${typeof result}"`);
 	});
 
@@ -153,7 +159,12 @@ describe('ModifyCreator', () => {
 		const modifyCreator = new ModifyCreator(failingSenderFn);
 		const uploadCreator = modifyCreator.getUploadCreator();
 
-		await assert.rejects(() => uploadCreator.uploadBuffer(new Uint8Array([9, 10, 11, 12]), 'image/png'), { message: 'Upload error' });
+		await assert.rejects(
+			() => uploadCreator.uploadBuffer(Buffer.from([1, 2, 3, 4]), { filename: 'testfile-reject' } as IUploadDescriptor),
+			{
+				message: 'Upload error',
+			},
+		);
 	});
 
 	it('throws an instance of Error when getUploadCreator fails with a specific error object', async () => {
@@ -161,7 +172,12 @@ describe('ModifyCreator', () => {
 		const modifyCreator = new ModifyCreator(failingSenderFn);
 		const uploadCreator = modifyCreator.getUploadCreator();
 
-		await assert.rejects(() => uploadCreator.uploadBuffer(new Uint8Array([1, 2, 3]), 'image/png'), { message: 'Upload method error' });
+		await assert.rejects(
+			() => uploadCreator.uploadBuffer(Buffer.from([1, 2, 3, 4]), { filename: 'testfile-reject' } as IUploadDescriptor),
+			{
+				message: 'Upload method error',
+			},
+		);
 	});
 
 	it('throws a default Error when getUploadCreator fails with an unknown error object', async () => {
@@ -169,9 +185,12 @@ describe('ModifyCreator', () => {
 		const modifyCreator = new ModifyCreator(failingSenderFn);
 		const uploadCreator = modifyCreator.getUploadCreator();
 
-		await assert.rejects(() => uploadCreator.uploadBuffer(new Uint8Array([1, 2, 3]), 'image/png'), {
-			message: 'An unknown error occurred',
-		});
+		await assert.rejects(
+			() => uploadCreator.uploadBuffer(Buffer.from([1, 2, 3, 4]), { filename: 'testfile-reject' } as IUploadDescriptor),
+			{
+				message: 'An unknown error occurred',
+			},
+		);
 	});
 
 	it('throws an error when a proxy method of getEmailCreator fails', async () => {

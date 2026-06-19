@@ -8,7 +8,8 @@ import type { AnyNode, ClassDeclaration, ExpressionStatement, FunctionDeclaratio
 
 type TestNodeExcerpt<N extends AnyNode = AnyNode> = {
 	code: string;
-	node: N;
+	// start/end are omitted from test fixtures for brevity; cast to any to allow partial node objects
+	node: any;
 };
 
 export const FunctionDeclarationFoo: TestNodeExcerpt<FunctionDeclaration> = {

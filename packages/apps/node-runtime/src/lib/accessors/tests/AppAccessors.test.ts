@@ -1,11 +1,16 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion -- acceptable in this test file */
 import * as assert from 'node:assert';
 import { after, beforeEach, describe, it } from 'node:test';
+
+import type { IRead, IModify, IHttp, IPersistence } from '@rocket.chat/apps-engine/definition/accessors';
+import type { SlashCommandContext } from '@rocket.chat/apps-engine/definition/slashcommands';
 
 import { AppObjectRegistry } from '../../../AppObjectRegistry';
 import { AppAccessors } from '../mod';
 
 describe('AppAccessors', () => {
 	let appAccessors: AppAccessors;
+
 	const senderFn = (r: object) =>
 		Promise.resolve({
 			id: Math.random().toString(36).substring(2),
@@ -26,8 +31,8 @@ describe('AppAccessors', () => {
 	});
 
 	it('creates the correct format for IRead calls', async () => {
-		const roomRead = appAccessors.getReader().getRoomReader();
-		const room = roomRead.getById('123');
+		const roomRead = appAccessors.getReader()!.getRoomReader();
+		const room = await roomRead.getById('123');
 
 		assert.deepStrictEqual(room, {
 			params: ['123'],
@@ -36,7 +41,7 @@ describe('AppAccessors', () => {
 	});
 
 	it('creates the correct format for IEnvironmentRead calls from IRead', async () => {
-		const reader = appAccessors.getReader().getEnvironmentReader().getEnvironmentVariables();
+		const reader = appAccessors.getReader()!.getEnvironmentReader().getEnvironmentVariables();
 		const room = await reader.getValueByName('NODE_ENV');
 
 		assert.deepStrictEqual(room, {
@@ -72,7 +77,13 @@ describe('AppAccessors', () => {
 			i18nDescription: 'test',
 			i18nParamsExample: 'test',
 			providesPreview: true,
+			executor(_context: SlashCommandContext, _read: IRead, _modify: IModify, _http: IHttp, _persis: IPersistence): Promise<void> {
+				throw new Error('Function not implemented.');
+			},
 		});
+
+		// The function will not be serialized and sent to the main process
+		delete (command as any).params[0].executor;
 
 		assert.deepStrictEqual(command, {
 			params: [
@@ -105,7 +116,7 @@ describe('AppAccessors', () => {
 		assert.deepStrictEqual(AppObjectRegistry.get('slashcommand:test'), slashcommand);
 
 		// The function will not be serialized and sent to the main process
-		delete result.params[0].executor;
+		delete (result as any).params[0].executor;
 
 		assert.deepStrictEqual(result, {
 			method: 'accessor:getConfigurationExtend:slashCommands:provideSlashCommand',

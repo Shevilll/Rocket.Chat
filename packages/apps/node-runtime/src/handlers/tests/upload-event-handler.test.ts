@@ -29,7 +29,7 @@ describe('handlers > upload', () => {
 		app = {
 			extendConfiguration: () => {},
 			executePreFileUpload: () => Promise.resolve(),
-		} as unknown as App;
+		} as unknown as App & IPreFileUpload;
 
 		AppObjectRegistry.set('app', app);
 
