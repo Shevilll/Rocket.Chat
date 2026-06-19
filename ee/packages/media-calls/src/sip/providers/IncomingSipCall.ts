@@ -448,21 +448,31 @@ export class IncomingSipCall extends BaseSipCall {
 		throw new SipError(SipErrorCodes.NOT_FOUND);
 	}
 
-	private static async getRocketChatCallerFromInvite(req: SrfRequest): Promise<MediaCallContact | null> {
-		logger.debug({
-			msg: 'IncomingSipCall.getRocketChatCallerFromInvite',
-			callingNumber: req.callingNumber,
-			calledNumber: req.calledNumber,
-		});
+	private static getDisplayNameFromInvite(req: SrfRequest): string | undefined {
+		const removeQuotes = (str?: string): string | undefined => str?.replace(/^"|"$/g, '').trim();
 
-		if (req.callingNumber && typeof req.callingNumber === 'string') {
-			const userContact = await mediaCallDirector.cast.getContactForExtensionNumber(req.callingNumber, { preferredType: 'sip' });
-			if (userContact) {
-				return userContact;
+		if (req.has('X-RocketChat-Caller-Name')) {
+			const headerValue = req.get('X-RocketChat-Caller-Name');
+			if (headerValue) {
+				return headerValue;
 			}
 		}
 
-		return null;
+		if (req.has('p-asserted-identity')) {
+			const pAssertedIdentity = removeQuotes(req.getParsedHeader('p-asserted-identity')?.name);
+			if (pAssertedIdentity) {
+				return pAssertedIdentity;
+			}
+		}
+
+		if (req.has('from')) {
+			const fromHeader = removeQuotes(req.getParsedHeader('from')?.name);
+			if (fromHeader) {
+				return fromHeader;
+			}
+		}
+
+		return undefined;
 	}
 
 	private static async getDiversionContactFromInvite(req: SrfRequest): Promise<MediaCallContact | null> {
@@ -498,12 +508,14 @@ export class IncomingSipCall extends BaseSipCall {
 	private static async getCallerContactFromInvite(sessionId: string, req: SrfRequest): Promise<MediaCallSignedContact<'sip'>> {
 		logger.debug({ msg: 'IncomingSipCall.getCallerContactFromInvite' });
 
-		const displayName = req.callingName || undefined;
+		const displayName = this.getDisplayNameFromInvite(req);
+		const usernameFromHeader = req.has('X-RocketChat-Caller-Username') && req.get('X-RocketChat-Caller-Username');
 		const sipExtension = req.callingNumber;
 
 		const defaultContactInfo: MediaCallContactInformation = {
 			sipExtension,
 			displayName: displayName || sipExtension,
+			...(usernameFromHeader && { username: usernameFromHeader }),
 		};
 
 		const contact = await mediaCallDirector.cast.getContactForExtensionNumber(sipExtension, { requiredType: 'sip' }, defaultContactInfo);
