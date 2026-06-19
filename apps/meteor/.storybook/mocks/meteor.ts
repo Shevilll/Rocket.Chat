@@ -99,5 +99,3 @@ export const Session = {
 	get: () => {},
 	set: () => {},
 };
-
-export const DDPCommon = {};
