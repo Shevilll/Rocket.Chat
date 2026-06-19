@@ -10158,7 +10158,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rocket.chat/gazzodown-alt@workspace:packages/gazzodown-alt":
+"@rocket.chat/gazzodown-alt@workspace:^, @rocket.chat/gazzodown-alt@workspace:packages/gazzodown-alt":
   version: 0.0.0-use.local
   resolution: "@rocket.chat/gazzodown-alt@workspace:packages/gazzodown-alt"
   dependencies:
@@ -10633,6 +10633,7 @@ __metadata:
     "@rocket.chat/fuselage-tokens": "npm:~0.33.2"
     "@rocket.chat/fuselage-ui-kit": "workspace:^"
     "@rocket.chat/gazzodown": "workspace:^"
+    "@rocket.chat/gazzodown-alt": "workspace:^"
     "@rocket.chat/http-router": "workspace:^"
     "@rocket.chat/i18n": "workspace:^"
     "@rocket.chat/icons": "npm:^0.48.0"
@@ -15495,6 +15496,16 @@ __metadata:
     "@types/prop-types": "npm:*"
     csstype: "npm:^3.0.2"
   checksum: 10/4b965dffe34a1f8aac8e2d7e976f113373f38134f9e37239f7e75d7ac6b3c2e1333a8df21febf1fe7749640f8de5708f7668cdfc70bffebda1cc4d3346724fd5
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:~18.3.27":
+  version: 18.3.31
+  resolution: "@types/react@npm:18.3.31"
+  dependencies:
+    "@types/prop-types": "npm:*"
+    csstype: "npm:^3.2.2"
+  checksum: 10/0a5d73b1ba3ce73273b28cc50da78d520b1a8d4253075820dc5cf6c9e286ff6cb339b56bd613d05885fec214fbecd8137bddcbdb475612fdcc46e061d88f00fc
   languageName: node
   linkType: hard
 
@@ -22335,7 +22346,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:~9.39.4":
+"eslint@npm:~9.39.3, eslint@npm:~9.39.4":
   version: 9.39.4
   resolution: "eslint@npm:9.39.4"
   dependencies:
