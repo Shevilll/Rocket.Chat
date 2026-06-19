@@ -34,7 +34,7 @@ export default async function videoConferenceHandler(request: RequestContext): P
 	const args = [...(videoconf ? [videoconf] : []), ...(user ? [user] : []), ...(options ? [options] : [])];
 
 	try {
-		// deno-lint-ignore ban-types
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
 		const result = await (method as Function).apply(wrapComposedApp(provider, request), [
 			...args,
 			AppAccessorsInstance.getReader(),

@@ -1,7 +1,5 @@
-// deno-lint-ignore-file no-explicit-any
-import { assertEquals, assertInstanceOf } from 'https://deno.land/std@0.203.0/assert/mod';
-import { beforeEach, describe, it } from 'https://deno.land/std@0.203.0/testing/bdd';
-import { spy } from 'https://deno.land/std@0.203.0/testing/mock';
+import * as assert from 'node:assert';
+import { beforeEach, describe, it, mock } from 'node:test';
 
 import { AppObjectRegistry } from '../../AppObjectRegistry';
 import { createMockRequest } from './helpers/mod';
@@ -23,7 +21,6 @@ describe('handlers > slashcommand', () => {
 		i18nParamsExample: 'test',
 		i18nDescription: 'test',
 		providesPreview: false,
-		// deno-lint-ignore no-unused-vars
 		async executor(context: any, read: any, modify: any, http: any, persis: any): Promise<void> {},
 	};
 
@@ -32,11 +29,8 @@ describe('handlers > slashcommand', () => {
 		i18nParamsExample: 'test',
 		i18nDescription: 'test',
 		providesPreview: true,
-		// deno-lint-ignore no-unused-vars
 		async executor(context: any, read: any, modify: any, http: any, persis: any): Promise<void> {},
-		// deno-lint-ignore no-unused-vars
 		async previewer(context: any, read: any, modify: any, http: any, persis: any): Promise<void> {},
-		// deno-lint-ignore no-unused-vars
 		async executePreviewItem(previewItem: any, context: any, read: any, modify: any, http: any, persis: any): Promise<void> {},
 	};
 
@@ -45,9 +39,7 @@ describe('handlers > slashcommand', () => {
 		i18nParamsExample: 'test',
 		i18nDescription: 'test',
 		providesPreview: true,
-		// deno-lint-ignore no-unused-vars
 		async previewer(context: any, read: any, modify: any, http: any, persis: any): Promise<void> {},
-		// deno-lint-ignore no-unused-vars
 		async executePreviewItem(previewItem: any, context: any, read: any, modify: any, http: any, persis: any): Promise<void> {},
 	};
 
@@ -67,7 +59,7 @@ describe('handlers > slashcommand', () => {
 			triggerId: 'triggerId',
 		};
 
-		const _spy = spy(mockCommandExecutorOnly, 'executor');
+		const _spy = mock.method(mockCommandExecutorOnly, 'executor');
 
 		const mockRequest = createMockRequest({ method: 'slashcommand:executor-only:executor', params: [mockContext] });
 
@@ -75,20 +67,20 @@ describe('handlers > slashcommand', () => {
 			mockContext,
 		]);
 
-		const context = _spy.calls[0].args[0];
+		const context = _spy.mock.calls[0].arguments[0];
 
-		assertInstanceOf(context.getRoom(), Room);
-		assertEquals(context.getSender(), { __type: 'sender' });
-		assertEquals(context.getArguments(), { __type: 'params' });
-		assertEquals(context.getThreadId(), 'threadId');
-		assertEquals(context.getTriggerId(), 'triggerId');
+		assert.ok(context.getRoom() instanceof Room, `Expected instance of ${Room.name}`);
+		assert.deepStrictEqual(context.getSender(), { __type: 'sender' });
+		assert.deepStrictEqual(context.getArguments(), { __type: 'params' });
+		assert.deepStrictEqual(context.getThreadId(), 'threadId');
+		assert.deepStrictEqual(context.getTriggerId(), 'triggerId');
 
-		assertEquals(_spy.calls[0].args[1], mockAppAccessors.getReader());
-		assertEquals(_spy.calls[0].args[2], mockAppAccessors.getModifier());
-		assertEquals(_spy.calls[0].args[3], mockAppAccessors.getHttp());
-		assertEquals(_spy.calls[0].args[4], mockAppAccessors.getPersistence());
+		assert.deepStrictEqual(_spy.mock.calls[0].arguments[1], mockAppAccessors.getReader());
+		assert.deepStrictEqual(_spy.mock.calls[0].arguments[2], mockAppAccessors.getModifier());
+		assert.deepStrictEqual(_spy.mock.calls[0].arguments[3], mockAppAccessors.getHttp());
+		assert.deepStrictEqual(_spy.mock.calls[0].arguments[4], mockAppAccessors.getPersistence());
 
-		_spy.restore();
+		_spy.mock.restore();
 	});
 
 	it('correctly handles execution of a slash command previewer', async () => {
@@ -100,7 +92,7 @@ describe('handlers > slashcommand', () => {
 			triggerId: 'triggerId',
 		};
 
-		const _spy = spy(mockCommandExecutorAndPreview, 'previewer');
+		const _spy = mock.method(mockCommandExecutorAndPreview, 'previewer');
 
 		const mockRequest = createMockRequest({ method: 'slashcommand:executor-and-preview:previewer', params: [mockContext] });
 
@@ -108,20 +100,20 @@ describe('handlers > slashcommand', () => {
 			mockContext,
 		]);
 
-		const context = _spy.calls[0].args[0];
+		const context = _spy.mock.calls[0].arguments[0];
 
-		assertInstanceOf(context.getRoom(), Room);
-		assertEquals(context.getSender(), { __type: 'sender' });
-		assertEquals(context.getArguments(), { __type: 'params' });
-		assertEquals(context.getThreadId(), 'threadId');
-		assertEquals(context.getTriggerId(), 'triggerId');
+		assert.ok(context.getRoom() instanceof Room, `Expected instance of ${Room.name}`);
+		assert.deepStrictEqual(context.getSender(), { __type: 'sender' });
+		assert.deepStrictEqual(context.getArguments(), { __type: 'params' });
+		assert.deepStrictEqual(context.getThreadId(), 'threadId');
+		assert.deepStrictEqual(context.getTriggerId(), 'triggerId');
 
-		assertEquals(_spy.calls[0].args[1], mockAppAccessors.getReader());
-		assertEquals(_spy.calls[0].args[2], mockAppAccessors.getModifier());
-		assertEquals(_spy.calls[0].args[3], mockAppAccessors.getHttp());
-		assertEquals(_spy.calls[0].args[4], mockAppAccessors.getPersistence());
+		assert.deepStrictEqual(_spy.mock.calls[0].arguments[1], mockAppAccessors.getReader());
+		assert.deepStrictEqual(_spy.mock.calls[0].arguments[2], mockAppAccessors.getModifier());
+		assert.deepStrictEqual(_spy.mock.calls[0].arguments[3], mockAppAccessors.getHttp());
+		assert.deepStrictEqual(_spy.mock.calls[0].arguments[4], mockAppAccessors.getPersistence());
 
-		_spy.restore();
+		_spy.mock.restore();
 	});
 
 	it('correctly handles execution of a slash command preview item executor', async () => {
@@ -139,7 +131,7 @@ describe('handlers > slashcommand', () => {
 			value: 'https://example.com/image.png',
 		};
 
-		const _spy = spy(mockCommandExecutorAndPreview, 'executePreviewItem');
+		const _spy = mock.method(mockCommandExecutorAndPreview, 'executePreviewItem');
 
 		const mockRequest = createMockRequest({
 			method: 'slashcommand:executor-and-preview:executePreviewItem',
@@ -151,19 +143,19 @@ describe('handlers > slashcommand', () => {
 			mockContext,
 		]);
 
-		const context = _spy.calls[0].args[1];
+		const context = _spy.mock.calls[0].arguments[1];
 
-		assertInstanceOf(context.getRoom(), Room);
-		assertEquals(context.getSender(), { __type: 'sender' });
-		assertEquals(context.getArguments(), { __type: 'params' });
-		assertEquals(context.getThreadId(), 'threadId');
-		assertEquals(context.getTriggerId(), 'triggerId');
+		assert.ok(context.getRoom() instanceof Room, `Expected instance of ${Room.name}`);
+		assert.deepStrictEqual(context.getSender(), { __type: 'sender' });
+		assert.deepStrictEqual(context.getArguments(), { __type: 'params' });
+		assert.deepStrictEqual(context.getThreadId(), 'threadId');
+		assert.deepStrictEqual(context.getTriggerId(), 'triggerId');
 
-		assertEquals(_spy.calls[0].args[2], mockAppAccessors.getReader());
-		assertEquals(_spy.calls[0].args[3], mockAppAccessors.getModifier());
-		assertEquals(_spy.calls[0].args[4], mockAppAccessors.getHttp());
-		assertEquals(_spy.calls[0].args[5], mockAppAccessors.getPersistence());
+		assert.deepStrictEqual(_spy.mock.calls[0].arguments[2], mockAppAccessors.getReader());
+		assert.deepStrictEqual(_spy.mock.calls[0].arguments[3], mockAppAccessors.getModifier());
+		assert.deepStrictEqual(_spy.mock.calls[0].arguments[4], mockAppAccessors.getHttp());
+		assert.deepStrictEqual(_spy.mock.calls[0].arguments[5], mockAppAccessors.getPersistence());
 
-		_spy.restore();
+		_spy.mock.restore();
 	});
 });

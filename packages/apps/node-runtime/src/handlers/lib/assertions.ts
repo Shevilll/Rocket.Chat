@@ -43,7 +43,7 @@ export function assertAppAvailable(v: unknown): asserts v is App {
 	throw JsonRpcError.internalError({ err: 'App object not available', code: Errors.DRT_APP_NOT_AVAILABLE });
 }
 
-// deno-lint-ignore ban-types -- Function is the best we can do at this time
+// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
 export function assertHandlerFunction(v: unknown): asserts v is Function {
 	if (v instanceof Function) return;
 

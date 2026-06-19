@@ -1,7 +1,6 @@
-// deno-lint-ignore-file no-explicit-any
-import { assertRejects } from 'https://deno.land/std@0.203.0/assert/mod';
-import { afterAll, beforeEach, describe, it } from 'https://deno.land/std@0.203.0/testing/bdd';
-import { assertSpyCall, spy, stub } from 'https://deno.land/std@0.203.0/testing/mock';
+import * as assert from 'node:assert';
+import { after, beforeEach, describe, it, mock } from 'node:test';
+
 import jsonrpc from 'jsonrpc-lite';
 
 import { AppObjectRegistry } from '../../../AppObjectRegistry';
@@ -26,218 +25,210 @@ describe('ModifyExtender', () => {
 		extender = new ModifyExtender(senderFn);
 	});
 
-	afterAll(() => {
+	after(() => {
 		AppObjectRegistry.clear();
 	});
 
 	it('correctly formats requests for the extend message requests', async () => {
-		const _spy = spy(extender, 'senderFn' as keyof ModifyExtender);
+		const _spy = mock.method(extender, 'senderFn' as any);
 
 		const messageExtender = await extender.extendMessage('message-id', { _id: 'user-id' } as any);
 
-		assertSpyCall(_spy, 0, {
-			args: [
-				{
-					method: 'bridges:getMessageBridge:doGetById',
-					params: ['message-id', 'deno-test'],
-				},
-			],
-		});
+		assert.deepStrictEqual(_spy.mock.calls[0].arguments, [
+			{
+				method: 'bridges:getMessageBridge:doGetById',
+				params: ['message-id', 'deno-test'],
+			},
+		]);
 
 		messageExtender.addCustomField('key', 'value');
 
 		await extender.finish(messageExtender);
 
-		assertSpyCall(_spy, 1, {
-			args: [
-				{
-					method: 'bridges:getMessageBridge:doUpdate',
-					params: [messageExtender.getMessage(), 'deno-test'],
-				},
-			],
-		});
+		assert.deepStrictEqual(_spy.mock.calls[1].arguments, [
+			{
+				method: 'bridges:getMessageBridge:doUpdate',
+				params: [messageExtender.getMessage(), 'deno-test'],
+			},
+		]);
 
-		_spy.restore();
+		_spy.mock.restore();
 	});
 
 	it('correctly formats requests for the extend room requests', async () => {
-		const _spy = spy(extender, 'senderFn' as keyof ModifyExtender);
+		const _spy = mock.method(extender, 'senderFn' as any);
 
 		const roomExtender = await extender.extendRoom('room-id', { _id: 'user-id' } as any);
 
-		assertSpyCall(_spy, 0, {
-			args: [
-				{
-					method: 'bridges:getRoomBridge:doGetById',
-					params: ['room-id', 'deno-test'],
-				},
-			],
-		});
+		assert.deepStrictEqual(_spy.mock.calls[0].arguments, [
+			{
+				method: 'bridges:getRoomBridge:doGetById',
+				params: ['room-id', 'deno-test'],
+			},
+		]);
 
 		roomExtender.addCustomField('key', 'value');
 
 		await extender.finish(roomExtender);
 
-		assertSpyCall(_spy, 1, {
-			args: [
-				{
-					method: 'bridges:getRoomBridge:doUpdate',
-					params: [roomExtender.getRoom(), [], 'deno-test'],
-				},
-			],
-		});
+		assert.deepStrictEqual(_spy.mock.calls[1].arguments, [
+			{
+				method: 'bridges:getRoomBridge:doUpdate',
+				params: [roomExtender.getRoom(), [], 'deno-test'],
+			},
+		]);
 
-		_spy.restore();
+		_spy.mock.restore();
 	});
 
 	it('correctly formats requests for the extend video conference requests', async () => {
-		const _spy = spy(extender, 'senderFn' as keyof ModifyExtender);
+		const _spy = mock.method(extender, 'senderFn' as any);
 
 		const videoConferenceExtender = await extender.extendVideoConference('video-conference-id');
 
-		assertSpyCall(_spy, 0, {
-			args: [
-				{
-					method: 'bridges:getVideoConferenceBridge:doGetById',
-					params: ['video-conference-id', 'deno-test'],
-				},
-			],
-		});
+		assert.deepStrictEqual(_spy.mock.calls[0].arguments, [
+			{
+				method: 'bridges:getVideoConferenceBridge:doGetById',
+				params: ['video-conference-id', 'deno-test'],
+			},
+		]);
 
 		videoConferenceExtender.setStatus(4);
 
 		await extender.finish(videoConferenceExtender);
 
-		assertSpyCall(_spy, 1, {
-			args: [
-				{
-					method: 'bridges:getVideoConferenceBridge:doUpdate',
-					params: [videoConferenceExtender.getVideoConference(), 'deno-test'],
-				},
-			],
-		});
+		assert.deepStrictEqual(_spy.mock.calls[1].arguments, [
+			{
+				method: 'bridges:getVideoConferenceBridge:doUpdate',
+				params: [videoConferenceExtender.getVideoConference(), 'deno-test'],
+			},
+		]);
 
-		_spy.restore();
+		_spy.mock.restore();
 	});
 
 	describe('Error Handling', () => {
 		describe('extendMessage', () => {
 			it('throws an instance of Error when senderFn throws an error', async () => {
-				const _stub = stub(extender, 'senderFn' as keyof ModifyExtender, () => Promise.reject(new Error('unit-test-error')) as any);
+				const _stub = mock.method(extender, 'senderFn' as any, () => Promise.reject(new Error('unit-test-error')) as any);
 
-				await assertRejects(() => extender.extendMessage('message-id', { _id: 'user-id' } as any), Error, 'unit-test-error');
+				await assert.rejects(() => extender.extendMessage('message-id', { _id: 'user-id' } as any), { message: 'unit-test-error' });
 
-				_stub.restore();
+				_stub.mock.restore();
 			});
 
 			it('throws an instance of Error when senderFn throws a jsonrpc error', async () => {
-				const _stub = stub(
+				const _stub = mock.method(
 					extender,
-					'senderFn' as keyof ModifyExtender,
+					'senderFn' as any,
 					() => Promise.reject(jsonrpc.error('unit-test-error', new jsonrpc.JsonRpcError('unit-test-error', 1000))) as any,
 				);
 
-				await assertRejects(() => extender.extendMessage('message-id', { _id: 'user-id' } as any), Error, 'unit-test-error');
+				await assert.rejects(() => extender.extendMessage('message-id', { _id: 'user-id' } as any), { message: 'unit-test-error' });
 
-				_stub.restore();
+				_stub.mock.restore();
 			});
 
 			it('throws an instance of Error when senderFn throws an unknown value', async () => {
-				const _stub = stub(extender, 'senderFn' as keyof ModifyExtender, () => Promise.reject({}) as any);
+				const _stub = mock.method(extender, 'senderFn' as any, () => Promise.reject({}) as any);
 
-				await assertRejects(() => extender.extendMessage('message-id', { _id: 'user-id' } as any), Error, 'An unknown error occurred');
+				await assert.rejects(() => extender.extendMessage('message-id', { _id: 'user-id' } as any), {
+					message: 'An unknown error occurred',
+				});
 
-				_stub.restore();
+				_stub.mock.restore();
 			});
 		});
 
 		describe('extendRoom', () => {
 			it('throws an instance of Error when senderFn throws an error', async () => {
-				const _stub = stub(extender, 'senderFn' as keyof ModifyExtender, () => Promise.reject(new Error('unit-test-error')) as any);
+				const _stub = mock.method(extender, 'senderFn' as any, () => Promise.reject(new Error('unit-test-error')) as any);
 
-				await assertRejects(() => extender.extendRoom('room-id', { _id: 'user-id' } as any), Error, 'unit-test-error');
+				await assert.rejects(() => extender.extendRoom('room-id', { _id: 'user-id' } as any), { message: 'unit-test-error' });
 
-				_stub.restore();
+				_stub.mock.restore();
 			});
 
 			it('throws an instance of Error when senderFn throws a jsonrpc error', async () => {
-				const _stub = stub(
+				const _stub = mock.method(
 					extender,
-					'senderFn' as keyof ModifyExtender,
+					'senderFn' as any,
 					() => Promise.reject(jsonrpc.error('unit-test-error', new jsonrpc.JsonRpcError('unit-test-error', 1000))) as any,
 				);
 
-				await assertRejects(() => extender.extendRoom('room-id', { _id: 'user-id' } as any), Error, 'unit-test-error');
+				await assert.rejects(() => extender.extendRoom('room-id', { _id: 'user-id' } as any), { message: 'unit-test-error' });
 
-				_stub.restore();
+				_stub.mock.restore();
 			});
 
 			it('throws an instance of Error when senderFn throws an unknown value', async () => {
-				const _stub = stub(extender, 'senderFn' as keyof ModifyExtender, () => Promise.reject({}) as any);
+				const _stub = mock.method(extender, 'senderFn' as any, () => Promise.reject({}) as any);
 
-				await assertRejects(() => extender.extendRoom('room-id', { _id: 'user-id' } as any), Error, 'An unknown error occurred');
+				await assert.rejects(() => extender.extendRoom('room-id', { _id: 'user-id' } as any), { message: 'An unknown error occurred' });
 
-				_stub.restore();
+				_stub.mock.restore();
 			});
 		});
 
 		describe('extendVideoConference', () => {
 			it('throws an instance of Error when senderFn throws an error', async () => {
-				const _stub = stub(extender, 'senderFn' as keyof ModifyExtender, () => Promise.reject(new Error('unit-test-error')) as any);
+				const _stub = mock.method(extender, 'senderFn' as any, () => Promise.reject(new Error('unit-test-error')) as any);
 
-				await assertRejects(() => extender.extendVideoConference('video-conference-id'), Error, 'unit-test-error');
+				await assert.rejects(() => extender.extendVideoConference('video-conference-id'), { message: 'unit-test-error' });
 
-				_stub.restore();
+				_stub.mock.restore();
 			});
 
 			it('throws an instance of Error when senderFn throws a jsonrpc error', async () => {
-				const _stub = stub(
+				const _stub = mock.method(
 					extender,
-					'senderFn' as keyof ModifyExtender,
+					'senderFn' as any,
 					() => Promise.reject(jsonrpc.error('unit-test-error', new jsonrpc.JsonRpcError('unit-test-error', 1000))) as any,
 				);
 
-				await assertRejects(() => extender.extendVideoConference('video-conference-id'), Error, 'unit-test-error');
+				await assert.rejects(() => extender.extendVideoConference('video-conference-id'), { message: 'unit-test-error' });
 
-				_stub.restore();
+				_stub.mock.restore();
 			});
 
 			it('throws an instance of Error when senderFn throws an unknown value', async () => {
-				const _stub = stub(extender, 'senderFn' as keyof ModifyExtender, () => Promise.reject({}) as any);
+				const _stub = mock.method(extender, 'senderFn' as any, () => Promise.reject({}) as any);
 
-				await assertRejects(() => extender.extendVideoConference('video-conference-id'), Error, 'An unknown error occurred');
+				await assert.rejects(() => extender.extendVideoConference('video-conference-id'), { message: 'An unknown error occurred' });
 
-				_stub.restore();
+				_stub.mock.restore();
 			});
 		});
 
 		describe('finish', () => {
 			it('throws an instance of Error when senderFn throws an error', async () => {
-				const _stub = stub(extender, 'senderFn' as keyof ModifyExtender, () => Promise.reject(new Error('unit-test-error')) as any);
+				const _stub = mock.method(extender, 'senderFn' as any, () => Promise.reject(new Error('unit-test-error')) as any);
 
-				await assertRejects(() => extender.finish({ kind: 'message', getMessage: () => ({}) } as any), Error, 'unit-test-error');
+				await assert.rejects(() => extender.finish({ kind: 'message', getMessage: () => ({}) } as any), { message: 'unit-test-error' });
 
-				_stub.restore();
+				_stub.mock.restore();
 			});
 
 			it('throws an instance of Error when senderFn throws a jsonrpc error', async () => {
-				const _stub = stub(
+				const _stub = mock.method(
 					extender,
-					'senderFn' as keyof ModifyExtender,
+					'senderFn' as any,
 					() => Promise.reject(jsonrpc.error('unit-test-error', new jsonrpc.JsonRpcError('unit-test-error', 1000))) as any,
 				);
 
-				await assertRejects(() => extender.finish({ kind: 'message', getMessage: () => ({}) } as any), Error, 'unit-test-error');
+				await assert.rejects(() => extender.finish({ kind: 'message', getMessage: () => ({}) } as any), { message: 'unit-test-error' });
 
-				_stub.restore();
+				_stub.mock.restore();
 			});
 
 			it('throws an instance of Error when senderFn throws an unknown value', async () => {
-				const _stub = stub(extender, 'senderFn' as keyof ModifyExtender, () => Promise.reject({}) as any);
+				const _stub = mock.method(extender, 'senderFn' as any, () => Promise.reject({}) as any);
 
-				await assertRejects(() => extender.finish({ kind: 'message', getMessage: () => ({}) } as any), Error, 'An unknown error occurred');
+				await assert.rejects(() => extender.finish({ kind: 'message', getMessage: () => ({}) } as any), {
+					message: 'An unknown error occurred',
+				});
 
-				_stub.restore();
+				_stub.mock.restore();
 			});
 		});
 	});

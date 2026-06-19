@@ -3,7 +3,6 @@ import type { IMessage } from '@rocket.chat/apps-engine/definition/messages/IMes
 import type { IMessageAttachment } from '@rocket.chat/apps-engine/definition/messages/IMessageAttachment';
 import type { RocketChatAssociationModel as _RocketChatAssociationModel } from '@rocket.chat/apps-engine/definition/metadata/RocketChatAssociations';
 
-
 const { RocketChatAssociationModel } = require('@rocket.chat/apps-engine/definition/metadata/RocketChatAssociations.js') as {
 	RocketChatAssociationModel: typeof _RocketChatAssociationModel;
 };

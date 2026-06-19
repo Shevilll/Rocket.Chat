@@ -31,7 +31,7 @@ export default async function apiHandler(request: RequestContext): Promise<JsonR
 	logger.debug(`${path}'s ${call} is being executed...`, requestData);
 
 	try {
-		// deno-lint-ignore ban-types
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
 		const result = await (method as Function).apply(wrapComposedApp(endpoint, request), [
 			requestData,
 			endpointInfo,

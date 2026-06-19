@@ -1,7 +1,5 @@
-// deno-lint-ignore-file no-explicit-any
-import { assert, assertEquals, assertNotInstanceOf, assertRejects } from 'https://deno.land/std@0.203.0/assert/mod';
-import { afterAll, beforeEach, describe, it } from 'https://deno.land/std@0.203.0/testing/bdd';
-import { assertSpyCall, spy } from 'https://deno.land/std@0.203.0/testing/mock';
+import * as assert from 'node:assert';
+import { after, beforeEach, describe, it, mock } from 'node:test';
 
 import { AppObjectRegistry } from '../../../AppObjectRegistry';
 import { ModifyCreator } from '../modify/ModifyCreator';
@@ -22,12 +20,12 @@ describe('ModifyCreator', () => {
 		AppObjectRegistry.set('id', 'deno-test');
 	});
 
-	afterAll(() => {
+	after(() => {
 		AppObjectRegistry.clear();
 	});
 
 	it('sends the correct payload in the request to create a message', async () => {
-		const spying = spy(senderFn);
+		const spying = mock.fn(senderFn);
 		const modifyCreator = new ModifyCreator(spying);
 		const messageBuilder = modifyCreator.startMessage();
 
@@ -43,23 +41,21 @@ describe('ModifyCreator', () => {
 		// but we need to know that the request sent was well formed
 		await modifyCreator.finish(messageBuilder);
 
-		assertSpyCall(spying, 0, {
-			args: [
-				{
-					method: 'bridges:getMessageBridge:doCreate',
-					params: [
-						{
-							room: { id: '123' },
-							sender: { id: '456' },
-							text: 'Hello World',
-							alias: 'alias',
-							avatarUrl: 'https://avatars.com/123',
-						},
-						'deno-test',
-					],
-				},
-			],
-		});
+		assert.deepStrictEqual(spying.mock.calls[0].arguments, [
+			{
+				method: 'bridges:getMessageBridge:doCreate',
+				params: [
+					{
+						room: { id: '123' },
+						sender: { id: '456' },
+						text: 'Hello World',
+						alias: 'alias',
+						avatarUrl: 'https://avatars.com/123',
+					},
+					'deno-test',
+				],
+			},
+		]);
 	});
 
 	it('sends the correct payload in the request to upload a buffer', async () => {
@@ -67,7 +63,7 @@ describe('ModifyCreator', () => {
 
 		const result = await modifyCreator.getUploadCreator().uploadBuffer(new Uint8Array([1, 2, 3, 4]), 'text/plain');
 
-		assertEquals(result, {
+		assert.deepStrictEqual(result, {
 			method: 'accessor:getModifier:getCreator:getUploadCreator:uploadBuffer',
 			params: [new Uint8Array([1, 2, 3, 4]), 'text/plain'],
 		});
@@ -82,7 +78,7 @@ describe('ModifyCreator', () => {
 			name: 'Random Visitor',
 		})) as any; // We modified the send function so it changed the original return type of the function
 
-		assertEquals(result, {
+		assert.deepStrictEqual(result, {
 			method: 'accessor:getModifier:getCreator:getLivechatCreator:createVisitor',
 			params: [
 				{
@@ -100,8 +96,8 @@ describe('ModifyCreator', () => {
 
 		const result = modifyCreator.getLivechatCreator().createToken();
 
-		assertNotInstanceOf(result, Promise);
-		assert(typeof result === 'string', `Expected "${result}" to be of type "string", but got "${typeof result}"`);
+		assert.ok(!(result instanceof Promise));
+		assert.ok(typeof result === 'string', `Expected "${result}" to be of type "string", but got "${typeof result}"`);
 	});
 
 	it('throws an error when a proxy method of getLivechatCreator fails', async () => {
@@ -109,15 +105,14 @@ describe('ModifyCreator', () => {
 		const modifyCreator = new ModifyCreator(failingSenderFn);
 		const livechatCreator = modifyCreator.getLivechatCreator();
 
-		await assertRejects(
+		await assert.rejects(
 			() =>
 				livechatCreator.createAndReturnVisitor({
 					token: 'visitor-token',
 					username: 'visitor-username',
 					name: 'Visitor Name',
 				}),
-			Error,
-			'Test error',
+			{ message: 'Test error' },
 		);
 	});
 
@@ -126,15 +121,14 @@ describe('ModifyCreator', () => {
 		const modifyCreator = new ModifyCreator(failingSenderFn);
 		const livechatCreator = modifyCreator.getLivechatCreator();
 
-		await assertRejects(
+		await assert.rejects(
 			() =>
 				livechatCreator.createVisitor({
 					token: 'visitor-token',
 					username: 'visitor-username',
 					name: 'Visitor Name',
 				}),
-			Error,
-			'Livechat method error',
+			{ message: 'Livechat method error' },
 		);
 	});
 
@@ -143,15 +137,14 @@ describe('ModifyCreator', () => {
 		const modifyCreator = new ModifyCreator(failingSenderFn);
 		const livechatCreator = modifyCreator.getLivechatCreator();
 
-		await assertRejects(
+		await assert.rejects(
 			() =>
 				livechatCreator.createVisitor({
 					token: 'visitor-token',
 					username: 'visitor-username',
 					name: 'Visitor Name',
 				}),
-			Error,
-			'An unknown error occurred',
+			{ message: 'An unknown error occurred' },
 		);
 	});
 
@@ -160,7 +153,7 @@ describe('ModifyCreator', () => {
 		const modifyCreator = new ModifyCreator(failingSenderFn);
 		const uploadCreator = modifyCreator.getUploadCreator();
 
-		await assertRejects(() => uploadCreator.uploadBuffer(new Uint8Array([9, 10, 11, 12]), 'image/png'), Error, 'Upload error');
+		await assert.rejects(() => uploadCreator.uploadBuffer(new Uint8Array([9, 10, 11, 12]), 'image/png'), { message: 'Upload error' });
 	});
 
 	it('throws an instance of Error when getUploadCreator fails with a specific error object', async () => {
@@ -168,7 +161,7 @@ describe('ModifyCreator', () => {
 		const modifyCreator = new ModifyCreator(failingSenderFn);
 		const uploadCreator = modifyCreator.getUploadCreator();
 
-		await assertRejects(() => uploadCreator.uploadBuffer(new Uint8Array([1, 2, 3]), 'image/png'), Error, 'Upload method error');
+		await assert.rejects(() => uploadCreator.uploadBuffer(new Uint8Array([1, 2, 3]), 'image/png'), { message: 'Upload method error' });
 	});
 
 	it('throws a default Error when getUploadCreator fails with an unknown error object', async () => {
@@ -176,7 +169,9 @@ describe('ModifyCreator', () => {
 		const modifyCreator = new ModifyCreator(failingSenderFn);
 		const uploadCreator = modifyCreator.getUploadCreator();
 
-		await assertRejects(() => uploadCreator.uploadBuffer(new Uint8Array([1, 2, 3]), 'image/png'), Error, 'An unknown error occurred');
+		await assert.rejects(() => uploadCreator.uploadBuffer(new Uint8Array([1, 2, 3]), 'image/png'), {
+			message: 'An unknown error occurred',
+		});
 	});
 
 	it('throws an error when a proxy method of getEmailCreator fails', async () => {
@@ -184,7 +179,7 @@ describe('ModifyCreator', () => {
 		const modifyCreator = new ModifyCreator(failingSenderFn);
 		const emailCreator = modifyCreator.getEmailCreator();
 
-		await assertRejects(
+		await assert.rejects(
 			() =>
 				emailCreator.send({
 					to: 'test@example.com',
@@ -192,8 +187,7 @@ describe('ModifyCreator', () => {
 					subject: 'Test Email',
 					text: 'This is a test email.',
 				}),
-			Error,
-			'Email error',
+			{ message: 'Email error' },
 		);
 	});
 
@@ -202,7 +196,7 @@ describe('ModifyCreator', () => {
 		const modifyCreator = new ModifyCreator(failingSenderFn);
 		const emailCreator = modifyCreator.getEmailCreator();
 
-		await assertRejects(
+		await assert.rejects(
 			() =>
 				emailCreator.send({
 					to: 'test@example.com',
@@ -210,8 +204,7 @@ describe('ModifyCreator', () => {
 					subject: 'Test Email',
 					text: 'This is a test email.',
 				}),
-			Error,
-			'Email method error',
+			{ message: 'Email method error' },
 		);
 	});
 
@@ -220,7 +213,7 @@ describe('ModifyCreator', () => {
 		const modifyCreator = new ModifyCreator(failingSenderFn);
 		const emailCreator = modifyCreator.getEmailCreator();
 
-		await assertRejects(
+		await assert.rejects(
 			() =>
 				emailCreator.send({
 					to: 'test@example.com',
@@ -228,8 +221,7 @@ describe('ModifyCreator', () => {
 					subject: 'Test Email',
 					text: 'This is a test email.',
 				}),
-			Error,
-			'An unknown error occurred',
+			{ message: 'An unknown error occurred' },
 		);
 	});
 
@@ -238,7 +230,9 @@ describe('ModifyCreator', () => {
 		const modifyCreator = new ModifyCreator(failingSenderFn);
 		const contactCreator = modifyCreator.getContactCreator();
 
-		await assertRejects(() => contactCreator.addContactEmail('test-contact-id', 'test@example.com'), Error, 'Contact creation error');
+		await assert.rejects(() => contactCreator.addContactEmail('test-contact-id', 'test@example.com'), {
+			message: 'Contact creation error',
+		});
 	});
 
 	it('throws an instance of Error when getContactCreator fails with a specific error object', async () => {
@@ -246,7 +240,9 @@ describe('ModifyCreator', () => {
 		const modifyCreator = new ModifyCreator(failingSenderFn);
 		const contactCreator = modifyCreator.getContactCreator();
 
-		await assertRejects(() => contactCreator.addContactEmail('test-contact-id', 'test@example.com'), Error, 'Contact creation error');
+		await assert.rejects(() => contactCreator.addContactEmail('test-contact-id', 'test@example.com'), {
+			message: 'Contact creation error',
+		});
 	});
 
 	it('throws a default Error when getContactCreator fails with an unknown error object', async () => {
@@ -254,6 +250,8 @@ describe('ModifyCreator', () => {
 		const modifyCreator = new ModifyCreator(failingSenderFn);
 		const contactCreator = modifyCreator.getContactCreator();
 
-		await assertRejects(() => contactCreator.addContactEmail('test-contact-id', 'test@example.com'), Error, 'An unknown error occurred');
+		await assert.rejects(() => contactCreator.addContactEmail('test-contact-id', 'test@example.com'), {
+			message: 'An unknown error occurred',
+		});
 	});
 });

@@ -1,5 +1,5 @@
-import { assertEquals, assertThrows } from 'https://deno.land/std@0.203.0/assert/mod';
-import { beforeEach, describe, it } from 'https://deno.land/std@0.203.0/testing/bdd';
+import * as assert from 'node:assert';
+import { beforeEach, describe, it } from 'node:test';
 
 import { AppObjectRegistry } from '../../AppObjectRegistry';
 import { applySecureFields } from '../secureFields';
@@ -12,11 +12,9 @@ describe('applySecureFields', () => {
 	});
 
 	it('throws when app is unavailable', () => {
-		assertThrows(
-			() => applySecureFields({ foo: 'bar', [SECURE_FIELDS_KEY]: [] } as any),
-			Error,
-			"App unavailable, can't parse object with secure fields",
-		);
+		assert.throws(() => applySecureFields({ foo: 'bar', [SECURE_FIELDS_KEY]: [] } as any), {
+			message: "App unavailable, can't parse object with secure fields",
+		});
 	});
 
 	it('applies only secure fields with matching permissions', () => {
@@ -34,7 +32,7 @@ describe('applySecureFields', () => {
 			],
 		} as any);
 
-		assertEquals(parsed, {
+		assert.deepStrictEqual(parsed, {
 			foo: 'bar',
 			abacAttributes: { department: 'support' },
 		});
@@ -52,7 +50,7 @@ describe('applySecureFields', () => {
 			[SECURE_FIELDS_KEY]: [{ permission: 'abac.read', name: 'abacAttributes', value: { tenant: 'alpha' } }],
 		} as any);
 
-		assertEquals(parsed, {
+		assert.deepStrictEqual(parsed, {
 			abacAttributes: { tenant: 'alpha' },
 		});
 	});

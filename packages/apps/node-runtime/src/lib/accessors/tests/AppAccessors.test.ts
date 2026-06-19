@@ -1,5 +1,5 @@
-import { assertEquals } from 'https://deno.land/std@0.203.0/assert/assert_equals';
-import { afterAll, beforeEach, describe, it } from 'https://deno.land/std@0.203.0/testing/bdd';
+import * as assert from 'node:assert';
+import { after, beforeEach, describe, it } from 'node:test';
 
 import { AppObjectRegistry } from '../../../AppObjectRegistry';
 import { AppAccessors } from '../mod';
@@ -21,7 +21,7 @@ describe('AppAccessors', () => {
 		AppObjectRegistry.clear();
 	});
 
-	afterAll(() => {
+	after(() => {
 		AppObjectRegistry.clear();
 	});
 
@@ -29,7 +29,7 @@ describe('AppAccessors', () => {
 		const roomRead = appAccessors.getReader().getRoomReader();
 		const room = roomRead.getById('123');
 
-		assertEquals(room, {
+		assert.deepStrictEqual(room, {
 			params: ['123'],
 			method: 'accessor:getReader:getRoomReader:getById',
 		});
@@ -39,7 +39,7 @@ describe('AppAccessors', () => {
 		const reader = appAccessors.getReader().getEnvironmentReader().getEnvironmentVariables();
 		const room = await reader.getValueByName('NODE_ENV');
 
-		assertEquals(room, {
+		assert.deepStrictEqual(room, {
 			params: ['NODE_ENV'],
 			method: 'accessor:getReader:getEnvironmentReader:getEnvironmentVariables:getValueByName',
 		});
@@ -49,7 +49,7 @@ describe('AppAccessors', () => {
 		const envRead = appAccessors.getEnvironmentRead();
 		const env = await envRead.getServerSettings().getValueById('123');
 
-		assertEquals(env, {
+		assert.deepStrictEqual(env, {
 			params: ['123'],
 			method: 'accessor:getEnvironmentRead:getServerSettings:getValueById',
 		});
@@ -59,7 +59,7 @@ describe('AppAccessors', () => {
 		const envRead = appAccessors.getEnvironmentWrite();
 		const env = await envRead.getServerSettings().incrementValue('123', 6);
 
-		assertEquals(env, {
+		assert.deepStrictEqual(env, {
 			params: ['123', 6],
 			method: 'accessor:getEnvironmentWrite:getServerSettings:incrementValue',
 		});
@@ -74,7 +74,7 @@ describe('AppAccessors', () => {
 			providesPreview: true,
 		});
 
-		assertEquals(command, {
+		assert.deepStrictEqual(command, {
 			params: [
 				{
 					command: 'test',
@@ -102,12 +102,12 @@ describe('AppAccessors', () => {
 
 		const result = await configExtend.slashCommands.provideSlashCommand(slashcommand);
 
-		assertEquals(AppObjectRegistry.get('slashcommand:test'), slashcommand);
+		assert.deepStrictEqual(AppObjectRegistry.get('slashcommand:test'), slashcommand);
 
 		// The function will not be serialized and sent to the main process
 		delete result.params[0].executor;
 
-		assertEquals(result, {
+		assert.deepStrictEqual(result, {
 			method: 'accessor:getConfigurationExtend:slashCommands:provideSlashCommand',
 			params: [
 				{

@@ -1,6 +1,5 @@
-// deno-lint-ignore-file no-explicit-any
-import { assertEquals, assertInstanceOf, assertObjectMatch } from 'https://deno.land/std@0.203.0/assert/mod';
-import { describe, it } from 'https://deno.land/std@0.203.0/testing/bdd';
+import * as assert from 'node:assert';
+import { describe, it } from 'node:test';
 
 import { MessageBuilder } from '../../lib/accessors/builders/MessageBuilder';
 import { RoomBuilder } from '../../lib/accessors/builders/RoomBuilder';
@@ -26,10 +25,10 @@ describe('handlers > listeners', () => {
 
 		const params = parseArgs({ AppAccessorsInstance: mockAppAccessors }, evtMethod, evtArgs);
 
-		assertEquals(params.length, 3);
-		assertEquals(params[0], { __type: 'context' });
-		assertEquals(params[1], { __type: 'reader' });
-		assertEquals(params[2], { __type: 'http' });
+		assert.deepStrictEqual(params.length, 3);
+		assert.deepStrictEqual(params[0], { __type: 'context' });
+		assert.deepStrictEqual(params[1], { __type: 'reader' });
+		assert.deepStrictEqual(params[2], { __type: 'http' });
 	});
 
 	it('correctly parses the arguments for a request to trigger the "checkPostMessageDeleted" method', () => {
@@ -40,11 +39,11 @@ describe('handlers > listeners', () => {
 
 		const params = parseArgs({ AppAccessorsInstance: mockAppAccessors }, evtMethod, evtArgs);
 
-		assertEquals(params.length, 4);
-		assertEquals(params[0], { __type: 'context' });
-		assertEquals(params[1], { __type: 'reader' });
-		assertEquals(params[2], { __type: 'http' });
-		assertEquals(params[3], { __type: 'extraContext' });
+		assert.deepStrictEqual(params.length, 4);
+		assert.deepStrictEqual(params[0], { __type: 'context' });
+		assert.deepStrictEqual(params[1], { __type: 'reader' });
+		assert.deepStrictEqual(params[2], { __type: 'http' });
+		assert.deepStrictEqual(params[3], { __type: 'extraContext' });
 	});
 
 	it('correctly parses the arguments for a request to trigger the "checkPreRoomCreateExtend" method', () => {
@@ -62,11 +61,11 @@ describe('handlers > listeners', () => {
 
 		const params = parseArgs({ AppAccessorsInstance: mockAppAccessors }, evtMethod, evtArgs);
 
-		assertEquals(params.length, 3);
+		assert.deepStrictEqual(params.length, 3);
 
-		assertInstanceOf(params[0], Room);
-		assertEquals(params[1], { __type: 'reader' });
-		assertEquals(params[2], { __type: 'http' });
+		assert.ok(params[0] instanceof Room, `Expected instance of ${Room.name}`);
+		assert.deepStrictEqual(params[1], { __type: 'reader' });
+		assert.deepStrictEqual(params[2], { __type: 'http' });
 	});
 
 	it('correctly parses the arguments for a request to trigger the "executePreMessageSentExtend" method', () => {
@@ -76,15 +75,13 @@ describe('handlers > listeners', () => {
 
 		const params = parseArgs({ AppAccessorsInstance: mockAppAccessors }, evtMethod, evtArgs);
 
-		assertEquals(params.length, 5);
+		assert.deepStrictEqual(params.length, 5);
 		// Instantiating the MessageExtender might modify the original object, so we need to assert it matches instead of equals
-		assertObjectMatch(params[0] as Record<string, unknown>, {
-			__type: 'context',
-		});
-		assertInstanceOf(params[1], MessageExtender);
-		assertEquals(params[2], { __type: 'reader' });
-		assertEquals(params[3], { __type: 'http' });
-		assertEquals(params[4], { __type: 'persistence' });
+		assert.strictEqual((params[0] as any).__type, 'context');
+		assert.ok(params[1] instanceof MessageExtender, `Expected instance of ${MessageExtender.name}`);
+		assert.deepStrictEqual(params[2], { __type: 'reader' });
+		assert.deepStrictEqual(params[3], { __type: 'http' });
+		assert.deepStrictEqual(params[4], { __type: 'persistence' });
 	});
 
 	it('correctly parses the arguments for a request to trigger the "executePreRoomCreateExtend" method', () => {
@@ -94,15 +91,13 @@ describe('handlers > listeners', () => {
 
 		const params = parseArgs({ AppAccessorsInstance: mockAppAccessors }, evtMethod, evtArgs);
 
-		assertEquals(params.length, 5);
+		assert.deepStrictEqual(params.length, 5);
 		// Instantiating the RoomExtender might modify the original object, so we need to assert it matches instead of equals
-		assertObjectMatch(params[0] as Record<string, unknown>, {
-			__type: 'context',
-		});
-		assertInstanceOf(params[1], RoomExtender);
-		assertEquals(params[2], { __type: 'reader' });
-		assertEquals(params[3], { __type: 'http' });
-		assertEquals(params[4], { __type: 'persistence' });
+		assert.strictEqual((params[0] as any).__type, 'context');
+		assert.ok(params[1] instanceof RoomExtender, `Expected instance of ${RoomExtender.name}`);
+		assert.deepStrictEqual(params[2], { __type: 'reader' });
+		assert.deepStrictEqual(params[3], { __type: 'http' });
+		assert.deepStrictEqual(params[4], { __type: 'persistence' });
 	});
 
 	it('correctly parses the arguments for a request to trigger the "executePreMessageSentModify" method', () => {
@@ -112,15 +107,13 @@ describe('handlers > listeners', () => {
 
 		const params = parseArgs({ AppAccessorsInstance: mockAppAccessors }, evtMethod, evtArgs);
 
-		assertEquals(params.length, 5);
+		assert.deepStrictEqual(params.length, 5);
 		// Instantiating the MessageBuilder might modify the original object, so we need to assert it matches instead of equals
-		assertObjectMatch(params[0] as Record<string, unknown>, {
-			__type: 'context',
-		});
-		assertInstanceOf(params[1], MessageBuilder);
-		assertEquals(params[2], { __type: 'reader' });
-		assertEquals(params[3], { __type: 'http' });
-		assertEquals(params[4], { __type: 'persistence' });
+		assert.strictEqual((params[0] as any).__type, 'context');
+		assert.ok(params[1] instanceof MessageBuilder, `Expected instance of ${MessageBuilder.name}`);
+		assert.deepStrictEqual(params[2], { __type: 'reader' });
+		assert.deepStrictEqual(params[3], { __type: 'http' });
+		assert.deepStrictEqual(params[4], { __type: 'persistence' });
 	});
 
 	it('correctly parses the arguments for a request to trigger the "executePreRoomCreateModify" method', () => {
@@ -130,15 +123,13 @@ describe('handlers > listeners', () => {
 
 		const params = parseArgs({ AppAccessorsInstance: mockAppAccessors }, evtMethod, evtArgs);
 
-		assertEquals(params.length, 5);
+		assert.deepStrictEqual(params.length, 5);
 		// Instantiating the RoomBuilder might modify the original object, so we need to assert it matches instead of equals
-		assertObjectMatch(params[0] as Record<string, unknown>, {
-			__type: 'context',
-		});
-		assertInstanceOf(params[1], RoomBuilder);
-		assertEquals(params[2], { __type: 'reader' });
-		assertEquals(params[3], { __type: 'http' });
-		assertEquals(params[4], { __type: 'persistence' });
+		assert.strictEqual((params[0] as any).__type, 'context');
+		assert.ok(params[1] instanceof RoomBuilder, `Expected instance of ${RoomBuilder.name}`);
+		assert.deepStrictEqual(params[2], { __type: 'reader' });
+		assert.deepStrictEqual(params[3], { __type: 'http' });
+		assert.deepStrictEqual(params[4], { __type: 'persistence' });
 	});
 
 	it('correctly parses the arguments for a request to trigger the "executePostRoomUserJoined" method', () => {
@@ -156,12 +147,12 @@ describe('handlers > listeners', () => {
 
 		const params = parseArgs({ AppAccessorsInstance: mockAppAccessors }, evtMethod, evtArgs);
 
-		assertEquals(params.length, 5);
-		assertInstanceOf((params[0] as any).room, Room);
-		assertEquals(params[1], { __type: 'reader' });
-		assertEquals(params[2], { __type: 'http' });
-		assertEquals(params[3], { __type: 'persistence' });
-		assertEquals(params[4], { __type: 'modifier' });
+		assert.deepStrictEqual(params.length, 5);
+		assert.ok((params[0] as any).room instanceof Room, `Expected instance of ${Room.name}`);
+		assert.deepStrictEqual(params[1], { __type: 'reader' });
+		assert.deepStrictEqual(params[2], { __type: 'http' });
+		assert.deepStrictEqual(params[3], { __type: 'persistence' });
+		assert.deepStrictEqual(params[4], { __type: 'modifier' });
 	});
 
 	it('correctly parses the arguments for a request to trigger the "executePostRoomUserLeave" method', () => {
@@ -179,12 +170,12 @@ describe('handlers > listeners', () => {
 
 		const params = parseArgs({ AppAccessorsInstance: mockAppAccessors }, evtMethod, evtArgs);
 
-		assertEquals(params.length, 5);
-		assertInstanceOf((params[0] as any).room, Room);
-		assertEquals(params[1], { __type: 'reader' });
-		assertEquals(params[2], { __type: 'http' });
-		assertEquals(params[3], { __type: 'persistence' });
-		assertEquals(params[4], { __type: 'modifier' });
+		assert.deepStrictEqual(params.length, 5);
+		assert.ok((params[0] as any).room instanceof Room, `Expected instance of ${Room.name}`);
+		assert.deepStrictEqual(params[1], { __type: 'reader' });
+		assert.deepStrictEqual(params[2], { __type: 'http' });
+		assert.deepStrictEqual(params[3], { __type: 'persistence' });
+		assert.deepStrictEqual(params[4], { __type: 'modifier' });
 	});
 
 	it('correctly parses the arguments for a request to trigger the "executePostMessageDeleted" method', () => {
@@ -194,13 +185,13 @@ describe('handlers > listeners', () => {
 
 		const params = parseArgs({ AppAccessorsInstance: mockAppAccessors }, evtMethod, evtArgs);
 
-		assertEquals(params.length, 6);
-		assertEquals(params[0], { __type: 'context' });
-		assertEquals(params[1], { __type: 'reader' });
-		assertEquals(params[2], { __type: 'http' });
-		assertEquals(params[3], { __type: 'persistence' });
-		assertEquals(params[4], { __type: 'modifier' });
-		assertEquals(params[5], { __type: 'extraContext' });
+		assert.deepStrictEqual(params.length, 6);
+		assert.deepStrictEqual(params[0], { __type: 'context' });
+		assert.deepStrictEqual(params[1], { __type: 'reader' });
+		assert.deepStrictEqual(params[2], { __type: 'http' });
+		assert.deepStrictEqual(params[3], { __type: 'persistence' });
+		assert.deepStrictEqual(params[4], { __type: 'modifier' });
+		assert.deepStrictEqual(params[5], { __type: 'extraContext' });
 	});
 
 	it('correctly parses the arguments for a request to trigger the "executePostMessageSent" method', () => {
@@ -223,12 +214,12 @@ describe('handlers > listeners', () => {
 
 		const params = parseArgs({ AppAccessorsInstance: mockAppAccessors }, evtMethod, evtArgs);
 
-		assertEquals(params.length, 5);
-		assertObjectMatch(params[0] as Record<string, unknown>, { id: 'fake' });
-		assertInstanceOf((params[0] as any).room, Room);
-		assertEquals(params[1], { __type: 'reader' });
-		assertEquals(params[2], { __type: 'http' });
-		assertEquals(params[3], { __type: 'persistence' });
-		assertEquals(params[4], { __type: 'modifier' });
+		assert.deepStrictEqual(params.length, 5);
+		assert.strictEqual((params[0] as any).id, 'fake');
+		assert.ok((params[0] as any).room instanceof Room, `Expected instance of ${Room.name}`);
+		assert.deepStrictEqual(params[1], { __type: 'reader' });
+		assert.deepStrictEqual(params[2], { __type: 'http' });
+		assert.deepStrictEqual(params[3], { __type: 'persistence' });
+		assert.deepStrictEqual(params[4], { __type: 'modifier' });
 	});
 });

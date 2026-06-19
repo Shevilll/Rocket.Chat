@@ -1,7 +1,6 @@
-// deno-lint-ignore-file no-explicit-any
-import { assertEquals, assertRejects } from 'https://deno.land/std@0.203.0/assert/mod';
-import { afterAll, beforeEach, describe, it } from 'https://deno.land/std@0.203.0/testing/bdd';
-import { assertSpyCall, spy, stub } from 'https://deno.land/std@0.203.0/testing/mock';
+import * as assert from 'node:assert';
+import { after, beforeEach, describe, it, mock } from 'node:test';
+
 import jsonrpc from 'jsonrpc-lite';
 
 import { AppObjectRegistry } from '../../../AppObjectRegistry';
@@ -27,23 +26,21 @@ describe('ModifyUpdater', () => {
 		modifyUpdater = new ModifyUpdater(senderFn);
 	});
 
-	afterAll(() => {
+	after(() => {
 		AppObjectRegistry.clear();
 	});
 
 	it('correctly formats requests for the update message flow', async () => {
-		const _spy = spy(modifyUpdater, 'senderFn' as keyof ModifyUpdater);
+		const _spy = mock.method(modifyUpdater, 'senderFn' as any);
 
 		const messageBuilder = await modifyUpdater.message('123', { id: '456' } as any);
 
-		assertSpyCall(_spy, 0, {
-			args: [
-				{
-					method: 'bridges:getMessageBridge:doGetById',
-					params: ['123', 'deno-test'],
-				},
-			],
-		});
+		assert.deepStrictEqual(_spy.mock.calls[0].arguments, [
+			{
+				method: 'bridges:getMessageBridge:doGetById',
+				params: ['123', 'deno-test'],
+			},
+		]);
 
 		messageBuilder.setUpdateData(
 			{
@@ -59,31 +56,27 @@ describe('ModifyUpdater', () => {
 
 		await modifyUpdater.finish(messageBuilder);
 
-		assertSpyCall(_spy, 1, {
-			args: [
-				{
-					method: 'bridges:getMessageBridge:doUpdate',
-					params: [{ id: '123', ...messageBuilder.getChanges() }, 'deno-test'],
-				},
-			],
-		});
+		assert.deepStrictEqual(_spy.mock.calls[1].arguments, [
+			{
+				method: 'bridges:getMessageBridge:doUpdate',
+				params: [{ id: '123', ...messageBuilder.getChanges() }, 'deno-test'],
+			},
+		]);
 
-		_spy.restore();
+		_spy.mock.restore();
 	});
 
 	it('correctly formats requests for the update room flow', async () => {
-		const _spy = spy(modifyUpdater, 'senderFn' as keyof ModifyUpdater);
+		const _spy = mock.method(modifyUpdater, 'senderFn' as any);
 
 		const roomBuilder = (await modifyUpdater.room('123', { id: '456' } as any)) as RoomBuilder;
 
-		assertSpyCall(_spy, 0, {
-			args: [
-				{
-					method: 'bridges:getRoomBridge:doGetById',
-					params: ['123', 'deno-test'],
-				},
-			],
-		});
+		assert.deepStrictEqual(_spy.mock.calls[0].arguments, [
+			{
+				method: 'bridges:getRoomBridge:doGetById',
+				params: ['123', 'deno-test'],
+			},
+		]);
 
 		roomBuilder.setData({
 			id: '123',
@@ -100,20 +93,18 @@ describe('ModifyUpdater', () => {
 
 		await modifyUpdater.finish(roomBuilder);
 
-		assertSpyCall(_spy, 1, {
-			args: [
-				{
-					method: 'bridges:getRoomBridge:doUpdate',
-					params: [{ id: '123', ...roomBuilder.getChanges() }, roomBuilder.getMembersToBeAddedUsernames(), 'deno-test'],
-				},
-			],
-		});
+		assert.deepStrictEqual(_spy.mock.calls[1].arguments, [
+			{
+				method: 'bridges:getRoomBridge:doUpdate',
+				params: [{ id: '123', ...roomBuilder.getChanges() }, roomBuilder.getMembersToBeAddedUsernames(), 'deno-test'],
+			},
+		]);
 	});
 
 	it('correctly formats requests to UserUpdater methods', async () => {
 		const result = (await modifyUpdater.getUserUpdater().updateStatusText({ id: '123' } as any, 'Hello World')) as any;
 
-		assertEquals(result, {
+		assert.deepStrictEqual(result, {
 			method: 'accessor:getModifier:getUpdater:getUserUpdater:updateStatusText',
 			params: [{ id: '123' }, 'Hello World'],
 		});
@@ -122,7 +113,7 @@ describe('ModifyUpdater', () => {
 	it('correctly formats requests to LivechatUpdater methods', async () => {
 		const result = (await modifyUpdater.getLivechatUpdater().closeRoom({ id: '123' } as any, 'close it!')) as any;
 
-		assertEquals(result, {
+		assert.deepStrictEqual(result, {
 			method: 'accessor:getModifier:getUpdater:getLivechatUpdater:closeRoom',
 			params: [{ id: '123' }, 'close it!'],
 		});
@@ -131,7 +122,7 @@ describe('ModifyUpdater', () => {
 	it('correctly formats requests to MessageUpdater methods', async () => {
 		const result = (await modifyUpdater.getMessageUpdater().addReaction('message-id', 'user-id', ':smile:')) as any;
 
-		assertEquals(result, {
+		assert.deepStrictEqual(result, {
 			method: 'accessor:getModifier:getUpdater:getMessageUpdater:addReaction',
 			params: ['message-id', 'user-id', ':smile:'],
 		});
@@ -140,61 +131,63 @@ describe('ModifyUpdater', () => {
 	describe('Error Handling', () => {
 		describe('message', () => {
 			it('throws an instance of Error when senderFn throws an error', async () => {
-				const _stub = stub(modifyUpdater, 'senderFn' as keyof ModifyUpdater, () => Promise.reject(new Error('unit-test-error')) as any);
+				const _stub = mock.method(modifyUpdater, 'senderFn' as any, () => Promise.reject(new Error('unit-test-error')) as any);
 
-				await assertRejects(() => modifyUpdater.message('message-id', { _id: 'user-id' } as any), Error, 'unit-test-error');
+				await assert.rejects(() => modifyUpdater.message('message-id', { _id: 'user-id' } as any), { message: 'unit-test-error' });
 
-				_stub.restore();
+				_stub.mock.restore();
 			});
 
 			it('throws an instance of Error when senderFn throws a jsonrpc error', async () => {
-				const _stub = stub(
+				const _stub = mock.method(
 					modifyUpdater,
-					'senderFn' as keyof ModifyUpdater,
+					'senderFn' as any,
 					() => Promise.reject(jsonrpc.error('unit-test-error', new jsonrpc.JsonRpcError('unit-test-error', 1000))) as any,
 				);
 
-				await assertRejects(() => modifyUpdater.message('message-id', { _id: 'user-id' } as any), Error, 'unit-test-error');
+				await assert.rejects(() => modifyUpdater.message('message-id', { _id: 'user-id' } as any), { message: 'unit-test-error' });
 
-				_stub.restore();
+				_stub.mock.restore();
 			});
 
 			it('throws an instance of Error when senderFn throws an unknown value', async () => {
-				const _stub = stub(modifyUpdater, 'senderFn' as keyof ModifyUpdater, () => Promise.reject({}) as any);
+				const _stub = mock.method(modifyUpdater, 'senderFn' as any, () => Promise.reject({}) as any);
 
-				await assertRejects(() => modifyUpdater.message('message-id', { _id: 'user-id' } as any), Error, 'An unknown error occurred');
+				await assert.rejects(() => modifyUpdater.message('message-id', { _id: 'user-id' } as any), {
+					message: 'An unknown error occurred',
+				});
 
-				_stub.restore();
+				_stub.mock.restore();
 			});
 		});
 
 		describe('room', () => {
 			it('throws an instance of Error when senderFn throws an error', async () => {
-				const _stub = stub(modifyUpdater, 'senderFn' as keyof ModifyUpdater, () => Promise.reject(new Error('unit-test-error')) as any);
+				const _stub = mock.method(modifyUpdater, 'senderFn' as any, () => Promise.reject(new Error('unit-test-error')) as any);
 
-				await assertRejects(() => modifyUpdater.room('room-id', { _id: 'user-id' } as any), Error, 'unit-test-error');
+				await assert.rejects(() => modifyUpdater.room('room-id', { _id: 'user-id' } as any), { message: 'unit-test-error' });
 
-				_stub.restore();
+				_stub.mock.restore();
 			});
 
 			it('throws an instance of Error when senderFn throws a jsonrpc error', async () => {
-				const _stub = stub(
+				const _stub = mock.method(
 					modifyUpdater,
-					'senderFn' as keyof ModifyUpdater,
+					'senderFn' as any,
 					() => Promise.reject(jsonrpc.error('unit-test-error', new jsonrpc.JsonRpcError('unit-test-error', 1000))) as any,
 				);
 
-				await assertRejects(() => modifyUpdater.room('room-id', { _id: 'user-id' } as any), Error, 'unit-test-error');
+				await assert.rejects(() => modifyUpdater.room('room-id', { _id: 'user-id' } as any), { message: 'unit-test-error' });
 
-				_stub.restore();
+				_stub.mock.restore();
 			});
 
 			it('throws an instance of Error when senderFn throws an unknown value', async () => {
-				const _stub = stub(modifyUpdater, 'senderFn' as keyof ModifyUpdater, () => Promise.reject({}) as any);
+				const _stub = mock.method(modifyUpdater, 'senderFn' as any, () => Promise.reject({}) as any);
 
-				await assertRejects(() => modifyUpdater.room('room-id', { _id: 'user-id' } as any), Error, 'An unknown error occurred');
+				await assert.rejects(() => modifyUpdater.room('room-id', { _id: 'user-id' } as any), { message: 'An unknown error occurred' });
 
-				_stub.restore();
+				_stub.mock.restore();
 			});
 		});
 
@@ -212,31 +205,31 @@ describe('ModifyUpdater', () => {
 			} as any;
 
 			it('throws an instance of Error when senderFn throws an error', async () => {
-				const _stub = stub(modifyUpdater, 'senderFn' as keyof ModifyUpdater, () => Promise.reject(new Error('unit-test-error')) as any);
+				const _stub = mock.method(modifyUpdater, 'senderFn' as any, () => Promise.reject(new Error('unit-test-error')) as any);
 
-				await assertRejects(() => modifyUpdater.finish(messageUpdater), Error, 'unit-test-error');
+				await assert.rejects(() => modifyUpdater.finish(messageUpdater), { message: 'unit-test-error' });
 
-				_stub.restore();
+				_stub.mock.restore();
 			});
 
 			it('throws an instance of Error when senderFn throws a jsonrpc error', async () => {
-				const _stub = stub(
+				const _stub = mock.method(
 					modifyUpdater,
-					'senderFn' as keyof ModifyUpdater,
+					'senderFn' as any,
 					() => Promise.reject(jsonrpc.error('unit-test-error', new jsonrpc.JsonRpcError('unit-test-error', 1000))) as any,
 				);
 
-				await assertRejects(() => modifyUpdater.finish(messageUpdater), Error, 'unit-test-error');
+				await assert.rejects(() => modifyUpdater.finish(messageUpdater), { message: 'unit-test-error' });
 
-				_stub.restore();
+				_stub.mock.restore();
 			});
 
 			it('throws an instance of Error when senderFn throws an unknown value', async () => {
-				const _stub = stub(modifyUpdater, 'senderFn' as keyof ModifyUpdater, () => Promise.reject({}) as any);
+				const _stub = mock.method(modifyUpdater, 'senderFn' as any, () => Promise.reject({}) as any);
 
-				await assertRejects(() => modifyUpdater.finish(messageUpdater), Error, 'An unknown error occurred');
+				await assert.rejects(() => modifyUpdater.finish(messageUpdater), { message: 'An unknown error occurred' });
 
-				_stub.restore();
+				_stub.mock.restore();
 			});
 		});
 	});

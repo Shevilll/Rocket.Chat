@@ -1,6 +1,6 @@
-// deno-lint-ignore-file no-explicit-any
-import { assertInstanceOf } from 'https://deno.land/std@0.203.0/assert/mod';
-import { afterAll, beforeEach, describe, it } from 'https://deno.land/std@0.203.0/testing/bdd';
+import * as assert from 'node:assert';
+import { after, beforeEach, describe, it } from 'node:test';
+
 import jsonrpc from 'jsonrpc-lite';
 
 import { AppObjectRegistry } from '../../AppObjectRegistry';
@@ -26,7 +26,7 @@ describe('handlers > uikit', () => {
 		AppObjectRegistry.set('app', mockApp);
 	});
 
-	afterAll(() => {
+	after(() => {
 		AppObjectRegistry.clear();
 	});
 
@@ -41,7 +41,7 @@ describe('handlers > uikit', () => {
 		]);
 
 		const result = await handleUIKitInteraction(request);
-		assertInstanceOf(result, UIKitBlockInteractionContext);
+		assert.ok(result instanceof UIKitBlockInteractionContext, `Expected instance of ${UIKitBlockInteractionContext.name}`);
 	});
 
 	it('successfully handles a call for "executeViewSubmitHandler"', async () => {
@@ -56,7 +56,7 @@ describe('handlers > uikit', () => {
 		]);
 
 		const result = await handleUIKitInteraction(request);
-		assertInstanceOf(result, UIKitViewSubmitInteractionContext);
+		assert.ok(result instanceof UIKitViewSubmitInteractionContext, `Expected instance of ${UIKitViewSubmitInteractionContext.name}`);
 	});
 
 	it('successfully handles a call for "executeViewClosedHandler"', async () => {
@@ -70,7 +70,7 @@ describe('handlers > uikit', () => {
 		]);
 
 		const result = await handleUIKitInteraction(request);
-		assertInstanceOf(result, UIKitViewCloseInteractionContext);
+		assert.ok(result instanceof UIKitViewCloseInteractionContext, `Expected instance of ${UIKitViewCloseInteractionContext.name}`);
 	});
 
 	it('successfully handles a call for "executeActionButtonHandler"', async () => {
@@ -84,7 +84,7 @@ describe('handlers > uikit', () => {
 		]);
 
 		const result = await handleUIKitInteraction(request);
-		assertInstanceOf(result, UIKitActionButtonInteractionContext);
+		assert.ok(result instanceof UIKitActionButtonInteractionContext, `Expected instance of ${UIKitActionButtonInteractionContext.name}`);
 	});
 
 	it('successfully handles a call for "executeLivechatBlockActionHandler"', async () => {
@@ -100,6 +100,6 @@ describe('handlers > uikit', () => {
 		]);
 
 		const result = await handleUIKitInteraction(request);
-		assertInstanceOf(result, UIKitLivechatBlockInteractionContext);
+		assert.ok(result instanceof UIKitLivechatBlockInteractionContext, `Expected instance of ${UIKitLivechatBlockInteractionContext.name}`);
 	});
 });

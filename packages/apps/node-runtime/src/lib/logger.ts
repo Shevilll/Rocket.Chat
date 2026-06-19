@@ -5,7 +5,7 @@ import stackTrace from 'stack-trace';
 
 import { AppObjectRegistry } from '../AppObjectRegistry';
 
-export interface StackFrame {
+export interface IStackFrame {
 	getTypeName(): string;
 	getFunctionName(): string;
 	getMethodName(): string;
@@ -104,7 +104,7 @@ export class Logger implements ILogger {
 		});
 	}
 
-	private getStack(stack: Array<StackFrame>): string {
+	private getStack(stack: Array<IStackFrame>): string {
 		let func = 'anonymous';
 
 		if (stack.length === 1) {

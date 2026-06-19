@@ -1,7 +1,6 @@
-// deno-lint-ignore-file no-explicit-any
-import { assertEquals, assertObjectMatch, assertInstanceOf } from 'https://deno.land/std@0.203.0/assert/mod';
-import { beforeEach, describe, it } from 'https://deno.land/std@0.203.0/testing/bdd';
-import { spy } from 'https://deno.land/std@0.203.0/testing/mock';
+import * as assert from 'node:assert';
+import { beforeEach, describe, it, mock } from 'node:test';
+
 import { JsonRpcError } from 'jsonrpc-lite';
 
 import videoconfHandler from '../videoconference-handler';
@@ -9,14 +8,10 @@ import { createMockRequest } from './helpers/mod';
 import { AppObjectRegistry } from '../../AppObjectRegistry';
 
 describe('handlers > videoconference', () => {
-	// deno-lint-ignore no-unused-vars
 	const mockMethodWithoutParam = (read: any, modify: any, http: any, persis: any): Promise<string> => Promise.resolve('ok none');
-	// deno-lint-ignore no-unused-vars
 	const mockMethodWithOneParam = (call: any, read: any, modify: any, http: any, persis: any): Promise<string> => Promise.resolve('ok one');
-	// deno-lint-ignore no-unused-vars
 	const mockMethodWithTwoParam = (call: any, user: any, read: any, modify: any, http: any, persis: any): Promise<string> =>
 		Promise.resolve('ok two');
-	// deno-lint-ignore no-unused-vars
 	const mockMethodWithThreeParam = (call: any, user: any, options: any, read: any, modify: any, http: any, persis: any): Promise<string> =>
 		Promise.resolve('ok three');
 	const mockProvider = {
@@ -36,76 +31,72 @@ describe('handlers > videoconference', () => {
 	});
 
 	it('correctly handles execution of a videoconf method without additional params', async () => {
-		const _spy = spy(mockProvider, 'empty');
+		const _spy = mock.method(mockProvider, 'empty');
 
 		const result = await videoconfHandler(createMockRequest({ method: 'videoconference:test-provider:empty', params: [] }));
 
-		assertEquals(result, 'ok none');
-		assertEquals(_spy.calls[0].args.length, 4);
+		assert.deepStrictEqual(result, 'ok none');
+		assert.deepStrictEqual(_spy.mock.calls[0].arguments.length, 4);
 
-		_spy.restore();
+		_spy.mock.restore();
 	});
 
 	it('correctly handles execution of a videoconf method with one param', async () => {
-		const _spy = spy(mockProvider, 'one');
+		const _spy = mock.method(mockProvider, 'one');
 
 		const result = await videoconfHandler(createMockRequest({ method: 'videoconference:test-provider:one', params: ['call'] }));
 
-		assertEquals(result, 'ok one');
-		assertEquals(_spy.calls[0].args.length, 5);
-		assertEquals(_spy.calls[0].args[0], 'call');
+		assert.deepStrictEqual(result, 'ok one');
+		assert.deepStrictEqual(_spy.mock.calls[0].arguments.length, 5);
+		assert.deepStrictEqual(_spy.mock.calls[0].arguments[0], 'call');
 
-		_spy.restore();
+		_spy.mock.restore();
 	});
 
 	it('correctly handles execution of a videoconf method with two params', async () => {
-		const _spy = spy(mockProvider, 'two');
+		const _spy = mock.method(mockProvider, 'two');
 
 		const result = await videoconfHandler(createMockRequest({ method: 'videoconference:test-provider:two', params: ['call', 'user'] }));
 
-		assertEquals(result, 'ok two');
-		assertEquals(_spy.calls[0].args.length, 6);
-		assertEquals(_spy.calls[0].args[0], 'call');
-		assertEquals(_spy.calls[0].args[1], 'user');
+		assert.deepStrictEqual(result, 'ok two');
+		assert.deepStrictEqual(_spy.mock.calls[0].arguments.length, 6);
+		assert.deepStrictEqual(_spy.mock.calls[0].arguments[0], 'call');
+		assert.deepStrictEqual(_spy.mock.calls[0].arguments[1], 'user');
 
-		_spy.restore();
+		_spy.mock.restore();
 	});
 
 	it('correctly handles execution of a videoconf method with three params', async () => {
-		const _spy = spy(mockProvider, 'three');
+		const _spy = mock.method(mockProvider, 'three');
 
 		const result = await videoconfHandler(
 			createMockRequest({ method: 'videoconference:test-provider:three', params: ['call', 'user', 'options'] }),
 		);
 
-		assertEquals(result, 'ok three');
-		assertEquals(_spy.calls[0].args.length, 7);
-		assertEquals(_spy.calls[0].args[0], 'call');
-		assertEquals(_spy.calls[0].args[1], 'user');
-		assertEquals(_spy.calls[0].args[2], 'options');
+		assert.deepStrictEqual(result, 'ok three');
+		assert.deepStrictEqual(_spy.mock.calls[0].arguments.length, 7);
+		assert.deepStrictEqual(_spy.mock.calls[0].arguments[0], 'call');
+		assert.deepStrictEqual(_spy.mock.calls[0].arguments[1], 'user');
+		assert.deepStrictEqual(_spy.mock.calls[0].arguments[2], 'options');
 
-		_spy.restore();
+		_spy.mock.restore();
 	});
 
 	it('correctly handles an error on execution of a videoconf method', async () => {
 		const result = await videoconfHandler(createMockRequest({ method: 'videoconference:test-provider:error', params: [] }));
 
-		assertInstanceOf(result, JsonRpcError);
-		assertObjectMatch(result, {
-			message: 'Method execution error example',
-			code: -32000,
-		});
+		assert.ok(result instanceof JsonRpcError, `Expected instance of ${JsonRpcError.name}`);
+		assert.strictEqual((result as any).message, 'Method execution error example');
+		assert.strictEqual((result as any).code, -32000);
 	});
 
 	it('correctly handles an error when provider is not found', async () => {
 		const providerName = 'error-provider';
 		const result = await videoconfHandler(createMockRequest({ method: `videoconference:${providerName}:method`, params: [] }));
 
-		assertInstanceOf(result, JsonRpcError);
-		assertObjectMatch(result, {
-			message: `Provider ${providerName} not found`,
-			code: -32000,
-		});
+		assert.ok(result instanceof JsonRpcError, `Expected instance of ${JsonRpcError.name}`);
+		assert.strictEqual((result as any).message, `Provider ${providerName} not found`);
+		assert.strictEqual((result as any).code, -32000);
 	});
 
 	it('correctly handles an error if method is not a function of provider', async () => {
@@ -113,13 +104,9 @@ describe('handlers > videoconference', () => {
 		const providerName = 'test-provider';
 		const result = await videoconfHandler(createMockRequest({ method: `videoconference:${providerName}:${methodName}`, params: [] }));
 
-		assertInstanceOf(result, JsonRpcError);
-		assertObjectMatch(result, {
-			message: 'Method not found',
-			code: -32601,
-			data: {
-				message: `Method ${methodName} not found on provider ${providerName}`,
-			},
-		});
+		assert.ok(result instanceof JsonRpcError, `Expected instance of ${JsonRpcError.name}`);
+		assert.strictEqual((result as any).message, 'Method not found');
+		assert.strictEqual((result as any).code, -32601);
+		assert.strictEqual((result as any).data.message, `Method ${methodName} not found on provider ${providerName}`);
 	});
 });

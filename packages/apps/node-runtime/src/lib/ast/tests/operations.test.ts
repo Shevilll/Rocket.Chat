@@ -1,6 +1,5 @@
-import { assertNotEquals } from 'https://deno.land/std@0.203.0/assert/assert_not_equals';
-import { assertEquals, assertThrows } from 'https://deno.land/std@0.203.0/assert/mod';
-import { beforeEach, describe, it } from 'https://deno.land/std@0.203.0/testing/bdd';
+import * as assert from 'node:assert';
+import { beforeEach, describe, it } from 'node:test';
 
 import type { WalkerState } from '../operations';
 import {
@@ -41,7 +40,7 @@ describe('getFunctionIdentifier', () => {
 		// ancestors array is built by the walking lib
 		const nodeAncestors = [FunctionDeclarationFoo.node];
 		const functionNodeIndex = 0;
-		assertEquals('foo', getFunctionIdentifier(nodeAncestors, functionNodeIndex));
+		assert.deepStrictEqual('foo', getFunctionIdentifier(nodeAncestors, functionNodeIndex));
 	});
 
 	it(`identifies the name "foo" for the code \`${ConstFooAssignedFunctionExpression.code}\``, () => {
@@ -52,7 +51,7 @@ describe('getFunctionIdentifier', () => {
 			ConstFooAssignedFunctionExpression.node.declarations[0].init!, // FunctionExpression
 		];
 		const functionNodeIndex = 2;
-		assertEquals('foo', getFunctionIdentifier(nodeAncestors, functionNodeIndex));
+		assert.deepStrictEqual('foo', getFunctionIdentifier(nodeAncestors, functionNodeIndex));
 	});
 
 	it(`identifies the name "foo" for the code \`${AssignmentExpressionOfArrowFunctionToFooIdentifier.code}\``, () => {
@@ -63,7 +62,7 @@ describe('getFunctionIdentifier', () => {
 			(AssignmentExpressionOfArrowFunctionToFooIdentifier.node.expression as AssignmentExpression).right, // ArrowFunctionExpression
 		];
 		const functionNodeIndex = 2;
-		assertEquals('foo', getFunctionIdentifier(nodeAncestors, functionNodeIndex));
+		assert.deepStrictEqual('foo', getFunctionIdentifier(nodeAncestors, functionNodeIndex));
 	});
 
 	it(`identifies the name "foo" for the code \`${AssignmentExpressionOfNamedFunctionToFooMemberExpression.code}\``, () => {
@@ -74,7 +73,7 @@ describe('getFunctionIdentifier', () => {
 			(AssignmentExpressionOfNamedFunctionToFooMemberExpression.node.expression as AssignmentExpression).right, // FunctionExpression
 		];
 		const functionNodeIndex = 2;
-		assertEquals('foo', getFunctionIdentifier(nodeAncestors, functionNodeIndex));
+		assert.deepStrictEqual('foo', getFunctionIdentifier(nodeAncestors, functionNodeIndex));
 	});
 
 	it(`identifies the name "foo" for the code \`${MethodDefinitionOfFooInClassBar.code}\``, () => {
@@ -86,7 +85,7 @@ describe('getFunctionIdentifier', () => {
 			(MethodDefinitionOfFooInClassBar.node.body!.body[0] as MethodDefinition).value, // FunctionExpression
 		];
 		const functionNodeIndex = 3;
-		assertEquals('foo', getFunctionIdentifier(nodeAncestors, functionNodeIndex));
+		assert.deepStrictEqual('foo', getFunctionIdentifier(nodeAncestors, functionNodeIndex));
 	});
 });
 
@@ -95,14 +94,14 @@ describe('wrapWithAwait', () => {
 		const node = structuredClone(SimpleCallExpressionOfFoo.node.expression);
 		wrapWithAwait(node);
 
-		assertEquals('AwaitExpression', node.type);
-		assertNotEquals(SimpleCallExpressionOfFoo.node.expression.type, node.type);
-		assertEquals(SimpleCallExpressionOfFoo.node.expression, (node as AwaitExpression).argument);
+		assert.deepStrictEqual('AwaitExpression', node.type);
+		assert.notDeepStrictEqual(SimpleCallExpressionOfFoo.node.expression.type, node.type);
+		assert.deepStrictEqual(SimpleCallExpressionOfFoo.node.expression, (node as AwaitExpression).argument);
 	});
 
 	it('throws if node is not an expression', () => {
 		const node = structuredClone(SimpleCallExpressionOfFoo.node);
-		assertThrows(() => wrapWithAwait(node as unknown as Expression));
+		assert.throws(() => wrapWithAwait(node as unknown as Expression));
 	});
 });
 
@@ -125,13 +124,13 @@ describe('asyncifyScope', () => {
 		asyncifyScope(ancestors, state);
 
 		// Assert the function did indeed change the expression to async
-		assertEquals(((node.body.body[0] as ReturnStatement).argument as ArrowFunctionExpression).async, true);
+		assert.deepStrictEqual(((node.body.body[0] as ReturnStatement).argument as ArrowFunctionExpression).async, true);
 
 		// Assert the function did NOT change all ancestors in the chain
-		assertEquals(node.async, false);
+		assert.deepStrictEqual(node.async, false);
 
 		// Assert it couldn't find a function identifier
-		assertEquals(state.functionIdentifiers.size, 0);
+		assert.deepStrictEqual(state.functionIdentifiers.size, 0);
 	});
 });
 
@@ -150,7 +149,7 @@ describe('checkReassignmentofModifiedIdentifiers', () => {
 
 		checkReassignmentOfModifiedIdentifiers(node.expression, state, ancestors, '');
 
-		assertEquals(state.functionIdentifiers.has('bar'), true);
+		assert.deepStrictEqual(state.functionIdentifiers.has('bar'), true);
 	});
 
 	it(`identifies the reassignment of "foo" in the code "${AssignmentOfFooToBarMemberExpression.code}"`, () => {
@@ -167,7 +166,7 @@ describe('checkReassignmentofModifiedIdentifiers', () => {
 
 		checkReassignmentOfModifiedIdentifiers(node.expression, state, ancestors, '');
 
-		assertEquals(state.functionIdentifiers.has('bar'), true);
+		assert.deepStrictEqual(state.functionIdentifiers.has('bar'), true);
 	});
 
 	it(`identifies the reassignment of "foo" in the code "${AssignmentOfFooToBarVariableDeclarator.code}"`, () => {
@@ -183,7 +182,7 @@ describe('checkReassignmentofModifiedIdentifiers', () => {
 
 		checkReassignmentOfModifiedIdentifiers(node.declarations[0], state, ancestors, '');
 
-		assertEquals(state.functionIdentifiers.has('bar'), true);
+		assert.deepStrictEqual(state.functionIdentifiers.has('bar'), true);
 	});
 
 	it(`identifies the reassignment of "foo" in the code "${AssignmentOfFooToBarPropertyDefinition.code}"`, () => {
@@ -200,7 +199,7 @@ describe('checkReassignmentofModifiedIdentifiers', () => {
 
 		checkReassignmentOfModifiedIdentifiers(node.body.body[0], state, ancestors, '');
 
-		assertEquals(state.functionIdentifiers.has('bar'), true);
+		assert.deepStrictEqual(state.functionIdentifiers.has('bar'), true);
 	});
 });
 
@@ -229,11 +228,11 @@ describe('buildFixModifiedFunctionsOperation', function () {
 
 		fixFunction(ancestors[4], state, ancestors, '');
 
-		assertEquals(state.isModified, true);
-		assertEquals(state.functionIdentifiers.has('bar'), true);
-		assertNotEquals(FixSimpleCallExpression.node, node);
-		assertEquals(node.async, true);
-		assertEquals(ancestors[4].type, 'AwaitExpression');
+		assert.deepStrictEqual(state.isModified, true);
+		assert.deepStrictEqual(state.functionIdentifiers.has('bar'), true);
+		assert.notDeepStrictEqual(FixSimpleCallExpression.node, node);
+		assert.deepStrictEqual(node.async, true);
+		assert.deepStrictEqual(ancestors[4].type, 'AwaitExpression');
 	});
 
 	it(`fixes calls of "foo" in the code "${ArrowFunctionDerefCallExpression.code}"`, () => {
@@ -248,14 +247,14 @@ describe('buildFixModifiedFunctionsOperation', function () {
 		fixFunction(ancestors[3], state, ancestors, '');
 
 		// Recorded that a modification has been made
-		assertEquals(state.isModified, true);
+		assert.deepStrictEqual(state.isModified, true);
 		// Recorded that the enclosing scope of the call also requires fixing
-		assertEquals(state.functionIdentifiers.has('bar'), true);
+		assert.deepStrictEqual(state.functionIdentifiers.has('bar'), true);
 		// Original node and fixed node are different
-		assertNotEquals(ArrowFunctionDerefCallExpression.node, node);
+		assert.notDeepStrictEqual(ArrowFunctionDerefCallExpression.node, node);
 		// The function call is now await'ed
-		assertEquals(ancestors[3].type, 'AwaitExpression');
+		assert.deepStrictEqual(ancestors[3].type, 'AwaitExpression');
 		// The parent function of the call is now marked as async
-		assertEquals((ancestors[2] as ArrowFunctionExpression).async, true);
+		assert.deepStrictEqual((ancestors[2] as ArrowFunctionExpression).async, true);
 	});
 });

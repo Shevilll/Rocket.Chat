@@ -3,7 +3,6 @@ import type { RocketChatAssociationModel as _RocketChatAssociationModel } from '
 import type { VideoConference, VideoConferenceMember } from '@rocket.chat/apps-engine/definition/videoConferences/IVideoConference';
 import type { IVideoConferenceUser } from '@rocket.chat/apps-engine/definition/videoConferences/IVideoConferenceUser';
 
-
 const { RocketChatAssociationModel } = require('@rocket.chat/apps-engine/definition/metadata/RocketChatAssociations.js') as {
 	RocketChatAssociationModel: typeof _RocketChatAssociationModel;
 };

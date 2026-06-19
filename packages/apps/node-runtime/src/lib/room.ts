@@ -55,11 +55,11 @@ export class Room {
 	public get usernames(): Promise<Array<string>> {
 		if (!this.id) return Promise.resolve([]);
 
-		if (!this._USERNAMES) {
+		if (typeof this._USERNAMES === 'undefined') {
 			this._USERNAMES = this[PrivateManager]?.getBridges().getInternalBridge().doGetUsernamesOfRoomById(this.id);
 		}
 
-		return this._USERNAMES || Promise.resolve([]);
+		return this._USERNAMES ?? Promise.resolve([]);
 	}
 
 	public set usernames(usernames) {}
@@ -97,7 +97,7 @@ export class Room {
 
 	public async getUsernames(): Promise<Array<string>> {
 		// Get usernames
-		if (!this._USERNAMES) {
+		if (typeof this._USERNAMES === 'undefined') {
 			this._USERNAMES = this[PrivateManager]?.getBridges().getInternalBridge().doGetUsernamesOfRoomById(this.id!);
 		}
 

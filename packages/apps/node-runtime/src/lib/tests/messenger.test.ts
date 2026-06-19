@@ -1,7 +1,5 @@
-import { assertEquals, assertObjectMatch } from 'https://deno.land/std@0.203.0/assert/mod';
-import { afterAll, beforeEach, describe, it } from 'https://deno.land/std@0.203.0/testing/bdd';
-import { spy } from 'https://deno.land/std@0.203.0/testing/mock';
-import type { JsonRpc } from 'jsonrpc-lite';
+import * as assert from 'node:assert';
+import { after, beforeEach, describe, it, mock } from 'node:test';
 
 import { AppObjectRegistry } from '../../AppObjectRegistry';
 import { createMockRequest } from '../../handlers/tests/helpers/mod';
@@ -19,81 +17,63 @@ describe('Messenger', () => {
 		context = createMockRequest({ method: 'test', params: [] });
 	});
 
-	afterAll(() => {
+	after(() => {
 		AppObjectRegistry.clear();
 		Messenger.Transport.selectTransport('stdout');
 	});
 
 	it('should add logs to success responses', async () => {
-		const theSpy = spy(Messenger.Queue, 'enqueue');
+		const theSpy = mock.method(Messenger.Queue, 'enqueue');
 		const { logger } = context.context;
 
 		logger.info('test');
 
 		await Messenger.successResponse({ id: 'test', result: 'test' }, context);
 
-		assertEquals(theSpy.calls.length, 1);
+		assert.strictEqual(theSpy.mock.calls.length, 1);
 
-		const [responseArgument] = theSpy.calls[0].args;
+		const [responseArgument] = theSpy.mock.calls[0].arguments;
+		const resp = responseArgument as any;
 
-		assertObjectMatch(responseArgument as JsonRpc, {
-			jsonrpc: '2.0',
-			id: 'test',
-			result: {
-				value: 'test',
-				logs: {
-					appId: 'test',
-					method: 'test',
-					entries: [
-						{
-							severity: 'info',
-							method: 'test',
-							args: ['test'],
-							caller: 'anonymous OR constructor',
-						},
-					],
-				},
-			},
-		});
+		assert.strictEqual(resp.jsonrpc, '2.0');
+		assert.strictEqual(resp.id, 'test');
+		assert.strictEqual(resp.result.value, 'test');
+		assert.strictEqual(resp.result.logs.appId, 'test');
+		assert.strictEqual(resp.result.logs.method, 'test');
+		assert.strictEqual(resp.result.logs.entries.length, 1);
+		assert.strictEqual(resp.result.logs.entries[0].severity, 'info');
+		assert.strictEqual(resp.result.logs.entries[0].method, 'test');
+		assert.deepStrictEqual(resp.result.logs.entries[0].args, ['test']);
+		assert.strictEqual(resp.result.logs.entries[0].caller, 'anonymous OR constructor');
 
-		theSpy.restore();
+		theSpy.mock.restore();
 	});
 
 	it('should add logs to error responses', async () => {
-		const theSpy = spy(Messenger.Queue, 'enqueue');
+		const theSpy = mock.method(Messenger.Queue, 'enqueue');
 		const { logger } = context.context;
 
 		logger.info('test');
 
 		await Messenger.errorResponse({ id: 'test', error: { code: -32000, message: 'test' } }, context);
 
-		assertEquals(theSpy.calls.length, 1);
+		assert.strictEqual(theSpy.mock.calls.length, 1);
 
-		const [responseArgument] = theSpy.calls[0].args;
+		const [responseArgument] = theSpy.mock.calls[0].arguments;
+		const resp = responseArgument as any;
 
-		assertObjectMatch(responseArgument as JsonRpc, {
-			jsonrpc: '2.0',
-			id: 'test',
-			error: {
-				code: -32000,
-				message: 'test',
-				data: {
-					logs: {
-						appId: 'test',
-						method: 'test',
-						entries: [
-							{
-								severity: 'info',
-								method: 'test',
-								args: ['test'],
-								caller: 'anonymous OR constructor',
-							},
-						],
-					},
-				},
-			},
-		});
+		assert.strictEqual(resp.jsonrpc, '2.0');
+		assert.strictEqual(resp.id, 'test');
+		assert.strictEqual(resp.error.code, -32000);
+		assert.strictEqual(resp.error.message, 'test');
+		assert.strictEqual(resp.error.data.logs.appId, 'test');
+		assert.strictEqual(resp.error.data.logs.method, 'test');
+		assert.strictEqual(resp.error.data.logs.entries.length, 1);
+		assert.strictEqual(resp.error.data.logs.entries[0].severity, 'info');
+		assert.strictEqual(resp.error.data.logs.entries[0].method, 'test');
+		assert.deepStrictEqual(resp.error.data.logs.entries[0].args, ['test']);
+		assert.strictEqual(resp.error.data.logs.entries[0].caller, 'anonymous OR constructor');
 
-		theSpy.restore();
+		theSpy.mock.restore();
 	});
 });

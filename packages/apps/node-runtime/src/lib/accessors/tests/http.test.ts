@@ -1,7 +1,5 @@
-// deno-lint-ignore-file no-explicit-any
-import { assertRejects } from 'https://deno.land/std@0.203.0/assert/mod';
-import { beforeEach, describe, it, afterAll } from 'https://deno.land/std@0.203.0/testing/bdd';
-import { stub } from 'https://deno.land/std@0.203.0/testing/mock';
+import * as assert from 'node:assert';
+import { beforeEach, describe, it, after, mock } from 'node:test';
 
 import { AppObjectRegistry } from '../../../AppObjectRegistry';
 import { Http } from '../http';
@@ -26,13 +24,13 @@ describe('Http accessor error handling integration', () => {
 		http = new Http(mockRead as any, mockPersistence as any, mockHttpExtend as any, () => Promise.resolve({}) as any);
 	});
 
-	afterAll(() => {
+	after(() => {
 		AppObjectRegistry.clear();
 	});
 
 	describe('HTTP method error handling', () => {
 		it('formats JSON-RPC errors correctly for GET requests', async () => {
-			const _stub = stub(http, 'senderFn' as keyof Http, () =>
+			const _stub = mock.method(http, 'senderFn' as any, () =>
 				Promise.reject({
 					error: {
 						message: 'HTTP GET request failed',
@@ -41,13 +39,13 @@ describe('Http accessor error handling integration', () => {
 				}),
 			);
 
-			await assertRejects(() => http.get('https://api.example.com/data'), Error, 'HTTP GET request failed');
+			await assert.rejects(() => http.get('https://api.example.com/data'), { message: 'HTTP GET request failed' });
 
-			_stub.restore();
+			_stub.mock.restore();
 		});
 
 		it('formats JSON-RPC errors correctly for POST requests', async () => {
-			const _stub = stub(http, 'senderFn' as keyof Http, () =>
+			const _stub = mock.method(http, 'senderFn' as any, () =>
 				Promise.reject({
 					error: {
 						message: 'HTTP POST request validation failed',
@@ -56,17 +54,15 @@ describe('Http accessor error handling integration', () => {
 				}),
 			);
 
-			await assertRejects(
-				() => http.post('https://api.example.com/create', { data: { name: 'test' } }),
-				Error,
-				'HTTP POST request validation failed',
-			);
+			await assert.rejects(() => http.post('https://api.example.com/create', { data: { name: 'test' } }), {
+				message: 'HTTP POST request validation failed',
+			});
 
-			_stub.restore();
+			_stub.mock.restore();
 		});
 
 		it('formats JSON-RPC errors correctly for PUT requests', async () => {
-			const _stub = stub(http, 'senderFn' as keyof Http, () =>
+			const _stub = mock.method(http, 'senderFn' as any, () =>
 				Promise.reject({
 					error: {
 						message: 'HTTP PUT request unauthorized',
@@ -75,17 +71,15 @@ describe('Http accessor error handling integration', () => {
 				}),
 			);
 
-			await assertRejects(
-				() => http.put('https://api.example.com/update/123', { data: { name: 'updated' } }),
-				Error,
-				'HTTP PUT request unauthorized',
-			);
+			await assert.rejects(() => http.put('https://api.example.com/update/123', { data: { name: 'updated' } }), {
+				message: 'HTTP PUT request unauthorized',
+			});
 
-			_stub.restore();
+			_stub.mock.restore();
 		});
 
 		it('formats JSON-RPC errors correctly for DELETE requests', async () => {
-			const _stub = stub(http, 'senderFn' as keyof Http, () =>
+			const _stub = mock.method(http, 'senderFn' as any, () =>
 				Promise.reject({
 					error: {
 						message: 'HTTP DELETE request forbidden',
@@ -94,13 +88,13 @@ describe('Http accessor error handling integration', () => {
 				}),
 			);
 
-			await assertRejects(() => http.del('https://api.example.com/delete/123'), Error, 'HTTP DELETE request forbidden');
+			await assert.rejects(() => http.del('https://api.example.com/delete/123'), { message: 'HTTP DELETE request forbidden' });
 
-			_stub.restore();
+			_stub.mock.restore();
 		});
 
 		it('formats JSON-RPC errors correctly for PATCH requests', async () => {
-			const _stub = stub(http, 'senderFn' as keyof Http, () =>
+			const _stub = mock.method(http, 'senderFn' as any, () =>
 				Promise.reject({
 					error: {
 						message: 'HTTP PATCH request conflict',
@@ -109,24 +103,22 @@ describe('Http accessor error handling integration', () => {
 				}),
 			);
 
-			await assertRejects(
-				() => http.patch('https://api.example.com/patch/123', { data: { status: 'active' } }),
-				Error,
-				'HTTP PATCH request conflict',
-			);
+			await assert.rejects(() => http.patch('https://api.example.com/patch/123', { data: { status: 'active' } }), {
+				message: 'HTTP PATCH request conflict',
+			});
 
-			_stub.restore();
+			_stub.mock.restore();
 		});
 	});
 
 	describe('Error instance passthrough', () => {
 		it('passes through existing Error instances unchanged for HTTP requests', async () => {
 			const originalError = new Error('Network timeout error');
-			const _stub = stub(http, 'senderFn' as keyof Http, () => Promise.reject(originalError));
+			const _stub = mock.method(http, 'senderFn' as any, () => Promise.reject(originalError));
 
-			await assertRejects(() => http.get('https://api.example.com/data'), Error, 'Network timeout error');
+			await assert.rejects(() => http.get('https://api.example.com/data'), { message: 'Network timeout error' });
 
-			_stub.restore();
+			_stub.mock.restore();
 		});
 	});
 
@@ -137,28 +129,28 @@ describe('Http accessor error handling integration', () => {
 				details: 'Something went wrong',
 				timestamp: Date.now(),
 			};
-			const _stub = stub(http, 'senderFn' as keyof Http, () => Promise.reject(unknownError));
+			const _stub = mock.method(http, 'senderFn' as any, () => Promise.reject(unknownError));
 
-			await assertRejects(() => http.get('https://api.example.com/data'), Error, 'An unknown error occurred');
+			await assert.rejects(() => http.get('https://api.example.com/data'), { message: 'An unknown error occurred' });
 
-			_stub.restore();
+			_stub.mock.restore();
 		});
 
 		it('wraps string errors with default message for HTTP requests', async () => {
 			const stringError = 'Connection refused';
-			const _stub = stub(http, 'senderFn' as keyof Http, () => Promise.reject(stringError));
+			const _stub = mock.method(http, 'senderFn' as any, () => Promise.reject(stringError));
 
-			await assertRejects(() => http.get('https://api.example.com/data'), Error, 'An unknown error occurred');
+			await assert.rejects(() => http.get('https://api.example.com/data'), { message: 'An unknown error occurred' });
 
-			_stub.restore();
+			_stub.mock.restore();
 		});
 
 		it('wraps null/undefined errors with default message for HTTP requests', async () => {
-			const _stub = stub(http, 'senderFn' as keyof Http, () => Promise.reject(null));
+			const _stub = mock.method(http, 'senderFn' as any, () => Promise.reject(null));
 
-			await assertRejects(() => http.get('https://api.example.com/data'), Error, 'An unknown error occurred');
+			await assert.rejects(() => http.get('https://api.example.com/data'), { message: 'An unknown error occurred' });
 
-			_stub.restore();
+			_stub.mock.restore();
 		});
 	});
 });

@@ -1,6 +1,6 @@
-// deno-lint-ignore-file no-explicit-any
-import { assertEquals, assertInstanceOf, assertStrictEquals } from 'https://deno.land/std@0.203.0/assert/mod';
-import { describe, it } from 'https://deno.land/std@0.203.0/testing/bdd';
+import * as assert from 'node:assert';
+import { describe, it } from 'node:test';
+
 import * as jsonrpc from 'jsonrpc-lite';
 
 import { formatErrorResponse } from '../formatResponseErrorHandler';
@@ -11,8 +11,8 @@ describe('formatErrorResponse', () => {
 			const errorObject = jsonrpc.error('test-id', new jsonrpc.JsonRpcError('Test error message', 1000));
 			const result = formatErrorResponse(errorObject);
 
-			assertInstanceOf(result, Error);
-			assertEquals(result.message, 'Test error message');
+			assert.ok(result instanceof Error, `Expected instance of Error`);
+			assert.deepStrictEqual(result.message, 'Test error message');
 		});
 
 		it('formats objects with error.message structure', () => {
@@ -24,8 +24,8 @@ describe('formatErrorResponse', () => {
 			};
 			const result = formatErrorResponse(errorLikeObject);
 
-			assertInstanceOf(result, Error);
-			assertEquals(result.message, 'Custom error message');
+			assert.ok(result instanceof Error, `Expected instance of Error`);
+			assert.deepStrictEqual(result.message, 'Custom error message');
 		});
 
 		it('handles nested error objects with complex structure', () => {
@@ -41,8 +41,8 @@ describe('formatErrorResponse', () => {
 			};
 			const result = formatErrorResponse(complexError);
 
-			assertInstanceOf(result, Error);
-			assertEquals(result.message, 'Database connection failed');
+			assert.ok(result instanceof Error, `Expected instance of Error`);
+			assert.deepStrictEqual(result.message, 'Database connection failed');
 		});
 
 		it('handles error objects with empty message', () => {
@@ -54,8 +54,8 @@ describe('formatErrorResponse', () => {
 			};
 			const result = formatErrorResponse(emptyMessageError);
 
-			assertInstanceOf(result, Error);
-			assertEquals(result.message, '');
+			assert.ok(result instanceof Error, `Expected instance of Error`);
+			assert.deepStrictEqual(result.message, '');
 		});
 	});
 
@@ -64,8 +64,8 @@ describe('formatErrorResponse', () => {
 			const originalError = new Error('Original error message');
 			const result = formatErrorResponse(originalError);
 
-			assertStrictEquals(result, originalError);
-			assertEquals(result.message, 'Original error message');
+			assert.strictEqual(result, originalError);
+			assert.deepStrictEqual(result.message, 'Original error message');
 		});
 
 		it('returns custom Error subclasses unchanged', () => {
@@ -82,9 +82,9 @@ describe('formatErrorResponse', () => {
 			const customError = new CustomError('Custom error', 404);
 			const result = formatErrorResponse(customError);
 
-			assertStrictEquals(result, customError);
-			assertEquals(result.message, 'Custom error');
-			assertEquals((result as CustomError).code, 404);
+			assert.strictEqual(result, customError);
+			assert.deepStrictEqual(result.message, 'Custom error');
+			assert.deepStrictEqual((result as CustomError).code, 404);
 		});
 
 		it('handles Error instances with additional properties', () => {
@@ -94,9 +94,9 @@ describe('formatErrorResponse', () => {
 
 			const result = formatErrorResponse(errorWithProps);
 
-			assertStrictEquals(result, errorWithProps);
-			assertEquals(result.message, 'Error with props');
-			assertEquals((result as any).statusCode, 500);
+			assert.strictEqual(result, errorWithProps);
+			assert.deepStrictEqual(result.message, 'Error with props');
+			assert.deepStrictEqual((result as any).statusCode, 500);
 		});
 	});
 
@@ -105,61 +105,61 @@ describe('formatErrorResponse', () => {
 			const stringError = 'Simple string error';
 			const result = formatErrorResponse(stringError);
 
-			assertInstanceOf(result, Error);
-			assertEquals(result.message, 'An unknown error occurred');
-			assertEquals(result.cause, stringError);
+			assert.ok(result instanceof Error, `Expected instance of Error`);
+			assert.deepStrictEqual(result.message, 'An unknown error occurred');
+			assert.deepStrictEqual(result.cause, stringError);
 		});
 
 		it('wraps number errors with default message and cause', () => {
 			const numberError = 404;
 			const result = formatErrorResponse(numberError);
 
-			assertInstanceOf(result, Error);
-			assertEquals(result.message, 'An unknown error occurred');
-			assertEquals(result.cause, numberError);
+			assert.ok(result instanceof Error, `Expected instance of Error`);
+			assert.deepStrictEqual(result.message, 'An unknown error occurred');
+			assert.deepStrictEqual(result.cause, numberError);
 		});
 
 		it('wraps boolean errors with default message and cause', () => {
 			const booleanError = false;
 			const result = formatErrorResponse(booleanError);
 
-			assertInstanceOf(result, Error);
-			assertEquals(result.message, 'An unknown error occurred');
-			assertEquals(result.cause, booleanError);
+			assert.ok(result instanceof Error, `Expected instance of Error`);
+			assert.deepStrictEqual(result.message, 'An unknown error occurred');
+			assert.deepStrictEqual(result.cause, booleanError);
 		});
 
 		it('wraps null with default message and cause', () => {
 			const result = formatErrorResponse(null);
 
-			assertInstanceOf(result, Error);
-			assertEquals(result.message, 'An unknown error occurred');
-			assertEquals(result.cause, null);
+			assert.ok(result instanceof Error, `Expected instance of Error`);
+			assert.deepStrictEqual(result.message, 'An unknown error occurred');
+			assert.deepStrictEqual(result.cause, null);
 		});
 
 		it('wraps undefined with default message and cause', () => {
 			const result = formatErrorResponse(undefined);
 
-			assertInstanceOf(result, Error);
-			assertEquals(result.message, 'An unknown error occurred');
-			assertEquals(result.cause, undefined);
+			assert.ok(result instanceof Error, `Expected instance of Error`);
+			assert.deepStrictEqual(result.message, 'An unknown error occurred');
+			assert.deepStrictEqual(result.cause, undefined);
 		});
 
 		it('wraps arrays with default message and cause', () => {
 			const arrayError = ['error', 'details'];
 			const result = formatErrorResponse(arrayError);
 
-			assertInstanceOf(result, Error);
-			assertEquals(result.message, 'An unknown error occurred');
-			assertEquals(result.cause, arrayError);
+			assert.ok(result instanceof Error, `Expected instance of Error`);
+			assert.deepStrictEqual(result.message, 'An unknown error occurred');
+			assert.deepStrictEqual(result.cause, arrayError);
 		});
 
 		it('wraps functions with default message and cause', () => {
 			const functionError = () => 'error';
 			const result = formatErrorResponse(functionError);
 
-			assertInstanceOf(result, Error);
-			assertEquals(result.message, 'An unknown error occurred');
-			assertEquals(result.cause, functionError);
+			assert.ok(result instanceof Error, `Expected instance of Error`);
+			assert.deepStrictEqual(result.message, 'An unknown error occurred');
+			assert.deepStrictEqual(result.cause, functionError);
 		});
 
 		it('wraps plain objects without error.message with default message and cause', () => {
@@ -170,9 +170,9 @@ describe('formatErrorResponse', () => {
 			};
 			const result = formatErrorResponse(plainObject);
 
-			assertInstanceOf(result, Error);
-			assertEquals(result.message, 'An unknown error occurred');
-			assertEquals(result.cause, plainObject);
+			assert.ok(result instanceof Error, `Expected instance of Error`);
+			assert.deepStrictEqual(result.message, 'An unknown error occurred');
+			assert.deepStrictEqual(result.cause, plainObject);
 		});
 
 		it('wraps objects with error property but no message with default message and cause', () => {
@@ -184,9 +184,9 @@ describe('formatErrorResponse', () => {
 			};
 			const result = formatErrorResponse(errorObjectNoMessage);
 
-			assertInstanceOf(result, Error);
-			assertEquals(result.message, 'An unknown error occurred');
-			assertEquals(result.cause, errorObjectNoMessage);
+			assert.ok(result instanceof Error, `Expected instance of Error`);
+			assert.deepStrictEqual(result.message, 'An unknown error occurred');
+			assert.deepStrictEqual(result.cause, errorObjectNoMessage);
 		});
 	});
 
@@ -195,7 +195,7 @@ describe('formatErrorResponse', () => {
 
 		for (const testCase of testCases) {
 			const result = formatErrorResponse(testCase);
-			assertInstanceOf(result, Error, `Failed for input: ${JSON.stringify(testCase)}`);
+			assert.ok(result instanceof Error, `Failed for input: ${JSON.stringify(testCase)}`);
 		}
 	});
 
@@ -203,9 +203,9 @@ describe('formatErrorResponse', () => {
 		const plainObject = { status: 'error', code: 500 };
 		const result = formatErrorResponse(plainObject);
 
-		assertInstanceOf(result, Error);
-		assertEquals(result.message, 'An unknown error occurred');
+		assert.ok(result instanceof Error, `Expected instance of Error`);
+		assert.deepStrictEqual(result.message, 'An unknown error occurred');
 		// Ensure the message is not "[object Object]"
-		assertEquals(result.message !== '[object Object]', true);
+		assert.deepStrictEqual(result.message !== '[object Object]', true);
 	});
 });

@@ -24,7 +24,7 @@ export default async function outboundMessageHandler(request: RequestContext): P
 	try {
 		logger.debug(`Executing ${methodName} on outbound communication provider...`);
 
-		// deno-lint-ignore ban-types
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-function-type
 		return await (method as Function).apply(wrapComposedApp(provider, request), [
 			...args,
 			AppAccessorsInstance.getReader(),

@@ -1,5 +1,5 @@
-import { assertEquals } from 'https://deno.land/std@0.203.0/assert/mod';
-import { afterAll, beforeEach, describe, it } from 'https://deno.land/std@0.203.0/testing/bdd';
+import * as assert from 'node:assert';
+import { after, beforeEach, describe, it } from 'node:test';
 
 import { AppObjectRegistry } from '../../AppObjectRegistry';
 import { AppAccessors } from '../../lib/accessors/mod';
@@ -29,13 +29,13 @@ describe('handlers > scheduler', () => {
 		]);
 	});
 
-	afterAll(() => {
+	after(() => {
 		AppObjectRegistry.clear();
 	});
 
 	it('correctly executes a request to a processor', async () => {
 		const result = await handleScheduler(createMockRequest({ method: 'scheduler:mockId', params: [{}] }));
 
-		assertEquals(result, null);
+		assert.deepStrictEqual(result, null);
 	});
 });
