@@ -127,8 +127,6 @@ export class NodeRuntimeSubprocessController extends EventEmitter implements IRu
 		this.tempFilePath = manager.getTempFilePath();
 		this.appsEnginePath = getAppsEngineDir();
 
-
-
 		this.scriptRuntimePath = require.resolve('../../../../node-runtime/dist/main.js');
 
 		this.debug = baseDebug.extend(appPackage.info.id);

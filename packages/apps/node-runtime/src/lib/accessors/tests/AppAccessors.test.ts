@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion -- acceptable in this test file */
+/* eslint-disable testing-library/no-await-sync-queries */
 import * as assert from 'node:assert';
 import { after, beforeEach, describe, it } from 'node:test';
 
